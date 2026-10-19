@@ -1,0 +1,2044 @@
+/* =========================================================
+   WHENGRAM — iOS 6.1.3 SKEUOMORPHIC EDITION (iPhone 4s)
+   Оптимизировано под 320x480 (640x960 Retina) Mobile Safari
+   ========================================================= */
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-touch-callout: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* =========================================================
+   ТЕМА 1 (ПО УМОЛЧАНИЮ): КРЕМОВАЯ БУМАГА И КОЖА (THEME-CREAM)
+   ========================================================= */
+body.theme-cream {
+  background-color: #ece3d2;
+  background-image:
+    -webkit-radial-gradient(center, ellipse cover, rgba(255,252,245,0.65) 0%, rgba(218,204,182,0.45) 100%),
+    -webkit-repeating-linear-gradient(0deg, rgba(140,115,85,0.03) 0px, rgba(140,115,85,0.03) 1px, transparent 1px, transparent 3px);
+  color: #261f19;
+}
+
+/* =========================================================
+   ТЕМА 2: ТЁМНЫЙ ЛЁН И ГРАФИТ iOS 6 (THEME-DARK)
+   ========================================================= */
+body.theme-dark {
+  background-color: #161618;
+  background-image:
+    -webkit-repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 4px),
+    -webkit-repeating-linear-gradient(-45deg, rgba(0,0,0,0.35) 0px, rgba(0,0,0,0.35) 2px, transparent 2px, transparent 5px);
+  color: #f3ede2;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.accent-dot,
+.accent-text {
+  color: #d94e28;
+}
+
+body.theme-dark .accent-dot,
+body.theme-dark .accent-text {
+  color: #f0643b;
+}
+
+/* =========================================================
+   КАРКАС ПРИЛОЖЕНИЯ (ФИКСИРОВАННЫЙ ВЕРХ + НИЗ, ПЛАВНЫЙ СКРОЛЛ)
+   ========================================================= */
+.app-shell {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.main-scroll {
+  position: absolute;
+  top: 46px;
+  bottom: 52px;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 12px 26px 12px;
+}
+
+.tab-view {
+  display: none;
+}
+
+.tab-view.active {
+  display: block;
+}
+
+/* =========================================================
+   ВЕРХНИЙ НАВИГАЦИОННЫЙ БАР iOS 6 (КОЖА / МЕТАЛЛ СО СТРОЧКОЙ)
+   ========================================================= */
+.ios6-navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 46px;
+  z-index: 20;
+  padding: 0 8px;
+  background-color: #3b2d23;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#594537),
+    color-stop(0.49, #3f3025),
+    color-stop(0.51, #32251c),
+    to(#241a13)
+  );
+  border-bottom: 1px solid #140e0a;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.45);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 5px rgba(0, 0, 0, 0.45);
+}
+
+/* Декоративная кожаная строчка внизу бара */
+.ios6-navbar:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  bottom: 3px;
+  height: 1px;
+  border-bottom: 1px dashed rgba(242, 206, 162, 0.35);
+  pointer-events: none;
+}
+
+body.theme-dark .ios6-navbar {
+  background-color: #1f2024;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#3b3d42),
+    color-stop(0.5, #232428),
+    color-stop(0.51, #151619),
+    to(#0d0e10)
+  );
+}
+
+.navbar-left {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+}
+
+.navbar-right {
+  position: absolute;
+  right: 8px;
+  top: 7px;
+}
+
+.navbar-center {
+  text-align: center;
+  padding-top: 6px;
+  margin: 0 74px;
+}
+
+.navbar-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #fdf6eb;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.85);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-subtitle {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.4px;
+  color: #ccb9a1;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+  margin-top: 1px;
+}
+
+/* Круглый медальон-логотип слева вверху */
+.brand-badge {
+  width: 32px;
+  height: 32px;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffbf2), to(#dfd0b8));
+  border: 1px solid #1a120c;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 1px 3px rgba(0, 0, 0, 0.6);
+  text-align: center;
+  position: relative;
+}
+
+.brand-crown {
+  display: block;
+  font-size: 8px;
+  line-height: 8px;
+  color: #d94e28;
+  margin-top: 3px;
+}
+
+.brand-w {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 16px;
+  color: #241b14;
+}
+
+/* Выпуклая кнопка в верхнем баре iOS 6 */
+.ios6-nav-btn {
+  height: 30px;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff9f0;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+  background-color: #4f3b2d;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#785c48),
+    color-stop(0.5, #4f3b2d),
+    color-stop(0.51, #3d2c20),
+    to(#2e2017)
+  );
+  border: 1px solid #17100b;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.ios6-nav-btn:active,
+.ios6-nav-btn.touched {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#261b13), to(#423023));
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.nav-btn-done {
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#f07854),
+    color-stop(0.5, #d94e28),
+    color-stop(0.51, #bf3d19),
+    to(#9e2f10)
+  );
+  border-color: #591806;
+}
+
+/* =========================================================
+   ВКЛАДКА 1: ГЛАВНАЯ — ДАТА И КАРТОЧКИ
+   ========================================================= */
+.home-date-strip {
+  display: block;
+  overflow: hidden;
+  padding: 2px 4px 8px 4px;
+  border-bottom: 1px solid rgba(110, 90, 68, 0.25);
+  margin-bottom: 12px;
+}
+
+.home-date-text {
+  float: left;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #6b5a48;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+  line-height: 18px;
+}
+
+body.theme-dark .home-date-text {
+  color: #a39b8e;
+  text-shadow: 0 -1px 0 #000;
+}
+
+.home-day-badge {
+  float: right;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.08);
+  color: #544536;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.6);
+}
+
+body.theme-dark .home-day-badge {
+  background-color: #0e0f12;
+  color: #d6cec2;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.08);
+}
+
+/* Скевоморфная бумажная карточка приветствия */
+.skeuo-card {
+  position: relative;
+  padding: 16px 14px;
+  margin-bottom: 14px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: #fbf6ec;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf8), to(#f3ead8));
+  border: 1px solid #c4b399;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 3px 7px rgba(55, 40, 22, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+/* Эффект двойного бумажного среза снизу карточки */
+.paper-card:after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  right: 6px;
+  bottom: -4px;
+  height: 3px;
+  background-color: #e6dac5;
+  border: 1px solid #bda98c;
+  border-top: none;
+  -webkit-border-bottom-left-radius: 6px;
+  -webkit-border-bottom-right-radius: 6px;
+  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.12);
+}
+
+body.theme-dark .skeuo-card {
+  background-color: #222327;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2c2e33), to(#1b1c20));
+  border: 1px solid #383a40;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.65);
+}
+
+body.theme-dark .paper-card:after {
+  background-color: #18191c;
+  border-color: #2e3036;
+}
+
+/* Металлическая заклёпка/булавка вверху карточки */
+.card-pin {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#9e9485));
+  border: 1px solid #6e6456;
+  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.35);
+}
+
+.greeting-line {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  color: #7c6b58;
+  margin-bottom: 5px;
+}
+
+body.theme-dark .greeting-line {
+  color: #9e9689;
+}
+
+.hero-question {
+  margin: 0 0 6px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 1.15;
+  color: #221b15;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body.theme-dark .hero-question {
+  color: #faf4eb;
+  text-shadow: 0 -1px 1px #000;
+}
+
+.hero-subtext {
+  margin: 0 0 14px 0;
+  font-size: 12px;
+  line-height: 1.4;
+  color: #6b5c4c;
+}
+
+body.theme-dark .hero-subtext {
+  color: #a39c90;
+}
+
+/* Главная выпуклая кнопка действия (в стиле iOS 6 + Whengram) */
+.ios6-primary-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-align: left;
+  color: #241b15;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+  background-color: #f5ebd6;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#fffcf5),
+    color-stop(0.5, #f5ebd6),
+    color-stop(0.51, #eadbc0),
+    to(#dcc8a7)
+  );
+  border: 1px solid #ab9676;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 2px 4px rgba(0, 0, 0, 0.18);
+  position: relative;
+}
+
+.ios6-primary-btn .btn-arrow {
+  float: right;
+  color: #d94e28;
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 14px;
+}
+
+.ios6-primary-btn:active,
+.ios6-primary-btn.touched {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d5c1a1), to(#efe3cc));
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================================================
+   ПОЛАРОИДНАЯ КАРТОЧКА ЗАПИСИ И НАСТРОЕНИЯ
+   ========================================================= */
+.polaroid-card {
+  padding: 12px;
+}
+
+.polaroid-top-bar {
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.polaroid-tag {
+  float: left;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #82715e;
+  line-height: 20px;
+}
+
+.mood-pill {
+  float: right;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 3px 8px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.2);
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 2px rgba(0,0,0,0.12);
+}
+
+.mood-positive {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e2f5df), to(#bce3b6));
+  color: #22661b;
+  border-color: #8ac482;
+}
+
+.mood-neutral {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff3d6), to(#f2d99d));
+  color: #7d580b;
+  border-color: #d4b163;
+}
+
+.mood-negative {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffe3dc), to(#f5bdb0));
+  color: #8c230e;
+  border-color: #d98573;
+}
+
+.polaroid-photo-frame {
+  background-color: #1a1715;
+  padding: 5px;
+  border: 1px solid #cfc0a9;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.15);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.polaroid-photo-frame img {
+  display: block;
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+}
+
+.polaroid-caption {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: #29211b;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  padding: 4px 2px 8px 2px;
+}
+
+body.theme-dark .polaroid-caption {
+  color: #f2ece1;
+}
+
+.polaroid-footer {
+  overflow: hidden;
+  padding-top: 8px;
+  border-top: 1px dashed rgba(130, 110, 85, 0.3);
+}
+
+.polaroid-time {
+  float: left;
+  font-size: 10px;
+  font-weight: bold;
+  color: #8a7865;
+  line-height: 26px;
+}
+
+.ios6-small-btn {
+  float: right;
+  padding: 5px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#524438), to(#2b221b));
+  border: 1px solid #17120e;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+}
+
+/* =========================================================
+   БЛОКИ WHENWEEK И WHENLOG (МЕХАНИЧЕСКИЙ СЧЁТЧИК FLIP-CLOCK)
+   ========================================================= */
+.skeuo-section {
+  margin-bottom: 14px;
+  padding: 12px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background-color: rgba(255, 251, 242, 0.72);
+  border: 1px solid #c9b99f;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 2px 4px rgba(55, 40, 22, 0.12);
+}
+
+body.theme-dark .skeuo-section {
+  background-color: rgba(28, 29, 34, 0.88);
+  border-color: #32343a;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.06),
+    0 3px 6px rgba(0,0,0,0.5);
+}
+
+.section-header-row {
+  overflow: hidden;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(130, 110, 85, 0.2);
+}
+
+.section-label {
+  float: left;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #5c4c3c;
+}
+
+body.theme-dark .section-label {
+  color: #a9a195;
+}
+
+.section-meta {
+  float: right;
+  font-size: 9px;
+  font-weight: bold;
+  color: #8a7865;
+}
+
+/* Полоска 7 дней недели (WHENWEEK) */
+.whenweek-strip {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.week-day-slot {
+  float: left;
+  width: 14.28%;
+  padding: 4px 1px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.week-day-name {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  color: #8c7b67;
+  margin-bottom: 4px;
+}
+
+.week-day-num {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  line-height: 26px;
+  font-size: 12px;
+  font-weight: 800;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  color: #3d3126;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#e6dac7));
+  border: 1px solid #bfb099;
+  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,0.12);
+}
+
+body.theme-dark .week-day-num {
+  color: #d9d1c5;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#303238), to(#1e2024));
+  border-color: #41444c;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Сегодняшний день в полоске недели */
+.week-day-slot.is-today .week-day-num {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2734e), to(#c93e18));
+  border-color: #8c2609;
+}
+
+/* День, в который есть запись (точка снизу) */
+.week-day-dot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  margin: 4px auto 0 auto;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  background-color: transparent;
+}
+
+.week-day-slot.has-memory .week-day-dot {
+  background-color: #d94e28;
+  -webkit-box-shadow: 0 0 3px rgba(217, 78, 40, 0.7);
+}
+
+/* МЕХАНИЧЕСКОЕ ТАБЛО WHENLOG (FLIP-CLOCK) */
+.whenlog-board {
+  padding: 2px 0;
+}
+
+.log-row {
+  overflow: hidden;
+  padding: 6px 2px;
+}
+
+.log-divider {
+  height: 1px;
+  background-color: rgba(130, 110, 85, 0.2);
+  margin: 2px 0;
+}
+
+.log-title-wrap {
+  float: left;
+  padding-top: 4px;
+}
+
+.log-title {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #2b221a;
+}
+
+body.theme-dark .log-title {
+  color: #ece4d8;
+}
+
+.log-desc {
+  display: block;
+  font-size: 9px;
+  color: #82715e;
+  margin-top: 1px;
+}
+
+/* Перекидные металлические таблички с цифрами */
+.flip-counter {
+  float: right;
+  white-space: nowrap;
+}
+
+.flip-digit {
+  position: relative;
+  display: inline-block;
+  width: 24px;
+  height: 32px;
+  line-height: 32px;
+  margin-left: 2px;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 19px;
+  font-weight: 900;
+  color: #f7f2e8;
+  text-shadow: 0 -1px 1px #000000;
+  background-color: #24201d;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#453e38),
+    color-stop(0.48, #26221f),
+    color-stop(0.50, #0d0b0a),
+    color-stop(0.52, #2b2622),
+    to(#171412)
+  );
+  border: 1px solid #0f0d0b;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.25),
+    0 2px 3px rgba(0, 0, 0, 0.45);
+}
+
+/* Линия механического разреза посередине цифры */
+.flip-digit:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 15px;
+  height: 1px;
+  background-color: rgba(0, 0, 0, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Оранжевое табло для номера сегодняшнего дня (292) */
+.flip-accent .flip-digit {
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#f26b44),
+    color-stop(0.48, #d94e28),
+    color-stop(0.50, #8a270c),
+    color-stop(0.52, #cf4520),
+    to(#9e3012)
+  );
+  border-color: #691b05;
+  color: #fffdf9;
+}
+
+/* =========================================================
+   ВИДЖЕТ LAST.FM (ВИНИЛ / КАССЕТНЫЙ МИНИ-ПЛЕЕР iOS 6)
+   ========================================================= */
+.lastfm-cassette {
+  margin: 8px 0;
+  padding: 8px 10px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #26201b;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#383029), to(#1c1714));
+  border: 1px solid #120e0c;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    0 2px 4px rgba(0,0,0,0.3);
+  color: #f7efe2;
+  overflow: hidden;
+  position: relative;
+}
+
+.cassette-cover-wrap {
+  float: left;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  position: relative;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  background-color: #111;
+  border: 1px solid rgba(255,255,255,0.25);
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  overflow: hidden;
+}
+
+.cassette-cover-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.cassette-vinyl-disc {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  line-height: 38px;
+  font-size: 20px;
+  color: #f0643b;
+  background-image: -webkit-radial-gradient(center, circle cover, #3b322c 0%, #120f0d 75%);
+}
+
+.cassette-info {
+  overflow: hidden;
+  padding-right: 36px;
+}
+
+.cassette-badge {
+  display: block;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #f0643b;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+.cassette-song {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cassette-artist {
+  display: block;
+  font-size: 10px;
+  color: #c7b8a3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cassette-play-btn {
+  position: absolute;
+  right: 8px;
+  top: 11px;
+  width: 32px;
+  height: 32px;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  font-size: 12px;
+  line-height: 28px;
+  text-align: center;
+  color: #fff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2734e), to(#bd3713));
+  border: 1px solid #120d0a;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 3px rgba(0,0,0,0.6);
+}
+
+/* =========================================================
+   ВКЛАДКА 2: ПОИСК, ЛЕНТА И ДЕРЕВЯННАЯ ПОЛКА iBOOKS (WHENSHELF)
+   ========================================================= */
+.search-toolbar {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.ios6-search-wrap {
+  float: left;
+  width: 72%;
+  position: relative;
+}
+
+.ios6-search-wrap.full-width {
+  width: 100%;
+}
+
+.search-icon {
+  position: absolute;
+  left: 9px;
+  top: 7px;
+  font-size: 12px;
+  color: #82725f;
+  pointer-events: none;
+}
+
+.ios6-search-input {
+  width: 100%;
+  height: 32px;
+  padding: 4px 10px 4px 28px;
+  font-size: 12px;
+  color: #241c15;
+  background-color: #fffdf9;
+  border: 1px solid #b09e84;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+  -webkit-box-shadow:
+    inset 0 2px 3px rgba(0, 0, 0, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+body.theme-dark .ios6-search-input {
+  background-color: #121316;
+  color: #f0e9df;
+  border-color: #363840;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.75), 0 1px 0 rgba(255,255,255,0.07);
+}
+
+.ios6-select-btn {
+  float: right;
+  width: 26%;
+  height: 32px;
+  font-size: 11px;
+  font-weight: bold;
+  color: #2b221a;
+  background-color: #f0e4cf;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffcf7), to(#dfd0b6));
+  border: 1px solid #a89578;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+}
+
+body.theme-dark .ios6-select-btn {
+  color: #f0e9df;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#363840), to(#1e2024));
+  border-color: #454852;
+}
+
+/* Классический сдвоенный переключатель (Segmented Control iOS 6) */
+.ios6-segmented-control {
+  overflow: hidden;
+  margin-bottom: 12px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  border: 1px solid #8f7b61;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.seg-btn {
+  float: left;
+  width: 50%;
+  height: 30px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #544535;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.75);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#dfd0b8));
+  border: none;
+  border-right: 1px solid #8f7b61;
+}
+
+.seg-btn:last-child {
+  border-right: none;
+}
+
+.seg-btn.active {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3b2e23), to(#614b3a));
+  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.65);
+}
+
+/* Заголовок месяца в ленте воспоминаний */
+.month-group-header {
+  overflow: hidden;
+  padding: 6px 4px 4px 4px;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid rgba(130, 110, 85, 0.3);
+}
+
+.month-group-name {
+  float: left;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  color: #4f4031;
+}
+
+body.theme-dark .month-group-name {
+  color: #e3dacb;
+}
+
+.month-group-count {
+  float: right;
+  font-size: 9px;
+  font-weight: bold;
+  color: #8c7b67;
+}
+
+/* Карточка одной записи в списке воспоминаний */
+.memory-row-card {
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+  margin-bottom: 8px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #fdfaf3;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f3ead8));
+  border: 1px solid #c7b69b;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 2px 4px rgba(50, 35, 18, 0.12);
+  cursor: pointer;
+}
+
+body.theme-dark .memory-row-card {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#292b30), to(#1d1e22));
+  border-color: #383b42;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 2px 5px rgba(0,0,0,0.5);
+}
+
+.memory-row-date {
+  float: left;
+  width: 38px;
+  text-align: center;
+  padding-right: 8px;
+  border-right: 1px solid rgba(130, 110, 85, 0.25);
+  margin-right: 10px;
+}
+
+.memory-day-num {
+  display: block;
+  font-size: 17px;
+  font-weight: 900;
+  line-height: 18px;
+  color: #292018;
+  border-bottom: 2px solid #d94e28;
+  padding-bottom: 2px;
+  margin-bottom: 2px;
+}
+
+body.theme-dark .memory-day-num {
+  color: #f7f1e6;
+}
+
+.memory-weekday-short {
+  display: block;
+  font-size: 9px;
+  font-weight: 800;
+  color: #8a7865;
+  text-transform: uppercase;
+}
+
+.memory-row-thumb {
+  float: right;
+  width: 46px;
+  height: 46px;
+  margin-left: 8px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  border: 1px solid #b5a388;
+  overflow: hidden;
+  background-color: #1c1815;
+}
+
+.memory-row-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.memory-row-body {
+  overflow: hidden;
+}
+
+.memory-row-text {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.35;
+  color: #2b221a;
+  max-height: 34px;
+  overflow: hidden;
+}
+
+body.theme-dark .memory-row-text {
+  color: #ede5d8;
+}
+
+.memory-row-song {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 9px;
+  font-weight: bold;
+  color: #d94e28;
+}
+
+/* =========================================================
+   ДЕРЕВЯННАЯ КНИЖНАЯ ПОЛКА iBOOKS iOS 6 (ПО ГОДАМ И МЕСЯЦАМ)
+   ========================================================= */
+.shelf-header-card {
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3b2c20), to(#241911));
+  border: 1px solid #140d08;
+  color: #fdf6ec;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.35);
+}
+
+.shelf-header-top {
+  overflow: hidden;
+}
+
+.shelf-brand {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+}
+
+.shelf-subtitle {
+  margin: 2px 0 0 0;
+  font-size: 8px;
+  font-weight: bold;
+  letter-spacing: 0.8px;
+  color: #cfbda6;
+}
+
+.shelf-mode-switch {
+  float: right;
+  margin-top: 2px;
+}
+
+.shelf-mode-btn {
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  color: #d9c7b0;
+  background-color: #211710;
+  border: 1px solid #594331;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.shelf-mode-btn.active {
+  color: #ffffff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e86842), to(#bf3c17));
+  border-color: #ff9c7d;
+}
+
+/* Сама деревянная стойка iBooks */
+.ibooks-shelf {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid #3d2310;
+  background-color: #543118;
+  -webkit-box-shadow:
+    inset 0 4px 12px rgba(0, 0, 0, 0.75),
+    0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Один ярус деревянной полки */
+.ibooks-tier {
+  position: relative;
+  min-height: 128px;
+  padding: 14px 10px 18px 10px;
+  background-color: #4a2a14;
+  background-image:
+    -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.55)), color-stop(0.25, rgba(0,0,0,0.1)), to(rgba(0,0,0,0.45))),
+    -webkit-repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 7px);
+  border-bottom: 14px solid #754422;
+  -webkit-box-shadow: inset 0 -4px 8px rgba(0,0,0,0.65);
+  overflow: hidden;
+}
+
+/* Передняя деревянная планка яруса полки */
+.ibooks-tier:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -14px;
+  height: 14px;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#9c5e32),
+    color-stop(0.25, #7d4823),
+    color-stop(0.85, #573015),
+    to(#2e1809)
+  );
+  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.7);
+}
+
+/* Книга на полке iBooks (объёмный кожаный переплёт с золотым тиснением) */
+.ibooks-book {
+  float: left;
+  width: 30%;
+  height: 96px;
+  margin: 0 1.6%;
+  padding: 8px 6px 8px 12px;
+  position: relative;
+  -webkit-border-radius: 3px 6px 6px 3px;
+  border-radius: 3px 6px 6px 3px;
+  background-image: -webkit-gradient(linear, left top, right top, from(#1f1916), color-stop(0.12, #382e28), to(#241d19));
+  border: 1px solid #0d0a08;
+  -webkit-box-shadow:
+    inset 2px 0 3px rgba(255,255,255,0.2),
+    3px 4px 7px rgba(0,0,0,0.75);
+  color: #f7e6c4;
+  cursor: pointer;
+}
+
+/* Корешок книги слева с бороздкой */
+.ibooks-book:before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: rgba(0, 0, 0, 0.65);
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+/* Разные оттенки переплётов для книг */
+.ibooks-book.book-terracotta {
+  background-image: -webkit-gradient(linear, left top, right top, from(#6e220c), color-stop(0.14, #b83d1b), to(#87290f));
+}
+
+.ibooks-book.book-emerald {
+  background-image: -webkit-gradient(linear, left top, right top, from(#143b2d), color-stop(0.14, #225e49), to(#164233));
+}
+
+.ibooks-book.book-navy {
+  background-image: -webkit-gradient(linear, left top, right top, from(#182842), color-stop(0.14, #29436b), to(#1b2e4d));
+}
+
+.book-year-title {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffdf9e;
+  text-shadow: 0 -1px 1px rgba(0,0,0,0.9);
+  margin-bottom: 3px;
+}
+
+.book-month-title {
+  display: block;
+  font-size: 10px;
+  font-weight: 800;
+  color: #ffffff;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+
+.book-count-badge {
+  position: absolute;
+  bottom: 7px;
+  left: 12px;
+  right: 6px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  color: #e6cfa3;
+  border-top: 1px solid rgba(255, 223, 158, 0.3);
+  padding-top: 3px;
+}
+
+/* Баннер активного фильтра полки */
+.shelf-filter-banner {
+  overflow: hidden;
+  padding: 7px 10px;
+  margin-bottom: 10px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #3b2d23;
+  color: #fff8ed;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.ios6-mini-btn {
+  float: right;
+  padding: 3px 8px;
+  font-size: 10px;
+  font-weight: bold;
+  color: #241b15;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#dfd0b8));
+  border: 1px solid #140e0a;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* Нижний тизер перехода к полке WhenShelf */
+.whenshelf-teaser {
+  overflow: hidden;
+  margin-top: 14px;
+  padding: 12px;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf8), to(#ebdec8));
+  border: 1px solid #bda98c;
+  -webkit-box-shadow: inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.14);
+  cursor: pointer;
+}
+
+body.theme-dark .whenshelf-teaser {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2b2d33), to(#1b1c20));
+  border-color: #3a3d45;
+}
+
+.teaser-left {
+  float: left;
+  width: 82%;
+}
+
+.teaser-title {
+  display: block;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+}
+
+.teaser-sub {
+  display: block;
+  font-size: 8px;
+  font-weight: 800;
+  color: #82715e;
+  margin-top: 2px;
+}
+
+.teaser-books-icon {
+  float: right;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+/* =========================================================
+   ВКЛАДКА 3: ВЕХИ (EVENTS) И ПУСТЫЕ СОСТОЯНИЯ
+   ========================================================= */
+.empty-state-box {
+  text-align: center;
+  padding: 26px 16px;
+}
+
+.empty-trophy-icon {
+  display: inline-block;
+  width: 52px;
+  height: 52px;
+  line-height: 50px;
+  font-size: 24px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3b2e23), to(#211912));
+  color: #f2a950;
+  border: 1px solid #6e5641;
+  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.35);
+  margin-bottom: 10px;
+}
+
+.event-category-tag {
+  display: inline-block;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  color: #d94e28;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+
+/* =========================================================
+   ВКЛАДКА 4: НАСТРОЙКИ И ТАБЛИЦЫ В СТИЛЕ iOS 6 SETTINGS
+   ========================================================= */
+.settings-hero {
+  text-align: center;
+  padding: 8px 0 14px 0;
+}
+
+.settings-logo-big {
+  width: 58px;
+  height: 58px;
+  margin: 0 auto 8px auto;
+  -webkit-border-radius: 29px;
+  border-radius: 29px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf8), to(#dfd0b8));
+  border: 2px solid #c94c26;
+  -webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+}
+
+.settings-crown {
+  display: block;
+  font-size: 13px;
+  line-height: 13px;
+  color: #d94e28;
+  padding-top: 6px;
+}
+
+.settings-w {
+  display: block;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 26px;
+  font-weight: bold;
+  color: #241b15;
+  line-height: 28px;
+}
+
+.settings-app-name {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.settings-app-tag {
+  margin: 3px 0 0 0;
+  font-size: 9px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #82715e;
+}
+
+.ios6-group-title {
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #6b5a47;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+  margin: 12px 4px 5px 6px;
+}
+
+body.theme-dark .ios6-group-title {
+  color: #9e9588;
+  text-shadow: 0 -1px 0 #000;
+}
+
+.ios6-grouped-table {
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  background-color: #fdfaf3;
+  border: 1px solid #bfa98a;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+body.theme-dark .ios6-grouped-table {
+  background-color: #202126;
+  border-color: #363840;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 5px rgba(0,0,0,0.55);
+}
+
+.ios6-cell {
+  overflow: hidden;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(145, 122, 92, 0.25);
+}
+
+.ios6-cell:last-child {
+  border-bottom: none;
+}
+
+.cell-left {
+  float: left;
+  width: 58%;
+}
+
+.cell-right {
+  float: right;
+  width: 40%;
+  text-align: right;
+}
+
+.cell-title {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #261e17;
+}
+
+body.theme-dark .cell-title {
+  color: #f2ece1;
+}
+
+.cell-sub {
+  display: block;
+  font-size: 9px;
+  color: #82715e;
+  margin-top: 2px;
+  line-height: 1.25;
+}
+
+.ios6-inline-input {
+  width: 100%;
+  height: 28px;
+  padding: 3px 7px;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: right;
+  color: #d94e28;
+  background-color: rgba(0, 0, 0, 0.04);
+  border: 1px solid #c7b599;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+}
+
+body.theme-dark .ios6-inline-input {
+  background-color: #141518;
+  border-color: #383b42;
+  color: #f0643b;
+}
+
+/* Классический овальный тумблер ON / OFF из iOS 6 */
+.ios6-switch {
+  display: inline-block;
+  width: 72px;
+  height: 27px;
+  padding: 0;
+  border: 1px solid #6e5d49;
+  -webkit-border-radius: 14px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: none;
+  position: relative;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.switch-track {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b8b8b8));
+}
+
+.ios6-switch.active .switch-track {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#bd3915), to(#f06b46));
+}
+
+.switch-on,
+.switch-off {
+  position: absolute;
+  top: 0;
+  line-height: 25px;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.switch-on {
+  left: 9px;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+  display: none;
+}
+
+.switch-off {
+  right: 8px;
+  color: #454545;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.ios6-switch.active .switch-on {
+  display: block;
+}
+
+.ios6-switch.active .switch-off {
+  display: none;
+}
+
+.switch-knob {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 24px;
+  height: 23px;
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d4d4d4));
+  border: 1px solid #4f4f4f;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.ios6-switch.active .switch-knob {
+  left: auto;
+  right: 1px;
+}
+
+/* Выпуклая металлическая кнопка iOS 6 */
+.ios6-metal-btn {
+  display: inline-block;
+  padding: 9px 10px;
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  color: #292018;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.85);
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#fffdf9),
+    color-stop(0.5, #ede0cb),
+    color-stop(0.51, #decbb0),
+    to(#cfb899)
+  );
+  border: 1px solid #968163;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 3px rgba(0,0,0,0.18);
+  cursor: pointer;
+}
+
+.ios6-metal-btn.full-width {
+  display: block;
+  width: 100%;
+}
+
+.backup-explain {
+  margin: 0 0 10px 0;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #5c4d3d;
+}
+
+body.theme-dark .backup-explain {
+  color: #b8afa2;
+}
+
+.backup-btn-grid {
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.backup-btn-grid .backup-btn,
+.backup-btn-grid .ios6-metal-btn {
+  float: left;
+  width: 48.5%;
+  text-align: center;
+  padding: 9px 6px;
+  font-size: 10px;
+}
+
+.backup-btn-grid .backup-btn:last-child,
+.backup-btn-grid .ios6-metal-btn:last-child,
+.backup-btn-grid .file-label-btn {
+  float: right;
+}
+
+.hidden-file-input {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+/* Бумажный чек «ЧТО МЫ СОБИРАЕМ» внизу настроек */
+.skeuo-receipt {
+  margin-top: 14px;
+  padding: 12px 14px;
+  background-color: #f7f0e1;
+  border: 1px dashed #b09c80;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  color: #2b221a;
+}
+
+body.theme-dark .skeuo-receipt {
+  background-color: #191a1f;
+  border-color: #3a3d45;
+  color: #e3dacb;
+}
+
+.receipt-title {
+  font-size: 12px;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.receipt-row,
+.receipt-total {
+  overflow: hidden;
+  font-size: 10px;
+  padding: 3px 0;
+  border-bottom: 1px dotted rgba(130,110,85,0.3);
+}
+
+.receipt-total {
+  border-bottom: none;
+  padding-top: 6px;
+  font-size: 11px;
+  font-weight: 900;
+}
+
+.receipt-row span,
+.receipt-total span {
+  float: left;
+}
+
+.receipt-row b,
+.receipt-total b {
+  float: right;
+}
+
+/* =========================================================
+   НИЖНИЙ ГЛЯНЦЕВЫЙ TAB BAR iOS 6
+   ========================================================= */
+.ios6-tabbar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 52px;
+  z-index: 20;
+  background-color: #1a1613;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#453a32),
+    color-stop(0.49, #29221d),
+    color-stop(0.50, #171310),
+    to(#0d0a08)
+  );
+  border-top: 1px solid #000000;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.tab-item {
+  float: left;
+  width: 25%;
+  height: 51px;
+  padding: 5px 2px 2px 2px;
+  background: none;
+  border: none;
+  color: #9e9183;
+  text-align: center;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #ffffff;
+  background-image: -webkit-radial-gradient(
+    center, ellipse cover,
+    rgba(240, 100, 59, 0.32) 0%,
+    rgba(0, 0, 0, 0.25) 75%
+  );
+  -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.75);
+}
+
+.tab-icon {
+  display: block;
+  font-size: 19px;
+  line-height: 22px;
+  text-shadow: 0 -1px 1px #000000;
+}
+
+.tab-item.active .tab-icon {
+  color: #ff7a52;
+  text-shadow: 0 0 8px rgba(255, 110, 64, 0.65);
+}
+
+.tab-label {
+  display: block;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
+}
+
+/* =========================================================
+   МОДАЛЬНЫЕ ОКНА СОЗДАНИЯ И ПРОСМОТРА ЗАПИСИ
+   ========================================================= */
+.ios6-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.ios6-modal-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  background-color: #ece3d2;
+  overflow: hidden;
+}
+
+body.theme-dark .ios6-modal-sheet {
+  background-color: #18191c;
+}
+
+.modal-navbar .navbar-center {
+  margin: 0 78px;
+  padding-top: 12px;
+}
+
+.modal-navbar #btn-close-memory-modal,
+.modal-navbar #btn-close-event-modal,
+.modal-navbar #btn-close-reader {
+  position: absolute;
+  left: 8px;
+  top: 7px;
+}
+
+.modal-navbar #btn-save-memory,
+.modal-navbar #btn-save-event,
+.modal-navbar #btn-reader-edit {
+  position: absolute;
+  right: 8px;
+  top: 7px;
+}
+
+.modal-body {
+  position: absolute;
+  top: 46px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 12px 12px 28px 12px;
+}
+
+.form-block {
+  margin-bottom: 12px;
+}
+
+.label-row {
+  overflow: hidden;
+  margin-bottom: 5px;
+}
+
+.form-label {
+  display: block;
+  float: left;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  color: #6b5a47;
+  margin-bottom: 5px;
+}
+
+body.theme-dark .form-label {
+  color: #a89f92;
+}
+
+.ios6-input,
+.ios6-textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 13px;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #241c15;
+  background-color: #fffdf9;
+  border: 1px solid #b5a287;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 2px 3px rgba(0,0,0,0.14), 0 1px 0 rgba(255,255,255,0.75);
+}
+
+body.theme-dark .ios6-input,
+body.theme-dark .ios6-textarea {
+  background-color: #121316;
+  color: #f2ece1;
+  border-color: #383b42;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.75);
+}
+
+.compact-textarea {
+  margin: 6px 0;
+  font-size: 11px;
+}
+
+/* Три кнопки выбора настроения */
+.mood-selector {
+  overflow: hidden;
+  clear: both;
+}
+
+.mood-choice {
+  float: left;
+  width: 32%;
+  margin-right: 2%;
+  padding: 8px 4px;
+  text-align: center;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#e6dac7));
+  border: 1px solid #b8a58a;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  color: #4f4133;
+}
+
+.mood-choice:last-child {
+  margin-right: 0;
+}
+
+.mood-choice.active {
+  border: 2px solid #d94e28;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff6f2), to(#f7d7cc));
+  color: #9e2a0b;
+}
+
+.mood-emoji {
+  display: block;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.mood-name {
+  display: block;
+  font-size: 9px;
+  font-weight: 900;
+  margin-top: 3px;
+}
+
+.lastfm-form-box {
+  clear: both;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  font-size: 11px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: rgba(0,0,0,0.05);
+  border: 1px dashed #b5a287;
+}
+
+.lastfm-manual-inputs {
+  overflow: hidden;
+}
+
+.half-input {
+  float: left;
+  width: 49%;
+}
+
+.half-input:last-child {
+  float: right;
+}
+
+.modal-photo-preview {
+  margin-top: 8px;
+  padding: 5px;
+  background-color: #1c1815;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.modal-photo-preview img {
+  max-width: 100%;
+  max-height: 190px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+/* Глянцевая красная кнопка удаления iOS 6 */
+.ios6-glossy-red-btn,
+.ios6-danger-btn {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#f06259),
+    color-stop(0.5, #d42b20),
+    color-stop(0.51, #b5180e),
+    to(#8f1008)
+  );
+  border: 1px solid #570803;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.3);
+  margin-top: 6px;
+}
+
+/* Читалка «Пережить заново» */
+.reader-date-block {
+  border-bottom: 1px solid rgba(130,110,85,0.25);
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+}
+
+.reader-weekday {
+  font-size: 9px;
+  font-weight: 800;
+  color: #82715e;
+  letter-spacing: 0.7px;
+}
+
+.reader-full-date {
+  margin: 3px 0 6px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 20px;
+}
+
+.reader-meta-row {
+  overflow: hidden;
+}
+
+.reader-day-num {
+  float: left;
+  font-size: 10px;
+  font-weight: bold;
+  color: #82715e;
+  line-height: 20px;
+}
+
+/* Всплывающий полупрозрачный тост iOS 6 (HUD) */
+.ios6-hud {
+  position: fixed;
+  left: 50%;
+  top: 42%;
+  width: 180px;
+  margin-left: -90px;
+  padding: 14px 12px;
+  z-index: 100;
+  text-align: center;
+  background-color: rgba(15, 12, 10, 0.86);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  -webkit-border-radius: 12px;
+  border-radius: 12px;
+  -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  pointer-events: none;
+}
