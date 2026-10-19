@@ -1,472 +1,170 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html manifest="whengram.appcache" lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
-<title>Whengram iOS 6</title>
+<meta name="apple-mobile-web-app-title" content="WHENGRAM">
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="icon.png">
+<title>WHENGRAM</title>
 <style>
-  * {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
-    -webkit-user-select: none;
-    user-select: none;
-  }
-  input, textarea {
-    -webkit-user-select: auto;
-    user-select: auto;
-  }
-  html, body {
-    margin: 0;
-    padding: 0;
-    width: 320px;
-    height: 480px;
-    overflow: hidden;
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background: #382414;
-    color: #1c1c1c;
-  }
-
-  /* Экран iPhone 4s: строго 320x480 */
-  #app {
-    position: relative;
-    width: 320px;
-    height: 480px;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: #2b1d12;
-    background-image: 
-      radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0),
-      linear-gradient(to bottom, #422d1d 0%, #2b1d12 100%);
-    background-size: 6px 6px, 100% 100%;
-  }
-
-  /* 1. Статус-бар iOS 6 */
-  .statusbar {
-    height: 20px;
-    background: linear-gradient(to bottom, #333 0%, #111 50%, #000 100%);
-    border-bottom: 1px solid rgba(255,255,255,0.15);
-    color: #fff;
-    font-size: 11px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6px;
-    flex-shrink: 0;
-    text-shadow: 0 -1px 0 #000;
-  }
-
-  /* 2. Навигационный бар iOS 6 (Кожаный стиль) */
-  .navbar {
-    height: 44px;
-    background: linear-gradient(to bottom, #7a4e32 0%, #593720 49%, #472b18 51%, #382010 100%);
-    border-top: 1px solid #966647;
-    border-bottom: 2px solid #1f1108;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 8px;
-    flex-shrink: 0;
-    position: relative;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-  }
-  .nav-title {
-    color: #fff;
-    font-size: 17px;
-    font-weight: bold;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.8);
-    position: absolute;
-    left: 70px; right: 70px;
-    text-align: center;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .nav-btn {
-    height: 30px;
-    padding: 0 9px;
-    border-radius: 5px;
-    font-size: 11px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
-    border: 1px solid rgba(0,0,0,0.7);
-    background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.05) 49%, rgba(0,0,0,0.15) 51%, rgba(0,0,0,0.3) 100%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 rgba(255,255,255,0.2);
-    cursor: pointer;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .nav-btn.red {
-    background: linear-gradient(to bottom, #f07b65 0%, #d9462b 49%, #c43016 51%, #a3220b 100%);
-    border-color: #5c1003;
-  }
-  .nav-btn:active {
-    filter: brightness(0.75);
-  }
-
-  /* 3. Рабочая область контента */
-  .content {
-    flex: 1;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-    padding: 8px;
-  }
-  .content::-webkit-scrollbar {
-    width: 3px;
-  }
-  .content::-webkit-scrollbar-thumb {
-    background: rgba(0,0,0,0.4);
-    border-radius: 3px;
-  }
-
-  /* Карточки-блокноты в стиле iOS 6 */
-  .paper-card {
-    background: linear-gradient(to bottom, #fffdf7 0%, #f7f1e1 100%);
-    border-radius: 8px;
-    border: 1px solid #c9bea7;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.35), inset 0 1px 0 #fff;
-    padding: 10px;
-    margin-bottom: 8px;
-    position: relative;
-    color: #2b241d;
-  }
-  .torn-edge {
-    height: 5px;
-    background: radial-gradient(circle at 4px 0px, #35271e 2.5px, transparent 3px) repeat-x;
-    background-size: 8px 5px;
-    margin: -10px -10px 8px -10px;
-    border-bottom: 1px dashed #d4c8b0;
-  }
-
-  /* Желтый блокнот заметок */
-  .yellow-pad {
-    background-color: #fdf6b2;
-    background-image: repeating-linear-gradient(to bottom, #fdf6b2 0px, #fdf6b2 21px, #d9d08f 22px);
-    line-height: 22px;
-    padding: 6px 8px 8px 28px;
-    color: #362819;
-    font-family: "Marker Felt", "Comic Sans MS", cursive;
-    font-size: 14px;
-    border-radius: 6px;
-    border: 1px solid #d4c885;
-    box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
-  }
-
-  /* Большая глянцевая кнопка CTA */
-  .big-cta {
-    width: 100%;
-    padding: 10px;
-    border-radius: 7px;
-    border: 1px solid #7d2313;
-    background: linear-gradient(to bottom, #f0674d 0%, #dc4327 49%, #c73217 51%, #ab250d 100%);
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 2px 3px rgba(0,0,0,0.35);
-    color: #fff;
-    font-weight: bold;
-    font-size: 12px;
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.6);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-  .big-cta:active {
-    filter: brightness(0.85);
-  }
-
-  /* Полоска Whenweek */
-  .whenweek-box {
-    background: linear-gradient(to bottom, #2a2420, #1a1613);
-    border: 1px solid #000;
-    border-radius: 7px;
-    padding: 8px;
-    margin-bottom: 8px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.15), 0 2px 4px rgba(0,0,0,0.4);
-    color: #f3efe6;
-  }
-  .days-grid {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 3px;
-    margin-top: 6px;
-  }
-  .day-tile {
-    background: linear-gradient(to bottom, #3a3d42 0%, #242629 49%, #16181a 51%, #232529 100%);
-    border: 1px solid #0d0e10;
-    border-radius: 5px;
-    padding: 4px 2px;
-    text-align: center;
-    cursor: pointer;
-  }
-  .day-tile.active {
-    background: linear-gradient(to bottom, #e85c41 0%, #c93b20 49%, #ab2910 51%, #91200a 100%);
-    border-color: #540f02;
-  }
-  .led {
-    width: 4px; height: 4px; border-radius: 50%; background: #333; margin: 2px auto 0 auto;
-  }
-  .led.on {
-    background: #ff3b14; box-shadow: 0 0 4px #ff4924;
-  }
-
-  /* Таблица статистики Whenlog */
-  .stat-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-    border-bottom: 1px dashed #ded3be;
-    font-size: 11px;
-    font-weight: bold;
-    color: #4a3e31;
-  }
-  .stat-row:last-child { border-bottom: none; }
-
-  /* 4. Нижний таб-бар iOS 6 */
-  .tabbar {
-    height: 49px;
-    background: linear-gradient(to bottom, #303030 0%, #171717 49%, #050505 50%, #000000 100%);
-    border-top: 1px solid #595959;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 2px 4px;
-    flex-shrink: 0;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2);
-  }
-  .tab-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    cursor: pointer;
-    color: #8c8c8c;
-    font-size: 9px;
-    font-weight: bold;
-  }
-  .tab-item.active {
-    background: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.1) 100%);
-    color: #fff;
-    text-shadow: 0 -1px 0 #000;
-  }
-  .tab-icon {
-    font-size: 16px;
-    margin-bottom: 1px;
-  }
-  .tab-item.active .tab-icon {
-    color: #44a2fc;
-    text-shadow: 0 0 6px rgba(68,162,252,0.6);
-  }
-
-  /* Модальное окно */
-  .modal-overlay {
-    position: absolute;
-    inset: 0;
-    background: #2b1d12;
-    z-index: 50;
-    display: none;
-    flex-direction: column;
-  }
-  .modal-overlay.show {
-    display: flex;
-  }
+/* Designed for Mobile Safari on iOS 6: no flexbox, no CSS variables, no modern JS syntax. */
+* { -webkit-box-sizing:border-box; box-sizing:border-box; }
+html { background:#d7d8d9; }
+body {
+  margin:0; color:#292929; font:14px Helvetica,Arial,sans-serif;
+  background:#c8c9ca;
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.09) 0,rgba(255,255,255,.09) 1px,rgba(0,0,0,.025) 1px,rgba(0,0,0,.025) 2px);
+  -webkit-text-size-adjust:100%; padding-bottom:68px;
+}
+button,input,textarea,select { font:inherit; }
+button { -webkit-appearance:none; }
+.shell { max-width:440px; margin:0 auto; min-height:100%; background:#f2f2f2; box-shadow:0 0 16px rgba(0,0,0,.32); }
+.status { height:20px; background:#171717; color:#fff; font-weight:bold; font-size:12px; padding:3px 8px 0; text-shadow:0 -1px #000; }
+.navbar {
+  height:44px; position:relative; text-align:center; color:#fff; font-size:20px; font-weight:bold; line-height:44px;
+  text-shadow:0 -1px rgba(0,0,0,.8);
+  border-top:1px solid #aeb2b6; border-bottom:1px solid #40464c;
+  background:-webkit-gradient(linear,left top,left bottom,from(#b8c1c9),color-stop(.48,#87949f),color-stop(.51,#6e7c88),to(#53616c));
+  background:linear-gradient(#b8c1c9,#87949f 48%,#6e7c88 51%,#53616c);
+  -webkit-box-shadow:inset 0 1px rgba(255,255,255,.7),0 1px 2px rgba(0,0,0,.25);
+}
+.navtitle { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; padding:0 82px; }
+.navbtn {
+  position:absolute; top:7px; min-width:58px; height:30px; padding:0 9px; border:1px solid #39444d; border-radius:5px;
+  color:#fff; font-size:12px; line-height:28px; text-shadow:0 -1px #333;
+  background:-webkit-gradient(linear,left top,left bottom,from(#8d9aa5),color-stop(.5,#667681),color-stop(.51,#4e5b65),to(#65727d));
+  -webkit-box-shadow:inset 0 1px rgba(255,255,255,.45),0 1px rgba(255,255,255,.2);
+}
+.navbtn.left { left:7px; } .navbtn.right { right:7px; }
+.content { padding:14px 12px 24px; }
+.brandplate { border:1px solid #c4c4c4; border-radius:5px; padding:13px 10px; text-align:center; background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e8e8e8)); box-shadow:inset 0 1px #fff,0 1px 2px rgba(0,0,0,.12); margin-bottom:13px; }
+.brand { font-size:26px; font-weight:900; letter-spacing:-1px; color:#222; text-shadow:0 1px #fff; }
+.brand .dot { color:#d83c2c; }
+.tagline { color:#777; font-size:10px; letter-spacing:2px; margin-top:4px; font-weight:bold; }
+.datebar { font-size:11px; color:#666; text-align:center; padding:7px 0 12px; text-shadow:0 1px #fff; font-weight:bold; }
+.panel { border:1px solid #b7b7b7; border-radius:6px; background:#fff; margin:0 0 13px; box-shadow:0 1px 2px rgba(0,0,0,.14); overflow:hidden; }
+.panelhead {
+  padding:9px 10px; color:#fff; font-size:12px; font-weight:bold; text-shadow:0 -1px #555;
+  border-bottom:1px solid #555; background:-webkit-gradient(linear,left top,left bottom,from(#888),to(#555));
+}
+.panelbody { padding:12px; }
+.question { font-size:25px; line-height:1.12; margin:2px 0 10px; letter-spacing:-.6px; }
+.muted { color:#777; line-height:1.45; }
+.button {
+  display:block; width:100%; text-align:center; padding:12px 10px; margin:9px 0 0; color:#fff; font-weight:bold; font-size:15px;
+  text-shadow:0 -1px rgba(0,0,0,.55); border:1px solid #174c8b; border-radius:7px;
+  background:-webkit-gradient(linear,left top,left bottom,from(#68b4f6),color-stop(.48,#2684dc),color-stop(.51,#0870ca),to(#2d8de2));
+  -webkit-box-shadow:inset 0 1px rgba(255,255,255,.65),0 1px 2px rgba(0,0,0,.2);
+}
+.button.red { border-color:#8b2019; background:-webkit-gradient(linear,left top,left bottom,from(#fa8075),color-stop(.48,#e84b3d),color-stop(.51,#d63327),to(#e94b3e)); }
+.button.gray { border-color:#777; background:-webkit-gradient(linear,left top,left bottom,from(#fdfdfd),color-stop(.5,#e7e7e7),color-stop(.51,#d4d4d4),to(#eee)); color:#333; text-shadow:0 1px #fff; }
+.row { padding:11px 10px; border-bottom:1px solid #ddd; background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#f5f5f5)); min-height:45px; }
+.row:last-child { border-bottom:0; }
+.rowtitle { font-size:15px; font-weight:bold; color:#222; }
+.rowdetail { color:#777; font-size:12px; margin-top:4px; line-height:1.35; }
+.chevron { float:right; font-size:24px; color:#aaa; margin-left:8px; margin-top:-3px; }
+.badge { float:right; border-radius:12px; color:#fff; background:#d94a3e; padding:2px 8px; font-size:12px; text-shadow:0 -1px #a22; }
+.week { width:100%; border-collapse:separate; border-spacing:2px; }
+.week td { text-align:center; background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e7e7e7)); border:1px solid #ccc; border-radius:4px; padding:7px 1px; color:#666; font-size:10px; }
+.week b { display:block; color:#222; font-size:16px; margin-top:3px; }
+.week .today { border-color:#c42e25; background:-webkit-gradient(linear,left top,left bottom,from(#ff8e82),to(#d9382b)); color:#fff; text-shadow:0 -1px #a22; }
+.week .today b { color:#fff; }
+.fieldlabel { display:block; font-size:12px; font-weight:bold; color:#555; margin:12px 0 5px; }
+.field, .area, .select { width:100%; border:1px solid #aaa; border-radius:5px; background:#fff; padding:10px; color:#222; -webkit-appearance:none; box-shadow:inset 0 1px 3px rgba(0,0,0,.12); }
+.area { min-height:100px; resize:vertical; }
+.smallnote { color:#888; font-size:11px; line-height:1.45; margin-top:10px; }
+.entrydate { float:left; width:47px; text-align:center; font-size:21px; color:#333; font-weight:bold; }
+.entrydate small { display:block; font-size:10px; color:#777; margin-top:3px; }
+.entrycopy { margin-left:58px; min-height:38px; }
+.entrytitle { font-weight:bold; font-size:15px; color:#222; margin-bottom:5px; }
+.entrytext { color:#666; font-size:12px; line-height:1.4; }
+.thumb { max-width:100%; max-height:150px; border:1px solid #aaa; padding:3px; background:#fff; margin-top:8px; box-shadow:0 1px 2px #bbb; }
+.empty { text-align:center; padding:25px 15px; color:#888; }
+.emptyicon { width:70px; height:70px; line-height:68px; border-radius:15px; margin:0 auto 12px; font-size:36px; color:#fff; text-shadow:0 -1px #555; border:1px solid #4a4a4a; background:-webkit-gradient(linear,left top,left bottom,from(#b7b7b7),to(#686868)); box-shadow:inset 0 1px rgba(255,255,255,.8),0 2px 4px rgba(0,0,0,.2); }
+.empty strong { display:block; font-size:20px; color:#333; margin-bottom:8px; }
+.tabs { position:fixed; bottom:0; left:0; right:0; height:49px; z-index:10; border-top:1px solid #333; background:-webkit-gradient(linear,left top,left bottom,from(#555),color-stop(.12,#333),to(#151515)); box-shadow:0 -1px 3px rgba(0,0,0,.3); }
+.tabwrap { max-width:440px; height:48px; margin:auto; display:table; width:100%; table-layout:fixed; }
+.tab { display:table-cell; text-align:center; color:#aaa; font-size:9px; font-weight:bold; text-shadow:0 -1px #000; padding-top:3px; border-top:2px solid transparent; }
+.tab .glyph { display:block; font-size:21px; line-height:25px; color:#bbb; text-shadow:0 1px #000; }
+.tab.active { color:#fff; border-top-color:#f4f4f4; }
+.tab.active .glyph { color:#fff; }
+.notice { display:none; position:fixed; bottom:58px; left:8%; right:8%; padding:10px; text-align:center; z-index:20; color:#fff; font-weight:bold; text-shadow:0 -1px #333; border:1px solid #333; border-radius:7px; background:-webkit-gradient(linear,left top,left bottom,from(#666),to(#222)); box-shadow:0 2px 8px #444; }
+.attach { border:1px dashed #aaa; border-radius:5px; padding:12px; background:#f7f7f7; margin-top:8px; }
+.attach input { width:100%; font-size:12px; }
+.danger { color:#b22; font-weight:bold; padding:12px 0; display:block; }
+@media screen and (max-width:340px) {
+ .brand {font-size:23px} .question {font-size:23px} .content {padding:10px 8px 20px}
+}
 </style>
 </head>
 <body>
-
-<div id="app">
-  <!-- Статус-бар -->
-  <div class="statusbar">
-    <span>Carrier</span>
-    <span id="clock">15:16</span>
-    <span>100%</span>
-  </div>
-
-  <!-- Навигация -->
-  <div class="navbar" id="navBar"></div>
-
-  <!-- Контент -->
-  <div class="content" id="mainContent"></div>
-
-  <!-- Таб-бар -->
-  <div class="tabbar">
-    <div class="tab-item active" onclick="switchTab('home')" id="tabBtn-home">
-      <div class="tab-icon">🏠</div>
-      <div>Главная</div>
-    </div>
-    <div class="tab-item" onclick="switchTab('memories')" id="tabBtn-memories">
-      <div class="tab-icon">📖</div>
-      <div>Дневник</div>
-    </div>
-    <div class="tab-item" onclick="switchTab('milestones')" id="tabBtn-milestones">
-      <div class="tab-icon">🏆</div>
-      <div>Вехи</div>
-    </div>
-    <div class="tab-item" onclick="switchTab('settings')" id="tabBtn-settings">
-      <div class="tab-icon">⚙️</div>
-      <div>Настройки</div>
-    </div>
-  </div>
-
-  <!-- Модалки -->
-  <div class="modal-overlay" id="modalOverlay"></div>
+<div class="shell">
+  <div class="status">9:41 <span style="float:right">● ● ▰</span></div>
+  <div class="navbar"><button class="navbtn left" id="leftBtn" style="display:none">Назад</button><div class="navtitle" id="navtitle">WHENGRAM</div><button class="navbtn right" id="rightBtn" style="display:none">Новое</button></div>
+  <div class="content" id="view"></div>
 </div>
-
+<div class="tabs"><div class="tabwrap">
+  <div class="tab active" data-tab="home"><span class="glyph">⌂</span>Главная</div>
+  <div class="tab" data-tab="memories"><span class="glyph">▤</span>Записи</div>
+  <div class="tab" data-tab="milestones"><span class="glyph">★</span>Вехи</div>
+  <div class="tab" data-tab="settings"><span class="glyph">⚙</span>Настройки</div>
+</div></div>
+<div class="notice" id="notice"></div>
 <script>
-  let state = {
-    currentTab: 'home',
-    userName: 'Илья',
-    selectedDay: 19,
-    memories: [
-      { day: 19, title: 'ой да в пизду((((((', text: 'блч такой уебскиц день сегодня выдался, но зато запилил идеальное ретро-приложение под iOS 6 для своего 4S.', mood: '🌧️' }
-    ],
-    milestones: [
-      { title: 'Вторая жизнь iPhone 4S', category: 'Личный проект', date: '19 ОКТ' }
-    ]
-  };
-
-  function updateClock() {
-    const d = new Date();
-    document.getElementById('clock').textContent = `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-  }
-  setInterval(updateClock, 10000);
-  updateClock();
-
-  function switchTab(tab) {
-    state.currentTab = tab;
-    document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
-    document.getElementById('tabBtn-' + tab).classList.add('active');
-    render();
-  }
-
-  function render() {
-    const nav = document.getElementById('navBar');
-    const content = document.getElementById('mainContent');
-
-    if (state.currentTab === 'home') {
-      nav.innerHTML = `
-        <div class="nav-btn" onclick="alert('Капсула времени Whengram v1.0')">Капсула</div>
-        <div class="nav-title">WHENGRAM.</div>
-        <div class="nav-btn red" onclick="openWriter()">Запись</div>
-      `;
-      content.innerHTML = `
-        <div class="paper-card">
-          <div class="torn-edge"></div>
-          <div style="font-size:9px; font-weight:bold; color:#786552; margin-bottom:4px;">ПОНЕДЕЛЬНИК, 19 ОКТЯБРЯ 2026</div>
-          <div style="font-size:9px; font-weight:bold; color:#6e5d4c; text-transform:uppercase;">ДОБРОЕ УТРО, <span style="color:#c9381e;">${state.userName}</span></div>
-          <div style="font-size:16px; font-weight:bold; font-family:Georgia, serif; margin:2px 0 6px 0;">Что сегодня произошло?</div>
-          <button class="big-cta" onclick="openWriter()">
-            <span>НАПИСАТЬ ВОСПОМИНАНИЕ</span>
-            <span>&rarr;</span>
-          </button>
-        </div>
-
-        <div class="whenweek-box">
-          <div style="font-size:9px; font-weight:bold; margin-bottom:4px; display:flex; justify-content:space-between;">
-            <span>WHENWEEK • ОКТЯБРЬ</span>
-            <span>ЗАПИСЕЙ: ${state.memories.length}</span>
-          </div>
-          <div class="days-grid">
-            ${[19,20,21,22,23,24,25].map(d => `
-              <div class="day-tile ${state.selectedDay === d ? 'active' : ''}" onclick="state.selectedDay=${d}; render();">
-                <div style="font-size:8px; opacity:0.7;">${['П','В','С','Ч','П','С','В'][d-19]}</div>
-                <div style="font-size:11px; font-weight:bold;">${d}</div>
-                <div class="led ${state.memories.some(m=>m.day===d)?'on':''}"></div>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-
-        <div class="paper-card">
-          <div style="font-size:9px; font-weight:bold; color:#6e5c49; margin-bottom:4px;">WHENLOG СТАТИСТИКА</div>
-          <div class="stat-row"><span>Воспоминания</span><span>${state.memories.length}</span></div>
-          <div class="stat-row"><span>Вехи жизни</span><span>${state.milestones.length}</span></div>
-          <div class="stat-row"><span>День года</span><span style="color:#c9381e;">292 / 365</span></div>
-        </div>
-      `;
-    } else if (state.currentTab === 'memories') {
-      nav.innerHTML = `
-        <div style="width:50px;"></div>
-        <div class="nav-title">Воспоминания</div>
-        <div class="nav-btn red" onclick="openWriter()">+</div>
-      `;
-      content.innerHTML = state.memories.map(m => `
-        <div class="paper-card">
-          <div style="display:flex; gap:8px; align-items:start;">
-            <div style="text-align:center; padding-right:6px; border-right:1px solid #d6cbb5;">
-              <div style="font-size:15px; font-weight:bold;">${m.day}</div>
-              <div style="font-size:8px; color:#786856;">ОКТ</div>
-            </div>
-            <div style="flex:1;">
-              <div style="font-size:10px; margin-bottom:2px;">${m.mood} Запись дня</div>
-              <div style="font-size:12px; font-weight:bold; margin-bottom:2px;">${m.title}</div>
-              <div style="font-size:11px; color:#4d4033;">${m.text}</div>
-            </div>
-          </div>
-        </div>
-      `).join('');
-    } else if (state.currentTab === 'milestones') {
-      nav.innerHTML = `
-        <div style="width:50px;"></div>
-        <div class="nav-title">Вехи</div>
-        <div style="width:50px;"></div>
-      `;
-      content.innerHTML = state.milestones.map(ms => `
-        <div class="paper-card" style="display:flex; align-items:center; gap:8px;">
-          <div style="width:36px; height:36px; border-radius:50%; background:#b31e0c; color:#fff; display:flex; align-items:center; justify-content:center; font-size:16px;">🏆</div>
-          <div>
-            <div style="font-size:9px; font-weight:bold; color:#8c311c;">${ms.category}</div>
-            <div style="font-size:12px; font-weight:bold;">${ms.title}</div>
-          </div>
-        </div>
-      `).join('');
-    } else if (state.currentTab === 'settings') {
-      nav.innerHTML = `
-        <div style="width:50px;"></div>
-        <div class="nav-title">Настройки</div>
-        <div style="width:50px;"></div>
-      `;
-      content.innerHTML = `
-        <div class="paper-card">
-          <div style="font-size:11px; font-weight:bold; margin-bottom:6px;">Имя владельца</div>
-          <input type="text" value="${state.userName}" onchange="state.userName=this.value; render();" style="width:100%; padding:4px; font-size:12px; border:1px solid #ccc; border-radius:4px;">
-        </div>
-      `;
-    }
-  }
-
-  function openWriter() {
-    const modal = document.getElementById('modalOverlay');
-    modal.classList.add('show');
-    modal.innerHTML = `
-      <div class="navbar">
-        <div class="nav-btn" onclick="document.getElementById('modalOverlay').classList.remove('show')">Отмена</div>
-        <div class="nav-title">Запись</div>
-        <div class="nav-btn red" onclick="saveMem()">Готово</div>
-      </div>
-      <div class="content" style="padding:10px;">
-        <div class="yellow-pad">
-          <input id="wTitle" type="text" placeholder="Заголовок..." style="width:100%; background:transparent; border:none; font-weight:bold; font-size:14px; outline:none; margin-bottom:4px;">
-          <textarea id="wText" rows="4" placeholder="Что произошло сегодня..." style="width:100%; background:transparent; border:none; font-size:13px; outline:none; resize:none;"></textarea>
-        </div>
-      </div>
-    `;
-  }
-
-  function saveMem() {
-    const title = document.getElementById('wTitle').value || 'Момент дня';
-    const text = document.getElementById('wText').value || 'Без описания';
-    state.memories.unshift({ day: state.selectedDay, title, text, mood: '☕' });
-    document.getElementById('modalOverlay').classList.remove('show');
-    switchTab('home');
-  }
-
-  render();
+(function(){
+var KEY='whengram-ios6-v2', state={name:'Илюша',memories:[],milestones:[],introSeen:false}, page='home', edit=null, query='';
+function load(){try{var x=localStorage.getItem(KEY);if(x){var o=JSON.parse(x);for(var k in o)state[k]=o[k];}}catch(e){}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));return true;}catch(e){msg('Память браузера заполнена. Удали часть вложений или экспортируй записи.');return false;}}
+function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
+function iso(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+function dateLabel(s){var p=(s||iso()).split('-');return p[2]+'.'+p[1]+'.'+p[0];}
+function msg(s){var n=document.getElementById('notice');n.innerHTML=esc(s);n.style.display='block';window.setTimeout(function(){n.style.display='none';},2300);}
+function setNav(title,left,right){document.getElementById('navtitle').innerHTML=title;var l=document.getElementById('leftBtn'),r=document.getElementById('rightBtn');l.style.display=left?'block':'none';r.style.display=right?'block':'none';l.innerHTML=left||'';r.innerHTML=right||'';}
+function btn(label,act,cls){return '<button class="button '+(cls||'')+'" data-action="'+act+'">'+label+'</button>';}
+function row(item,type){var at=item.attachments&&item.attachments.length?'<div class="rowdetail">Вложений: '+item.attachments.length+'</div>':'';var photo='';if(item.attachments)for(var i=0;i<item.attachments.length;i++){if(item.attachments[i].kind==='image'){photo+='<img class="thumb" src="'+item.attachments[i].data+'" alt="Фото">';break;}}
+return '<div class="row" data-open="'+esc(item.id)+'" data-type="'+type+'"><div class="entrydate">'+esc((item.date||iso()).split('-')[2])+'<small>'+esc((item.date||iso()).substring(0,7))+'</small></div><div class="entrycopy"><div class="chevron">›</div><div class="entrytitle">'+esc(item.title||'Без названия')+'</div><div class="entrytext">'+esc(item.text||'')+'</div>'+at+photo+'</div><div style="clear:both"></div></div>';}
+function home(){var d=new Date(), names=['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'], week='', i;for(i=0;i<7;i++){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate()-d.getDay()+i);week+='<td class="'+(x.toDateString()===d.toDateString()?'today':'')+'">'+names[x.getDay()]+'<b>'+x.getDate()+'</b></td>';}
+var latest=state.memories.slice().sort(function(a,b){return b.date.localeCompare(a.date);})[0];
+setNav('WHENGRAM',null,null);
+return '<div class="brandplate"><div class="brand">WHENGRAM<span class="dot">.</span></div><div class="tagline">PERSONAL TIME CAPSULE</div></div><div class="datebar">'+dateLabel(iso())+'</div><div class="panel"><div class="panelhead">ДОБРОЕ УТРО, '+esc(state.name)+'</div><div class="panelbody"><div class="question">Что сегодня произошло?</div><div class="muted">Оставь здесь момент, который не хочется потерять. Когда-нибудь он станет частью твоей истории.</div>'+btn('✎ &nbsp; Написать воспоминание','new-memory','red')+'</div></div><div class="panel"><div class="panelhead">WHENWEEK</div><div class="panelbody"><table class="week"><tr>'+week+'</tr></table><div class="smallnote">Записей: '+state.memories.length+' &nbsp; · &nbsp; Вех: '+state.milestones.length+'</div></div></div>'+(latest?'<div class="panel"><div class="panelhead">ПОСЛЕДНЯЯ ЗАПИСЬ</div>'+row(latest,'memory')+'</div>':'<div class="panel"><div class="empty"><div class="emptyicon">✎</div><strong>Капсула пока пуста</strong>Первая запись — начало твоего личного архива.</div></div>')+'<div class="smallnote" style="text-align:center">Локальный режим · данные остаются на устройстве</div>';}
+function listPage(type){var isM=type==='memory', arr=(isM?state.memories:state.milestones).slice().sort(function(a,b){return b.date.localeCompare(a.date);}), out='', count=0;for(var i=0;i<arr.length;i++){if(!query||(arr[i].title+' '+arr[i].text).toLowerCase().indexOf(query.toLowerCase())>=0){out+=row(arr[i],type);count++;}}
+setNav(isM?'Воспоминания':'Вехи',null,'＋ Новое');
+var search=isM?'<div style="padding:10px"><input class="field" id="searchBox" placeholder="Поиск воспоминаний..." value="'+esc(query)+'"></div>':'';
+return search+'<div class="panel"><div class="panelhead">'+(isM?'МОЯ ИСТОРИЯ':'ВАЖНЫЕ СОБЫТИЯ')+' <span class="badge">'+count+'</span></div>'+(out||'<div class="empty"><div class="emptyicon">'+(isM?'▤':'★')+'</div><strong>'+(query?'Ничего не найдено':'Пока пусто')+'</strong>'+(isM?'Здесь будут храниться твои записи и фотографии.':'Отметь момент, который многое значит.')+'</div>')+'</div>'+(isM?'<div class="smallnote">Совет: короткие заголовки удобно просматривать в хронологии.</div>':'');}
+function formPage(type,item){var isM=type==='memory';setNav(item?'Изменить запись':(isM?'Воспоминание':'Новая веха'),'Отмена',null);
+var at=item&&item.attachments?item.attachments:(edit&&edit.attachments?edit.attachments:[]), attachments='';
+for(var i=0;i<at.length;i++){attachments+='<div class="row"><div class="rowtitle">'+esc(at[i].name)+'</div><div class="rowdetail">'+esc(at[i].kind==='image'?'Изображение':'Файл')+'</div><button class="button gray" type="button" data-remove-attachment="'+i+'">Убрать вложение</button>'+(at[i].kind==='image'?'<img class="thumb" src="'+at[i].data+'" alt="Вложение">':'')+'</div>';}
+return '<form id="entryForm" data-type="'+type+'" data-id="'+(item?esc(item.id):'')+'"><div class="panel"><div class="panelhead">'+(isM?'СОХРАНИ МОМЕНТ':'ОТМЕТЬ ВЕХУ')+'</div><div class="panelbody"><label class="fieldlabel">Дата</label><input class="field" type="date" name="date" value="'+esc(item?item.date:iso())+'" required><label class="fieldlabel">Заголовок</label><input class="field" name="title" maxlength="100" value="'+esc(item?item.title:'')+'" placeholder="Что произошло?" required><label class="fieldlabel">Описание</label><textarea class="area" name="text" maxlength="6000" placeholder="Запиши детали, мысли и ощущения...">'+esc(item?item.text:'')+'</textarea>'+(isM?'<label class="fieldlabel">Настроение</label><select class="select" name="mood"><option value="">Не указано</option>'+['Радость','Спокойствие','Волнение','Грусть','Благодарность','Удивление'].map(function(m){return '<option '+(item&&item.mood===m?'selected':'')+'>'+m+'</option>';}).join('')+'</select>':'')+'<label class="fieldlabel">Фото и вложения</label><div class="attach"><input type="file" id="fileInput" accept="image/*" multiple><div class="smallnote">Фото сохраняются внутри записи. Для старого Safari лучше добавлять изображения небольшого размера.</div></div>'+attachments+'</div></div>'+btn(item?'Сохранить изменения':'Сохранить запись','submit-form','')+(item?'<button type="button" class="button gray" data-action="delete">Удалить запись</button>':'')+'<div class="smallnote">Не закрывай страницу, пока выбранные фотографии обрабатываются.</div></form>';}
+function settings(){setNav('Настройки',null,null);return '<div class="panel"><div class="panelhead">ПРОФИЛЬ</div><div class="panelbody"><label class="fieldlabel">Имя в приветствии</label><input class="field" id="nameField" maxlength="30" value="'+esc(state.name)+'"><button class="button" data-action="save-name">Сохранить имя</button></div></div><div class="panel"><div class="panelhead">ХРАНЕНИЕ И ПРИВАТНОСТЬ</div><div class="panelbody"><div class="rowtitle">Работа без интернета</div><div class="rowdetail">После первой загрузки сайт может открываться офлайн, если Safari сохранил кэш приложения. Записи хранятся локально.</div>'+btn('Экспортировать резервную копию','export','')+'<div style="height:8px"></div><label class="fieldlabel">Восстановить из JSON</label><input type="file" id="importFile" accept="application/json,.json"><div class="smallnote">Резервная копия содержит тексты и вложенные изображения. Храни её в надёжном месте.</div></div></div><div class="panel"><div class="panelhead">ВАЖНО</div><div class="panelbody muted">Safari на iOS 6 имеет ограниченное хранилище и старый механизм App Cache. Это прототип без сервера и аккаунта. Очистка данных Safari может удалить записи; регулярно делай экспорт.</div></div>';}
+function render(){var v=document.getElementById('view');if(edit){v.innerHTML=formPage(edit.type,edit.item);}else if(page==='home')v.innerHTML=home();else if(page==='memories')v.innerHTML=listPage('memory');else if(page==='milestones')v.innerHTML=listPage('milestone');else v.innerHTML=settings();
+var tabs=document.getElementsByClassName('tab');for(var i=0;i<tabs.length;i++)tabs[i].className='tab'+(tabs[i].getAttribute('data-tab')===page?' active':'');
+var sb=document.getElementById('searchBox');if(sb)sb.addEventListener('input',function(){query=this.value;var pos=this.selectionStart;render();var b=document.getElementById('searchBox');if(b){b.focus();try{b.setSelectionRange(pos,pos);}catch(e){}}});
+var fi=document.getElementById('fileInput');if(fi)fi.addEventListener('change',handleFiles);
+var imp=document.getElementById('importFile');if(imp)imp.addEventListener('change',handleImport);
+}
+function navigate(p){page=p;edit=null;query='';render();window.scrollTo(0,0);}
+function openEditor(type,item){edit={type:type,item:item||null,attachments:item&&item.attachments?item.attachments:[]};render();window.scrollTo(0,0);}
+function find(type,id){var a=type==='memory'?state.memories:state.milestones;for(var i=0;i<a.length;i++)if(String(a[i].id)===String(id))return a[i];return null;}
+function handleFiles(e){var files=e.target.files;if(!files||!files.length)return;var type=edit.type, id=edit.item?edit.item.id:null, existing=edit.item&&edit.item.attachments?edit.item.attachments:(edit.attachments||[]);var pending=files.length;
+function done(){pending--;if(pending<=0){if(edit&&edit.item)edit.item.attachments=existing;else if(edit)edit.attachments=existing;render();msg('Вложения добавлены к черновику');}}
+for(var i=0;i<files.length;i++)(function(file){if(!file.type||file.type.indexOf('image/')!==0){existing.push({name:file.name,kind:'file',data:'',size:file.size});done();return;}
+var reader=new FileReader();reader.onload=function(ev){var data=ev.target.result;var im=new Image();im.onload=function(){var max=900,w=im.width,h=im.height;if(w>max||h>max){var scale=Math.min(max/w,max/h);w=Math.round(w*scale);h=Math.round(h*scale);var c=document.createElement('canvas');c.width=w;c.height=h;var ctx=c.getContext('2d');ctx.drawImage(im,0,0,w,h);try{data=c.toDataURL('image/jpeg',0.72);}catch(ex){}}existing.push({name:file.name,kind:'image',data:data,size:data.length});done();};im.onerror=function(){existing.push({name:file.name,kind:'image',data:data,size:data.length});done();};im.src=data;};reader.onerror=function(){done();msg('Не удалось прочитать файл');};reader.readAsDataURL(file);})(files[i]);
+}
+function saveForm(form){var type=form.getAttribute('data-type'),id=form.getAttribute('data-id'),old=id?find(type,id):null, data={id:id||String(new Date().getTime()),date:form.elements.date.value||iso(),title:form.elements.title.value,text:form.elements.text.value,mood:form.elements.mood?form.elements.mood.value:'',attachments:old&&old.attachments?old.attachments:(edit&&edit.attachments?edit.attachments:[])};var a=type==='memory'?state.memories:state.milestones,found=false;for(var i=0;i<a.length;i++)if(id&&String(a[i].id)===String(id)){a[i]=data;found=true;break;}if(!found)a.push(data);if(save()){edit=null;page=type==='memory'?'memories':'milestones';query='';render();window.scrollTo(0,0);msg('Запись сохранена на устройстве');}}
+function exportData(){try{var blob=new Blob([JSON.stringify(state)],{type:'application/json'});var url=window.URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='whengram-backup.json';document.body.appendChild(a);a.click();document.body.removeChild(a);window.setTimeout(function(){window.URL.revokeObjectURL(url);},1000);msg('Резервная копия подготовлена');}catch(e){msg('Экспорт не поддерживается этим браузером');}}
+function handleImport(e){var file=e.target.files&&e.target.files[0];if(!file)return;var r=new FileReader();r.onload=function(){try{var data=JSON.parse(r.result);if(!data.memories||!data.milestones)throw new Error('format');if(confirm('Заменить текущие данные резервной копией?')){state=data;save();render();msg('Данные восстановлены');}}catch(ex){msg('Файл резервной копии не распознан');}};r.readAsText(file);}
+document.addEventListener('click',function(e){var t=e.target;while(t&&t!==document&&!t.getAttribute('data-action')&&!t.getAttribute('data-tab')&&!t.getAttribute('data-open')&&!t.getAttribute('data-remove-attachment'))t=t.parentNode;if(!t||t===document)return;
+var tab=t.getAttribute('data-tab');if(tab){navigate(tab);return;}
+var act=t.getAttribute('data-action');if(act==='new-memory'){openEditor('memory');return;}if(act==='new-milestone'){openEditor('milestone');return;}if(act==='save-name'){state.name=document.getElementById('nameField').value||'Друг';save();render();msg('Имя сохранено');return;}if(act==='export'){exportData();return;}if(act==='delete'){if(confirm('Удалить запись?')){var a=edit.type==='memory'?state.memories:state.milestones;for(var i=a.length-1;i>=0;i--)if(String(a[i].id)===String(edit.item.id))a.splice(i,1);save();page=edit.type==='memory'?'memories':'milestones';edit=null;render();msg('Запись удалена');}return;}
+if(t.id==='leftBtn'){if(edit){edit=null;render();}else navigate('home');return;}if(t.id==='rightBtn'){if(page==='memories')openEditor('memory');else if(page==='milestones')openEditor('milestone');return;}
+var rm=t.getAttribute('data-remove-attachment');if(rm!==null&&edit){var ea=edit.item?edit.item.attachments:edit.attachments;if(ea){ea.splice(parseInt(rm,10),1);if(edit.item)edit.item.attachments=ea;else edit.attachments=ea;}render();return;}
+var oid=t.getAttribute('data-open');if(oid){var ty=t.getAttribute('data-type'),it=find(ty,oid);if(it)openEditor(ty,it);return;}
+});
+document.addEventListener('submit',function(e){if(e.target.id==='entryForm'){e.preventDefault();if(e.submitter&&e.submitter.getAttribute('data-action')==='submit-form'){}saveForm(e.target);}});
+load();render();
+})();
 </script>
-</body>
-</html>
+</body></html>
