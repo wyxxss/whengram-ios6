@@ -1,170 +1,664 @@
 <!DOCTYPE html>
-<html manifest="whengram.appcache" lang="ru">
+<html lang="ru" manifest="whengram.appcache">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black">
-<meta name="apple-mobile-web-app-title" content="WHENGRAM">
-<meta name="format-detection" content="telephone=no">
-<link rel="apple-touch-icon" href="icon.png">
-<title>WHENGRAM</title>
-<style>
-/* Designed for Mobile Safari on iOS 6: no flexbox, no CSS variables, no modern JS syntax. */
-* { -webkit-box-sizing:border-box; box-sizing:border-box; }
-html { background:#d7d8d9; }
-body {
-  margin:0; color:#292929; font:14px Helvetica,Arial,sans-serif;
-  background:#c8c9ca;
-  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.09) 0,rgba(255,255,255,.09) 1px,rgba(0,0,0,.025) 1px,rgba(0,0,0,.025) 2px);
-  -webkit-text-size-adjust:100%; padding-bottom:68px;
-}
-button,input,textarea,select { font:inherit; }
-button { -webkit-appearance:none; }
-.shell { max-width:440px; margin:0 auto; min-height:100%; background:#f2f2f2; box-shadow:0 0 16px rgba(0,0,0,.32); }
-.status { height:20px; background:#171717; color:#fff; font-weight:bold; font-size:12px; padding:3px 8px 0; text-shadow:0 -1px #000; }
-.navbar {
-  height:44px; position:relative; text-align:center; color:#fff; font-size:20px; font-weight:bold; line-height:44px;
-  text-shadow:0 -1px rgba(0,0,0,.8);
-  border-top:1px solid #aeb2b6; border-bottom:1px solid #40464c;
-  background:-webkit-gradient(linear,left top,left bottom,from(#b8c1c9),color-stop(.48,#87949f),color-stop(.51,#6e7c88),to(#53616c));
-  background:linear-gradient(#b8c1c9,#87949f 48%,#6e7c88 51%,#53616c);
-  -webkit-box-shadow:inset 0 1px rgba(255,255,255,.7),0 1px 2px rgba(0,0,0,.25);
-}
-.navtitle { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; padding:0 82px; }
-.navbtn {
-  position:absolute; top:7px; min-width:58px; height:30px; padding:0 9px; border:1px solid #39444d; border-radius:5px;
-  color:#fff; font-size:12px; line-height:28px; text-shadow:0 -1px #333;
-  background:-webkit-gradient(linear,left top,left bottom,from(#8d9aa5),color-stop(.5,#667681),color-stop(.51,#4e5b65),to(#65727d));
-  -webkit-box-shadow:inset 0 1px rgba(255,255,255,.45),0 1px rgba(255,255,255,.2);
-}
-.navbtn.left { left:7px; } .navbtn.right { right:7px; }
-.content { padding:14px 12px 24px; }
-.brandplate { border:1px solid #c4c4c4; border-radius:5px; padding:13px 10px; text-align:center; background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e8e8e8)); box-shadow:inset 0 1px #fff,0 1px 2px rgba(0,0,0,.12); margin-bottom:13px; }
-.brand { font-size:26px; font-weight:900; letter-spacing:-1px; color:#222; text-shadow:0 1px #fff; }
-.brand .dot { color:#d83c2c; }
-.tagline { color:#777; font-size:10px; letter-spacing:2px; margin-top:4px; font-weight:bold; }
-.datebar { font-size:11px; color:#666; text-align:center; padding:7px 0 12px; text-shadow:0 1px #fff; font-weight:bold; }
-.panel { border:1px solid #b7b7b7; border-radius:6px; background:#fff; margin:0 0 13px; box-shadow:0 1px 2px rgba(0,0,0,.14); overflow:hidden; }
-.panelhead {
-  padding:9px 10px; color:#fff; font-size:12px; font-weight:bold; text-shadow:0 -1px #555;
-  border-bottom:1px solid #555; background:-webkit-gradient(linear,left top,left bottom,from(#888),to(#555));
-}
-.panelbody { padding:12px; }
-.question { font-size:25px; line-height:1.12; margin:2px 0 10px; letter-spacing:-.6px; }
-.muted { color:#777; line-height:1.45; }
-.button {
-  display:block; width:100%; text-align:center; padding:12px 10px; margin:9px 0 0; color:#fff; font-weight:bold; font-size:15px;
-  text-shadow:0 -1px rgba(0,0,0,.55); border:1px solid #174c8b; border-radius:7px;
-  background:-webkit-gradient(linear,left top,left bottom,from(#68b4f6),color-stop(.48,#2684dc),color-stop(.51,#0870ca),to(#2d8de2));
-  -webkit-box-shadow:inset 0 1px rgba(255,255,255,.65),0 1px 2px rgba(0,0,0,.2);
-}
-.button.red { border-color:#8b2019; background:-webkit-gradient(linear,left top,left bottom,from(#fa8075),color-stop(.48,#e84b3d),color-stop(.51,#d63327),to(#e94b3e)); }
-.button.gray { border-color:#777; background:-webkit-gradient(linear,left top,left bottom,from(#fdfdfd),color-stop(.5,#e7e7e7),color-stop(.51,#d4d4d4),to(#eee)); color:#333; text-shadow:0 1px #fff; }
-.row { padding:11px 10px; border-bottom:1px solid #ddd; background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#f5f5f5)); min-height:45px; }
-.row:last-child { border-bottom:0; }
-.rowtitle { font-size:15px; font-weight:bold; color:#222; }
-.rowdetail { color:#777; font-size:12px; margin-top:4px; line-height:1.35; }
-.chevron { float:right; font-size:24px; color:#aaa; margin-left:8px; margin-top:-3px; }
-.badge { float:right; border-radius:12px; color:#fff; background:#d94a3e; padding:2px 8px; font-size:12px; text-shadow:0 -1px #a22; }
-.week { width:100%; border-collapse:separate; border-spacing:2px; }
-.week td { text-align:center; background:-webkit-gradient(linear,left top,left bottom,from(#fff),to(#e7e7e7)); border:1px solid #ccc; border-radius:4px; padding:7px 1px; color:#666; font-size:10px; }
-.week b { display:block; color:#222; font-size:16px; margin-top:3px; }
-.week .today { border-color:#c42e25; background:-webkit-gradient(linear,left top,left bottom,from(#ff8e82),to(#d9382b)); color:#fff; text-shadow:0 -1px #a22; }
-.week .today b { color:#fff; }
-.fieldlabel { display:block; font-size:12px; font-weight:bold; color:#555; margin:12px 0 5px; }
-.field, .area, .select { width:100%; border:1px solid #aaa; border-radius:5px; background:#fff; padding:10px; color:#222; -webkit-appearance:none; box-shadow:inset 0 1px 3px rgba(0,0,0,.12); }
-.area { min-height:100px; resize:vertical; }
-.smallnote { color:#888; font-size:11px; line-height:1.45; margin-top:10px; }
-.entrydate { float:left; width:47px; text-align:center; font-size:21px; color:#333; font-weight:bold; }
-.entrydate small { display:block; font-size:10px; color:#777; margin-top:3px; }
-.entrycopy { margin-left:58px; min-height:38px; }
-.entrytitle { font-weight:bold; font-size:15px; color:#222; margin-bottom:5px; }
-.entrytext { color:#666; font-size:12px; line-height:1.4; }
-.thumb { max-width:100%; max-height:150px; border:1px solid #aaa; padding:3px; background:#fff; margin-top:8px; box-shadow:0 1px 2px #bbb; }
-.empty { text-align:center; padding:25px 15px; color:#888; }
-.emptyicon { width:70px; height:70px; line-height:68px; border-radius:15px; margin:0 auto 12px; font-size:36px; color:#fff; text-shadow:0 -1px #555; border:1px solid #4a4a4a; background:-webkit-gradient(linear,left top,left bottom,from(#b7b7b7),to(#686868)); box-shadow:inset 0 1px rgba(255,255,255,.8),0 2px 4px rgba(0,0,0,.2); }
-.empty strong { display:block; font-size:20px; color:#333; margin-bottom:8px; }
-.tabs { position:fixed; bottom:0; left:0; right:0; height:49px; z-index:10; border-top:1px solid #333; background:-webkit-gradient(linear,left top,left bottom,from(#555),color-stop(.12,#333),to(#151515)); box-shadow:0 -1px 3px rgba(0,0,0,.3); }
-.tabwrap { max-width:440px; height:48px; margin:auto; display:table; width:100%; table-layout:fixed; }
-.tab { display:table-cell; text-align:center; color:#aaa; font-size:9px; font-weight:bold; text-shadow:0 -1px #000; padding-top:3px; border-top:2px solid transparent; }
-.tab .glyph { display:block; font-size:21px; line-height:25px; color:#bbb; text-shadow:0 1px #000; }
-.tab.active { color:#fff; border-top-color:#f4f4f4; }
-.tab.active .glyph { color:#fff; }
-.notice { display:none; position:fixed; bottom:58px; left:8%; right:8%; padding:10px; text-align:center; z-index:20; color:#fff; font-weight:bold; text-shadow:0 -1px #333; border:1px solid #333; border-radius:7px; background:-webkit-gradient(linear,left top,left bottom,from(#666),to(#222)); box-shadow:0 2px 8px #444; }
-.attach { border:1px dashed #aaa; border-radius:5px; padding:12px; background:#f7f7f7; margin-top:8px; }
-.attach input { width:100%; font-size:12px; }
-.danger { color:#b22; font-weight:bold; padding:12px 0; display:block; }
-@media screen and (max-width:340px) {
- .brand {font-size:23px} .question {font-size:23px} .content {padding:10px 8px 20px}
-}
-</style>
+  <meta charset="utf-8">
+  <title>Whengram</title>
+  <!-- Настройки специально под экран iPhone 4s (320x480 / 640x960 Retina) и iOS 6.1.3 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="Whengram">
+  <meta name="format-detection" content="telephone=no">
+
+  <!-- Ссылка на иконку для рабочего стола iOS 6 (генерируется автоматически скриптом ниже) -->
+  <link id="ios-touch-icon" rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Авто-генератор ровной глянцевой иконки iOS 6 (114x114 Retina для iPhone 4s) -->
+  <script type="text/javascript">
+    (function() {
+      try {
+        var canvas = document.createElement('canvas');
+        canvas.width = 114;
+        canvas.height = 114;
+        var ctx = canvas.getContext('2d');
+
+        // 1. Тёмно-кожаная/графитовая подложка с тёплым градиентом
+        var bgGrad = ctx.createLinearGradient(0, 0, 0, 114);
+        bgGrad.addColorStop(0, '#3a3028');
+        bgGrad.addColorStop(0.5, '#241d18');
+        bgGrad.addColorStop(1, '#14100d');
+        ctx.fillStyle = bgGrad;
+        ctx.fillRect(0, 0, 114, 114);
+
+        // 2. Тонкая кожаная текстура в полоску
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.025)';
+        for (var y = 0; y < 114; y += 3) {
+          ctx.fillRect(0, y, 114, 1);
+        }
+
+        // 3. Внутренняя золотисто-кремовая рамка (строчка iOS 6)
+        ctx.strokeStyle = 'rgba(224, 185, 138, 0.35)';
+        ctx.lineWidth = 2;
+        ctx.strokeRect(5, 5, 104, 104);
+
+        // 4. Кремовый медальон в центре (как в логотипе Whengram)
+        ctx.beginPath();
+        ctx.arc(57, 60, 36, 0, Math.PI * 2, false);
+        var circleGrad = ctx.createLinearGradient(0, 24, 0, 96);
+        circleGrad.addColorStop(0, '#fffaf0');
+        circleGrad.addColorStop(1, '#e4d5be');
+        ctx.fillStyle = circleGrad;
+        ctx.fill();
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = '#c85a32';
+        ctx.stroke();
+
+        // 5. Корона над медальоном (оранжево-терракотовая)
+        ctx.fillStyle = '#e05a2b';
+        ctx.beginPath();
+        ctx.moveTo(41, 24);
+        ctx.lineTo(45, 13);
+        ctx.lineTo(57, 20);
+        ctx.lineTo(69, 13);
+        ctx.lineTo(73, 24);
+        ctx.closePath();
+        ctx.fill();
+
+        // 6. Буква W внутри медальона
+        ctx.fillStyle = '#231c16';
+        ctx.font = 'bold 38px Georgia, serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('W', 57, 62);
+
+        // 7. Фирменный верхний стеклянный блик iOS 6
+        var gloss = ctx.createLinearGradient(0, 0, 0, 58);
+        gloss.addColorStop(0, 'rgba(255, 255, 255, 0.42)');
+        gloss.addColorStop(1, 'rgba(255, 255, 255, 0.04)');
+        ctx.fillStyle = gloss;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(114, 0);
+        ctx.lineTo(114, 48);
+        ctx.quadraticCurveTo(57, 64, 0, 48);
+        ctx.closePath();
+        ctx.fill();
+
+        var link = document.getElementById('ios-touch-icon');
+        if (link) {
+          link.href = canvas.toDataURL('image/png');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </head>
-<body>
-<div class="shell">
-  <div class="status">9:41 <span style="float:right">● ● ▰</span></div>
-  <div class="navbar"><button class="navbtn left" id="leftBtn" style="display:none">Назад</button><div class="navtitle" id="navtitle">WHENGRAM</div><button class="navbtn right" id="rightBtn" style="display:none">Новое</button></div>
-  <div class="content" id="view"></div>
-</div>
-<div class="tabs"><div class="tabwrap">
-  <div class="tab active" data-tab="home"><span class="glyph">⌂</span>Главная</div>
-  <div class="tab" data-tab="memories"><span class="glyph">▤</span>Записи</div>
-  <div class="tab" data-tab="milestones"><span class="glyph">★</span>Вехи</div>
-  <div class="tab" data-tab="settings"><span class="glyph">⚙</span>Настройки</div>
-</div></div>
-<div class="notice" id="notice"></div>
-<script>
-(function(){
-var KEY='whengram-ios6-v2', state={name:'Илюша',memories:[],milestones:[],introSeen:false}, page='home', edit=null, query='';
-function load(){try{var x=localStorage.getItem(KEY);if(x){var o=JSON.parse(x);for(var k in o)state[k]=o[k];}}catch(e){}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));return true;}catch(e){msg('Память браузера заполнена. Удали часть вложений или экспортируй записи.');return false;}}
-function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');}
-function iso(){var d=new Date();return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
-function dateLabel(s){var p=(s||iso()).split('-');return p[2]+'.'+p[1]+'.'+p[0];}
-function msg(s){var n=document.getElementById('notice');n.innerHTML=esc(s);n.style.display='block';window.setTimeout(function(){n.style.display='none';},2300);}
-function setNav(title,left,right){document.getElementById('navtitle').innerHTML=title;var l=document.getElementById('leftBtn'),r=document.getElementById('rightBtn');l.style.display=left?'block':'none';r.style.display=right?'block':'none';l.innerHTML=left||'';r.innerHTML=right||'';}
-function btn(label,act,cls){return '<button class="button '+(cls||'')+'" data-action="'+act+'">'+label+'</button>';}
-function row(item,type){var at=item.attachments&&item.attachments.length?'<div class="rowdetail">Вложений: '+item.attachments.length+'</div>':'';var photo='';if(item.attachments)for(var i=0;i<item.attachments.length;i++){if(item.attachments[i].kind==='image'){photo+='<img class="thumb" src="'+item.attachments[i].data+'" alt="Фото">';break;}}
-return '<div class="row" data-open="'+esc(item.id)+'" data-type="'+type+'"><div class="entrydate">'+esc((item.date||iso()).split('-')[2])+'<small>'+esc((item.date||iso()).substring(0,7))+'</small></div><div class="entrycopy"><div class="chevron">›</div><div class="entrytitle">'+esc(item.title||'Без названия')+'</div><div class="entrytext">'+esc(item.text||'')+'</div>'+at+photo+'</div><div style="clear:both"></div></div>';}
-function home(){var d=new Date(), names=['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'], week='', i;for(i=0;i<7;i++){var x=new Date(d.getFullYear(),d.getMonth(),d.getDate()-d.getDay()+i);week+='<td class="'+(x.toDateString()===d.toDateString()?'today':'')+'">'+names[x.getDay()]+'<b>'+x.getDate()+'</b></td>';}
-var latest=state.memories.slice().sort(function(a,b){return b.date.localeCompare(a.date);})[0];
-setNav('WHENGRAM',null,null);
-return '<div class="brandplate"><div class="brand">WHENGRAM<span class="dot">.</span></div><div class="tagline">PERSONAL TIME CAPSULE</div></div><div class="datebar">'+dateLabel(iso())+'</div><div class="panel"><div class="panelhead">ДОБРОЕ УТРО, '+esc(state.name)+'</div><div class="panelbody"><div class="question">Что сегодня произошло?</div><div class="muted">Оставь здесь момент, который не хочется потерять. Когда-нибудь он станет частью твоей истории.</div>'+btn('✎ &nbsp; Написать воспоминание','new-memory','red')+'</div></div><div class="panel"><div class="panelhead">WHENWEEK</div><div class="panelbody"><table class="week"><tr>'+week+'</tr></table><div class="smallnote">Записей: '+state.memories.length+' &nbsp; · &nbsp; Вех: '+state.milestones.length+'</div></div></div>'+(latest?'<div class="panel"><div class="panelhead">ПОСЛЕДНЯЯ ЗАПИСЬ</div>'+row(latest,'memory')+'</div>':'<div class="panel"><div class="empty"><div class="emptyicon">✎</div><strong>Капсула пока пуста</strong>Первая запись — начало твоего личного архива.</div></div>')+'<div class="smallnote" style="text-align:center">Локальный режим · данные остаются на устройстве</div>';}
-function listPage(type){var isM=type==='memory', arr=(isM?state.memories:state.milestones).slice().sort(function(a,b){return b.date.localeCompare(a.date);}), out='', count=0;for(var i=0;i<arr.length;i++){if(!query||(arr[i].title+' '+arr[i].text).toLowerCase().indexOf(query.toLowerCase())>=0){out+=row(arr[i],type);count++;}}
-setNav(isM?'Воспоминания':'Вехи',null,'＋ Новое');
-var search=isM?'<div style="padding:10px"><input class="field" id="searchBox" placeholder="Поиск воспоминаний..." value="'+esc(query)+'"></div>':'';
-return search+'<div class="panel"><div class="panelhead">'+(isM?'МОЯ ИСТОРИЯ':'ВАЖНЫЕ СОБЫТИЯ')+' <span class="badge">'+count+'</span></div>'+(out||'<div class="empty"><div class="emptyicon">'+(isM?'▤':'★')+'</div><strong>'+(query?'Ничего не найдено':'Пока пусто')+'</strong>'+(isM?'Здесь будут храниться твои записи и фотографии.':'Отметь момент, который многое значит.')+'</div>')+'</div>'+(isM?'<div class="smallnote">Совет: короткие заголовки удобно просматривать в хронологии.</div>':'');}
-function formPage(type,item){var isM=type==='memory';setNav(item?'Изменить запись':(isM?'Воспоминание':'Новая веха'),'Отмена',null);
-var at=item&&item.attachments?item.attachments:(edit&&edit.attachments?edit.attachments:[]), attachments='';
-for(var i=0;i<at.length;i++){attachments+='<div class="row"><div class="rowtitle">'+esc(at[i].name)+'</div><div class="rowdetail">'+esc(at[i].kind==='image'?'Изображение':'Файл')+'</div><button class="button gray" type="button" data-remove-attachment="'+i+'">Убрать вложение</button>'+(at[i].kind==='image'?'<img class="thumb" src="'+at[i].data+'" alt="Вложение">':'')+'</div>';}
-return '<form id="entryForm" data-type="'+type+'" data-id="'+(item?esc(item.id):'')+'"><div class="panel"><div class="panelhead">'+(isM?'СОХРАНИ МОМЕНТ':'ОТМЕТЬ ВЕХУ')+'</div><div class="panelbody"><label class="fieldlabel">Дата</label><input class="field" type="date" name="date" value="'+esc(item?item.date:iso())+'" required><label class="fieldlabel">Заголовок</label><input class="field" name="title" maxlength="100" value="'+esc(item?item.title:'')+'" placeholder="Что произошло?" required><label class="fieldlabel">Описание</label><textarea class="area" name="text" maxlength="6000" placeholder="Запиши детали, мысли и ощущения...">'+esc(item?item.text:'')+'</textarea>'+(isM?'<label class="fieldlabel">Настроение</label><select class="select" name="mood"><option value="">Не указано</option>'+['Радость','Спокойствие','Волнение','Грусть','Благодарность','Удивление'].map(function(m){return '<option '+(item&&item.mood===m?'selected':'')+'>'+m+'</option>';}).join('')+'</select>':'')+'<label class="fieldlabel">Фото и вложения</label><div class="attach"><input type="file" id="fileInput" accept="image/*" multiple><div class="smallnote">Фото сохраняются внутри записи. Для старого Safari лучше добавлять изображения небольшого размера.</div></div>'+attachments+'</div></div>'+btn(item?'Сохранить изменения':'Сохранить запись','submit-form','')+(item?'<button type="button" class="button gray" data-action="delete">Удалить запись</button>':'')+'<div class="smallnote">Не закрывай страницу, пока выбранные фотографии обрабатываются.</div></form>';}
-function settings(){setNav('Настройки',null,null);return '<div class="panel"><div class="panelhead">ПРОФИЛЬ</div><div class="panelbody"><label class="fieldlabel">Имя в приветствии</label><input class="field" id="nameField" maxlength="30" value="'+esc(state.name)+'"><button class="button" data-action="save-name">Сохранить имя</button></div></div><div class="panel"><div class="panelhead">ХРАНЕНИЕ И ПРИВАТНОСТЬ</div><div class="panelbody"><div class="rowtitle">Работа без интернета</div><div class="rowdetail">После первой загрузки сайт может открываться офлайн, если Safari сохранил кэш приложения. Записи хранятся локально.</div>'+btn('Экспортировать резервную копию','export','')+'<div style="height:8px"></div><label class="fieldlabel">Восстановить из JSON</label><input type="file" id="importFile" accept="application/json,.json"><div class="smallnote">Резервная копия содержит тексты и вложенные изображения. Храни её в надёжном месте.</div></div></div><div class="panel"><div class="panelhead">ВАЖНО</div><div class="panelbody muted">Safari на iOS 6 имеет ограниченное хранилище и старый механизм App Cache. Это прототип без сервера и аккаунта. Очистка данных Safari может удалить записи; регулярно делай экспорт.</div></div>';}
-function render(){var v=document.getElementById('view');if(edit){v.innerHTML=formPage(edit.type,edit.item);}else if(page==='home')v.innerHTML=home();else if(page==='memories')v.innerHTML=listPage('memory');else if(page==='milestones')v.innerHTML=listPage('milestone');else v.innerHTML=settings();
-var tabs=document.getElementsByClassName('tab');for(var i=0;i<tabs.length;i++)tabs[i].className='tab'+(tabs[i].getAttribute('data-tab')===page?' active':'');
-var sb=document.getElementById('searchBox');if(sb)sb.addEventListener('input',function(){query=this.value;var pos=this.selectionStart;render();var b=document.getElementById('searchBox');if(b){b.focus();try{b.setSelectionRange(pos,pos);}catch(e){}}});
-var fi=document.getElementById('fileInput');if(fi)fi.addEventListener('change',handleFiles);
-var imp=document.getElementById('importFile');if(imp)imp.addEventListener('change',handleImport);
-}
-function navigate(p){page=p;edit=null;query='';render();window.scrollTo(0,0);}
-function openEditor(type,item){edit={type:type,item:item||null,attachments:item&&item.attachments?item.attachments:[]};render();window.scrollTo(0,0);}
-function find(type,id){var a=type==='memory'?state.memories:state.milestones;for(var i=0;i<a.length;i++)if(String(a[i].id)===String(id))return a[i];return null;}
-function handleFiles(e){var files=e.target.files;if(!files||!files.length)return;var type=edit.type, id=edit.item?edit.item.id:null, existing=edit.item&&edit.item.attachments?edit.item.attachments:(edit.attachments||[]);var pending=files.length;
-function done(){pending--;if(pending<=0){if(edit&&edit.item)edit.item.attachments=existing;else if(edit)edit.attachments=existing;render();msg('Вложения добавлены к черновику');}}
-for(var i=0;i<files.length;i++)(function(file){if(!file.type||file.type.indexOf('image/')!==0){existing.push({name:file.name,kind:'file',data:'',size:file.size});done();return;}
-var reader=new FileReader();reader.onload=function(ev){var data=ev.target.result;var im=new Image();im.onload=function(){var max=900,w=im.width,h=im.height;if(w>max||h>max){var scale=Math.min(max/w,max/h);w=Math.round(w*scale);h=Math.round(h*scale);var c=document.createElement('canvas');c.width=w;c.height=h;var ctx=c.getContext('2d');ctx.drawImage(im,0,0,w,h);try{data=c.toDataURL('image/jpeg',0.72);}catch(ex){}}existing.push({name:file.name,kind:'image',data:data,size:data.length});done();};im.onerror=function(){existing.push({name:file.name,kind:'image',data:data,size:data.length});done();};im.src=data;};reader.onerror=function(){done();msg('Не удалось прочитать файл');};reader.readAsDataURL(file);})(files[i]);
-}
-function saveForm(form){var type=form.getAttribute('data-type'),id=form.getAttribute('data-id'),old=id?find(type,id):null, data={id:id||String(new Date().getTime()),date:form.elements.date.value||iso(),title:form.elements.title.value,text:form.elements.text.value,mood:form.elements.mood?form.elements.mood.value:'',attachments:old&&old.attachments?old.attachments:(edit&&edit.attachments?edit.attachments:[])};var a=type==='memory'?state.memories:state.milestones,found=false;for(var i=0;i<a.length;i++)if(id&&String(a[i].id)===String(id)){a[i]=data;found=true;break;}if(!found)a.push(data);if(save()){edit=null;page=type==='memory'?'memories':'milestones';query='';render();window.scrollTo(0,0);msg('Запись сохранена на устройстве');}}
-function exportData(){try{var blob=new Blob([JSON.stringify(state)],{type:'application/json'});var url=window.URL.createObjectURL(blob);var a=document.createElement('a');a.href=url;a.download='whengram-backup.json';document.body.appendChild(a);a.click();document.body.removeChild(a);window.setTimeout(function(){window.URL.revokeObjectURL(url);},1000);msg('Резервная копия подготовлена');}catch(e){msg('Экспорт не поддерживается этим браузером');}}
-function handleImport(e){var file=e.target.files&&e.target.files[0];if(!file)return;var r=new FileReader();r.onload=function(){try{var data=JSON.parse(r.result);if(!data.memories||!data.milestones)throw new Error('format');if(confirm('Заменить текущие данные резервной копией?')){state=data;save();render();msg('Данные восстановлены');}}catch(ex){msg('Файл резервной копии не распознан');}};r.readAsText(file);}
-document.addEventListener('click',function(e){var t=e.target;while(t&&t!==document&&!t.getAttribute('data-action')&&!t.getAttribute('data-tab')&&!t.getAttribute('data-open')&&!t.getAttribute('data-remove-attachment'))t=t.parentNode;if(!t||t===document)return;
-var tab=t.getAttribute('data-tab');if(tab){navigate(tab);return;}
-var act=t.getAttribute('data-action');if(act==='new-memory'){openEditor('memory');return;}if(act==='new-milestone'){openEditor('milestone');return;}if(act==='save-name'){state.name=document.getElementById('nameField').value||'Друг';save();render();msg('Имя сохранено');return;}if(act==='export'){exportData();return;}if(act==='delete'){if(confirm('Удалить запись?')){var a=edit.type==='memory'?state.memories:state.milestones;for(var i=a.length-1;i>=0;i--)if(String(a[i].id)===String(edit.item.id))a.splice(i,1);save();page=edit.type==='memory'?'memories':'milestones';edit=null;render();msg('Запись удалена');}return;}
-if(t.id==='leftBtn'){if(edit){edit=null;render();}else navigate('home');return;}if(t.id==='rightBtn'){if(page==='memories')openEditor('memory');else if(page==='milestones')openEditor('milestone');return;}
-var rm=t.getAttribute('data-remove-attachment');if(rm!==null&&edit){var ea=edit.item?edit.item.attachments:edit.attachments;if(ea){ea.splice(parseInt(rm,10),1);if(edit.item)edit.item.attachments=ea;else edit.attachments=ea;}render();return;}
-var oid=t.getAttribute('data-open');if(oid){var ty=t.getAttribute('data-type'),it=find(ty,oid);if(it)openEditor(ty,it);return;}
-});
-document.addEventListener('submit',function(e){if(e.target.id==='entryForm'){e.preventDefault();if(e.submitter&&e.submitter.getAttribute('data-action')==='submit-form'){}saveForm(e.target);}});
-load();render();
-})();
-</script>
-</body></html>
+<body class="theme-cream">
+
+  <!-- ОБЁРТКА ВСЕГО ПРИЛОЖЕНИЯ -->
+  <div id="app- shell" class="app-shell">
+
+    <!-- ВЕРХНИЙ НАВИГАЦИОННЫЙ БАР В СТИЛЕ iOS 6 -->
+    <header id="top-navbar" class="ios6-navbar">
+      <div class="navbar-left">
+        <div class="brand-badge" id="nav-logo-btn">
+          <span class="brand-crown">&#9813;</span>
+          <span class="brand-w">W</span>
+        </div>
+      </div>
+      <div class="navbar-center">
+        <h1 id="navbar-title" class="navbar-title">WHENGRAM<span class="accent-dot">.</span></h1>
+        <div id="navbar-subtitle" class="navbar-subtitle">PERSONAL TIME CAPSULE</div>
+      </div>
+      <div class="navbar-right">
+        <button type="button" id="navbar-action-btn" class="ios6-nav-btn">+ Новое</button>
+      </div>
+    </header>
+
+    <!-- ОСНОВНАЯ ПРОКРУЧИВАЕМАЯ ОБЛАСТЬ ЭКРАНОВ -->
+    <main id="main-scroll" class="main-scroll">
+
+      <!-- ==========================================
+           ВКЛАДКА 1: ГЛАВНАЯ (HOME)
+           ========================================== -->
+      <section id="tab-home" class="tab-view active">
+        <!-- Полоска сегодняшней даты и номера дня -->
+        <div class="home-date-strip">
+          <span id="home-current-date" class="home-date-text">ПОНЕДЕЛЬНИК, 19 ОКТЯБРЯ 2026 Г.</span>
+          <span id="home-day-number" class="home-day-badge">№ 292</span>
+        </div>
+
+        <!-- Карточка приветствия (показывается, если сегодня ещё нет записи) -->
+        <div id="home-prompt-card" class="skeuo-card paper-card">
+          <div class="card-pin"></div>
+          <div class="greeting-line">
+            <span id="home-greeting-time">ДОБРЫЙ ДЕНЬ,</span>
+            <span id="home-greeting-name" class="accent-text">ИЛЮША</span>
+          </div>
+          <h2 class="hero-question">Что сегодня произошло?</h2>
+          <p class="hero-subtext">То единственное, что стоит запомнить сегодня, пока оно не ускользнуло.</p>
+          <button type="button" id="btn-write-today" class="ios6-primary-btn">
+            <span>НАПИСАТЬ ВОСПОМИНАНИЕ</span>
+            <span class="btn-arrow">&rarr;</span>
+          </button>
+        </div>
+
+        <!-- Карточка сегодняшнего воспоминания (Полароид, если запись за сегодня уже есть) -->
+        <div id="home-today-card" class="skeuo-card polaroid-card hidden">
+          <div class="polaroid-top-bar">
+            <span class="polaroid-tag">ЗАПИСЬ ЗА СЕГОДНЯ</span>
+            <span id="today-card-mood" class="mood-pill mood-positive">● ХОРОШО</span>
+          </div>
+          <div id="today-card-photo-wrap" class="polaroid-photo-frame hidden">
+            <img id="today-card-photo" src="" alt="Фото дня">
+          </div>
+          <div id="today-card-text" class="polaroid-caption"></div>
+
+          <!-- Встроенный ретро-плеер Last.fm для сегодняшней записи -->
+          <div id="today-lastfm-box" class="lastfm-cassette hidden"></div>
+
+          <div class="polaroid-footer">
+            <span id="today-card-time" class="polaroid-time">21:00</span>
+            <button type="button" id="btn-edit-today" class="ios6-small-btn">✎ ИЗМЕНИТЬ</button>
+          </div>
+        </div>
+
+        <!-- Блок WHENWEEK (Полоска дней недели) -->
+        <div class="skeuo-section">
+          <div class="section-header-row">
+            <span class="section-label">WHENWEEK</span>
+            <span id="whenweek-count" class="section-meta">ЗАПИСАНО: 0 / 7</span>
+          </div>
+          <div id="whenweek-strip" class="whenweek-strip">
+            <!-- Генерируется скриптом (ПН ВТ СР ЧТ ПТ СБ ВС) -->
+          </div>
+        </div>
+
+        <!-- Блок WHENLOG с МЕХАНИЧЕСКИМИ СЧЁТЧИКАМИ (Flip-Clock) -->
+        <div class="skeuo-section">
+          <div class="section-header-row">
+            <span class="section-label">WHENLOG</span>
+            <span id="whenlog-since" class="section-meta">КАПСУЛА ВРЕМЕНИ</span>
+          </div>
+
+          <div class="whenlog-board">
+            <div class="log-row">
+              <div class="log-title-wrap">
+                <span class="log-title">ВОСПОМИНАНИЯ</span>
+                <span class="log-desc">Сохранено дней</span>
+              </div>
+              <div id="flip-memories" class="flip-counter">
+                <span class="flip-digit">0</span>
+                <span class="flip-digit">0</span>
+                <span class="flip-digit">1</span>
+              </div>
+            </div>
+
+            <div class="log-divider"></div>
+
+            <div class="log-row">
+              <div class="log-title-wrap">
+                <span class="log-title">ВЕХИ</span>
+                <span class="log-desc">Ключевые события</span>
+              </div>
+              <div id="flip-events" class="flip-counter">
+                <span class="flip-digit">0</span>
+                <span class="flip-digit">0</span>
+                <span class="flip-digit">0</span>
+              </div>
+            </div>
+
+            <div class="log-divider"></div>
+
+            <div class="log-row">
+              <div class="log-title-wrap">
+                <span id="log-year-label" class="log-title">2026 НА СЕГОДНЯ</span>
+                <span class="log-desc">День текущего года</span>
+              </div>
+              <div id="flip-day-of-year" class="flip-counter flip-accent">
+                <span class="flip-digit">2</span>
+                <span class="flip-digit">9</span>
+                <span class="flip-digit">2</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           ВКЛАДКА 2: ВОСПОМИНАНИЯ + ПОЛКА iBOOKS
+           ========================================== -->
+      <section id="tab-memories" class="tab-view">
+        <!-- Верхняя панель поиска и фильтра -->
+        <div class="search-toolbar">
+          <div class="ios6-search-wrap">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="memories-search-input" class="ios6-search-input" placeholder="Поиск воспоминаний...">
+          </div>
+          <select id="memories-mood-filter" class="ios6-select-btn" title="Фильтр настроения">
+            <option value="all">Все</option>
+            <option value="positive">Хорошо</option>
+            <option value="neutral">Ровно</option>
+            <option value="negative">Тяжело</option>
+            <option value="photo">С фото</option>
+          </select>
+        </div>
+
+        <!-- Переключатель режима: Список ИЛИ Книжная полка iBooks (WhenShelf) -->
+        <div class="ios6-segmented-control">
+          <button type="button" id="view-btn-list" class="seg-btn active">Лента записей</button>
+          <button type="button" id="view-btn-shelf" class="seg-btn">Полка iBooks</button>
+        </div>
+
+        <!-- Подзаголовок выбранного фильтра (например, выбранный том с полки) -->
+        <div id="shelf-active-filter-bar" class="shelf-filter-banner hidden">
+          <span id="shelf-filter-title">Книга: 2026 год</span>
+          <button type="button" id="btn-reset-shelf-filter" class="ios6-mini-btn">Показать все</button>
+        </div>
+
+        <!-- РЕЖИМ 1: Лента воспоминаний по месяцам -->
+        <div id="memories-list-container" class="memories-list-container">
+          <!-- Карточки генерируются через app.js -->
+        </div>
+
+        <!-- РЕЖИМ 2: Деревянная книжная полка iBooks (WHENSHELF) -->
+        <div id="whenshelf-container" class="whenshelf-wrapper hidden">
+          <div class="shelf-header-card">
+            <div class="shelf-header-top">
+              <div>
+                <h3 class="shelf-brand">WHENSHELF<span class="accent-dot">.</span></h3>
+                <p id="shelf-total-summary" class="shelf-subtitle">У КАЖДОГО ВРЕМЕНИ СВОЯ КНИГА</p>
+              </div>
+              <!-- Переключатель полок: По годам / По месяцам -->
+              <div class="shelf-mode-switch">
+                <button type="button" id="shelf-by-year" class="shelf-mode-btn active">По годам</button>
+                <button type="button" id="shelf-by-month" class="shelf-mode-btn">По месяцам</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Сама деревянная полка iBooks с томами -->
+          <div id="ibooks-wooden-shelf" class="ibooks-shelf">
+            <!-- Деревянные ярусы и корешки/обложки книг генерируются в app.js -->
+          </div>
+        </div>
+
+        <!-- Нижний баннер быстрого перехода к полке (как в оригинальном Whengram) -->
+        <div id="bottom-whenshelf-teaser" class="whenshelf-teaser">
+          <div class="teaser-left">
+            <span class="teaser-title">WHENSHELF<span class="accent-dot">.</span></span>
+            <span class="teaser-sub">ОТКРЫТЬ КНИЖНУЮ ПОЛКУ ПО ГОДАМ И МЕСЯЦАМ</span>
+          </div>
+          <div class="teaser-books-icon">&#128218;</div>
+        </div>
+      </section>
+
+      <!-- ==========================================
+           ВКЛАДКА 3: ВЕХИ (MILESTONES / EVENTS)
+           ========================================== -->
+      <section id="tab-events" class="tab-view">
+        <div class="search-toolbar">
+          <div class="ios6-search-wrap full-width">
+            <span class="search-icon">&#128269;</span>
+            <input type="text" id="events-search-input" class="ios6-search-input" placeholder="Поиск вех и достижений...">
+          </div>
+        </div>
+
+        <!-- Список вех или пустое состояние -->
+        <div id="events-list-container" class="events-list-container">
+          <!-- Генерируется в app.js -->
+        </div>
+      </section>
+
+      <!-- ==========================================
+           ВКЛАДКА 4: НАСТРОЙКИ (SETTINGS)
+           ========================================== -->
+      <section id="tab-settings" class="tab-view">
+        <!-- Шапка логотипа в настройках -->
+        <div class="settings-hero">
+          <div class="settings-logo-big">
+            <span class="settings-crown">&#9813;</span>
+            <span class="settings-w">W</span>
+          </div>
+          <h2 class="settings-app-name">WHENGRAM<span class="accent-dot">.</span></h2>
+          <p class="settings-app-tag">iOS 6 SKEUOMORPHIC EDITION • iPHONE 4S</p>
+        </div>
+
+        <!-- Группа 1: Профиль -->
+        <div class="ios6-group-title">ПРОФИЛЬ</div>
+        <div class="ios6-grouped-table">
+          <div class="ios6-cell">
+            <div class="cell-left">
+              <span class="cell-title">Ваше имя</span>
+              <span class="cell-sub">Отображается на главной и в бэкапе</span>
+            </div>
+            <div class="cell-right">
+              <input type="text" id="setting-profile-name" class="ios6-inline-input" value="Илюша" placeholder="Имя">
+            </div>
+          </div>
+          <div class="ios6-cell">
+            <div class="cell-left">
+              <span class="cell-title">Время записи</span>
+              <span class="cell-sub">Отметка времени в профиле</span>
+            </div>
+            <div class="cell-right">
+              <input type="text" id="setting-reminder-time" class="ios6-inline-input small-input" value="21:00" placeholder="21:00">
+            </div>
+          </div>
+        </div>
+
+        <!-- Группа 2: Оформление iOS 6 -->
+        <div class="ios6-group-title">ДИЗАЙН И ТЕМА (iOS 6)</div>
+        <div class="ios6-grouped-table">
+          <div class="ios6-cell">
+            <div class="cell-left">
+              <span class="cell-title">Кремовая бумага</span>
+              <span class="cell-sub">ВЫКЛ = Тёмный лён и кожа iOS 6</span>
+            </div>
+            <div class="cell-right">
+              <!-- Классический выпуклый тумблер ON/OFF из iOS 6 -->
+              <button type="button" id="toggle-cream-theme" class="ios6-switch active" aria-label="Переключить тему">
+                <span class="switch-track">
+                  <span class="switch-on">ON</span>
+                  <span class="switch-off">OFF</span>
+                  <span class="switch-knob"></span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Группа 3: Интеграция с Last.fm -->
+        <div class="ios6-group-title">САУНДТРЕК ДНЯ (LAST.FM)</div>
+        <div class="ios6-grouped-table">
+          <div class="ios6-cell">
+            <div class="cell-left">
+              <span class="cell-title">Ник в Last.fm</span>
+              <span class="cell-sub">Самая прослушиваемая песня за день</span>
+            </div>
+            <div class="cell-right">
+              <input type="text" id="setting-lastfm-user" class="ios6-inline-input" placeholder="Твой ник">
+            </div>
+          </div>
+          <div class="ios6-cell">
+            <div class="cell-left">
+              <span class="cell-title">API-ключ Last.fm</span>
+              <span class="cell-sub">Встроен рабочий ключ (можно свой)</span>
+            </div>
+            <div class="cell-right">
+              <input type="text" id="setting-lastfm-key" class="ios6-inline-input" placeholder="По умолчанию">
+            </div>
+          </div>
+          <div class="ios6-cell cell-action">
+            <button type="button" id="btn-save-settings" class="ios6-metal-btn full-width">
+              &#10004; Сохранить настройки профиля и Last.fm
+            </button>
+          </div>
+        </div>
+
+        <!-- Группа 4: Синхронизация и Резервная копия (ZIP оригинала Whengram) -->
+        <div class="ios6-group-title">РЕЗЕРВНАЯ КОПИЯ (СИНХРОНИЗАЦИЯ С WHENGRAM)</div>
+        <div class="ios6-grouped-table">
+          <div class="ios6-cell cell-vertical">
+            <p class="backup-explain">
+              Полная совместимость с оригинальным <b>Whengram v2.0</b>: архив <code>.zip</code> содержит <code>manifest.json</code> и папку <code>photos/</code> со всеми фотографиями. Песни из Last.fm автоматически дописываются в текст заметки для оригинала и красиво разворачиваются в плеер на iPhone 4s.
+            </p>
+            <div class="backup-btn-grid">
+              <button type="button" id="btn-export-zip" class="ios6-primary-btn backup-btn">
+                &#11015; Скачать бэкап (.ZIP)
+              </button>
+
+              <label for="input-import-zip" class="ios6-metal-btn backup-btn file-label-btn">
+                &#11014; Загрузить .ZIP или JSON
+              </label>
+              <input type="file" id="input-import-zip" class="hidden-file-input" accept=".zip,.json,application/zip,application/json">
+            </div>
+          </div>
+
+          <!-- Дополнительный способ для iOS 6.1.3 (если Safari без твика ограничивает выбор ZIP из проводника) -->
+          <div class="ios6-cell cell-vertical">
+            <div class="cell-title">Быстрый обмен для iOS 6.1.3 (Текст / Буфер)</div>
+            <span class="cell-sub">На чистой iOS 6 Safari выбирает файлы только из Фотоплёнки. Если нужно перекинуть записи без компьютера, скопируй или вставь код бэкапа здесь:</span>
+            <textarea id="backup-json-textarea" class="ios6-textarea compact-textarea" rows="3" placeholder="Вставь сюда содержимое manifest.json для мгновенного импорта..."></textarea>
+            <div class="backup-btn-grid">
+              <button type="button" id="btn-copy-manifest" class="ios6-metal-btn">Скопировать код</button>
+              <button type="button" id="btn-import-manifest-text" class="ios6-metal-btn">Импортировать код</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Памятка о том, что мы собираем (как на промо-скрине Whengram) -->
+        <div class="skeuo-receipt">
+          <div class="receipt-title">ЧТО МЫ СОБИРАЕМ<span class="accent-dot">.</span></div>
+          <div class="receipt-row"><span>АККАУНТЫ</span><b>НЕТ</b></div>
+          <div class="receipt-row"><span>ТРЕКЕРЫ И РЕКЛАМА</span><b>0</b></div>
+          <div class="receipt-row"><span>ОФФЛАЙН-БАЗА НА 4S</span><b>ДА</b></div>
+          <div class="receipt-total"><span>ИТОГО</span><b class="accent-text">ВСЕ ДАННЫЕ ТВОИ.</b></div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- НИЖНИЙ ГЛЯНЦЕВЫЙ TAB BAR В СТИЛЕ iOS 6 -->
+    <nav id="bottom-tabbar" class="ios6-tabbar">
+      <button type="button" class="tab-item active" data-tab="home">
+        <span class="tab-icon">&#8962;</span>
+        <span class="tab-label">ГЛАВНАЯ</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="memories">
+        <span class="tab-icon">&#128214;</span>
+        <span class="tab-label">ВОСПОМИНАНИЯ</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="events">
+        <span class="tab-icon">&#127942;</span>
+        <span class="tab-label">ВЕХИ</span>
+      </button>
+      <button type="button" class="tab-item" data-tab="settings">
+        <span class="tab-icon">&#9881;</span>
+        <span class="tab-label">НАСТРОЙКИ</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- ==========================================
+       МОДАЛЬНОЕ ОКНО 1: СОЗДАТЬ / ИЗМЕНИТЬ ВОСПОМИНАНИЕ
+       ========================================== -->
+  <div id="modal-memory" class="ios6-modal hidden">
+    <div class="ios6-modal-sheet">
+      <div class="ios6-navbar modal-navbar">
+        <button type="button" id="btn-close-memory-modal" class="ios6-nav-btn">Отмена</button>
+        <div class="navbar-center">
+          <h2 class="navbar-title">ОТМЕТЬТЕ <span class="accent-text">ЭТОТ ДЕНЬ.</span></h2>
+        </div>
+        <button type="button" id="btn-save-memory" class="ios6-nav-btn nav-btn-done">Готово</button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="memory-edit-id" value="">
+
+        <!-- Выбор даты записи -->
+        <div class="form-block">
+          <label class="form-label" for="memory-date-input">ДАТА ВОСПОМИНАНИЯ</label>
+          <input type="date" id="memory-date-input" class="ios6-input">
+        </div>
+
+        <!-- Выбор настроения (ХОРОШО / РОВНО / ТЯЖЕЛО) -->
+        <div class="form-block">
+          <label class="form-label">КАК ПРОШЁЛ ВАШ ДЕНЬ?</label>
+          <div class="mood-selector">
+            <button type="button" class="mood-choice active" data-mood="positive">
+              <span class="mood-emoji">&#9786;</span>
+              <span class="mood-name">ХОРОШО</span>
+            </button>
+            <button type="button" class="mood-choice" data-mood="neutral">
+              <span class="mood-emoji">&#9788;</span>
+              <span class="mood-name">РОВНО</span>
+            </button>
+            <button type="button" class="mood-choice" data-mood="negative">
+              <span class="mood-emoji">&#9785;</span>
+              <span class="mood-name">ТЯЖЕЛО</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Текст воспоминания -->
+        <div class="form-block">
+          <label class="form-label" for="memory-text-input">ЧТО ПРОИЗОШЛО?</label>
+          <textarea id="memory-text-input" class="ios6-textarea" rows="5" placeholder="То, что стоит запомнить..."></textarea>
+        </div>
+
+        <!-- Саундтрек дня из Last.fm -->
+        <div class="form-block">
+          <div class="label-row">
+            <label class="form-label">САУНДТРЕК ДНЯ (LAST.FM)</label>
+            <button type="button" id="btn-fetch-lastfm" class="ios6-mini-btn">&#9835; Найти топ-трек за этот день</button>
+          </div>
+          <div id="memory-lastfm-preview" class="lastfm-form-box">
+            <span class="lastfm-empty-hint">Нажми «Найти топ-трек» или укажи песню вручную ниже</span>
+          </div>
+          <div class="lastfm-manual-inputs">
+            <input type="text" id="memory-song-title" class="ios6-input half-input" placeholder="Песня (необязательно)">
+            <input type="text" id="memory-song-artist" class="ios6-input half-input" placeholder="Исполнитель">
+            <input type="hidden" id="memory-song-plays" value="">
+            <input type="hidden" id="memory-song-cover" value="">
+          </div>
+        </div>
+
+        <!-- Прикрепление фотографии (с авто-сжатием под память iPhone 4s) -->
+        <div class="form-block">
+          <label class="form-label">ФОТО (ПО ЖЕЛАНИЮ)</label>
+          <div class="photo-picker-grid">
+            <label for="memory-photo-input" class="ios6-metal-btn photo-upload-label">
+              &#128247; Камера / Медиатека iPhone
+            </label>
+            <input type="file" id="memory-photo-input" class="hidden-file-input" accept="image/*">
+            <button type="button" id="btn-remove-photo" class="ios6-danger-btn hidden">Убрать фото</button>
+          </div>
+          <div id="memory-photo-preview-wrap" class="modal-photo-preview hidden">
+            <img id="memory-photo-preview" src="" alt="Предпросмотр">
+          </div>
+        </div>
+
+        <!-- Кнопка удаления записи (видна только при редактировании) -->
+        <div id="memory-delete-wrap" class="form-block hidden">
+          <button type="button" id="btn-delete-memory" class="ios6- glossy-red-btn full-width">
+            Удалить это воспоминание
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       МОДАЛЬНОЕ ОКНО 2: СОЗДАТЬ / ИЗМЕНИТЬ ВЕХУ (EVENT)
+       ========================================== -->
+  <div id="modal-event" class="ios6-modal hidden">
+    <div class="ios6-modal-sheet">
+      <div class="ios6-navbar modal-navbar">
+        <button type="button" id="btn-close-event-modal" class="ios6-nav-btn">Отмена</button>
+        <div class="navbar-center">
+          <h2 class="navbar-title">НОВАЯ <span class="accent-text">ВЕХА.</span></h2>
+        </div>
+        <button type="button" id="btn-save-event" class="ios6-nav-btn nav-btn-done">Готово</button>
+      </div>
+
+      <div class="modal-body">
+        <input type="hidden" id="event-edit-id" value="">
+
+        <div class="form-block">
+          <label class="form-label" for="event-title-input">НАЗВАНИЕ СОБЫТИЯ</label>
+          <input type="text" id="event-title-input" class="ios6-input" placeholder="Например: Поездка на Славянский базар">
+        </div>
+
+        <div class="form-block">
+          <label class="form-label" for="event-category-select">КАТЕГОРИЯ</label>
+          <select id="event-category-select" class="ios6-input">
+            <option value="ЖИЗНЬ">ЖИЗНЬ</option>
+            <option value="РАБОТА / УЧЁБА">РАБОТА / УЧЁБА</option>
+            <option value="ПОКУПКА">ПОКУПКА</option>
+            <option value="ПОЕЗДКИ">ПОЕЗДКИ</option>
+            <option value="ЗДОРОВЬЕ / СПОРТ">ЗДОРОВЬЕ / СПОРТ</option>
+          </select>
+        </div>
+
+        <div class="form-block">
+          <label class="form-label" for="event-date-input">ДАТА ВЕХИ</label>
+          <input type="date" id="event-date-input" class="ios6-input">
+        </div>
+
+        <div class="form-block">
+          <label class="form-label" for="event-notes-input">ПОДРОБНОСТИ (НЕОБЯЗАТЕЛЬНО)</label>
+          <textarea id="event-notes-input" class="ios6-textarea" rows="3" placeholder="Почему этот день всё изменил..."></textarea>
+        </div>
+
+        <div class="form-block">
+          <label class="form-label">ФОТО ВЕХИ</label>
+          <div class="photo-picker-grid">
+            <label for="event-photo-input" class="ios6-metal-btn photo-upload-label">
+              &#128247; Выбрать фото
+            </label>
+            <input type="file" id="event-photo-input" class="hidden-file-input" accept="image/*">
+          </div>
+          <div id="event-photo-preview-wrap" class="modal-photo-preview hidden">
+            <img id="event-photo-preview" src="" alt="Фото вехи">
+          </div>
+        </div>
+
+        <div id="event-delete-wrap" class="form-block hidden">
+          <button type="button" id="btn-delete-event" class="ios6-glossy-red-btn full-width">
+            Удалить веху
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       МОДАЛЬНОЕ ОКНО 3: ПРОСМОТР КАРТОЧКИ («ПЕРЕЖИТЬ ЗАНОВО»)
+       ========================================== -->
+  <div id="modal-reader" class="ios6-modal hidden">
+    <div class="ios6-modal-sheet">
+      <div class="ios6-navbar modal-navbar">
+        <button type="button" id="btn-close-reader" class="ios6-nav-btn">&larr; Назад</button>
+        <div class="navbar-center">
+          <h2 id="reader-header-day" class="navbar-title">ВОСПОМИНАНИЕ</h2>
+        </div>
+        <button type="button" id="btn-reader-edit" class="ios6-nav-btn">✎ Изменить</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="skeuo-card polaroid-card reader-polaroid">
+          <div class="reader-date-block">
+            <div id="reader-weekday" class="reader-weekday">ВОСКРЕСЕНЬЕ • 21:10</div>
+            <h3 id="reader-full-date" class="reader-full-date">18 октября 2026 г.</h3>
+            <div class="reader-meta-row">
+              <span id="reader-day-of-year" class="reader-day-num">291 / 365</span>
+              <span id="reader-mood-badge" class="mood-pill mood-negative">● ТЯЖЕЛО</span>
+            </div>
+          </div>
+
+          <div id="reader-photo-wrap" class="polaroid-photo-frame hidden">
+            <img id="reader-photo-img" src="" alt="Фото воспоминания">
+          </div>
+
+          <div id="reader-text-body" class="polaroid-caption reader-caption"></div>
+
+          <!-- Виджет кассеты/винила Last.fm в режиме чтения -->
+          <div id="reader-lastfm-box" class="lastfm-cassette hidden"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Всплывающее уведомление (Тост в стиле iOS 6 HUD) -->
+  <div id="ios6-hud" class="ios6-hud hidden">
+    <div id="ios6-hud-text" class="ios6-hud-text">Сохранено</div>
+  </div>
+
+  <!-- Невидимый аудио-элемент для лёгкого проигрывания 30-сек превью трека дня -->
+  <audio id="lastfm-audio-preview" preload="none"></audio>
+
+  <script type="text/javascript" src="app.js"></script>
+</body>
+</html>
