@@ -1,0 +1,11 @@
+CACHE MANIFEST
+# Whengram iOS 6 Edition - Offline Manifest for iPhone 4s
+# Version: 2.0.1
+
+CACHE:
+index.html
+style.css
+app.js
+
+NETWORK:
+*
