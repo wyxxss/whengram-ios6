@@ -1,0 +1,1504 @@
+<!DOCTYPE html>
+<html lang="ru" manifest="cache.manifest">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="ChronoGram">
+<title>ChronoGram</title>
+<style>
+  * {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  input, textarea {
+    -webkit-user-select: auto;
+    user-select: auto;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #c5ccd4;
+    background-image: -webkit-linear-gradient(0deg, rgba(255,255,255,0.25) 50%, transparent 50%);
+    background-size: 14px 14px;
+    color: #1c1c1c;
+    overflow: hidden;
+  }
+
+  /* Тема Кожа (iOS 6 Leather) */
+  body.theme-leather {
+    background-color: #3b2d23;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0);
+    background-size: 8px 8px;
+  }
+
+  /* Верхний Navigation Bar iOS 6 */
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 44px;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#b2bcc8), color-stop(0.5, #8797ab), color-stop(0.51, #6d839c), to(#536c88));
+    border-bottom: 1px solid #2d3642;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 3px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px;
+    z-index: 100;
+  }
+  body.theme-leather .navbar {
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#7a563d), color-stop(0.5, #5e3f28), color-stop(0.51, #4d321e), to(#3c2616));
+    border-bottom: 2px dashed #9e7858;
+  }
+  .navbar-title {
+    color: #fff;
+    font-size: 19px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.65);
+    position: absolute;
+    left: 75px;
+    right: 75px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Кнопки в Navbar */
+  .nav-btn {
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 1px solid #2b394a;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#92a3b9), color-stop(0.5, #677d99), color-stop(0.51, #4c6687), to(#4a6382));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 0 rgba(255,255,255,0.25);
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+    line-height: 28px;
+    cursor: pointer;
+    z-index: 2;
+  }
+  .nav-btn.blue {
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#6ca0f6), color-stop(0.5, #3979ea), color-stop(0.51, #2260dd), to(#1e55c8));
+    border-color: #12377d;
+  }
+  .nav-btn:active {
+    filter: brightness(0.75);
+  }
+
+  /* Основной скролл-контейнер */
+  .content {
+    position: absolute;
+    top: 44px;
+    bottom: 49px;
+    left: 0;
+    right: 0;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px 10px 28px 10px;
+  }
+
+  /* Группированные таблицы iOS 6 */
+  .ios-group {
+    background: #f7f7f7;
+    border: 1px solid #999fa6;
+    border-radius: 9px;
+    box-shadow: 0 1px 1px rgba(255,255,255,0.7), inset 0 1px 0 #fff;
+    margin-bottom: 14px;
+    overflow: hidden;
+  }
+  .ios-paper {
+    background: #faf6eb;
+    border: 1px solid #c9bfab;
+  }
+  .ios-row {
+    padding: 11px 12px;
+    border-bottom: 1px solid #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  .ios-row:last-child {
+    border-bottom: none;
+  }
+  .ios-row.clickable:active {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#058cf5), to(#015ee6));
+    color: #fff !important;
+  }
+  .ios-row.clickable:active * {
+    color: #fff !important;
+    text-shadow: none !important;
+  }
+
+  .section-header {
+    font-size: 13px;
+    font-weight: bold;
+    color: #4c566c;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.85);
+    margin: 6px 0 6px 10px;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+  }
+  body.theme-leather .section-header {
+    color: #ebd6c3;
+    text-shadow: 0 -1px 0 #000;
+  }
+
+  /* Большие глянцевые кнопки iOS 6 */
+  .glossy-btn {
+    display: block;
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 12px;
+    border: 1px solid #333;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 2px rgba(0,0,0,0.3);
+  }
+  .glossy-btn.green {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+    border-color: #1e6323;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#6ad472), color-stop(0.5, #36b541), color-stop(0.51, #1e9e29), to(#178721));
+  }
+  .glossy-btn.red {
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+    border-color: #6b1515;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#f06b6b), color-stop(0.5, #d93434), color-stop(0.51, #bd1919), to(#9e1111));
+  }
+  .glossy-btn.white {
+    color: #222;
+    text-shadow: 0 1px 0 #fff;
+    border-color: #8c939c;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#ffffff), color-stop(0.5, #f2f2f2), color-stop(0.51, #e4e4e4), to(#d4d4d4));
+  }
+  .glossy-btn.dark {
+    color: #fff;
+    text-shadow: 0 -1px 0 #000;
+    border-color: #111;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#525252), color-stop(0.5, #303030), color-stop(0.51, #1c1c1c), to(#111111));
+  }
+  .glossy-btn:active {
+    filter: brightness(0.8);
+  }
+
+  /* Поиск iOS 6 */
+  .search-wrap {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#c9d1d9), to(#a8b3bf));
+    padding: 7px 10px;
+    border-radius: 8px;
+    border: 1px solid #8a95a3;
+    margin-bottom: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+    display: flex;
+    gap: 6px;
+  }
+  .search-input {
+    flex: 1;
+    height: 29px;
+    border-radius: 15px;
+    border: 1px solid #7d8896;
+    padding: 0 12px;
+    font-size: 13px;
+    background: #fff;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.25), 0 1px 0 rgba(255,255,255,0.6);
+    outline: none;
+  }
+
+  /* Полоска недели Whenweek */
+  .whenweek-grid {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 8px;
+    text-align: center;
+  }
+  .day-col {
+    flex: 1;
+    padding: 4px 2px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .day-col.today {
+    background: rgba(217, 65, 38, 0.12);
+    border: 1px solid #d94126;
+  }
+  .day-name {
+    font-size: 10px;
+    font-weight: bold;
+    color: #777;
+    margin-bottom: 3px;
+  }
+  .day-num {
+    font-size: 16px;
+    font-weight: bold;
+    color: #222;
+  }
+  .day-col.today .day-num {
+    color: #d94126;
+  }
+  .mood-dot {
+    width: 16px;
+    height: 3px;
+    margin: 4px auto 0 auto;
+    border-radius: 2px;
+    background: #ccc;
+  }
+  .mood-good { background: #26a65b; }
+  .mood-neutral { background: #8e8e93; }
+  .mood-hard { background: #d94126; }
+
+  /* Книжная полка Whenshelf */
+  .shelf-book {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#292929), to(#141414));
+    color: #faf6eb;
+    padding: 13px 14px;
+    border-radius: 7px;
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #000;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 3px rgba(0,0,0,0.35);
+    cursor: pointer;
+  }
+  .shelf-book:active {
+    transform: scale(0.99);
+  }
+  .shelf-year {
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+  }
+  .shelf-year span {
+    color: #e04328;
+  }
+  .shelf-count {
+    font-size: 11px;
+    font-weight: bold;
+    color: #aaa;
+    text-transform: uppercase;
+  }
+
+  /* Переключатель iOS 6 ON/OFF */
+  .ios-switch {
+    width: 72px;
+    height: 27px;
+    border-radius: 14px;
+    border: 1px solid #666;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background: #e6e6e6;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
+  }
+  .ios-switch.on {
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#2464c9), to(#5394f5));
+    border-color: #16448c;
+  }
+  .ios-switch-label {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 25px;
+    position: absolute;
+    width: 44px;
+    text-align: center;
+  }
+  .ios-switch.on .ios-switch-label {
+    left: 2px;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+  }
+  .ios-switch:not(.on) .ios-switch-label {
+    right: 2px;
+    color: #666;
+  }
+  .ios-switch-knob {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#d4d4d4));
+    border: 1px solid #777;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: left 0.15s ease;
+  }
+  .ios-switch.on .ios-switch-knob {
+    left: 45px;
+  }
+
+  /* Кассовый чек приватности ("ЧТО МЫ СОБИРАЕМ") */
+  .receipt-box {
+    background: #f5efe1;
+    color: #141414;
+    padding: 18px 16px 22px 16px;
+    border: 1px solid #bfb6a2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    font-family: "Courier New", Courier, monospace;
+    position: relative;
+    margin-top: 10px;
+  }
+  .receipt-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 0;
+    border-bottom: 1px dotted #999;
+  }
+  .receipt-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 12px;
+    padding-top: 8px;
+    border-top: 2px solid #141414;
+  }
+  .receipt-zigzag {
+    height: 10px;
+    background: linear-gradient(-45deg, transparent 7px, #f5efe1 0), linear-gradient(45deg, transparent 7px, #f5efe1 0);
+    background-size: 10px 10px;
+    margin-bottom: 16px;
+  }
+
+  /* Нижний Tab Bar iOS 6 */
+  .tabbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 49px;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#404040), color-stop(0.04, #2b2b2b), color-stop(0.5, #171717), to(#000000));
+    border-top: 1px solid #000;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 100;
+  }
+  .tab-item {
+    flex: 1;
+    height: 43px;
+    margin: 0 3px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 10px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .tab-item.active {
+    background: rgba(255,255,255,0.12);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.7);
+    color: #fff;
+  }
+  .tab-icon {
+    font-size: 18px;
+    line-height: 20px;
+    margin-bottom: 1px;
+    color: #a0a0a0;
+  }
+  .tab-item.active .tab-icon {
+    color: #55aaff;
+    text-shadow: 0 0 8px rgba(85,170,255,0.6);
+  }
+
+  /* Модальное окно создания/редактирования и просмотра */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #c5ccd4;
+    z-index: 200;
+    display: none;
+    flex-direction: column;
+  }
+  .modal-overlay.show {
+    display: flex;
+  }
+  .modal-body {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 12px 10px 30px 10px;
+  }
+
+  /* Выбор настроения */
+  .mood-selector {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .mood-btn {
+    flex: 1;
+    padding: 12px 6px;
+    border-radius: 8px;
+    border: 1px solid #bbb;
+    background: #faf6eb;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .mood-btn.selected-good {
+    border: 2px solid #26a65b;
+    background: #e3f7ec;
+    color: #1b7a40;
+  }
+  .mood-btn.selected-neutral {
+    border: 2px solid #555;
+    background: #ebebeb;
+    color: #222;
+  }
+  .mood-btn.selected-hard {
+    border: 2px solid #d94126;
+    background: #fce8e4;
+    color: #b02a12;
+  }
+
+  /* iOS 6 Action Sheet (Выбор фото снизу) */
+  .actionsheet-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: 300;
+    display: none;
+    align-items: flex-end;
+  }
+  .actionsheet-backdrop.show {
+    display: flex;
+  }
+  .actionsheet {
+    width: 100%;
+    padding: 14px 12px 16px 12px;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(rgba(95,102,112,0.92)), color-stop(0.1, rgba(50,55,64,0.95)), to(rgba(20,22,26,0.98)));
+    border-top: 1px solid rgba(255,255,255,0.4);
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.6);
+  }
+
+  /* iOS 6 Glossy Alert (Темно-синий алерт) */
+  .ios-alert-backdrop {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 400;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .ios-alert-backdrop.show {
+    display: flex;
+  }
+  .ios-alert {
+    width: 280px;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(rgba(65,85,120,0.95)), color-stop(0.15, rgba(22,38,72,0.94)), to(rgba(12,24,50,0.96)));
+    border: 2px solid #d4dce8;
+    border-radius: 11px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.5);
+    padding: 14px 12px 12px 12px;
+    color: #fff;
+    text-align: center;
+  }
+  .ios-alert-title {
+    font-size: 17px;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
+  }
+  .ios-alert-msg {
+    font-size: 13px;
+    margin-bottom: 14px;
+    line-height: 1.35;
+  }
+  .ios-alert-btns {
+    display: flex;
+    gap: 8px;
+  }
+  .ios-alert-btn {
+    flex: 1;
+    height: 36px;
+    line-height: 34px;
+    border-radius: 6px;
+    border: 1px solid #081530;
+    background-image: -webkit-gradient(linear, left top, left bottom, 
+      from(#798ea8), color-stop(0.5, #486182), color-stop(0.51, #2b476e), to(#274269));
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .entry-photo {
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    margin: 8px 0;
+    display: block;
+  }
+  .thumb-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 1px solid #bbb;
+    margin-left: 10px;
+    flex-shrink: 0;
+  }
+  .badge-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 4px;
+  }
+</style>
+</head>
+<body>
+
+<!-- Верхний бар iOS 6 -->
+<div class="navbar">
+  <div class="nav-btn" id="navLeftBtn" onclick="openShelfModal()">Полка</div>
+  <div class="navbar-title" id="navTitle">CHRONOGRAM.</div>
+  <div class="nav-btn blue" id="navRightBtn" onclick="openEditorModal()">+ Запись</div>
+</div>
+
+<!-- ВКЛАДКА 1: ГЛАВНАЯ -->
+<div class="content" id="tab-home">
+  <div class="ios-group ios-paper" style="padding: 14px;">
+    <div style="display:flex; justify-content:space-between; font-size:11px; font-weight:bold; color:#666; border-bottom:2px solid #1c1c1c; padding-bottom:6px; margin-bottom:10px;">
+      <span id="todayDateLabel">ПОНЕДЕЛЬНИК</span>
+      <span id="dayOfYearLabel">№ 1</span>
+    </div>
+
+    <div style="font-size:11px; font-weight:bold; color:#d94126; text-transform:uppercase; margin-bottom:4px;">
+      ПРИВЕТ, <span id="userNameDisplay">ИЛЮША</span>
+    </div>
+
+    <!-- Блок сегодняшнего воспоминания -->
+    <div id="todayEmptyState">
+      <div style="font-size:22px; font-weight:800; margin-bottom:6px; line-height:1.15;">Что сегодня произошло?</div>
+      <div style="font-size:13px; color:#555; margin-bottom:14px; line-height:1.35;">
+        То единственное, что стоит запомнить сегодня, пока оно не ускользнуло.
+      </div>
+      <div class="glossy-btn dark" onclick="openEditorModal()" style="margin-bottom:0;">
+        НАПИСАТЬ ВОСПОМИНАНИЕ &rarr;
+      </div>
+    </div>
+
+    <div id="todayFilledState" style="display:none;">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="font-size:11px; font-weight:bold; color:#d94126;">ЗАПИСЬ ЗА СЕГОДНЯ</span>
+        <span id="todayMoodBadge" style="font-size:11px; font-weight:bold;"></span>
+      </div>
+      <img id="todayPhotoPreview" class="entry-photo" style="display:none;" src="">
+      <div id="todayTextPreview" style="font-size:14px; line-height:1.45; color:#1c1c1c; margin:8px 0; white-space:pre-wrap;"></div>
+      <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid #ddd; padding-top:8px; margin-top:8px;">
+        <span id="todayTimeLabel" style="font-size:11px; color:#777; font-weight:bold;"></span>
+        <div class="nav-btn" onclick="openEditorModal()" style="height:26px; line-height:24px;">Изменить</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Полоска недели WHENWEEK -->
+  <div class="section-header">
+    <span>WHENWEEK</span>
+    <span id="weekCountLabel">ЗАПИСАНО: 0</span>
+  </div>
+  <div class="ios-group ios-paper">
+    <div class="whenweek-grid" id="whenweekContainer"></div>
+  </div>
+
+  <!-- Статистика WHENLOG -->
+  <div class="section-header">
+    <span>WHENLOG</span>
+    <span id="currentYearHeader">2026</span>
+  </div>
+  <div class="ios-group">
+    <div class="ios-row">
+      <span style="font-weight:bold; font-size:14px;">ВОСПОМИНАНИЯ</span>
+      <span id="statTotalMemories" style="font-weight:800; font-size:17px;">0</span>
+    </div>
+    <div class="ios-row">
+      <span style="font-weight:bold; font-size:14px;">ВЕХИ ЖИЗНИ</span>
+      <span id="statTotalMilestones" style="font-weight:800; font-size:17px;">0</span>
+    </div>
+    <div class="ios-row">
+      <span style="font-weight:bold; font-size:14px;">ДЕНЬ ГОДА</span>
+      <span id="statDayNumber" style="font-weight:800; font-size:17px; color:#d94126;">1</span>
+    </div>
+  </div>
+</div>
+
+<!-- ВКЛАДКА 2: ВОСПОМИНАНИЯ (ЛЕНТА + WHENSHELF) -->
+<div class="content" id="tab-memories" style="display:none;">
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchMemoriesInput" placeholder="Поиск воспоминаний..." oninput="renderMemoriesList()">
+    <select id="filterMoodSelect" onchange="renderMemoriesList()" style="border-radius:6px; border:1px solid #7d8896; font-size:12px; font-weight:bold; background:#fff;">
+      <option value="all">Все дни</option>
+      <option value="good">Хорошо</option>
+      <option value="neutral">Ровно</option>
+      <option value="hard">Тяжело</option>
+    </select>
+  </div>
+
+  <div class="section-header">
+    <span id="memoriesFilterYearTitle">ВСЕ ВОСПОМИНАНИЯ</span>
+    <span id="memoriesCountSubtitle">0 ЗАПИСЕЙ</span>
+  </div>
+
+  <div class="ios-group ios-paper" id="memoriesListContainer"></div>
+
+  <!-- Блок WHENSHELF внизу ленты -->
+  <div class="ios-group ios-paper" style="padding:14px; display:flex; justify-content:space-between; align-items:center;" onclick="openShelfModal()">
+    <div>
+      <div style="font-size:18px; font-weight:900; letter-spacing:-0.5px;">WHENSHELF<span style="color:#d94126;">.</span></div>
+      <div style="font-size:11px; color:#666; font-weight:bold;">КНИЖНАЯ ПОЛКА ПО ГОДАМ</div>
+    </div>
+    <div class="nav-btn">Открыть &rarr;</div>
+  </div>
+</div>
+
+<!-- ВКЛАДКА 3: ВЕХИ (MILESTONES) -->
+<div class="content" id="tab-milestones" style="display:none;">
+  <div class="search-wrap">
+    <input type="text" class="search-input" id="searchMilestonesInput" placeholder="Поиск вех (работа, поездки...)" oninput="renderMilestonesList()">
+  </div>
+
+  <div class="glossy-btn green" onclick="openMilestoneModal()">
+    + ОТМЕТИТЬ НОВУЮ ВЕХУ
+  </div>
+
+  <div class="ios-group ios-paper" id="milestonesListContainer"></div>
+</div>
+
+<!-- ВКЛАДКА 4: НАСТРОЙКИ + ЧЕК ПРИВАТНОСТИ -->
+<div class="content" id="tab-settings" style="display:none;">
+  <div class="section-header"><span>ПРОФИЛЬ И ОФОРМЛЕНИЕ iOS 6</span></div>
+  <div class="ios-group">
+    <div class="ios-row">
+      <span style="font-weight:bold; font-size:14px;">Ваше имя</span>
+      <input type="text" id="settingNameInput" onchange="saveSettings()" style="border:1px solid #bbb; border-radius:5px; padding:4px 8px; text-align:right; font-weight:bold; width:140px;">
+    </div>
+    <div class="ios-row">
+      <span style="font-weight:bold; font-size:14px;">Кожаная тема (iOS 6 Leather)</span>
+      <div class="ios-switch" id="leatherSwitch" onclick="toggleLeatherTheme()">
+        <span class="ios-switch-label" id="leatherSwitchText">OFF</span>
+        <div class="ios-switch-knob"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-header"><span>РЕЗЕРВНАЯ КОПИЯ (ОФФЛАЙН / ОНЛАЙН)</span></div>
+  <div class="ios-group" style="padding:12px;">
+    <div style="font-size:12px; color:#555; margin-bottom:10px;">
+      Все записи и фотографии хранятся прямо в памяти вашего iPhone 4s. Вы можете выгрузить резервную копию в файл или загрузить её.
+    </div>
+    <div class="glossy-btn white" onclick="exportBackup()">Экспортировать базу (.json)</div>
+    <div class="glossy-btn white" onclick="document.getElementById('importFileInput').click()" style="margin-bottom:0;">Импортировать базу</div>
+    <input type="file" id="importFileInput" accept=".json" style="display:none;" onchange="importBackup(event)">
+  </div>
+
+  <div class="section-header"><span>ДЕТАЛИЗАЦИЯ ДАННЫХ</span></div>
+  <div class="receipt-box">
+    <div style="font-size:18px; font-weight:900; text-align:center; margin-bottom:4px;">ЧТО МЫ СОБИРАЕМ<span style="color:#d94126;">.</span></div>
+    <div style="font-size:10px; text-align:center; color:#666; margin-bottom:12px;">ОТЧЕТ О ВАШЕЙ ПРИВАТНОСТИ НА IPHONE 4S</div>
+    <div class="receipt-row"><span>АККАУНТЫ</span><span>НЕТ</span></div>
+    <div class="receipt-row"><span>ЭЛЕКТРОННАЯ ПОЧТА</span><span>0</span></div>
+    <div class="receipt-row"><span>ТРЕКЕРЫ</span><span>0</span></div>
+    <div class="receipt-row"><span>АНАЛИТИКА</span><span>0</span></div>
+    <div class="receipt-row"><span>РЕКЛАМА</span><span>0</span></div>
+    <div class="receipt-row"><span>ВАШИ ДАННЫЕ В СЕТИ</span><span>НЕТ</span></div>
+    <div class="receipt-total">
+      <span style="font-size:13px; font-weight:bold;">ИТОГО</span>
+      <span style="font-size:22px; font-weight:900;">НИЧЕГО<span style="color:#d94126;">.</span></span>
+    </div>
+  </div>
+  <div class="receipt-zigzag"></div>
+</div>
+
+<!-- НИЖНИЙ ТАБ-БАР -->
+<div class="tabbar">
+  <div class="tab-item active" id="tabBtn-home" onclick="switchTab('home')">
+    <div class="tab-icon">&#8962;</div>
+    <div>Главная</div>
+  </div>
+  <div class="tab-item" id="tabBtn-memories" onclick="switchTab('memories')">
+    <div class="tab-icon">&#128214;</div>
+    <div>Дневник</div>
+  </div>
+  <div class="tab-item" id="tabBtn-milestones" onclick="switchTab('milestones')">
+    <div class="tab-icon">&#127942;</div>
+    <div>Вехи</div>
+  </div>
+  <div class="tab-item" id="tabBtn-settings" onclick="switchTab('settings')">
+    <div class="tab-icon">&#9881;</div>
+    <div>Настройки</div>
+  </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: СОЗДАНИЕ / РЕДАКТИРОВАНИЕ ВОСПОМИНАНИЯ -->
+<div class="modal-overlay" id="editorModal">
+  <div class="navbar">
+    <div class="nav-btn" onclick="closeEditorModal()">Отмена</div>
+    <div class="navbar-title" id="editorModalTitle">Отметьте день</div>
+    <div class="nav-btn blue" onclick="saveMemoryEntry()">Готово</div>
+  </div>
+  <div class="modal-body">
+    <div class="section-header"><span>ДАТА ВОСПОМИНАНИЯ</span></div>
+    <div class="ios-group ios-paper" style="padding:10px;">
+      <input type="date" id="entryDateInput" style="width:100%; font-size:15px; font-weight:bold; border:none; background:transparent; outline:none;">
+    </div>
+
+    <div class="section-header"><span>КАК ПРОШЁЛ ВАШ ДЕНЬ?</span></div>
+    <div class="mood-selector">
+      <div class="mood-btn selected-good" id="moodBtn-good" onclick="selectMood('good')">
+        <div style="font-size:18px; margin-bottom:3px;">&#9728;</div>
+        ХОРОШО
+      </div>
+      <div class="mood-btn" id="moodBtn-neutral" onclick="selectMood('neutral')">
+        <div style="font-size:18px; margin-bottom:3px;">&#9729;</div>
+        РОВНО
+      </div>
+      <div class="mood-btn" id="moodBtn-hard" onclick="selectMood('hard')">
+        <div style="font-size:18px; margin-bottom:3px;">&#9730;</div>
+        ТЯЖЕЛО
+      </div>
+    </div>
+
+    <div class="section-header"><span>ЧТО ПРОИЗОШЛО?</span></div>
+    <div class="ios-group ios-paper" style="padding:10px;">
+      <textarea id="entryTextInput" rows="5" placeholder="То, что стоит запомнить..." style="width:100%; border:none; background:transparent; font-size:15px; line-height:1.4; outline:none; resize:none; font-family:inherit;"></textarea>
+    </div>
+
+    <div class="section-header"><span>ФОТОГРАФИЯ (ПО ЖЕЛАНИЮ)</span></div>
+    <div class="ios-group ios-paper" style="padding:10px; text-align:center;">
+      <img id="editorPhotoPreview" class="entry-photo" style="display:none;" src="">
+      <div class="glossy-btn white" onclick="showPhotoActionSheet()" style="margin-bottom:0;">
+        &#128247; Добавить или снять фото
+      </div>
+      <input type="file" id="photoFileInput" accept="image/*" style="display:none;" onchange="handlePhotoSelected(event)">
+    </div>
+
+    <div class="glossy-btn green" onclick="saveMemoryEntry()">Сохранить воспоминание</div>
+    <div class="glossy-btn red" id="deleteEntryBtn" style="display:none;" onclick="deleteCurrentMemory()">Удалить запись</div>
+  </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: ПРОСМОТР ДНЯ (КАРТОЧКА МОМЕНТА) -->
+<div class="modal-overlay" id="viewEntryModal">
+  <div class="navbar">
+    <div class="nav-btn" onclick="closeViewEntryModal()">&larr; Назад</div>
+    <div class="navbar-title">Момент</div>
+    <div class="nav-btn blue" id="viewEditBtn">Изменить</div>
+  </div>
+  <div class="modal-body">
+    <div class="ios-group ios-paper" style="padding:16px;">
+      <div id="viewEntryWeekday" style="font-size:11px; font-weight:bold; color:#777; text-transform:uppercase;"></div>
+      <div id="viewEntryFullDate" style="font-size:22px; font-weight:900; margin:4px 0 10px 0;"></div>
+      <div style="display:flex; justify-content:space-between; border-top:1px solid #d8d0c0; border-bottom:2px solid #1c1c1c; padding:6px 0; margin-bottom:12px; font-size:11px; font-weight:bold;">
+        <span id="viewEntryDayOfYear"></span>
+        <span id="viewEntryMood"></span>
+      </div>
+      <img id="viewEntryPhoto" class="entry-photo" style="display:none;" src="">
+      <div id="viewEntryText" style="font-size:15px; line-height:1.5; white-space:pre-wrap; margin-top:10px;"></div>
+    </div>
+  </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: WHENSHELF (КНИЖНАЯ ПОЛКА ПО ГОДАМ) -->
+<div class="modal-overlay" id="shelfModal">
+  <div class="navbar">
+    <div class="nav-btn" onclick="closeShelfModal()">&larr; Назад</div>
+    <div class="navbar-title">WHENSHELF.</div>
+    <div class="nav-btn" onclick="selectYearFromShelf('all')">Все годы</div>
+  </div>
+  <div class="modal-body">
+    <div style="margin-bottom:12px;">
+      <div style="font-size:22px; font-weight:900;">У КАЖДОГО ГОДА СВОЯ КНИГА<span style="color:#d94126;">.</span></div>
+      <div style="font-size:12px; color:#555; font-weight:bold;" id="shelfSummarySubtitle">ВСЕ ВАШИ ТОМА НА ОДНОЙ ПОЛКЕ</div>
+    </div>
+    <div id="shelfYearsContainer"></div>
+  </div>
+</div>
+
+<!-- МОДАЛЬНОЕ ОКНО: ДОБАВЛЕНИЕ ВЕХИ -->
+<div class="modal-overlay" id="milestoneModal">
+  <div class="navbar">
+    <div class="nav-btn" onclick="closeMilestoneModal()">Отмена</div>
+    <div class="navbar-title">Новая веха</div>
+    <div class="nav-btn blue" onclick="saveMilestone()">Готово</div>
+  </div>
+  <div class="modal-body">
+    <div class="section-header"><span>КАТЕГОРИЯ ДОСТИЖЕНИЯ</span></div>
+    <div class="ios-group ios-paper" style="padding:10px;">
+      <select id="milestoneCategoryInput" style="width:100%; font-size:15px; font-weight:bold; border:none; background:transparent; outline:none;">
+        <option value="РАБОТА">РАБОТА</option>
+        <option value="ПОКУПКА">ПОКУПКА</option>
+        <option value="ЗДОРОВЬЕ">ЗДОРОВЬЕ</option>
+        <option value="ПОЕЗДКИ">ПОЕЗДКИ</option>
+        <option value="ЖИЗНЬ">ЖИЗНЬ</option>
+      </select>
+    </div>
+
+    <div class="section-header"><span>ДАТА СОБЫТИЯ</span></div>
+    <div class="ios-group ios-paper" style="padding:10px;">
+      <input type="date" id="milestoneDateInput" style="width:100%; font-size:15px; font-weight:bold; border:none; background:transparent; outline:none;">
+    </div>
+
+    <div class="section-header"><span>НАЗВАНИЕ ВЕХИ (ЧТО ИЗМЕНИЛО ЖИЗНЬ?)</span></div>
+    <div class="ios-group ios-paper" style="padding:10px;">
+      <input type="text" id="milestoneTitleInput" placeholder="Например: Купил первый дом, Первое приложение..." style="width:100%; font-size:15px; border:none; background:transparent; outline:none;">
+    </div>
+
+    <div class="glossy-btn green" onclick="saveMilestone()">Сохранить веху</div>
+  </div>
+</div>
+
+<!-- iOS 6 ACTION SHEET (МЕНЮ ФОТО СНИЗУ) -->
+<div class="actionsheet-backdrop" id="photoActionSheet" onclick="hidePhotoActionSheet()">
+  <div class="actionsheet" onclick="event.stopPropagation()">
+    <div class="glossy-btn white" onclick="triggerFilePicker()">Снять фото или выбрать из Пленки</div>
+    <div class="glossy-btn red" id="removePhotoBtn" style="display:none;" onclick="clearSelectedPhoto()">Удалить прикрепленное фото</div>
+    <div class="glossy-btn dark" onclick="hidePhotoActionSheet()" style="margin-bottom:0;">Отмена</div>
+  </div>
+</div>
+
+<!-- iOS 6 СИНИЙ АЛЕРТ -->
+<div class="ios-alert-backdrop" id="iosAlertBackdrop">
+  <div class="ios-alert">
+    <div class="ios-alert-title" id="iosAlertTitle">ChronoGram</div>
+    <div class="ios-alert-msg" id="iosAlertMsg">Сообщение</div>
+    <div class="ios-alert-btns">
+      <div class="ios-alert-btn" onclick="closeIosAlert()">ОК</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Глобальное состояние приложения (100% локально в памяти телефона)
+  var STORAGE_KEY = 'chronogram_ios6_data_v1';
+  var appData = {
+    userName: 'ИЛЮША',
+    leatherTheme: false,
+    memories: {}, // ключ YYYY-MM-DD -> { date, mood, text, photo, updatedAt }
+    milestones: [] // массив { id, date, category, title }
+  };
+
+  var currentEditMood = 'good';
+  var currentEditPhotoData = '';
+  var selectedYearFilter = 'all';
+
+  // Генерация глянцевой иконки на экран "Домой" iOS 6 без внешних картинок
+  function generateHomeScreenIcon() {
+    try {
+      var canvas = document.createElement('canvas');
+      canvas.width = 114;
+      canvas.height = 114;
+      var ctx = canvas.getContext('2d');
+      ctx.fillStyle = '#191919';
+      ctx.fillRect(0, 0, 114, 114);
+      ctx.fillStyle = '#faf6eb';
+      ctx.fillRect(10, 10, 94, 94);
+      ctx.fillStyle = '#d94126';
+      ctx.fillRect(10, 10, 94, 24);
+      ctx.fillStyle = '#191919';
+      ctx.font = 'bold 46px Helvetica';
+      ctx.textAlign = 'center';
+      ctx.fillText('W', 57, 82);
+      var link = document.createElement('link');
+      link.rel = 'apple-touch-icon';
+      link.href = canvas.toDataURL('image/png');
+      document.head.appendChild(link);
+    } catch (e) {}
+  }
+
+  function loadData() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        appData.userName = parsed.userName || 'ИЛЮША';
+        appData.leatherTheme = !!parsed.leatherTheme;
+        appData.memories = parsed.memories || {};
+        appData.milestones = parsed.milestones || [];
+      }
+    } catch (e) {}
+  }
+
+  function saveData() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(appData));
+    } catch (e) {
+      showIosAlert('Память заполнена', 'Лимит локального хранилища браузера исчерпан. Попробуйте экспортировать бэкап.');
+    }
+  }
+
+  function getTodayKey() {
+    var d = new Date();
+    var yyyy = d.getFullYear();
+    var mm = ('0' + (d.getMonth() + 1)).slice(-2);
+    var dd = ('0' + d.getDate()).slice(-2);
+    return yyyy + '-' + mm + '-' + dd;
+  }
+
+  function getDayOfYear(dateObj) {
+    var start = new Date(dateObj.getFullYear(), 0, 0);
+    var diff = dateObj - start;
+    var oneDay = 1000 * 60 * 60 * 24;
+    return Math.floor(diff / oneDay);
+  }
+
+  function formatRussianDate(dateStr) {
+    var parts = dateStr.split('-');
+    var months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+    var mIndex = parseInt(parts[1], 10) - 1;
+    return parseInt(parts[2], 10) + ' ' + months[mIndex] + ' ' + parts[0] + ' г.';
+  }
+
+  function getWeekdayName(dateStr) {
+    var parts = dateStr.split('-');
+    var d = new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, parseInt(parts[2],10));
+    var days = ['ВОСКРЕСЕНЬЕ','ПОНЕДЕЛЬНИК','ВТОРНИК','СРЕДА','ЧЕТВЕРГ','ПЯТНИЦА','СУББОТА'];
+    return days[d.getDay()];
+  }
+
+  function applyTheme() {
+    if (appData.leatherTheme) {
+      document.body.className = 'theme-leather';
+      document.getElementById('leatherSwitch').className = 'ios-switch on';
+      document.getElementById('leatherSwitchText').innerText = 'ON';
+    } else {
+      document.body.className = '';
+      document.getElementById('leatherSwitch').className = 'ios-switch';
+      document.getElementById('leatherSwitchText').innerText = 'OFF';
+    }
+  }
+
+  function toggleLeatherTheme() {
+    appData.leatherTheme = !appData.leatherTheme;
+    saveData();
+    applyTheme();
+  }
+
+  function saveSettings() {
+    var val = document.getElementById('settingNameInput').value.trim();
+    if (val) {
+      appData.userName = val.toUpperCase();
+      saveData();
+      renderHome();
+    }
+  }
+
+  function switchTab(tabName) {
+    var tabs = ['home', 'memories', 'milestones', 'settings'];
+    for (var i = 0; i < tabs.length; i++) {
+      var t = tabs[i];
+      document.getElementById('tab-' + t).style.display = (t === tabName) ? 'block' : 'none';
+      document.getElementById('tabBtn-' + t).className = (t === tabName) ? 'tab-item active' : 'tab-item';
+    }
+    if (tabName === 'home') {
+      document.getElementById('navTitle').innerText = 'CHRONOGRAM.';
+      renderHome();
+    } else if (tabName === 'memories') {
+      document.getElementById('navTitle').innerText = 'Воспоминания';
+      renderMemoriesList();
+    } else if (tabName === 'milestones') {
+      document.getElementById('navTitle').innerText = 'Вехи';
+      renderMilestonesList();
+    } else if (tabName === 'settings') {
+      document.getElementById('navTitle').innerText = 'Настройки';
+      document.getElementById('settingNameInput').value = appData.userName;
+    }
+  }
+
+  // Отрисовка Главной вкладки
+  function renderHome() {
+    var now = new Date();
+    var todayKey = getTodayKey();
+    var doy = getDayOfYear(now);
+
+    document.getElementById('userNameDisplay').innerText = appData.userName;
+    document.getElementById('todayDateLabel').innerText = getWeekdayName(todayKey) + ', ' + formatRussianDate(todayKey).toUpperCase();
+    document.getElementById('dayOfYearLabel').innerText = '№ ' + doy;
+    document.getElementById('statDayNumber').innerText = doy;
+    document.getElementById('currentYearHeader').innerText = 'С ' + now.getFullYear();
+
+    var todayEntry = appData.memories[todayKey];
+    if (todayEntry) {
+      document.getElementById('todayEmptyState').style.display = 'none';
+      document.getElementById('todayFilledState').style.display = 'block';
+      document.getElementById('todayTextPreview').innerText = todayEntry.text;
+      document.getElementById('todayTimeLabel').innerText = todayEntry.updatedAt || 'СЕГОДНЯ';
+
+      var badge = document.getElementById('todayMoodBadge');
+      if (todayEntry.mood === 'good') {
+        badge.innerHTML = '<span class="badge-dot mood-good"></span><span style="color:#26a65b;">ХОРОШО</span>';
+      } else if (todayEntry.mood === 'neutral') {
+        badge.innerHTML = '<span class="badge-dot mood-neutral"></span><span style="color:#666;">РОВНО</span>';
+      } else {
+        badge.innerHTML = '<span class="badge-dot mood-hard"></span><span style="color:#d94126;">ТЯЖЕЛО</span>';
+      }
+
+      var img = document.getElementById('todayPhotoPreview');
+      if (todayEntry.photo) {
+        img.src = todayEntry.photo;
+        img.style.display = 'block';
+      } else {
+        img.style.display = 'none';
+      }
+    } else {
+      document.getElementById('todayEmptyState').style.display = 'block';
+      document.getElementById('todayFilledState').style.display = 'none';
+    }
+
+    // Полоска недели Whenweek (Пн - Вс)
+    var dayOfWeek = now.getDay();
+    var mondayOffset = (dayOfWeek === 0 ? -6 : 1 - dayOfWeek);
+    var monday = new Date(now.getFullYear(), now.getMonth(), now.getDate() + mondayOffset);
+    var shortNames = ['П','В','С','Ч','П','С','В'];
+    var weekHtml = '';
+    var weekRecorded = 0;
+
+    for (var i = 0; i < 7; i++) {
+      var d = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i);
+      var k = d.getFullYear() + '-' + ('0'+(d.getMonth()+1)).slice(-2) + '-' + ('0'+d.getDate()).slice(-2);
+      var entry = appData.memories[k];
+      var isToday = (k === todayKey);
+      var dotClass = '';
+      if (entry) {
+        weekRecorded++;
+        dotClass = 'mood-' + entry.mood;
+      }
+      weekHtml += '<div class="day-col ' + (isToday ? 'today' : '') + '" onclick="openEditorForDate(\'' + k + '\')">' +
+        '<div class="day-name">' + shortNames[i] + '</div>' +
+        '<div class="day-num">' + ('0' + d.getDate()).slice(-2) + '</div>' +
+        '<div class="mood-dot ' + dotClass + '"></div>' +
+      '</div>';
+    }
+    document.getElementById('whenweekContainer').innerHTML = weekHtml;
+    document.getElementById('weekCountLabel').innerText = 'ЗАПИСАНО: ' + weekRecorded + ' / 7';
+
+    var totalMem = Object.keys(appData.memories).length;
+    document.getElementById('statTotalMemories').innerText = totalMem;
+    document.getElementById('statTotalMilestones').innerText = appData.milestones.length;
+  }
+
+  // Открытие редактора воспоминания
+  function openEditorModal(dateKey) {
+    var targetKey = dateKey || getTodayKey();
+    document.getElementById('entryDateInput').value = targetKey;
+    var existing = appData.memories[targetKey];
+    if (existing) {
+      document.getElementById('editorModalTitle').innerText = 'Изменить день';
+      selectMood(existing.mood || 'good');
+      document.getElementById('entryTextInput').value = existing.text || '';
+      currentEditPhotoData = existing.photo || '';
+      document.getElementById('deleteEntryBtn').style.display = 'block';
+    } else {
+      document.getElementById('editorModalTitle').innerText = 'Отметьте день';
+      selectMood('good');
+      document.getElementById('entryTextInput').value = '';
+      currentEditPhotoData = '';
+      document.getElementById('deleteEntryBtn').style.display = 'none';
+    }
+    updateEditorPhotoPreview();
+    document.getElementById('editorModal').className = 'modal-overlay show';
+  }
+
+  function openEditorForDate(dateKey) {
+    if (appData.memories[dateKey]) {
+      openViewEntryModal(dateKey);
+    } else {
+      openEditorModal(dateKey);
+    }
+  }
+
+  function closeEditorModal() {
+    document.getElementById('editorModal').className = 'modal-overlay';
+  }
+
+  function selectMood(mood) {
+    currentEditMood = mood;
+    var moods = ['good', 'neutral', 'hard'];
+    for (var i = 0; i < moods.length; i++) {
+      var m = moods[i];
+      var btn = document.getElementById('moodBtn-' + m);
+      btn.className = (m === mood) ? ('mood-btn selected-' + m) : 'mood-btn';
+    }
+  }
+
+  // Фото и авто-сжатие под память iPhone 4s
+  function showPhotoActionSheet() {
+    document.getElementById('removePhotoBtn').style.display = currentEditPhotoData ? 'block' : 'none';
+    document.getElementById('photoActionSheet').className = 'actionsheet-backdrop show';
+  }
+  function hidePhotoActionSheet() {
+    document.getElementById('photoActionSheet').className = 'actionsheet-backdrop';
+  }
+  function triggerFilePicker() {
+    hidePhotoActionSheet();
+    document.getElementById('photoFileInput').click();
+  }
+  function clearSelectedPhoto() {
+    currentEditPhotoData = '';
+    updateEditorPhotoPreview();
+    hidePhotoActionSheet();
+  }
+  function updateEditorPhotoPreview() {
+    var img = document.getElementById('editorPhotoPreview');
+    if (currentEditPhotoData) {
+      img.src = currentEditPhotoData;
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
+  }
+  function handlePhotoSelected(event) {
+    var file = event.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var img = new Image();
+      img.onload = function() {
+        var canvas = document.createElement('canvas');
+        var maxDim = 640; // оптимально для Retina экрана iPhone 4s (640x960)
+        var w = img.width;
+        var h = img.height;
+        if (w > h && w > maxDim) {
+          h = Math.round(h * (maxDim / w));
+          w = maxDim;
+        } else if (h >= w && h > maxDim) {
+          w = Math.round(w * (maxDim / h));
+          h = maxDim;
+        }
+        canvas.width = w;
+        canvas.height = h;
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0, w, h);
+        currentEditPhotoData = canvas.toDataURL('image/jpeg', 0.65);
+        updateEditorPhotoPreview();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  function saveMemoryEntry() {
+    var dateKey = document.getElementById('entryDateInput').value || getTodayKey();
+    var text = document.getElementById('entryTextInput').value.trim();
+    if (!text && !currentEditPhotoData) {
+      showIosAlert('Пустая запись', 'Напишите хотя бы одну строчку о сегодняшнем дне или прикрепите фотографию.');
+      return;
+    }
+    var now = new Date();
+    var timeStr = ('0' + now.getHours()).slice(-2) + ':' + ('0' + now.getMinutes()).slice(-2);
+    appData.memories[dateKey] = {
+      date: dateKey,
+      mood: currentEditMood,
+      text: text,
+      photo: currentEditPhotoData,
+      updatedAt: timeStr
+    };
+    saveData();
+    closeEditorModal();
+    renderHome();
+    renderMemoriesList();
+  }
+
+  function deleteCurrentMemory() {
+    var dateKey = document.getElementById('entryDateInput').value;
+    if (dateKey && appData.memories[dateKey]) {
+      delete appData.memories[dateKey];
+      saveData();
+      closeEditorModal();
+      renderHome();
+      renderMemoriesList();
+    }
+  }
+
+  // Просмотр отдельного дня (как на скрине "17 декабря 2016 г.")
+  function openViewEntryModal(dateKey) {
+    var entry = appData.memories[dateKey];
+    if (!entry) return;
+    var parts = dateKey.split('-');
+    var dateObj = new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, parseInt(parts[2],10));
+    var doy = getDayOfYear(dateObj);
+
+    document.getElementById('viewEntryWeekday').innerText = getWeekdayName(dateKey) + ' | ' + (entry.updatedAt || '');
+    document.getElementById('viewEntryFullDate').innerText = formatRussianDate(dateKey);
+    document.getElementById('viewEntryDayOfYear').innerText = doy + ' / 365';
+
+    var moodEl = document.getElementById('viewEntryMood');
+    if (entry.mood === 'good') {
+      moodEl.innerHTML = '<span style="color:#26a65b;">&#9728; ХОРОШО</span>';
+    } else if (entry.mood === 'neutral') {
+      moodEl.innerHTML = '<span style="color:#666;">&#9729; РОВНО</span>';
+    } else {
+      moodEl.innerHTML = '<span style="color:#d94126;">&#9730; ТЯЖЕЛО</span>';
+    }
+
+    var img = document.getElementById('viewEntryPhoto');
+    if (entry.photo) {
+      img.src = entry.photo;
+      img.style.display = 'block';
+    } else {
+      img.style.display = 'none';
+    }
+    document.getElementById('viewEntryText').innerText = entry.text;
+    document.getElementById('viewEditBtn').onclick = function() {
+      closeViewEntryModal();
+      openEditorModal(dateKey);
+    };
+    document.getElementById('viewEntryModal').className = 'modal-overlay show';
+  }
+
+  function closeViewEntryModal() {
+    document.getElementById('viewEntryModal').className = 'modal-overlay';
+  }
+
+  // Отрисовка списка всех воспоминаний
+  function renderMemoriesList() {
+    var q = (document.getElementById('searchMemoriesInput').value || '').toLowerCase();
+    var moodFilter = document.getElementById('filterMoodSelect').value;
+    var keys = Object.keys(appData.memories).sort().reverse();
+    var filtered = [];
+
+    for (var i = 0; i < keys.length; i++) {
+      var e = appData.memories[keys[i]];
+      if (selectedYearFilter !== 'all' && e.date.indexOf(selectedYearFilter) !== 0) continue;
+      if (moodFilter !== 'all' && e.mood !== moodFilter) continue;
+      if (q && (e.text || '').toLowerCase().indexOf(q) === -1 && e.date.indexOf(q) === -1) continue;
+      filtered.push(e);
+    }
+
+    document.getElementById('memoriesFilterYearTitle').innerText = (selectedYearFilter === 'all') ? 'ВСЕ ВОСПОМИНАНИЯ' : ('КНИГА ' + selectedYearFilter + ' ГОДА');
+    document.getElementById('memoriesCountSubtitle').innerText = filtered.length + ' ЗАПИСЕЙ';
+
+    var container = document.getElementById('memoriesListContainer');
+    if (filtered.length === 0) {
+      container.innerHTML = '<div style="padding:24px; text-align:center; color:#777; font-size:13px;">Воспоминаний пока нет. Нажмите «+ Запись» в правом верхнем углу.</div>';
+      return;
+    }
+
+    var html = '';
+    var shortWeek = ['ВС','ПН','ВТ','СР','ЧТ','ПТ','СБ'];
+    for (var j = 0; j < filtered.length; j++) {
+      var item = filtered[j];
+      var parts = item.date.split('-');
+      var dObj = new Date(parseInt(parts[0],10), parseInt(parts[1],10)-1, parseInt(parts[2],10));
+      var wShort = shortWeek[dObj.getDay()];
+      var colorBar = item.mood === 'good' ? '#26a65b' : (item.mood === 'neutral' ? '#8e8e93' : '#d94126');
+
+      html += '<div class="ios-row clickable" onclick="openViewEntryModal(\'' + item.date + '\')">' +
+        '<div style="width:42px; text-align:center; margin-right:10px; border-right:1px solid #ddd; padding-right:8px; flex-shrink:0;">' +
+          '<div style="font-size:17px; font-weight:900;">' + parts[2] + '</div>' +
+          '<div style="height:3px; width:18px; background:' + colorBar + '; margin:3px auto;"></div>' +
+          '<div style="font-size:9px; color:#777; font-weight:bold;">' + wShort + ' · ' + parts[1] + '</div>' +
+        '</div>' +
+        '<div style="flex:1; font-size:13px; line-height:1.35; overflow:hidden; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical;">' +
+          escapeHtml(item.text || '(Фотография без текста)') +
+        '</div>' +
+        (item.photo ? '<img class="thumb-photo" src="' + item.photo + '">' : '') +
+      '</div>';
+    }
+    container.innerHTML = html;
+  }
+
+  // WHENSHELF (Книжная полка по годам)
+  function openShelfModal() {
+    var keys = Object.keys(appData.memories);
+    var yearCounts = {};
+    var currentYear = new Date().getFullYear().toString();
+    yearCounts[currentYear] = 0;
+
+    for (var i = 0; i < keys.length; i++) {
+      var y = keys[i].split('-')[0];
+      yearCounts[y] = (yearCounts[y] || 0) + 1;
+    }
+
+    var years = Object.keys(yearCounts).sort().reverse();
+    var html = '';
+    for (var j = 0; j < years.length; j++) {
+      var yr = years[j];
+      var cnt = yearCounts[yr];
+      var status = (yr === currentYear) ? '<span style="color:#d94126;">ПИШЕТСЯ</span> | ' + cnt : cnt + ' ВОСП.';
+      html += '<div class="shelf-book" onclick="selectYearFromShelf(\'' + yr + '\')">' +
+        '<div class="shelf-year">' + yr + '<span>.</span></div>' +
+        '<div class="shelf-count">' + status + '</div>' +
+      '</div>';
+    }
+    document.getElementById('shelfYearsContainer').innerHTML = html;
+    document.getElementById('shelfSummarySubtitle').innerText = 'ВСЕГО ВОСПОМИНАНИЙ: ' + keys.length;
+    document.getElementById('shelfModal').className = 'modal-overlay show';
+  }
+  function closeShelfModal() {
+    document.getElementById('shelfModal').className = 'modal-overlay';
+  }
+  function selectYearFromShelf(yr) {
+    selectedYearFilter = yr;
+    closeShelfModal();
+    switchTab('memories');
+  }
+
+  // ВЕХИ (MILESTONES)
+  function openMilestoneModal() {
+    document.getElementById('milestoneDateInput').value = getTodayKey();
+    document.getElementById('milestoneTitleInput').value = '';
+    document.getElementById('milestoneModal').className = 'modal-overlay show';
+  }
+  function closeMilestoneModal() {
+    document.getElementById('milestoneModal').className = 'modal-overlay';
+  }
+  function saveMilestone() {
+    var title = document.getElementById('milestoneTitleInput').value.trim();
+    var cat = document.getElementById('milestoneCategoryInput').value;
+    var date = document.getElementById('milestoneDateInput').value || getTodayKey();
+    if (!title) {
+      showIosAlert('Пустая веха', 'Введите название достижения или важного события.');
+      return;
+    }
+    appData.milestones.unshift({
+      id: 'ms_' + new Date().getTime(),
+      date: date,
+      category: cat,
+      title: title
+    });
+    saveData();
+    closeMilestoneModal();
+    renderMilestonesList();
+    renderHome();
+  }
+  function deleteMilestone(id) {
+    var next = [];
+    for (var i = 0; i < appData.milestones.length; i++) {
+      if (appData.milestones[i].id !== id) next.push(appData.milestones[i]);
+    }
+    appData.milestones = next;
+    saveData();
+    renderMilestonesList();
+    renderHome();
+  }
+  function renderMilestonesList() {
+    var q = (document.getElementById('searchMilestonesInput').value || '').toLowerCase();
+    var container = document.getElementById('milestonesListContainer');
+    var list = [];
+    for (var i = 0; i < appData.milestones.length; i++) {
+      var m = appData.milestones[i];
+      if (q && m.title.toLowerCase().indexOf(q) === -1 && m.category.toLowerCase().indexOf(q) === -1) continue;
+      list.push(m);
+    }
+    if (list.length === 0) {
+      container.innerHTML = '<div style="padding:26px 16px; text-align:center;">' +
+        '<div style="font-size:32px; margin-bottom:6px;">&#127942;</div>' +
+        '<div style="font-size:17px; font-weight:800; margin-bottom:6px;">Вех пока нет.</div>' +
+        '<div style="font-size:12px; color:#666;">Повышения, поездки, крупные покупки и всё, что определяет жизнь.</div>' +
+      '</div>';
+      return;
+    }
+    var monthsShort = ['ЯНВ.','ФЕВР.','МАРТ','АПР.','МАЙ','ИЮНЬ','ИЮЛЬ','АВГ.','СЕНТ.','ОКТ.','НОЯБ.','ДЕК.'];
+    var html = '';
+    for (var j = 0; j < list.length; j++) {
+      var item = list[j];
+      var p = item.date.split('-');
+      var mLabel = monthsShort[parseInt(p[1],10)-1] + ' ' + p[0].slice(2);
+      html += '<div class="ios-row">' +
+        '<div style="width:52px; text-align:center; border-right:2px solid #d94126; padding-right:8px; margin-right:10px;">' +
+          '<div style="font-size:17px; font-weight:900;">' + p[2] + '</div>' +
+          '<div style="font-size:9px; color:#777; font-weight:bold;">' + mLabel + '</div>' +
+        '</div>' +
+        '<div style="flex:1;">' +
+          '<div style="font-size:10px; font-weight:bold; color:#d94126;">' + item.category + '</div>' +
+          '<div style="font-size:14px; font-weight:bold; color:#1c1c1c;">' + escapeHtml(item.title) + '</div>' +
+        '</div>' +
+        '<div style="color:#999; font-size:18px; padding:4px 8px; cursor:pointer;" onclick="deleteMilestone(\'' + item.id + '\')">&times;</div>' +
+      '</div>';
+    }
+    container.innerHTML = html;
+  }
+
+  // Экспорт и Импорт резервной копии
+  function exportBackup() {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appData));
+    var a = document.createElement('a');
+    a.setAttribute("href", dataStr);
+    a.setAttribute("download", "chronogram_backup_" + getTodayKey() + ".json");
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+  }
+  function importBackup(event) {
+    var file = event.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var imported = JSON.parse(e.target.result);
+        if (imported && imported.memories) {
+          appData = imported;
+          saveData();
+          applyTheme();
+          renderHome();
+          showIosAlert('Успешно', 'Резервная копия воспоминаний загружена в память устройства!');
+        }
+      } catch (err) {
+        showIosAlert('Ошибка', 'Не удалось прочитать файл резервной копии.');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  // Классический синий алерт iOS 6
+  function showIosAlert(title, msg) {
+    document.getElementById('iosAlertTitle').innerText = title;
+    document.getElementById('iosAlertMsg').innerText = msg;
+    document.getElementById('iosAlertBackdrop').className = 'ios-alert-backdrop show';
+  }
+  function closeIosAlert() {
+    document.getElementById('iosAlertBackdrop').className = 'ios-alert-backdrop';
+  }
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Инициализация при запуске
+  loadData();
+  generateHomeScreenIcon();
+  applyTheme();
+  renderHome();
+</script>
+</body>
+</html>
