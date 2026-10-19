@@ -6,7 +6,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   <title>WHENGRAM — iOS 6 Edition (iPhone 4S)</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Tailwind CDN removed: its browser runtime is too modern for iOS 6 Safari. -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <style>
     :root {
@@ -17,7 +17,7 @@
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     input, textarea { user-select: text; }
     body, html {
-      margin: 0; padding: 0; width: 100%; height: 100%; font-family: var(--ios-font); background: #14171a;
+      margin: 0; padding: 0; width: 100%; height: 100%; font-family: Helvetica, Arial, sans-serif; background: #14171a;
       overflow: hidden;
     }
     body {
@@ -72,7 +72,7 @@
 
     .paper-card { background: linear-gradient(to bottom, #fffdf7 0%, #f7f1e1 100%); border-radius: 8px; border: 1px solid #c9bea7; box-shadow: 0 3px 7px rgba(0,0,0,0.38), 0 1px 0 #ffffff inset; position: relative; color: #2b241d; }
     .torn-top-edge { height: 8px; background: radial-gradient(circle at 6px 0px, #35271e 3.5px, transparent 4px) repeat-x; background-size: 12px 8px; border-bottom: 1px dashed #d4c8b0; }
-    .notes-yellow-pad { background-color: #fdf6b2; background-image: repeating-linear-gradient(to bottom, #fdf6b2 0px, #fdf6b2 23px, #d9d08f 24px); line-height: 24px; padding: 6px 12px 10px 38px; color: #362819; font-family: var(--ios-note-font); font-size: 15px; border-radius: 6px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); }
+    .notes-yellow-pad { background-color: #fdf6b2; background-image: repeating-linear-gradient(to bottom, #fdf6b2 0px, #fdf6b2 23px, #d9d08f 24px); line-height: 24px; padding: 6px 12px 10px 38px; color: #362819; font-family: Marker Felt, Comic Sans MS, cursive, sans-serif; font-size: 15px; border-radius: 6px; box-shadow: inset 0 1px 3px rgba(0,0,0,0.2); }
 
     .ios6-big-cta { width: 100%; padding: 11px 14px; border-radius: 8px; border: 1px solid #7d2313; background: linear-gradient(to bottom, #f0674d 0%, #dc4327 49%, #c73217 51%, #ab250d 100%); box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 2px 4px rgba(0,0,0,0.4); color: #fff; font-weight: 700; font-size: 13px; text-shadow: 0 -1px 1px rgba(0,0,0,0.65); display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
     .flip-tile { background: linear-gradient(to bottom, #3a3d42 0%, #242629 49%, #16181a 51%, #232529 100%); border: 1px solid #0d0e10; border-radius: 6px; color: #f3efe6; cursor: pointer; position: relative; }
@@ -116,7 +116,7 @@
     .ios6-tabbar {
       height: 49px; min-height: 49px; width: 100%;
       background: linear-gradient(to bottom, #303030 0%, #171717 49%, #000000 100%);
-      border-top: 1px solid #595959; display: grid; grid-template-columns: repeat(4, 1fr); padding: 2px 4px; flex-shrink: 0; z-index: 30;
+      border-top: 1px solid #595959; display: -webkit-box; display: -webkit-flex; display: flex; padding: 2px 4px; flex-shrink: 0; z-index: 30;
     }
     .ios6-tab-item { display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; padding-top: 2px; }
     .ios6-tab-item.active { background: linear-gradient(to bottom, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.1) 100%); }
@@ -127,7 +127,292 @@
 
     .ios6-alert-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.62); z-index: 60; display: flex; align-items: center; justify-content: center; padding: 16px; }
     .ios6-alert-box { width: 284px; background: radial-gradient(circle at 50% -10%, rgba(255,255,255,0.45) 0%, transparent 50%), linear-gradient(to bottom, rgba(25, 48, 89, 0.94) 0%, rgba(12, 26, 54, 0.96) 100%); border: 2px solid rgba(225, 232, 245, 0.85); border-radius: 12px; padding: 14px 12px 12px 12px; color: #fff; text-align: center; }
-  </style>
+
+    /* iOS 6 Safari compatibility layer */
+    [class~="underline"]{text-decoration:underline;}
+    [class~="rounded-lg"]{border-radius:8px;}
+    [class~="text-[#241b13]"]{color:#241b13;}
+    [class~="border-[#a89882]"]{border-color:#a89882;}
+    [class~="bg-[#f5ebd6]"]{background-color:#f5ebd6;}
+    [class~="px-2"]{padding-left:8px;padding-right:8px;}
+    [class~="flex-col"]{-webkit-box-orient:vertical;-webkit-box-direction:normal;-webkit-flex-direction:column;flex-direction:column;}
+    [class~="items-start"]{-webkit-align-items:flex-start;align-items:flex-start;}
+    [class~="text-[#1c150e]"]{color:#1c150e;}
+    [class~="text-[#ff7052]"]{color:#ff7052;}
+    [class~="text-[#3b2f23]"]{color:#3b2f23;}
+    [class~="my-1"]{margin-top:4px;margin-bottom:4px;}
+    [class~="text-[#786856]"]{color:#786856;}
+    [class~="grid-cols-4"]{display:-webkit-box;display:-webkit-flex;display:flex;}
+    [class~="grid-cols-4"]>*{-webkit-box-flex:1;-webkit-flex:1 1 0;flex:1 1 0;min-width:0;}
+    [class~="grid-cols-5"]{display:-webkit-box;display:-webkit-flex;display:flex;}
+    [class~="grid-cols-5"]>*{-webkit-box-flex:1;-webkit-flex:1 1 0;flex:1 1 0;min-width:0;}
+    [class~="space-y-1.5"]>*+*{margin-top:6px;}
+    [class~="grid-cols-2"]{display:-webkit-box;display:-webkit-flex;display:flex;}
+    [class~="grid-cols-2"]>*{-webkit-box-flex:1;-webkit-flex:1 1 0;flex:1 1 0;min-width:0;}
+    [class~="text-[#3d3124]"]{color:#3d3124;}
+    [class~="pt-0.5"]{padding-top:2px;}
+    [class~="border-[#dcd1bc]"]{border-color:#dcd1bc;}
+    [class~="bg-[#2b2118]"]{background-color:#2b2118;}
+    [class~="font-black"]{font-weight:800;}
+    [class~="mt-1.5"]{margin-top:6px;}
+    [class~="px-3"]{padding-left:12px;padding-right:12px;}
+    [class~="bg-[#d93b20]"]{background-color:#d93b20;}
+    [class~="text-[#d4c5b4]"]{color:#d4c5b4;}
+    [class~="text-[#9e8f80]"]{color:#9e8f80;}
+    [class~="pt-1.5"]{padding-top:6px;}
+    [class~="justify-between"]{-webkit-justify-content:space-between;justify-content:space-between;}
+    [class~="text-[#2b2118]"]{color:#2b2118;}
+    [class~="border-dashed"]{border-style:dashed;}
+    [class~="py-1"]{padding-top:4px;padding-bottom:4px;}
+    [class~="flex"]{display:-webkit-box;display:-webkit-flex;display:flex;}
+    [class~="text-[#6e5d4c]"]{color:#6e5d4c;}
+    [class~="leading-none"]{line-height:1;}
+    [class~="pb-1"]{padding-bottom:4px;}
+    [class~="flex-shrink-0"]{-webkit-flex-shrink:0;flex-shrink:0;}
+    [class~="text-[#57493b]"]{color:#57493b;}
+    [class~="p-2.5"]{padding:10px;}
+    [class~="text-right"]{text-align:right;}
+    [class~="mt-3"]{margin-top:12px;}
+    [class~="my-0.5"]{margin-top:2px;margin-bottom:2px;}
+    [class~="border-t"]{border-top:1px solid rgba(0,0,0,.18);}
+    [class~="grid"]{display:-webkit-box;display:-webkit-flex;display:flex;}
+    [class~="border-[#d6cbb5]"]{border-color:#d6cbb5;}
+    [class~="mt-0.5"]{margin-top:2px;}
+    [class~="text-[#1f160f]"]{color:#1f160f;}
+    [class~="text-[#385487]"]{color:#385487;}
+    [class~="font-bold"]{font-weight:700;}
+    [class~="text-[#c9381e]"]{color:#c9381e;}
+    [class~="w-full"]{width:100%;}
+    [class~="text-[#5c4d3c]"]{color:#5c4d3c;}
+    [class~="mr-0.5"]{margin-right:2px;}
+    [class~="rounded-md"]{border-radius:6px;}
+    [class~="truncate"]{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+    [class~="overflow-hidden"]{overflow:hidden;}
+    [class~="mb-3"]{margin-bottom:12px;}
+    [class~="border-b"]{border-bottom:1px solid rgba(0,0,0,.18);}
+    [class~="text-[#f7ebd4]"]{color:#f7ebd4;}
+    [class~="py-1.5"]{padding-top:6px;padding-bottom:6px;}
+    [class~="mb-1.5"]{margin-bottom:6px;}
+    [class~="text-[#2b1d0e]"]{color:#2b1d0e;}
+    [class~="text-[#2b1e12]"]{color:#2b1e12;}
+    [class~="text-[#73624f]"]{color:#73624f;}
+    [class~="rounded-sm"]{border-radius:2px;}
+    [class~="px-4"]{padding-left:16px;padding-right:16px;}
+    [class~="py-2"]{padding-top:8px;padding-bottom:8px;}
+    [class~="py-0.5"]{padding-top:2px;padding-bottom:2px;}
+    [class~="pt-5"]{padding-top:20px;}
+    [class~="text-[#362819]"]{color:#362819;}
+    [class~="text-[#4a3e31]"]{color:#4a3e31;}
+    [class~="bg-white"]{background:#fff;}
+    [class~="p-1.5"]{padding:6px;}
+    [class~="text-[#211810]"]{color:#211810;}
+    [class~="items-center"]{-webkit-align-items:center;align-items:center;}
+    [class~="text-[#d93b20]"]{color:#d93b20;}
+    [class~="justify-center"]{-webkit-justify-content:center;justify-content:center;}
+    [class~="bg-transparent"]{background:transparent;}
+    [class~="mr-1.5"]{margin-right:6px;}
+    [class~="gap-2.5"]>*{margin-right:10px;}
+    [class~="gap-2.5"]>*:last-child{margin-right:0;}
+    [class~="text-[#586375]"]{color:#586375;}
+    [class~="px-1"]{padding-left:4px;padding-right:4px;}
+    [class~="mb-1"]{margin-bottom:4px;}
+    [class~="font-semibold"]{font-weight:600;}
+    [class~="mb-0.5"]{margin-bottom:2px;}
+    [class~="px-1.5"]{padding-left:6px;padding-right:6px;}
+    [class~="text-[#8c311c]"]{color:#8c311c;}
+    [class~="bg-[#f2ead8]"]{background-color:#f2ead8;}
+    [class~="text-center"]{text-align:center;}
+    [class~="shadow-lg"]{box-shadow:0 2px 5px rgba(0,0,0,.25);}
+    [class~="gap-1"]>*{margin-right:4px;}
+    [class~="gap-1"]>*:last-child{margin-right:0;}
+    [class~="pt-2"]{padding-top:8px;}
+    [class~="opacity-75"]{opacity:.75;}
+    [class~="border-[#e0d5c1]"]{border-color:#e0d5c1;}
+    [class~="uppercase"]{text-transform:uppercase;}
+    [class~="pb-1.5"]{padding-bottom:6px;}
+    [class~="gap-3"]>*{margin-right:12px;}
+    [class~="gap-3"]>*:last-child{margin-right:0;}
+    [class~="text-xs"]{font-size:12px;}
+    [class~="text-[#1c140d]"]{color:#1c140d;}
+    [class~="rounded-full"]{border-radius:999px;}
+    [class~="text-black"]{color:#000;}
+    [class~="leading-snug"]{line-height:1.35;}
+    [class~="text-[#786552]"]{color:#786552;}
+    [class~="text-[#8c5832]"]{color:#8c5832;}
+    [class~="border-[#ded3be]"]{border-color:#ded3be;}
+    [class~="items-end"]{-webkit-align-items:flex-end;align-items:flex-end;}
+    [class~="rounded"]{border-radius:4px;}
+    [class~="text-lg"]{font-size:18px;}
+    [class~="pr-2"]{padding-right:8px;}
+    [class~="text-white"]{color:#fff;}
+    [class~="text-[#cfc2b4]"]{color:#cfc2b4;}
+    [class~="rounded-xl"]{border-radius:12px;}
+    [class~="grid-cols-7"]{display:-webkit-box;display:-webkit-flex;display:flex;}
+    [class~="grid-cols-7"]>*{-webkit-box-flex:1;-webkit-flex:1 1 0;flex:1 1 0;min-width:0;}
+    [class~="space-y-2"]>*+*{margin-top:8px;}
+    [class~="mb-2"]{margin-bottom:8px;}
+    [class~="relative"]{position:relative;}
+    [class~="pt-3"]{padding-top:12px;}
+    [class~="p-3"]{padding:12px;}
+    [class~="mt-2"]{margin-top:8px;}
+    [class~="bg-[#3b2819]"]{background-color:#3b2819;}
+    [class~="text-[#261c14]"]{color:#261c14;}
+    [class~="px-2.5"]{padding-left:10px;padding-right:10px;}
+    [class~="h-full"]{height:100%;}
+    [class~="mx-auto"]{margin-left:auto;margin-right:auto;}
+    [class~="text-left"]{text-align:left;}
+    [class~="text-[#a89887]"]{color:#a89887;}
+    [class~="text-[#2b3340]"]{color:#2b3340;}
+    [class~="p-2"]{padding:8px;}
+    [class~="space-y-2.5"]>*+*{margin-top:10px;}
+    [class~="text-[#4a3c2c]"]{color:#4a3c2c;}
+    [class~="text-[#c48b28]"]{color:#c48b28;}
+    [class~="text-[#1a130c]"]{color:#1a130c;}
+    [class~="flex-1"]{-webkit-box-flex:1;-webkit-flex:1;flex:1;min-width:0;}
+    [class~="text-[#6e5c49]"]{color:#6e5c49;}
+    [class~="text-[#ff5938]"]{color:#ff5938;}
+    [class~="overflow-y-auto"]{overflow-y:auto;-webkit-overflow-scrolling:touch;}
+    [class~="text-xl"]{font-size:20px;}
+    [class~="mb-2.5"]{margin-bottom:10px;}
+    [class~="border-[#302720]"]{border-color:#302720;}
+    [class~="p-1"]{padding:4px;}
+    [class~="bg-[#e8decb]"]{background-color:#e8decb;}
+    [class~="text-[#211912]"]{color:#211912;}
+    [class~="text-sm"]{font-size:14px;}
+    [class~="border"]{border:1px solid #d1d5db;}
+    [class~="text-[#4d4033]"]{color:#4d4033;}
+    [class~="font-extrabold"]{font-weight:800;}
+    [class~="gap-2"]>*{margin-right:8px;}
+    [class~="gap-2"]>*:last-child{margin-right:0;}
+    [class~="leading-tight"]{line-height:1.15;}
+    .ios6-tabbar{display:-webkit-box;display:-webkit-flex;display:flex;height:49px;min-height:49px;} .ios6-tab-item{-webkit-box-flex:1;-webkit-flex:1 1 25%;flex:1 1 25%;min-width:0;}
+    .ios6-tab-label{white-space:nowrap;font-size:9px;}
+    .ios6-navbar>*{min-width:0;} .ios6-nav-title{-webkit-box-flex:1;-webkit-flex:1;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:0 4px;}
+    .ios6-content{min-height:0;}
+    .ios6-statusbar .flex{display:-webkit-box;display:-webkit-flex;display:flex;}
+    .ios6-statusbar .flex:first-child{-webkit-box-flex:1;-webkit-flex:1;flex:1;}
+    .ios6-statusbar #statusBarClock{-webkit-box-flex:1;-webkit-flex:1;flex:1;text-align:center;}
+    .ios6-statusbar .flex:last-child{-webkit-box-flex:1;-webkit-flex:1;flex:1;-webkit-justify-content:flex-end;justify-content:flex-end;}
+    .ios6-alert-backdrop{top:0;right:0;bottom:0;left:0;}
+    @media screen and (max-width:320px){.ios6-nav-btn{padding-left:6px;padding-right:6px;font-size:11px}.ios6-nav-title{font-size:15px}.ios6-tab-label{font-size:8px}}
+    button,input,textarea,select{font-family:Helvetica,Arial,sans-serif;} button{cursor:pointer;} input,textarea{ -webkit-user-select:text; }
+    /* iOS 6 does not support CSS custom properties. */ body,html{font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;} .notes-yellow-pad{font-family:"Marker Felt","Comic Sans MS","Trebuchet MS",cursive,sans-serif;} h1{font-family:Georgia,"Times New Roman",serif;}
+
+  
+/* WHENGRAM legacy Safari layout layer: iOS 6 does not understand modern Tailwind utilities. */
+html, body { width:100%; height:100%; min-height:100%; margin:0; padding:0; overflow:hidden; }
+body { display:block; background:#14171a; font-family:Helvetica,Arial,sans-serif; }
+.desktop-stage { display:block; width:100%; height:100%; }
+.iphone-4s-chassis { width:100%; max-width:320px; height:100%; max-height:568px; margin:0 auto; box-shadow:none; border-radius:0; display:block; }
+.ios6-screen { width:100%; height:100%; display:-webkit-box; display:-webkit-flex; display:flex; -webkit-box-orient:vertical; -webkit-flex-direction:column; flex-direction:column; }
+.ios6-statusbar { display:-webkit-box; display:-webkit-flex; display:flex; -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between; }
+.ios6-navbar { display:-webkit-box; display:-webkit-flex; display:flex; -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between; }
+.ios6-content { display:block; height:auto; min-height:0; -webkit-box-flex:1; -webkit-flex:1; flex:1; overflow-y:auto; overflow-x:hidden; -webkit-overflow-scrolling:touch; }
+.ios6-tabbar { display:-webkit-box; display:-webkit-flex; display:flex; height:49px; min-height:49px; }
+.ios6-tab-item { display:-webkit-box; display:-webkit-flex; display:flex; -webkit-box-flex:1; -webkit-flex:1; flex:1; width:25%; min-width:0; }
+.ios6-tab-icon { font-size:18px; }
+.ios6-nav-title { min-width:0; }
+button, input, textarea { font-family:Helvetica,Arial,sans-serif; }
+button { -webkit-appearance:none; }
+/* Legacy equivalents for the Tailwind utility classes used by the app */
+[class~="flex"] { display:-webkit-box; display:-webkit-flex; display:flex; }
+[class~="flex-col"] { -webkit-box-orient:vertical; -webkit-flex-direction:column; flex-direction:column; }
+[class~="flex-1"] { -webkit-box-flex:1; -webkit-flex:1; flex:1; }
+[class~="flex-shrink-0"] { -webkit-flex-shrink:0; flex-shrink:0; }
+[class~="items-center"] { -webkit-box-align:center; -webkit-align-items:center; align-items:center; }
+[class~="items-start"] { -webkit-box-align:start; -webkit-align-items:flex-start; align-items:flex-start; }
+[class~="items-end"] { -webkit-box-align:end; -webkit-align-items:flex-end; align-items:flex-end; }
+[class~="justify-between"] { -webkit-box-pack:justify; -webkit-justify-content:space-between; justify-content:space-between; }
+[class~="justify-center"] { -webkit-box-pack:center; -webkit-justify-content:center; justify-content:center; }
+[class~="justify-around"] { -webkit-justify-content:space-around; justify-content:space-around; }
+[class~="grid"] { display:-webkit-box; display:-webkit-flex; display:flex; -webkit-flex-wrap:wrap; flex-wrap:wrap; }
+[class~="grid-cols-2"] > * { width:50%; }
+[class~="grid-cols-4"] > * { width:25%; }
+[class~="grid-cols-5"] > * { width:20%; }
+[class~="grid-cols-7"] > * { width:14.285%; }
+[class~="gap-1"] > * { margin-right:2px; }
+[class~="gap-2"] > * { margin-right:5px; }
+[class~="gap-2.5"] > * { margin-right:7px; }
+[class~="gap-3"] > * { margin-right:8px; }
+[class~="text-center"] { text-align:center; }
+[class~="text-left"] { text-align:left; }
+[class~="text-right"] { text-align:right; }
+[class~="font-bold"], [class~="font-extrabold"], [class~="font-black"], [class~="font-semibold"] { font-weight:bold; }
+[class~="uppercase"] { text-transform:uppercase; }
+[class~="underline"] { text-decoration:underline; }
+[class~="relative"] { position:relative; }
+[class~="overflow-hidden"] { overflow:hidden; }
+[class~="overflow-y-auto"] { overflow-y:auto; }
+[class~="truncate"] { overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+[class~="w-full"] { width:100%; }
+[class~="h-full"] { height:100%; }
+[class~="min-w-0"] { min-width:0; }
+[class~="mx-auto"] { margin-left:auto; margin-right:auto; }
+[class~="cursor-pointer"] { cursor:pointer; }
+[class~="resize-none"] { resize:none; }
+[class~="bg-transparent"] { background:transparent; }
+[class~="bg-white"] { background:#fff; }
+[class~="text-white"] { color:#fff; }
+[class~="text-black"] { color:#000; }
+[class~="text-gray-200"] { color:#e5e7eb; }
+[class~="text-gray-400"] { color:#9ca3af; }
+[class~="text-gray-500"] { color:#6b7280; }
+[class~="text-amber-200"] { color:#fde68a; }
+[class~="text-amber-300"] { color:#fcd34d; }
+[class~="text-amber-950"] { color:#451a03; }
+[class~="text-sm"] { font-size:14px; }
+[class~="text-lg"] { font-size:18px; }
+[class~="text-xl"] { font-size:20px; }
+[class~="text-2xl"] { font-size:24px; }
+[class~="text-3xl"] { font-size:30px; }
+[class~="text-xs"] { font-size:12px; }
+[class~="text-[7.5px]"] { font-size:7.5px; }
+[class~="text-[8px]"] { font-size:8px; }
+[class~="text-[8.5px]"] { font-size:8.5px; }
+[class~="text-[9px]"] { font-size:9px; }
+[class~="text-[9.5px]"] { font-size:9.5px; }
+[class~="text-[10px]"] { font-size:10px; }
+[class~="text-[10.5px]"] { font-size:10.5px; }
+[class~="text-[11px]"] { font-size:11px; }
+[class~="text-[11.5px]"] { font-size:11.5px; }
+[class~="text-[12px]"] { font-size:12px; }
+[class~="text-[13px]"] { font-size:13px; }
+[class~="text-[14px]"] { font-size:14px; }
+[class~="text-[15px]"] { font-size:15px; }
+[class~="text-[16px]"] { font-size:16px; }
+[class~="text-[18px]"] { font-size:18px; }
+[class~="text-[19px]"] { font-size:19px; }
+[class~="leading-none"] { line-height:1; }
+[class~="leading-tight"] { line-height:1.2; }
+[class~="leading-snug"] { line-height:1.35; }
+[class~="leading-[24px]"] { line-height:24px; }
+[class~="p-1"] { padding:4px; } [class~="p-1.5"] { padding:6px; } [class~="p-2"] { padding:8px; } [class~="p-2.5"] { padding:10px; } [class~="p-3"] { padding:12px; }
+[class~="px-1"] { padding-left:4px;padding-right:4px; } [class~="px-1.5"] { padding-left:6px;padding-right:6px; } [class~="px-2"] { padding-left:8px;padding-right:8px; } [class~="px-2.5"] { padding-left:10px;padding-right:10px; } [class~="px-3"] { padding-left:12px;padding-right:12px; } [class~="px-4"] { padding-left:16px;padding-right:16px; }
+[class~="py-0.5"] { padding-top:2px;padding-bottom:2px; } [class~="py-1"] { padding-top:4px;padding-bottom:4px; } [class~="py-1.5"] { padding-top:6px;padding-bottom:6px; } [class~="py-2"] { padding-top:8px;padding-bottom:8px; }
+[class~="pt-0.5"] { padding-top:2px; } [class~="pt-1.5"] { padding-top:6px; } [class~="pt-2"] { padding-top:8px; } [class~="pt-3"] { padding-top:12px; } [class~="pt-5"] { padding-top:20px; } [class~="pb-1"] { padding-bottom:4px; } [class~="pb-1.5"] { padding-bottom:6px; } [class~="pr-2"] { padding-right:8px; }
+[class~="mb-0.5"] { margin-bottom:2px; } [class~="mb-1"] { margin-bottom:4px; } [class~="mb-1.5"] { margin-bottom:6px; } [class~="mb-2"] { margin-bottom:8px; } [class~="mb-2.5"] { margin-bottom:10px; } [class~="mb-3"] { margin-bottom:12px; } [class~="mt-0.5"] { margin-top:2px; } [class~="mt-1.5"] { margin-top:6px; } [class~="mt-2"] { margin-top:8px; } [class~="mt-3"] { margin-top:12px; } [class~="mr-0.5"] { margin-right:2px; } [class~="mr-1.5"] { margin-right:6px; } [class~="my-0.5"] { margin-top:2px;margin-bottom:2px; } [class~="my-1"] { margin-top:4px;margin-bottom:4px; }
+[class~="rounded"] { border-radius:4px; } [class~="rounded-sm"] { border-radius:2px; } [class~="rounded-md"] { border-radius:6px; } [class~="rounded-lg"] { border-radius:8px; } [class~="rounded-xl"] { border-radius:12px; } [class~="rounded-full"] { border-radius:999px; }
+[class~="w-4"] { width:16px; } [class~="w-5"] { width:20px; } [class~="w-8"] { width:32px; } [class~="w-10"] { width:40px; } [class~="w-12"] { width:48px; } [class~="w-14"] { width:56px; } [class~="w-16"] { width:64px; } [class~="w-32"] { width:128px; }
+[class~="h-0.5"] { height:2px; } [class~="h-1"] { height:4px; } [class~="h-4"] { height:16px; } [class~="h-7"] { height:28px; } [class~="h-10"] { height:40px; } [class~="h-12"] { height:48px; } [class~="h-14"] { height:56px; } [class~="h-32"] { height:128px; }
+[class~="border"] { border:1px solid #c9bea7; } [class~="border-b"] { border-bottom:1px solid rgba(0,0,0,.18); } [class~="border-t"] { border-top:1px solid rgba(0,0,0,.18); } [class~="border-r"] { border-right:1px solid #d6cbb5; } [class~="border-dashed"] { border-style:dashed; }
+[class~="shadow-inner"] { box-shadow:inset 0 1px 3px rgba(0,0,0,.2); } [class~="shadow-lg"] { box-shadow:0 3px 8px rgba(0,0,0,.35); }
+[class~="space-y-1.5"] > * + * { margin-top:6px; } [class~="space-y-2"] > * + * { margin-top:8px; } [class~="space-y-2.5"] > * + * { margin-top:10px; }
+/* Use built-in symbols instead of Font Awesome 6's unsupported modern webfont on old iOS. */
+.fa-solid { display:inline-block; font-family:Helvetica,Arial,sans-serif !important; font-style:normal; font-weight:bold; line-height:1; }
+.fa-house-chimney:before { content:'⌂'; } .fa-book-open:before { content:'▤'; } .fa-trophy:before { content:'♜'; } .fa-gears:before { content:'⚙'; } .fa-wifi:before { content:'◔'; } .fa-dice:before { content:'⚄'; } .fa-pen-fancy:before { content:'✎'; } .fa-arrow-right:before { content:'➜'; } .fa-plus:before,.fa-plus-circle:before { content:'+'; } .fa-list-ul:before { content:'☷'; } .fa-book-bookmark:before,.fa-book:before,.fa-book-atlas:before { content:'▤'; } .fa-magnifying-glass:before { content:'⌕'; } .fa-camera-retro:before { content:'▣'; } .fa-compact-disc:before { content:'◉'; } .fa-stamp:before { content:'✦'; } .fa-trash-can:before { content:'×'; } .fa-award:before { content:'★'; }
+@media (max-height:420px) { .ios6-statusbar { height:18px; min-height:18px; } .ios6-tabbar { height:44px; min-height:44px; } }
+
+
+/* Colors and sizing utilities used in dynamically rendered views */
+[class~="bg-[#2b2118]"] { background-color:#2b2118; } [class~="bg-[#3b2819]"] { background-color:#3b2819; } [class~="bg-[#d93b20]"] { background-color:#d93b20; } [class~="bg-[#e8decb]"] { background-color:#e8decb; } [class~="bg-[#f2ead8]"] { background-color:#f2ead8; } [class~="bg-[#f5ebd6]"] { background-color:#f5ebd6; }
+[class~="bg-amber-200"] { background-color:#fde68a; } [class~="bg-amber-100"] { background-color:#fef3c7; } [class~="bg-white/70"] { background-color:rgba(255,255,255,.7); } [class~="bg-black/60"] { background-color:rgba(0,0,0,.6); } [class~="bg-amber-600/80"] { background-color:rgba(217,119,6,.8); }
+[class~="text-[#1a130c]"] { color:#1a130c; } [class~="text-[#1c140d]"] { color:#1c140d; } [class~="text-[#211912]"] { color:#211912; } [class~="text-[#241b13]"] { color:#241b13; } [class~="text-[#2b1d0e]"] { color:#2b1d0e; } [class~="text-[#2b2118]"] { color:#2b2118; } [class~="text-[#362819]"] { color:#362819; } [class~="text-[#4a3c2c]"] { color:#4a3c2c; } [class~="text-[#4a3e31]"] { color:#4a3e31; } [class~="text-[#4d4033]"] { color:#4d4033; } [class~="text-[#5c4d3c]"] { color:#5c4d3c; } [class~="text-[#6e5c49]"] { color:#6e5c49; } [class~="text-[#6e5d4c]"] { color:#6e5d4c; } [class~="text-[#786552]"] { color:#786552; } [class~="text-[#786856]"] { color:#786856; } [class~="text-[#8c5832]"] { color:#8c5832; } [class~="text-[#c9381e]"] { color:#c9381e; } [class~="text-[#ff5938]"] { color:#ff5938; } [class~="text-[#ff7052]"] { color:#ff7052; } [class~="text-[#f7ebd4]"] { color:#f7ebd4; } [class~="text-[#d4c5b4]"] { color:#d4c5b4; } [class~="text-[#cfc2b4]"] { color:#cfc2b4; } [class~="text-[#a89887]"] { color:#a89887; } [class~="text-[#9e8f80]"] { color:#9e8f80; }
+[class~="w-[282px]"] { width:282px; max-width:calc(100% - 24px); } [class~="w-[82px]"] { width:82px; } [class~="w-[86px]"] { width:86px; } [class~="w-[92px]"] { width:92px; } [class~="h-[110px]"] { height:110px; } [class~="h-[112px]"] { height:112px; } [class~="min-h-[145px]"] { min-height:145px; }
+[class~="grid-cols-2"] > *, [class~="grid-cols-4"] > *, [class~="grid-cols-5"] > *, [class~="grid-cols-7"] > * { -webkit-box-sizing:border-box; box-sizing:border-box; }
+.ios6-tab-item { -webkit-box-align:center; -webkit-box-pack:center; text-align:center; }
+.ios6-alert-backdrop { position:absolute; top:0; right:0; bottom:0; left:0; }
+
+</style>
 </head>
 <body class="theme-leather">
   <div class="desktop-stage">
@@ -174,482 +459,297 @@
   </div>
 
   <script>
-    let audioCtx = null;
-    function getAudioCtx() {
-      if (!audioCtx) {
-        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-        if (AudioContextClass) audioCtx = new AudioContextClass();
-      }
-      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-      return audioCtx;
-    }
-
-    function playSound(type) {
-      if (!state.settings.soundEffects) return;
-      try {
-        const ctx = getAudioCtx();
-        if (!ctx) return;
-        const now = ctx.currentTime;
-        if (type === 'tock') {
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(920, now);
-          osc.frequency.exponentialRampToValueAtTime(190, now + 0.028);
-          gain.gain.setValueAtTime(0.28, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
-          osc.connect(gain); gain.connect(ctx.destination);
-          osc.start(now); osc.stop(now + 0.032);
-        } else if (type === 'shutter') {
-          const bufferSize = ctx.sampleRate * 0.09;
-          const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
-          const data = buffer.getChannelData(0);
-          for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx.sampleRate * 0.02));
-          const noise = ctx.createBufferSource(); noise.buffer = buffer;
-          const filter = ctx.createBiquadFilter(); filter.type = 'bandpass'; filter.frequency.value = 1800;
-          const gain = ctx.createGain(); gain.gain.setValueAtTime(0.45, now);
-          noise.connect(filter); filter.connect(gain); gain.connect(ctx.destination);
-          noise.start(now);
-        } else if (type === 'stamp') {
-          const osc = ctx.createOscillator(); const gain = ctx.createGain();
-          osc.type = 'sine'; osc.frequency.setValueAtTime(150, now);
-          osc.frequency.exponentialRampToValueAtTime(42, now + 0.14);
-          gain.gain.setValueAtTime(0.45, now); gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
-          osc.connect(gain); gain.connect(ctx.destination);
-          osc.start(now); osc.stop(now + 0.17);
-        } else if (type === 'cassette') {
-          [261.63, 329.63, 392.00, 493.88].forEach((f, idx) => {
-            const osc = ctx.createOscillator(); const gain = ctx.createGain();
-            osc.type = 'sine'; osc.frequency.setValueAtTime(f, now + idx * 0.04);
-            gain.gain.setValueAtTime(0.08, now + idx * 0.04);
-            gain.gain.exponentialRampToValueAtTime(0.0008, now + 1.1);
-            osc.connect(gain); gain.connect(ctx.destination);
-            osc.start(now + idx * 0.04); osc.stop(now + 1.15);
-          });
+/* ES5 polyfills for MobileSafari on iOS 6 */
+(function(){
+ if(!String.prototype.padStart){String.prototype.padStart=function(n,s){var x=String(this),p=s||' ';while(x.length<n)x=p+x;return x.slice(-n);};}
+ if(!String.prototype.includes){String.prototype.includes=function(x){return this.indexOf(x)!==-1;};}
+ if(!Array.prototype.find){Array.prototype.find=function(fn,ctx){for(var i=0;i<this.length;i++)if(fn.call(ctx,this[i],i,this))return this[i];};}
+ if(!Array.prototype.includes){Array.prototype.includes=function(x){return this.indexOf(x)!==-1;};}
+ if(typeof NodeList!=='undefined'&&!NodeList.prototype.forEach){NodeList.prototype.forEach=Array.prototype.forEach;}
+ if(!window.requestAnimationFrame){window.requestAnimationFrame=function(fn){return setTimeout(fn,16);};}
+})();
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
         }
-      } catch (e) {}
-    }
-
-    const STORAGE_KEY = 'whengram_ios6_ilya_v1';
-    const MOODS = [
-      { id: 'fire', label: 'Ахуенно', emoji: '🔥', color: '#e85338' },
-      { id: 'warm', label: 'Лампово', emoji: '☕', color: '#d4892a' },
-      { id: 'sad',  label: 'Тильт',   emoji: '🌧️', color: '#4c7fb8' },
-      { id: 'idea', label: 'Инсайт',  emoji: '💡', color: '#58a846' },
-      { id: 'vibe', label: 'Ностальгия', emoji: '📼', color: '#8f5bbd' }
-    ];
-
-    const PHOTO_PRESETS = [
-      { id: 'ip4s_lock', label: 'Экран 17:40', filter: 'filter-bw', caption: '19 окт • вечерний вайб', svgBg: 'linear-gradient(135deg, #2b3036 0%, #0f1114 100%)', icon: '17:40' },
-      { id: 'autumn_coffee', label: 'Осенний эспрессо', filter: 'filter-earlybird', caption: 'Earlybird • Сенно', svgBg: 'linear-gradient(135deg, #7c4728 0%, #2e1608 100%)', icon: '☕' },
-      { id: 'night_walk', label: 'Ночной вайб', filter: 'filter-xpro', caption: 'X-Pro II • Сенно', svgBg: 'linear-gradient(135deg, #1b2d52 0%, #4a1c40 100%)', icon: '🌃' },
-      { id: 'retro_4s', label: 'iPhone 4S', filter: 'filter-1977', caption: 'Retina 3.5" • Легенда', svgBg: 'linear-gradient(135deg, #5e4b3c 0%, #241b14 100%)', icon: '📱' }
-    ];
-
-    const DEFAULT_STATE = {
-      currentTab: 'home',
-      memoriesViewMode: 'timeline',
-      selectedWeekDay: 19,
-      searchQuery: '',
-      playingCassetteId: null,
-      settings: { userName: 'Илья', theme: 'leather', soundEffects: true },
-      memories: [
-        { id: 'mem_oct19', day: 19, month: 'ОКТЯБРЬ 2026', weekdayShort: 'ПН', dateFormatted: '19 октября 2026', title: 'ой да в пизду((((((', text: 'блч такой уебскиц день сегодня выдался, но зато запилил кастомное приложение под iOS 6 для своего 4S.', mood: 'sad', photoPreset: 'ip4s_lock', filter: 'filter-bw', hasCassette: true, cassetteTitle: 'Lo-Fi Кассета №1', weather: '+7°C Пасмурно' }
-      ],
-      milestones: [
-        { id: 'ms_1', title: 'Вторая жизнь iPhone 4S', category: 'Личный проект', date: '19 ОКТ 2026', icon: 'fa-mobile-screen-button', note: 'Создал уникальную капсулу времени под iOS 6 без всяких маков и ПК.' }
-      ]
+        return t;
     };
-
-    let state = loadState();
-    function loadState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return JSON.parse(JSON.stringify(DEFAULT_STATE));
-        return { ...DEFAULT_STATE, ...JSON.parse(raw) };
-      } catch (e) { return JSON.parse(JSON.stringify(DEFAULT_STATE)); }
+    return __assign.apply(this, arguments);
+};
+var audioCtx = null;
+function getAudioCtx() {
+    if (!audioCtx) {
+        var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass)
+            audioCtx = new AudioContextClass();
     }
-    function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {} }
-
-    function initApp() { applyThemeClass(); updateClock(); setInterval(updateClock, 15000); renderApp(); }
-    function updateClock() {
-      const el = document.getElementById('statusBarClock');
-      if (!el) return;
-      const now = new Date();
-      el.textContent = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+    if (audioCtx && audioCtx.state === 'suspended')
+        audioCtx.resume();
+    return audioCtx;
+}
+function playSound(type) {
+    if (!state.settings.soundEffects)
+        return;
+    try {
+        var ctx_1 = getAudioCtx();
+        if (!ctx_1)
+            return;
+        var now_1 = ctx_1.currentTime;
+        if (type === 'tock') {
+            var osc = ctx_1.createOscillator();
+            var gain = ctx_1.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(920, now_1);
+            osc.frequency.exponentialRampToValueAtTime(190, now_1 + 0.028);
+            gain.gain.setValueAtTime(0.28, now_1);
+            gain.gain.exponentialRampToValueAtTime(0.001, now_1 + 0.03);
+            osc.connect(gain);
+            gain.connect(ctx_1.destination);
+            osc.start(now_1);
+            osc.stop(now_1 + 0.032);
+        }
+        else if (type === 'shutter') {
+            var bufferSize = ctx_1.sampleRate * 0.09;
+            var buffer = ctx_1.createBuffer(1, bufferSize, ctx_1.sampleRate);
+            var data = buffer.getChannelData(0);
+            for (var i = 0; i < bufferSize; i++)
+                data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (ctx_1.sampleRate * 0.02));
+            var noise = ctx_1.createBufferSource();
+            noise.buffer = buffer;
+            var filter = ctx_1.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.value = 1800;
+            var gain = ctx_1.createGain();
+            gain.gain.setValueAtTime(0.45, now_1);
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(ctx_1.destination);
+            noise.start(now_1);
+        }
+        else if (type === 'stamp') {
+            var osc = ctx_1.createOscillator();
+            var gain = ctx_1.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(150, now_1);
+            osc.frequency.exponentialRampToValueAtTime(42, now_1 + 0.14);
+            gain.gain.setValueAtTime(0.45, now_1);
+            gain.gain.exponentialRampToValueAtTime(0.001, now_1 + 0.16);
+            osc.connect(gain);
+            gain.connect(ctx_1.destination);
+            osc.start(now_1);
+            osc.stop(now_1 + 0.17);
+        }
+        else if (type === 'cassette') {
+            [261.63, 329.63, 392.00, 493.88].forEach(function (f, idx) {
+                var osc = ctx_1.createOscillator();
+                var gain = ctx_1.createGain();
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(f, now_1 + idx * 0.04);
+                gain.gain.setValueAtTime(0.08, now_1 + idx * 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.0008, now_1 + 1.1);
+                osc.connect(gain);
+                gain.connect(ctx_1.destination);
+                osc.start(now_1 + idx * 0.04);
+                osc.stop(now_1 + 1.15);
+            });
+        }
     }
-    function applyThemeClass() {
-      document.body.classList.remove('theme-leather', 'theme-steel', 'theme-obsidian');
-      document.body.classList.add(`theme-${state.settings.theme}`);
+    catch (e) { }
+}
+var STORAGE_KEY = 'whengram_ios6_ilya_v1';
+var MOODS = [
+    { id: 'fire', label: 'Ахуенно', emoji: '🔥', color: '#e85338' },
+    { id: 'warm', label: 'Лампово', emoji: '☕', color: '#d4892a' },
+    { id: 'sad', label: 'Тильт', emoji: '🌧️', color: '#4c7fb8' },
+    { id: 'idea', label: 'Инсайт', emoji: '💡', color: '#58a846' },
+    { id: 'vibe', label: 'Ностальгия', emoji: '📼', color: '#8f5bbd' }
+];
+var PHOTO_PRESETS = [
+    { id: 'ip4s_lock', label: 'Экран 17:40', filter: 'filter-bw', caption: '19 окт • вечерний вайб', svgBg: 'linear-gradient(135deg, #2b3036 0%, #0f1114 100%)', icon: '17:40' },
+    { id: 'autumn_coffee', label: 'Осенний эспрессо', filter: 'filter-earlybird', caption: 'Earlybird • Сенно', svgBg: 'linear-gradient(135deg, #7c4728 0%, #2e1608 100%)', icon: '☕' },
+    { id: 'night_walk', label: 'Ночной вайб', filter: 'filter-xpro', caption: 'X-Pro II • Сенно', svgBg: 'linear-gradient(135deg, #1b2d52 0%, #4a1c40 100%)', icon: '🌃' },
+    { id: 'retro_4s', label: 'iPhone 4S', filter: 'filter-1977', caption: 'Retina 3.5" • Легенда', svgBg: 'linear-gradient(135deg, #5e4b3c 0%, #241b14 100%)', icon: '📱' }
+];
+var DEFAULT_STATE = {
+    currentTab: 'home',
+    memoriesViewMode: 'timeline',
+    selectedWeekDay: 19,
+    searchQuery: '',
+    playingCassetteId: null,
+    settings: { userName: 'Илья', theme: 'leather', soundEffects: true },
+    memories: [
+        { id: 'mem_oct19', day: 19, month: 'ОКТЯБРЬ 2026', weekdayShort: 'ПН', dateFormatted: '19 октября 2026', title: 'ой да в пизду((((((', text: 'блч такой уебскиц день сегодня выдался, но зато запилил кастомное приложение под iOS 6 для своего 4S.', mood: 'sad', photoPreset: 'ip4s_lock', filter: 'filter-bw', hasCassette: true, cassetteTitle: 'Lo-Fi Кассета №1', weather: '+7°C Пасмурно' }
+    ],
+    milestones: [
+        { id: 'ms_1', title: 'Вторая жизнь iPhone 4S', category: 'Личный проект', date: '19 ОКТ 2026', icon: 'fa-mobile-screen-button', note: 'Создал уникальную капсулу времени под iOS 6 без всяких маков и ПК.' }
+    ]
+};
+var state = loadState();
+function loadState() {
+    try {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw)
+            return JSON.parse(JSON.stringify(DEFAULT_STATE));
+        return __assign(__assign({}, DEFAULT_STATE), JSON.parse(raw));
     }
-    function pressHomeButton() { playSound('tock'); closeModal(); if (state.currentTab !== 'home') switchTab('home'); }
-    function switchTab(tabId) { playSound('tock'); state.currentTab = tabId; saveState(); document.querySelectorAll('.ios6-tab-item').forEach(el => el.classList.remove('active')); document.getElementById(`tab-${tabId}`)?.classList.add('active'); renderApp(); }
-
-    function renderApp() {
-      const nav = document.getElementById('topNavBar');
-      const vp = document.getElementById('mainViewport');
-      if (!nav || !vp) return;
-      if (state.currentTab === 'home') { renderHomeNav(nav); renderHomeView(vp); }
-      else if (state.currentTab === 'memories') { renderMemoriesNav(nav); renderMemoriesView(vp); }
-      else if (state.currentTab === 'milestones') { renderMilestonesNav(nav); renderMilestonesView(vp); }
-      else if (state.currentTab === 'settings') { renderSettingsNav(nav); renderSettingsView(vp); }
+    catch (e) {
+        return JSON.parse(JSON.stringify(DEFAULT_STATE));
     }
-
-    function renderHomeNav(nav) {
-      nav.innerHTML = `
-        <button class="ios6-nav-btn" onclick="openRandomCapsule()"><i class="fa-solid fa-dice text-amber-200"></i><span>Капсула</span></button>
-        <div class="ios6-nav-title flex items-center gap-1"><span>WHENGRAM</span><span class="text-[#ff5938]">.</span></div>
-        <button class="ios6-nav-btn red-action" onclick="openNewMemoryModal()"><i class="fa-solid fa-pen-fancy"></i><span>Запись</span></button>
-      `;
+}
+function saveState() { try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+}
+catch (e) { } }
+function initApp() { applyThemeClass(); updateClock(); setInterval(updateClock, 15000); renderApp(); }
+function updateClock() {
+    var el = document.getElementById('statusBarClock');
+    if (!el)
+        return;
+    var now = new Date();
+    el.textContent = "".concat(String(now.getHours()).padStart(2, '0'), ":").concat(String(now.getMinutes()).padStart(2, '0'));
+}
+function applyThemeClass() {
+    document.body.classList.remove('theme-leather', 'theme-steel', 'theme-obsidian');
+    document.body.classList.add("theme-".concat(state.settings.theme));
+}
+function pressHomeButton() { playSound('tock'); closeModal(); if (state.currentTab !== 'home')
+    switchTab('home'); }
+function switchTab(tabId) { var _a; playSound('tock'); state.currentTab = tabId; saveState(); document.querySelectorAll('.ios6-tab-item').forEach(function (el) { return el.classList.remove('active'); }); (_a = document.getElementById("tab-".concat(tabId))) === null || _a === void 0 ? void 0 : _a.classList.add('active'); renderApp(); }
+function renderApp() {
+    var nav = document.getElementById('topNavBar');
+    var vp = document.getElementById('mainViewport');
+    if (!nav || !vp)
+        return;
+    if (state.currentTab === 'home') {
+        renderHomeNav(nav);
+        renderHomeView(vp);
     }
-
-    function renderHomeView(vp) {
-      vp.className = 'ios6-content bg-journal-desk p-2.5 space-y-2.5';
-      const todayMemory = state.memories.find(m => m.day === state.selectedWeekDay);
-      const weekDays = [{label:'П', num:19}, {label:'В', num:20}, {label:'С', num:21}, {label:'Ч', num:22}, {label:'П', num:23}, {label:'С', num:24}, {label:'В', num:25}];
-
-      vp.innerHTML = `
-        <div class="paper-card overflow-hidden">
-          <div class="torn-top-edge"></div>
-          <div class="p-3">
-            <div class="flex items-center justify-between text-[10px] font-bold text-[#786552] border-b border-[#dcd1bc] pb-1.5 mb-2">
-              <span>ПОНЕДЕЛЬНИК, 19 ОКТЯБРЯ 2026 Г.</span>
-              <span class="bg-[#3b2819] text-[#f7ebd4] px-1.5 py-0.5 rounded shadow-inner">№ 292</span>
-            </div>
-            <div class="text-[10px] font-extrabold uppercase text-[#6e5d4c] mb-0.5">ДОБРОЕ УТРО, <span class="text-[#c9381e]">${escapeHtml(state.settings.userName.toUpperCase())}</span></div>
-            <h1 class="text-[19px] font-extrabold leading-tight text-[#211912] mb-1" style="font-family: var(--ios-serif);">Что сегодня произошло?</h1>
-            <p class="text-[12px] leading-snug text-[#5c4d3c] mb-3">То единственное, что стоит запомнить сегодня, пока оно не ускользнуло.</p>
-            <button class="ios6-big-cta" onclick="openNewMemoryModal(${state.selectedWeekDay})"><span>НАПИСАТЬ ВОСПОМИНАНИЕ</span><i class="fa-solid fa-arrow-right"></i></button>
-          </div>
-        </div>
-
-        <div class="rounded-lg p-2.5 border border-black/60 shadow-lg" style="background: linear-gradient(to bottom, #2a2420, #1a1613);">
-          <div class="flex items-center justify-between text-[10px] font-bold text-[#d4c5b4] pb-1.5 mb-2 border-b border-white/10">
-            <span>WHEN<strong class="text-white">WEEK</strong></span><span class="text-[#a89887]">ЗАПИСАНО: <strong class="text-amber-300">${state.memories.length}</strong></span>
-          </div>
-          <div class="grid grid-cols-7 gap-1">
-            ${weekDays.map(d => {
-              const hasMem = state.memories.some(m => m.day === d.num);
-              const isSelected = state.selectedWeekDay === d.num;
-              return `<div onclick="selectWeekDay(${d.num})" class="flip-tile py-1.5 flex flex-col items-center justify-center ${isSelected ? 'active-day' : ''}"><span class="text-[9px] font-bold opacity-75">${d.label}</span><span class="text-[13px] font-extrabold my-0.5">${d.num}</span><div class="led-dot ${hasMem ? 'on' : ''}"></div></div>`;
-            }).join('')}
-          </div>
-          <div class="mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-[#cfc2b4]">
-            ${todayMemory ? `<div class="truncate pr-2"><span class="text-amber-300 font-bold">${todayMemory.day} окт:</span> <span>«${escapeHtml(todayMemory.title)}»</span></div><button onclick="switchTab('memories')" class="text-[10px] font-bold text-amber-300 underline">Открыть →</button>` : `<span class="text-[10px] text-[#9e8f80]">Нет записей за этот день</span><button onclick="openNewMemoryModal(${state.selectedWeekDay})" class="text-[10px] font-bold text-[#ff7052] underline">+ Записать</button>`}
-          </div>
-        </div>
-
-        <div class="paper-card p-2.5">
-          <div class="flex items-center justify-between text-[10px] font-bold text-[#6e5c49] border-b border-[#ded3be] pb-1 mb-2"><span>WHEN<strong class="text-[#261c14]">LOG</strong> СТАТИСТИКА</span><span>С ОКТ. 2026</span></div>
-          <div class="space-y-1.5 text-[12px] font-bold">
-            <div class="flex items-center justify-between py-1 border-b border-dashed border-[#ded3be]">
-              <span class="text-[#4a3e31]"><i class="fa-solid fa-book text-[#8c5832]"></i> ВОСПОМИНАНИЯ</span><span class="flip-tile px-2 py-0.5">${state.memories.length}</span>
-            </div>
-            <div class="flex items-center justify-between py-1 border-b border-dashed border-[#ded3be]">
-              <span class="text-[#4a3e31]"><i class="fa-solid fa-trophy text-[#c48b28]"></i> ВЕХИ ЖИЗНИ</span><span class="flip-tile px-2 py-0.5">${state.milestones.length}</span>
-            </div>
-            <div class="pt-0.5">
-              <div class="flex items-center justify-between mb-1"><span class="text-[#4a3e31] text-[11px]">ДЕНЬ ГОДА (2026 НА СЕГОДНЯ)</span><span class="text-[#c9381e] font-extrabold">292 / 365</span></div>
-              <div class="ios6-progress-track"><div class="ios6-progress-fill" style="width: 80%;"></div></div>
-            </div>
-          </div>
-        </div>
-      `;
+    else if (state.currentTab === 'memories') {
+        renderMemoriesNav(nav);
+        renderMemoriesView(vp);
     }
-
-    function selectWeekDay(d) { playSound('tock'); state.selectedWeekDay = d; saveState(); renderApp(); }
-
-    function renderMemoriesNav(nav) {
-      nav.innerHTML = `
-        <div class="ios6-segmented" style="width: 124px;">
-          <div class="ios6-seg-btn ${state.memoriesViewMode === 'timeline' ? 'active' : ''}" onclick="setMemoriesMode('timeline')"><i class="fa-solid fa-list-ul text-[10px]"></i> Лента</div>
-          <div class="ios6-seg-btn ${state.memoriesViewMode === 'shelf' ? 'active' : ''}" onclick="setMemoriesMode('shelf')"><i class="fa-solid fa-book-bookmark text-[10px]"></i> Полка</div>
-        </div>
-        <div class="ios6-nav-title text-[15px]">Воспоминания</div>
-        <button class="ios6-nav-btn blue-action" onclick="openNewMemoryModal()"><i class="fa-solid fa-plus"></i><span>Новое</span></button>
-      `;
+    else if (state.currentTab === 'milestones') {
+        renderMilestonesNav(nav);
+        renderMilestonesView(vp);
     }
-
-    function setMemoriesMode(m) { playSound('tock'); state.memoriesViewMode = m; saveState(); renderApp(); }
-
-    function renderMemoriesView(vp) {
-      if (state.memoriesViewMode === 'shelf') { renderWhenshelfWoodenView(vp); return; }
-      vp.className = 'ios6-content bg-dark-linen flex flex-col';
-      const q = (state.searchQuery || '').trim().toLowerCase();
-      const filtered = state.memories.filter(m => !q || m.title.toLowerCase().includes(q) || m.text.toLowerCase().includes(q));
-
-      vp.innerHTML = `
-        <div class="ios6-search-bar">
-          <div class="ios6-search-input-wrap">
-            <i class="fa-solid fa-magnifying-glass text-gray-400 text-xs"></i>
-            <input type="text" placeholder="Поиск воспоминаний..." value="${escapeHtml(state.searchQuery)}" oninput="handleMemorySearch(this.value)" />
-          </div>
-        </div>
-        <div class="px-3 py-1.5 bg-gradient-to-b from-[#3d424a] to-[#262a30] border-b border-black flex items-center justify-between text-[11px] font-bold text-gray-200">
-          <span>ОКТЯБРЬ 2026</span><span class="text-amber-300">${filtered.length} ВОСПОМИНАНИЯ</span>
-        </div>
-        <div class="p-2.5 space-y-2.5 flex-1">
-          ${filtered.map(m => {
-            const moodObj = MOODS.find(x => x.id === m.mood) || MOODS[0];
-            const preset = PHOTO_PRESETS.find(p => p.id === m.photoPreset) || PHOTO_PRESETS[0];
-            const isPlaying = state.playingCassetteId === m.id;
-            return `
-              <div class="paper-card p-2.5">
-                <div class="flex items-start gap-2.5">
-                  <div class="w-10 flex-shrink-0 text-center pr-2 border-r border-[#d6cbb5]">
-                    <div class="text-[18px] font-extrabold leading-none text-[#241b13]">${m.day}</div>
-                    <div class="w-5 h-1 bg-[#d93b20] mx-auto my-1 rounded-full"></div>
-                    <div class="text-[9.5px] font-bold text-[#786856]">${m.weekdayShort}</div>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <div class="flex items-center gap-1 mb-0.5"><span class="text-[10px] px-1.5 py-0.2 rounded bg-[#e8decb] font-bold text-[#4a3c2c]">${moodObj.emoji}${moodObj.label}</span></div>
-                    <h3 class="font-extrabold text-[14px] text-[#1c140d] leading-snug mb-0.5">${escapeHtml(m.title)}</h3>
-                    <p class="text-[11.5px] text-[#4d4033] leading-snug">${escapeHtml(m.text)}</p>
-                  </div>
-                  <div class="polaroid-frame w-16 flex-shrink-0 cursor-pointer" onclick="openMemoryDetailModal('${m.id}')">
-                    <div class="w-full h-12 rounded-sm flex flex-col items-center justify-center text-white font-extrabold text-xs ${m.filter || ''}" style="background: ${preset.svgBg};"><span>${preset.icon}</span></div>
-                  </div>
-                </div>
-                ${m.hasCassette ? `
-                  <div onclick="toggleCassettePlay('${m.id}')" class="mt-2 p-1.5 rounded border border-[#302720] flex items-center justify-between cursor-pointer text-white" style="background: linear-gradient(to bottom, #3b332c, #1f1a16);">
-                    <div class="flex items-center gap-2">
-                      <div class="flex items-center gap-1 bg-black/60 px-1.5 py-1 rounded border border-white/15">
-                        <i class="fa-solid fa-compact-disc text-[11px] text-amber-300 ${isPlaying ? 'reel-spinning' : ''}"></i>
-                      </div>
-                      <div>
-                        <div class="text-[10px] font-bold text-amber-200">${escapeHtml(m.cassetteTitle || 'Аудио-заметка')}</div>
-                        <div class="text-[8.5px] text-gray-400">${isPlaying ? 'Воспроизведение...' : 'Нажмите для прослушивания'}</div>
-                      </div>
-                    </div>
-                    <span class="text-[10px] px-2 py-0.5 rounded bg-amber-600/80 font-bold">${isPlaying ? 'СТОП' : 'PLAY ►'}</span>
-                  </div>
-                ` : ''}
-              </div>
-            `;
-          }).join('')}
-          <div onclick="setMemoriesMode('shelf')" class="paper-card p-3 mt-3 flex items-center justify-between cursor-pointer">
-            <div><div class="text-[15px] font-extrabold text-[#1a130c]">WHENSHELF<span class="text-[#d93b20]">.</span></div><div class="text-[10px] font-bold text-[#73624f]">ОТКРЫТЬ КНИЖНУЮ ПОЛКУ iBOOKS</div></div>
-            <div class="w-10 h-10 rounded-lg border border-[#a89882] bg-[#f5ebd6] flex items-center justify-center text-[#c9381e] text-lg font-extrabold"><i class="fa-solid fa-book-atlas"></i></div>
-          </div>
-        </div>
-      `;
+    else if (state.currentTab === 'settings') {
+        renderSettingsNav(nav);
+        renderSettingsView(vp);
     }
-
-    function handleMemorySearch(val) { state.searchQuery = val; renderMemoriesView(document.getElementById('mainViewport')); const input = document.querySelector('.ios6-search-input-wrap input'); if(input) { input.focus(); input.setSelectionRange(input.value.length, input.value.length); } }
-    function toggleCassettePlay(id) { playSound('cassette'); state.playingCassetteId = (state.playingCassetteId === id ? null : id); renderApp(); }
-
-    function renderWhenshelfWoodenView(vp) {
-      vp.className = 'ios6-content bg-wood-shelf flex flex-col justify-between';
-      vp.innerHTML = `
-        <div>
-          <div class="px-3 py-2 text-center border-b border-black/50 bg-black/30"><div class="text-xs font-extrabold text-amber-200 tracking-widest uppercase">WHENSHELF • КОЛЛЕКЦИЯ ТОМОВ</div></div>
-          <div class="pt-5 px-4 flex items-end justify-around min-h-[145px]">
-            ${state.memories.slice(0, 3).map((m, idx) => `
-              <div onclick="openMemoryDetailModal('${m.id}')" class="w-[82px] h-[112px] rounded-r-md p-2 flex flex-col justify-between cursor-pointer border border-black/60 shadow-xl" style="background: linear-gradient(to right, #591c15 0%, #8f2d22 14%, #732219 100%);">
-                <div class="text-[8px] font-bold text-amber-200">${m.day} ОКТ</div>
-                <div class="bg-[#f5ebd6] text-[#2b1e12] px-1 py-1 rounded-sm text-[9px] font-extrabold text-center">${escapeHtml(m.title)}</div>
-                <div class="text-[7.5px] text-amber-100/75 text-center font-bold">ТОМ №${idx+1}</div>
-              </div>
-            `).join('')}
-          </div>
-          <div class="shelf-plank"></div>
-          <div class="pt-5 px-4 flex items-end justify-around min-h-[145px]">
-            <div onclick="openNewMemoryModal()" class="w-[86px] h-[110px] rounded-md border-2 border-dashed border-amber-200/45 bg-black/25 flex flex-col items-center justify-center text-amber-200 cursor-pointer p-2 text-center"><i class="fa-solid fa-plus-circle text-xl mb-1"></i><span class="text-[9.5px] font-bold">Новый том</span></div>
-            <div onclick="openRandomCapsule()" class="w-[92px] h-[112px] rounded-r-md p-2 flex flex-col justify-between cursor-pointer border border-black/60" style="background: linear-gradient(to right, #4a3520 0%, #755534 15%);"><div class="text-[8px] font-bold text-amber-300 text-center">АРХИВ</div><div class="text-center text-2xl">🕰️</div><div class="text-[8.5px] font-bold text-white text-center bg-black/40 rounded">Случайная</div></div>
-          </div>
-          <div class="shelf-plank"></div>
-        </div>
-        <div class="p-2.5 text-center"><button onclick="setMemoriesMode('timeline')" class="ios6-nav-btn w-full justify-center py-2"><i class="fa-solid fa-arrow-left"></i> Вернуться к ленте</button></div>
-      `;
+}
+function renderHomeNav(nav) {
+    nav.innerHTML = "\n        <button class=\"ios6-nav-btn\" onclick=\"openRandomCapsule()\"><i class=\"fa-solid fa-dice text-amber-200\"></i><span>\u041A\u0430\u043F\u0441\u0443\u043B\u0430</span></button>\n        <div class=\"ios6-nav-title flex items-center gap-1\"><span>WHENGRAM</span><span class=\"text-[#ff5938]\">.</span></div>\n        <button class=\"ios6-nav-btn red-action\" onclick=\"openNewMemoryModal()\"><i class=\"fa-solid fa-pen-fancy\"></i><span>\u0417\u0430\u043F\u0438\u0441\u044C</span></button>\n      ";
+}
+function renderHomeView(vp) {
+    vp.className = 'ios6-content bg-journal-desk p-2.5 space-y-2.5';
+    var todayMemory = state.memories.find(function (m) { return m.day === state.selectedWeekDay; });
+    var weekDays = [{ label: 'П', num: 19 }, { label: 'В', num: 20 }, { label: 'С', num: 21 }, { label: 'Ч', num: 22 }, { label: 'П', num: 23 }, { label: 'С', num: 24 }, { label: 'В', num: 25 }];
+    vp.innerHTML = "\n        <div class=\"paper-card overflow-hidden\">\n          <div class=\"torn-top-edge\"></div>\n          <div class=\"p-3\">\n            <div class=\"flex items-center justify-between text-[10px] font-bold text-[#786552] border-b border-[#dcd1bc] pb-1.5 mb-2\">\n              <span>\u041F\u041E\u041D\u0415\u0414\u0415\u041B\u042C\u041D\u0418\u041A, 19 \u041E\u041A\u0422\u042F\u0411\u0420\u042F 2026 \u0413.</span>\n              <span class=\"bg-[#3b2819] text-[#f7ebd4] px-1.5 py-0.5 rounded shadow-inner\">\u2116 292</span>\n            </div>\n            <div class=\"text-[10px] font-extrabold uppercase text-[#6e5d4c] mb-0.5\">\u0414\u041E\u0411\u0420\u041E\u0415 \u0423\u0422\u0420\u041E, <span class=\"text-[#c9381e]\">".concat(escapeHtml(state.settings.userName.toUpperCase()), "</span></div>\n            <h1 class=\"text-[19px] font-extrabold leading-tight text-[#211912] mb-1\" style=\"font-family: Georgia, Times New Roman, serif;\">\u0427\u0442\u043E \u0441\u0435\u0433\u043E\u0434\u043D\u044F \u043F\u0440\u043E\u0438\u0437\u043E\u0448\u043B\u043E?</h1>\n            <p class=\"text-[12px] leading-snug text-[#5c4d3c] mb-3\">\u0422\u043E \u0435\u0434\u0438\u043D\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0435, \u0447\u0442\u043E \u0441\u0442\u043E\u0438\u0442 \u0437\u0430\u043F\u043E\u043C\u043D\u0438\u0442\u044C \u0441\u0435\u0433\u043E\u0434\u043D\u044F, \u043F\u043E\u043A\u0430 \u043E\u043D\u043E \u043D\u0435 \u0443\u0441\u043A\u043E\u043B\u044C\u0437\u043D\u0443\u043B\u043E.</p>\n            <button class=\"ios6-big-cta\" onclick=\"openNewMemoryModal(").concat(state.selectedWeekDay, ")\"><span>\u041D\u0410\u041F\u0418\u0421\u0410\u0422\u042C \u0412\u041E\u0421\u041F\u041E\u041C\u0418\u041D\u0410\u041D\u0418\u0415</span><i class=\"fa-solid fa-arrow-right\"></i></button>\n          </div>\n        </div>\n\n        <div class=\"rounded-lg p-2.5 border border-black/60 shadow-lg\" style=\"background: linear-gradient(to bottom, #2a2420, #1a1613);\">\n          <div class=\"flex items-center justify-between text-[10px] font-bold text-[#d4c5b4] pb-1.5 mb-2 border-b border-white/10\">\n            <span>WHEN<strong class=\"text-white\">WEEK</strong></span><span class=\"text-[#a89887]\">\u0417\u0410\u041F\u0418\u0421\u0410\u041D\u041E: <strong class=\"text-amber-300\">").concat(state.memories.length, "</strong></span>\n          </div>\n          <div class=\"grid grid-cols-7 gap-1\">\n            ").concat(weekDays.map(function (d) {
+        var hasMem = state.memories.some(function (m) { return m.day === d.num; });
+        var isSelected = state.selectedWeekDay === d.num;
+        return "<div onclick=\"selectWeekDay(".concat(d.num, ")\" class=\"flip-tile py-1.5 flex flex-col items-center justify-center ").concat(isSelected ? 'active-day' : '', "\"><span class=\"text-[9px] font-bold opacity-75\">").concat(d.label, "</span><span class=\"text-[13px] font-extrabold my-0.5\">").concat(d.num, "</span><div class=\"led-dot ").concat(hasMem ? 'on' : '', "\"></div></div>");
+    }).join(''), "\n          </div>\n          <div class=\"mt-2 pt-2 border-t border-white/10 flex items-center justify-between text-[11px] text-[#cfc2b4]\">\n            ").concat(todayMemory ? "<div class=\"truncate pr-2\"><span class=\"text-amber-300 font-bold\">".concat(todayMemory.day, " \u043E\u043A\u0442:</span> <span>\u00AB").concat(escapeHtml(todayMemory.title), "\u00BB</span></div><button onclick=\"switchTab('memories')\" class=\"text-[10px] font-bold text-amber-300 underline\">\u041E\u0442\u043A\u0440\u044B\u0442\u044C \u2192</button>") : "<span class=\"text-[10px] text-[#9e8f80]\">\u041D\u0435\u0442 \u0437\u0430\u043F\u0438\u0441\u0435\u0439 \u0437\u0430 \u044D\u0442\u043E\u0442 \u0434\u0435\u043D\u044C</span><button onclick=\"openNewMemoryModal(".concat(state.selectedWeekDay, ")\" class=\"text-[10px] font-bold text-[#ff7052] underline\">+ \u0417\u0430\u043F\u0438\u0441\u0430\u0442\u044C</button>"), "\n          </div>\n        </div>\n\n        <div class=\"paper-card p-2.5\">\n          <div class=\"flex items-center justify-between text-[10px] font-bold text-[#6e5c49] border-b border-[#ded3be] pb-1 mb-2\"><span>WHEN<strong class=\"text-[#261c14]\">LOG</strong> \u0421\u0422\u0410\u0422\u0418\u0421\u0422\u0418\u041A\u0410</span><span>\u0421 \u041E\u041A\u0422. 2026</span></div>\n          <div class=\"space-y-1.5 text-[12px] font-bold\">\n            <div class=\"flex items-center justify-between py-1 border-b border-dashed border-[#ded3be]\">\n              <span class=\"text-[#4a3e31]\"><i class=\"fa-solid fa-book text-[#8c5832]\"></i> \u0412\u041E\u0421\u041F\u041E\u041C\u0418\u041D\u0410\u041D\u0418\u042F</span><span class=\"flip-tile px-2 py-0.5\">").concat(state.memories.length, "</span>\n            </div>\n            <div class=\"flex items-center justify-between py-1 border-b border-dashed border-[#ded3be]\">\n              <span class=\"text-[#4a3e31]\"><i class=\"fa-solid fa-trophy text-[#c48b28]\"></i> \u0412\u0415\u0425\u0418 \u0416\u0418\u0417\u041D\u0418</span><span class=\"flip-tile px-2 py-0.5\">").concat(state.milestones.length, "</span>\n            </div>\n            <div class=\"pt-0.5\">\n              <div class=\"flex items-center justify-between mb-1\"><span class=\"text-[#4a3e31] text-[11px]\">\u0414\u0415\u041D\u042C \u0413\u041E\u0414\u0410 (2026 \u041D\u0410 \u0421\u0415\u0413\u041E\u0414\u041D\u042F)</span><span class=\"text-[#c9381e] font-extrabold\">292 / 365</span></div>\n              <div class=\"ios6-progress-track\"><div class=\"ios6-progress-fill\" style=\"width: 80%;\"></div></div>\n            </div>\n          </div>\n        </div>\n      ");
+}
+function selectWeekDay(d) { playSound('tock'); state.selectedWeekDay = d; saveState(); renderApp(); }
+function renderMemoriesNav(nav) {
+    nav.innerHTML = "\n        <div class=\"ios6-segmented\" style=\"width: 124px;\">\n          <div class=\"ios6-seg-btn ".concat(state.memoriesViewMode === 'timeline' ? 'active' : '', "\" onclick=\"setMemoriesMode('timeline')\"><i class=\"fa-solid fa-list-ul text-[10px]\"></i> \u041B\u0435\u043D\u0442\u0430</div>\n          <div class=\"ios6-seg-btn ").concat(state.memoriesViewMode === 'shelf' ? 'active' : '', "\" onclick=\"setMemoriesMode('shelf')\"><i class=\"fa-solid fa-book-bookmark text-[10px]\"></i> \u041F\u043E\u043B\u043A\u0430</div>\n        </div>\n        <div class=\"ios6-nav-title text-[15px]\">\u0412\u043E\u0441\u043F\u043E\u043C\u0438\u043D\u0430\u043D\u0438\u044F</div>\n        <button class=\"ios6-nav-btn blue-action\" onclick=\"openNewMemoryModal()\"><i class=\"fa-solid fa-plus\"></i><span>\u041D\u043E\u0432\u043E\u0435</span></button>\n      ");
+}
+function setMemoriesMode(m) { playSound('tock'); state.memoriesViewMode = m; saveState(); renderApp(); }
+function renderMemoriesView(vp) {
+    if (state.memoriesViewMode === 'shelf') {
+        renderWhenshelfWoodenView(vp);
+        return;
     }
-
-    function renderMilestonesNav(nav) {
-      nav.innerHTML = `<div class="w-12"></div><div class="ios6-nav-title">Вехи</div><button class="ios6-nav-btn red-action" onclick="openNewMilestoneModal()"><i class="fa-solid fa-plus"></i><span>Новая</span></button>`;
-    }
-
-    function renderMilestonesView(vp) {
-      vp.className = 'ios6-content bg-velvet-cabinet p-2.5 space-y-2.5';
-      vp.innerHTML = `
-        <div class="rounded-lg p-2.5 border border-amber-400/35 text-center shadow-lg bg-black/40">
-          <div class="text-[10px] font-bold tracking-widest text-amber-300 uppercase">ДОСТИЖЕНИЯ, КОТОРЫЕ ОПРЕДЕЛЯЮТ ЖИЗНЬ</div>
-          <p class="text-[11px] text-emerald-100/80 mt-0.5">Повышения, поездки, важные покупки и личные победы.</p>
-        </div>
-        <div class="space-y-2.5">
-          ${state.milestones.map(ms => `
-            <div class="paper-card p-2.5 flex items-center gap-3">
-              <div class="wax-seal"><i class="fa-solid ${ms.icon || 'fa-trophy'} text-lg"></i></div>
-              <div class="flex-1 min-w-0">
-                <div class="flex items-center justify-between text-[9.5px] font-bold text-[#8c311c]"><span>${escapeHtml(ms.category.toUpperCase())}</span><span>${escapeHtml(ms.date)}</span></div>
-                <h3 class="text-[14px] font-extrabold text-[#1f160f] leading-tight my-0.5">${escapeHtml(ms.title)}</h3>
-                <p class="text-[11px] text-[#57493b]">${escapeHtml(ms.note)}</p>
-              </div>
-            </div>
-          `).join('')}
-        </div>
-        <div class="paper-card p-3 text-center">
-          <div class="w-12 h-12 rounded-xl mx-auto mb-2 flex items-center justify-center bg-gradient-to-b from-amber-200 to-amber-500 border border-amber-700 text-amber-950 text-xl"><i class="fa-solid fa-award"></i></div>
-          <div class="font-extrabold text-[14px] text-[#211810] mb-1">Новая жизненная веха</div>
-          <button class="ios6-big-cta" onclick="openNewMilestoneModal()"><span>ОТМЕТИТЬ ВЕХУ ПЕЧАТЬЮ</span><i class="fa-solid fa-stamp"></i></button>
-        </div>
-      `;
-    }
-
-    function renderSettingsNav(nav) { nav.innerHTML = `<div class="w-12"></div><div class="ios6-nav-title">Настройки</div><div class="w-12"></div>`; }
-    function renderSettingsView(vp) {
-      vp.className = 'ios6-content bg-pinstripe pb-5';
-      vp.innerHTML = `
-        <div class="text-center pt-3 pb-1">
-          <div class="w-14 h-14 rounded-[13px] mx-auto mb-1.5 flex flex-col items-center justify-center border border-black/40 shadow-lg relative bg-gradient-to-b from-[#fffdf7] to-[#e8dec8]">
-            <div class="w-8 h-0.5 bg-[#d93b20] mb-0.5"></div>
-            <span class="font-black text-xl text-[#1c150e]">W</span>
-          </div>
-          <div class="font-black text-[16px] text-[#2b3340]">WHENGRAM<span class="text-[#d93b20]">.</span></div>
-          <div class="text-[9.5px] font-bold text-[#586375]">IOS 6.1.3 EDITION</div>
-        </div>
-
-        <div class="ios6-group-title">ПРОФИЛЬ ВЛАДЕЛЬЦА</div>
-        <div class="ios6-table-group">
-          <div class="ios6-table-row">
-            <span class="font-bold text-[13px]">Имя</span>
-            <input type="text" value="${escapeHtml(state.settings.userName)}" onchange="updateUserName(this.value)" class="text-right font-semibold text-[13px] text-[#385487] bg-transparent border-b border-dashed border-gray-300 w-32 focus:outline-none" />
-          </div>
-        </div>
-
-        <div class="ios6-group-title">ОСНОВНЫЕ</div>
-        <div class="ios6-table-group">
-          <div class="ios6-table-row">
-            <div><div class="font-bold text-[13px]">Текстура бара</div><div class="text-[10.5px] text-gray-500">Кожа / Сталь / Оникс</div></div>
-            <select onchange="changeThemeSetting(this.value)" class="text-[12px] font-bold text-[#385487] bg-gray-100 border border-gray-300 rounded px-1.5 py-1">
-              <option value="leather" ${state.settings.theme === 'leather'?'selected':''}>Кожа (iOS 6)</option>
-              <option value="steel" ${state.settings.theme === 'steel'?'selected':''}>Сталь</option>
-              <option value="obsidian" ${state.settings.theme === 'obsidian'?'selected':''}>Оникс</option>
-            </select>
-          </div>
-          <div class="ios6-table-row">
-            <div><div class="font-bold text-[13px]">Звуки iOS 6 (Tock)</div></div>
-            <div class="ios6-switch ${state.settings.soundEffects ? 'checked' : ''}" onclick="toggleSetting('soundEffects')">
-              <div class="ios6-switch-track"><div class="switch-on-side">ON</div><div class="switch-off-side">OFF</div><div class="switch-thumb"></div></div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function updateUserName(val) { playSound('tock'); state.settings.userName = val.trim() || 'Илья'; saveState(); }
-    function changeThemeSetting(val) { playSound('tock'); state.settings.theme = val; saveState(); applyThemeClass(); renderApp(); }
-    function toggleSetting(key) { state.settings[key] = !state.settings[key]; playSound('tock'); saveState(); renderApp(); }
-
-    let draftMood = 'fire', draftPreset = 'autumn_coffee', draftFilter = 'filter-earlybird';
-    function openNewMemoryModal(dayOverride) {
-      playSound('tock');
-      const targetDay = dayOverride || 19;
-      const modal = document.getElementById('modalContainer');
-      modal.innerHTML = `
-        <div class="ios6-alert-backdrop" style="padding: 0; align-items: stretch;">
-          <div class="w-full h-full flex flex-col bg-[#2b2118]">
-            <div class="ios6-navbar">
-              <button class="ios6-nav-btn" onclick="closeModal()">Отмена</button>
-              <div class="ios6-nav-title text-[15px]">Запись • ${targetDay} окт</div>
-              <button class="ios6-nav-btn blue-action" onclick="saveNewMemory(${targetDay})">Готово</button>
-            </div>
-            <div class="flex-1 overflow-y-auto p-2.5 space-y-2.5">
-              <div class="paper-card p-2">
-                <div class="text-[10px] font-bold text-[#6e5c49] mb-1.5 uppercase">Настроение:</div>
-                <div class="grid grid-cols-5 gap-1">
-                  ${MOODS.map(m => `<button type="button" onclick="selectDraftMood('${m.id}')" id="moodBtn_${m.id}" class="p-1 rounded border text-center ${m.id === draftMood ? 'bg-amber-200 border-amber-700 font-extrabold' : 'bg-white/70 border-gray-300'}"><div class="text-sm">${m.emoji}</div><div class="text-[8.5px]">${m.label}</div></button>`).join('')}
-                </div>
-              </div>
-              <div class="notes-yellow-pad">
-                <input id="memTitleInput" type="text" placeholder="Заголовок..." class="w-full bg-transparent font-extrabold text-[15px] text-[#2b1d0e] focus:outline-none border-b border-[#d4aa7d]/50 mb-1" />
-                <textarea id="memTextInput" rows="3" placeholder="Что произошло..." class="w-full bg-transparent text-[14px] text-[#362819] focus:outline-none resize-none leading-[24px]"></textarea>
-              </div>
-              <div class="paper-card p-2.5">
-                <div class="text-[10px] font-bold text-[#6e5c49] mb-1.5"><i class="fa-solid fa-camera-retro text-[#c9381e]"></i> ФИЛЬТР 2012</div>
-                <div class="grid grid-cols-4 gap-1 mb-2">
-                  ${PHOTO_PRESETS.map(p => `<button type="button" onclick="selectDraftPhoto('${p.id}', '${p.filter}')" id="photoBtn_${p.id}" class="p-1 rounded border text-center ${p.id === draftPreset ? 'border-[#c9381e] bg-amber-100 font-bold' : 'bg-white'}"><div class="w-full h-7 rounded text-white text-xs ${p.filter}" style="background: ${p.svgBg};">${p.icon}</div><div class="text-[8px] mt-0.5">${p.label}</div></button>`).join('')}
-                </div>
-                <label class="flex items-center justify-between pt-1.5 border-t border-[#e0d5c1] text-[11px] font-bold text-[#3b2f23]"><span>📼 Аудио-кассета</span><input type="checkbox" id="memCassetteCheck" checked class="accent-[#c9381e] w-4 h-4" /></label>
-              </div>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function selectDraftMood(id) { playSound('tock'); draftMood = id; MOODS.forEach(m => document.getElementById(`moodBtn_${m.id}`).className = `p-1 rounded border text-center ${m.id === draftMood ? 'bg-amber-200 border-amber-700 font-extrabold' : 'bg-white/70 border-gray-300'}`); }
-    function selectDraftPhoto(id, flt) { playSound('shutter'); draftPreset = id; draftFilter = flt; PHOTO_PRESETS.forEach(p => document.getElementById(`photoBtn_${p.id}`).className = `p-1 rounded border text-center ${p.id === draftPreset ? 'border-[#c9381e] bg-amber-100 font-bold' : 'bg-white'}`); }
-
-    function saveNewMemory(dayNum) {
-      const title = document.getElementById('memTitleInput')?.value.trim() || 'Момент дня';
-      const text = document.getElementById('memTextInput')?.value.trim() || 'Записано в капсулу времени.';
-      const hasCassette = document.getElementById('memCassetteCheck')?.checked || false;
-      playSound('shutter');
-      state.memories.unshift({ id: 'mem_' + Date.now(), day: dayNum, month: 'ОКТЯБРЬ 2026', weekdayShort: 'ПН', dateFormatted: `${dayNum} октября 2026`, title, text, mood: draftMood, photoPreset: draftPreset, filter: draftFilter, hasCassette, cassetteTitle: 'Lo-Fi Кассета', weather: '+8°C' });
-      saveState(); closeModal(); switchTab('memories');
-    }
-
-    let draftMilestoneIcon = 'fa-trophy';
-    function openNewMilestoneModal() {
-      playSound('tock');
-      const modal = document.getElementById('modalContainer');
-      modal.innerHTML = `
-        <div class="ios6-alert-backdrop">
-          <div class="ios6-alert-box">
-            <div class="font-extrabold text-[15px] mb-1">Новая Веха Жизни</div>
-            <p class="text-[11px] text-blue-100/80 mb-2.5">Запечатлейте важное достижение сургучной печатью:</p>
-            <div class="space-y-2 text-left">
-              <input id="msTitleInput" type="text" placeholder="Название вехи" class="w-full px-2.5 py-1.5 rounded bg-white text-black text-xs font-bold focus:outline-none" />
-              <input id="msCatInput" type="text" placeholder="Категория" class="w-full px-2.5 py-1.5 rounded bg-white text-black text-xs focus:outline-none" />
-              <textarea id="msNoteInput" rows="2" placeholder="Заметка..." class="w-full px-2.5 py-1.5 rounded bg-white text-black text-xs focus:outline-none resize-none"></textarea>
-            </div>
-            <div class="grid grid-cols-2 gap-2 mt-3">
-              <button onclick="closeModal()" class="ios6-nav-btn justify-center py-1.5">Отмена</button>
-              <button onclick="saveNewMilestone()" class="ios6-nav-btn red-action justify-center py-1.5"><i class="fa-solid fa-stamp"></i> Печать!</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function saveNewMilestone() {
-      const title = document.getElementById('msTitleInput')?.value.trim() || 'Важное событие';
-      const category = document.getElementById('msCatInput')?.value.trim() || 'Веха';
-      const note = document.getElementById('msNoteInput')?.value.trim() || '';
-      playSound('stamp');
-      state.milestones.unshift({ id: 'ms_' + Date.now(), title, category, date: '19 ОКТ 2026', icon: 'fa-trophy', note });
-      saveState(); closeModal(); switchTab('milestones');
-    }
-
-    function openMemoryDetailModal(id) {
-      playSound('tock');
-      const m = state.memories.find(x => x.id === id);
-      if (!m) return;
-      const preset = PHOTO_PRESETS.find(p => p.id === m.photoPreset) || PHOTO_PRESETS[0];
-      const modal = document.getElementById('modalContainer');
-      modal.innerHTML = `
-        <div class="ios6-alert-backdrop" onclick="closeModal()">
-          <div class="paper-card p-3 w-[282px]" onclick="event.stopPropagation()">
-            <div class="flex items-center justify-between text-[10px] font-bold text-[#786552] mb-2"><span>${m.dateFormatted}</span></div>
-            <div class="polaroid-frame mx-auto mb-2.5">
-              <div class="w-full h-32 rounded flex flex-col items-center justify-center text-white font-black text-3xl ${m.filter || ''}" style="background: ${preset.svgBg};"><span>${preset.icon}</span></div>
-              <div class="text-center font-extrabold text-[12px] text-[#2b2118] mt-1.5">«${escapeHtml(m.title)}»</div>
-            </div>
-            <p class="text-[12px] text-[#3d3124] leading-snug mb-3 bg-[#f2ead8] p-2 rounded">${escapeHtml(m.text)}</p>
-            <div class="flex gap-2">
-              <button onclick="deleteMemory('${m.id}')" class="ios6-nav-btn red-action flex-1 justify-center"><i class="fa-solid fa-trash-can"></i> Удалить</button>
-              <button onclick="closeModal()" class="ios6-nav-btn blue-action flex-1 justify-center">Закрыть</button>
-            </div>
-          </div>
-        </div>
-      `;
-    }
-
-    function openRandomCapsule() { playSound('stamp'); if (state.memories.length) openMemoryDetailModal(state.memories[Math.floor(Math.random() * state.memories.length)].id); }
-    function deleteMemory(id) { playSound('tock'); state.memories = state.memories.filter(m => m.id !== id); saveState(); closeModal(); renderApp(); }
-    function closeModal() { const modal = document.getElementById('modalContainer'); if (modal) modal.innerHTML = ''; }
-    function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
-
-    window.onload = initApp;
+    vp.className = 'ios6-content bg-dark-linen flex flex-col';
+    var q = (state.searchQuery || '').trim().toLowerCase();
+    var filtered = state.memories.filter(function (m) { return !q || m.title.toLowerCase().includes(q) || m.text.toLowerCase().includes(q); });
+    vp.innerHTML = "\n        <div class=\"ios6-search-bar\">\n          <div class=\"ios6-search-input-wrap\">\n            <i class=\"fa-solid fa-magnifying-glass text-gray-400 text-xs\"></i>\n            <input type=\"text\" placeholder=\"\u041F\u043E\u0438\u0441\u043A \u0432\u043E\u0441\u043F\u043E\u043C\u0438\u043D\u0430\u043D\u0438\u0439...\" value=\"".concat(escapeHtml(state.searchQuery), "\" oninput=\"handleMemorySearch(this.value)\" />\n          </div>\n        </div>\n        <div class=\"px-3 py-1.5 bg-gradient-to-b from-[#3d424a] to-[#262a30] border-b border-black flex items-center justify-between text-[11px] font-bold text-gray-200\">\n          <span>\u041E\u041A\u0422\u042F\u0411\u0420\u042C 2026</span><span class=\"text-amber-300\">").concat(filtered.length, " \u0412\u041E\u0421\u041F\u041E\u041C\u0418\u041D\u0410\u041D\u0418\u042F</span>\n        </div>\n        <div class=\"p-2.5 space-y-2.5 flex-1\">\n          ").concat(filtered.map(function (m) {
+        var moodObj = MOODS.find(function (x) { return x.id === m.mood; }) || MOODS[0];
+        var preset = PHOTO_PRESETS.find(function (p) { return p.id === m.photoPreset; }) || PHOTO_PRESETS[0];
+        var isPlaying = state.playingCassetteId === m.id;
+        return "\n              <div class=\"paper-card p-2.5\">\n                <div class=\"flex items-start gap-2.5\">\n                  <div class=\"w-10 flex-shrink-0 text-center pr-2 border-r border-[#d6cbb5]\">\n                    <div class=\"text-[18px] font-extrabold leading-none text-[#241b13]\">".concat(m.day, "</div>\n                    <div class=\"w-5 h-1 bg-[#d93b20] mx-auto my-1 rounded-full\"></div>\n                    <div class=\"text-[9.5px] font-bold text-[#786856]\">").concat(m.weekdayShort, "</div>\n                  </div>\n                  <div class=\"flex-1 min-w-0\">\n                    <div class=\"flex items-center gap-1 mb-0.5\"><span class=\"text-[10px] px-1.5 py-0.2 rounded bg-[#e8decb] font-bold text-[#4a3c2c]\">").concat(moodObj.emoji).concat(moodObj.label, "</span></div>\n                    <h3 class=\"font-extrabold text-[14px] text-[#1c140d] leading-snug mb-0.5\">").concat(escapeHtml(m.title), "</h3>\n                    <p class=\"text-[11.5px] text-[#4d4033] leading-snug\">").concat(escapeHtml(m.text), "</p>\n                  </div>\n                  <div class=\"polaroid-frame w-16 flex-shrink-0 cursor-pointer\" onclick=\"openMemoryDetailModal('").concat(m.id, "')\">\n                    <div class=\"w-full h-12 rounded-sm flex flex-col items-center justify-center text-white font-extrabold text-xs ").concat(m.filter || '', "\" style=\"background: ").concat(preset.svgBg, ";\"><span>").concat(preset.icon, "</span></div>\n                  </div>\n                </div>\n                ").concat(m.hasCassette ? "\n                  <div onclick=\"toggleCassettePlay('".concat(m.id, "')\" class=\"mt-2 p-1.5 rounded border border-[#302720] flex items-center justify-between cursor-pointer text-white\" style=\"background: linear-gradient(to bottom, #3b332c, #1f1a16);\">\n                    <div class=\"flex items-center gap-2\">\n                      <div class=\"flex items-center gap-1 bg-black/60 px-1.5 py-1 rounded border border-white/15\">\n                        <i class=\"fa-solid fa-compact-disc text-[11px] text-amber-300 ").concat(isPlaying ? 'reel-spinning' : '', "\"></i>\n                      </div>\n                      <div>\n                        <div class=\"text-[10px] font-bold text-amber-200\">").concat(escapeHtml(m.cassetteTitle || 'Аудио-заметка'), "</div>\n                        <div class=\"text-[8.5px] text-gray-400\">").concat(isPlaying ? 'Воспроизведение...' : 'Нажмите для прослушивания', "</div>\n                      </div>\n                    </div>\n                    <span class=\"text-[10px] px-2 py-0.5 rounded bg-amber-600/80 font-bold\">").concat(isPlaying ? 'СТОП' : 'PLAY ►', "</span>\n                  </div>\n                ") : '', "\n              </div>\n            ");
+    }).join(''), "\n          <div onclick=\"setMemoriesMode('shelf')\" class=\"paper-card p-3 mt-3 flex items-center justify-between cursor-pointer\">\n            <div><div class=\"text-[15px] font-extrabold text-[#1a130c]\">WHENSHELF<span class=\"text-[#d93b20]\">.</span></div><div class=\"text-[10px] font-bold text-[#73624f]\">\u041E\u0422\u041A\u0420\u042B\u0422\u042C \u041A\u041D\u0418\u0416\u041D\u0423\u042E \u041F\u041E\u041B\u041A\u0423 iBOOKS</div></div>\n            <div class=\"w-10 h-10 rounded-lg border border-[#a89882] bg-[#f5ebd6] flex items-center justify-center text-[#c9381e] text-lg font-extrabold\"><i class=\"fa-solid fa-book-atlas\"></i></div>\n          </div>\n        </div>\n      ");
+}
+function handleMemorySearch(val) { state.searchQuery = val; renderMemoriesView(document.getElementById('mainViewport')); var input = document.querySelector('.ios6-search-input-wrap input'); if (input) {
+    input.focus();
+    input.setSelectionRange(input.value.length, input.value.length);
+} }
+function toggleCassettePlay(id) { playSound('cassette'); state.playingCassetteId = (state.playingCassetteId === id ? null : id); renderApp(); }
+function renderWhenshelfWoodenView(vp) {
+    vp.className = 'ios6-content bg-wood-shelf flex flex-col justify-between';
+    vp.innerHTML = "\n        <div>\n          <div class=\"px-3 py-2 text-center border-b border-black/50 bg-black/30\"><div class=\"text-xs font-extrabold text-amber-200 tracking-widest uppercase\">WHENSHELF \u2022 \u041A\u041E\u041B\u041B\u0415\u041A\u0426\u0418\u042F \u0422\u041E\u041C\u041E\u0412</div></div>\n          <div class=\"pt-5 px-4 flex items-end justify-around min-h-[145px]\">\n            ".concat(state.memories.slice(0, 3).map(function (m, idx) { return "\n              <div onclick=\"openMemoryDetailModal('".concat(m.id, "')\" class=\"w-[82px] h-[112px] rounded-r-md p-2 flex flex-col justify-between cursor-pointer border border-black/60 shadow-xl\" style=\"background: linear-gradient(to right, #591c15 0%, #8f2d22 14%, #732219 100%);\">\n                <div class=\"text-[8px] font-bold text-amber-200\">").concat(m.day, " \u041E\u041A\u0422</div>\n                <div class=\"bg-[#f5ebd6] text-[#2b1e12] px-1 py-1 rounded-sm text-[9px] font-extrabold text-center\">").concat(escapeHtml(m.title), "</div>\n                <div class=\"text-[7.5px] text-amber-100/75 text-center font-bold\">\u0422\u041E\u041C \u2116").concat(idx + 1, "</div>\n              </div>\n            "); }).join(''), "\n          </div>\n          <div class=\"shelf-plank\"></div>\n          <div class=\"pt-5 px-4 flex items-end justify-around min-h-[145px]\">\n            <div onclick=\"openNewMemoryModal()\" class=\"w-[86px] h-[110px] rounded-md border-2 border-dashed border-amber-200/45 bg-black/25 flex flex-col items-center justify-center text-amber-200 cursor-pointer p-2 text-center\"><i class=\"fa-solid fa-plus-circle text-xl mb-1\"></i><span class=\"text-[9.5px] font-bold\">\u041D\u043E\u0432\u044B\u0439 \u0442\u043E\u043C</span></div>\n            <div onclick=\"openRandomCapsule()\" class=\"w-[92px] h-[112px] rounded-r-md p-2 flex flex-col justify-between cursor-pointer border border-black/60\" style=\"background: linear-gradient(to right, #4a3520 0%, #755534 15%);\"><div class=\"text-[8px] font-bold text-amber-300 text-center\">\u0410\u0420\u0425\u0418\u0412</div><div class=\"text-center text-2xl\">\uD83D\uDD70\uFE0F</div><div class=\"text-[8.5px] font-bold text-white text-center bg-black/40 rounded\">\u0421\u043B\u0443\u0447\u0430\u0439\u043D\u0430\u044F</div></div>\n          </div>\n          <div class=\"shelf-plank\"></div>\n        </div>\n        <div class=\"p-2.5 text-center\"><button onclick=\"setMemoriesMode('timeline')\" class=\"ios6-nav-btn w-full justify-center py-2\"><i class=\"fa-solid fa-arrow-left\"></i> \u0412\u0435\u0440\u043D\u0443\u0442\u044C\u0441\u044F \u043A \u043B\u0435\u043D\u0442\u0435</button></div>\n      ");
+}
+function renderMilestonesNav(nav) {
+    nav.innerHTML = "<div class=\"w-12\"></div><div class=\"ios6-nav-title\">\u0412\u0435\u0445\u0438</div><button class=\"ios6-nav-btn red-action\" onclick=\"openNewMilestoneModal()\"><i class=\"fa-solid fa-plus\"></i><span>\u041D\u043E\u0432\u0430\u044F</span></button>";
+}
+function renderMilestonesView(vp) {
+    vp.className = 'ios6-content bg-velvet-cabinet p-2.5 space-y-2.5';
+    vp.innerHTML = "\n        <div class=\"rounded-lg p-2.5 border border-amber-400/35 text-center shadow-lg bg-black/40\">\n          <div class=\"text-[10px] font-bold tracking-widest text-amber-300 uppercase\">\u0414\u041E\u0421\u0422\u0418\u0416\u0415\u041D\u0418\u042F, \u041A\u041E\u0422\u041E\u0420\u042B\u0415 \u041E\u041F\u0420\u0415\u0414\u0415\u041B\u042F\u042E\u0422 \u0416\u0418\u0417\u041D\u042C</div>\n          <p class=\"text-[11px] text-emerald-100/80 mt-0.5\">\u041F\u043E\u0432\u044B\u0448\u0435\u043D\u0438\u044F, \u043F\u043E\u0435\u0437\u0434\u043A\u0438, \u0432\u0430\u0436\u043D\u044B\u0435 \u043F\u043E\u043A\u0443\u043F\u043A\u0438 \u0438 \u043B\u0438\u0447\u043D\u044B\u0435 \u043F\u043E\u0431\u0435\u0434\u044B.</p>\n        </div>\n        <div class=\"space-y-2.5\">\n          ".concat(state.milestones.map(function (ms) { return "\n            <div class=\"paper-card p-2.5 flex items-center gap-3\">\n              <div class=\"wax-seal\"><i class=\"fa-solid ".concat(ms.icon || 'fa-trophy', " text-lg\"></i></div>\n              <div class=\"flex-1 min-w-0\">\n                <div class=\"flex items-center justify-between text-[9.5px] font-bold text-[#8c311c]\"><span>").concat(escapeHtml(ms.category.toUpperCase()), "</span><span>").concat(escapeHtml(ms.date), "</span></div>\n                <h3 class=\"text-[14px] font-extrabold text-[#1f160f] leading-tight my-0.5\">").concat(escapeHtml(ms.title), "</h3>\n                <p class=\"text-[11px] text-[#57493b]\">").concat(escapeHtml(ms.note), "</p>\n              </div>\n            </div>\n          "); }).join(''), "\n        </div>\n        <div class=\"paper-card p-3 text-center\">\n          <div class=\"w-12 h-12 rounded-xl mx-auto mb-2 flex items-center justify-center bg-gradient-to-b from-amber-200 to-amber-500 border border-amber-700 text-amber-950 text-xl\"><i class=\"fa-solid fa-award\"></i></div>\n          <div class=\"font-extrabold text-[14px] text-[#211810] mb-1\">\u041D\u043E\u0432\u0430\u044F \u0436\u0438\u0437\u043D\u0435\u043D\u043D\u0430\u044F \u0432\u0435\u0445\u0430</div>\n          <button class=\"ios6-big-cta\" onclick=\"openNewMilestoneModal()\"><span>\u041E\u0422\u041C\u0415\u0422\u0418\u0422\u042C \u0412\u0415\u0425\u0423 \u041F\u0415\u0427\u0410\u0422\u042C\u042E</span><i class=\"fa-solid fa-stamp\"></i></button>\n        </div>\n      ");
+}
+function renderSettingsNav(nav) { nav.innerHTML = "<div class=\"w-12\"></div><div class=\"ios6-nav-title\">\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438</div><div class=\"w-12\"></div>"; }
+function renderSettingsView(vp) {
+    vp.className = 'ios6-content bg-pinstripe pb-5';
+    vp.innerHTML = "\n        <div class=\"text-center pt-3 pb-1\">\n          <div class=\"w-14 h-14 rounded-[13px] mx-auto mb-1.5 flex flex-col items-center justify-center border border-black/40 shadow-lg relative bg-gradient-to-b from-[#fffdf7] to-[#e8dec8]\">\n            <div class=\"w-8 h-0.5 bg-[#d93b20] mb-0.5\"></div>\n            <span class=\"font-black text-xl text-[#1c150e]\">W</span>\n          </div>\n          <div class=\"font-black text-[16px] text-[#2b3340]\">WHENGRAM<span class=\"text-[#d93b20]\">.</span></div>\n          <div class=\"text-[9.5px] font-bold text-[#586375]\">IOS 6.1.3 EDITION</div>\n        </div>\n\n        <div class=\"ios6-group-title\">\u041F\u0420\u041E\u0424\u0418\u041B\u042C \u0412\u041B\u0410\u0414\u0415\u041B\u042C\u0426\u0410</div>\n        <div class=\"ios6-table-group\">\n          <div class=\"ios6-table-row\">\n            <span class=\"font-bold text-[13px]\">\u0418\u043C\u044F</span>\n            <input type=\"text\" value=\"".concat(escapeHtml(state.settings.userName), "\" onchange=\"updateUserName(this.value)\" class=\"text-right font-semibold text-[13px] text-[#385487] bg-transparent border-b border-dashed border-gray-300 w-32 focus:outline-none\" />\n          </div>\n        </div>\n\n        <div class=\"ios6-group-title\">\u041E\u0421\u041D\u041E\u0412\u041D\u042B\u0415</div>\n        <div class=\"ios6-table-group\">\n          <div class=\"ios6-table-row\">\n            <div><div class=\"font-bold text-[13px]\">\u0422\u0435\u043A\u0441\u0442\u0443\u0440\u0430 \u0431\u0430\u0440\u0430</div><div class=\"text-[10.5px] text-gray-500\">\u041A\u043E\u0436\u0430 / \u0421\u0442\u0430\u043B\u044C / \u041E\u043D\u0438\u043A\u0441</div></div>\n            <select onchange=\"changeThemeSetting(this.value)\" class=\"text-[12px] font-bold text-[#385487] bg-gray-100 border border-gray-300 rounded px-1.5 py-1\">\n              <option value=\"leather\" ").concat(state.settings.theme === 'leather' ? 'selected' : '', ">\u041A\u043E\u0436\u0430 (iOS 6)</option>\n              <option value=\"steel\" ").concat(state.settings.theme === 'steel' ? 'selected' : '', ">\u0421\u0442\u0430\u043B\u044C</option>\n              <option value=\"obsidian\" ").concat(state.settings.theme === 'obsidian' ? 'selected' : '', ">\u041E\u043D\u0438\u043A\u0441</option>\n            </select>\n          </div>\n          <div class=\"ios6-table-row\">\n            <div><div class=\"font-bold text-[13px]\">\u0417\u0432\u0443\u043A\u0438 iOS 6 (Tock)</div></div>\n            <div class=\"ios6-switch ").concat(state.settings.soundEffects ? 'checked' : '', "\" onclick=\"toggleSetting('soundEffects')\">\n              <div class=\"ios6-switch-track\"><div class=\"switch-on-side\">ON</div><div class=\"switch-off-side\">OFF</div><div class=\"switch-thumb\"></div></div>\n            </div>\n          </div>\n        </div>\n      ");
+}
+function updateUserName(val) { playSound('tock'); state.settings.userName = val.trim() || 'Илья'; saveState(); }
+function changeThemeSetting(val) { playSound('tock'); state.settings.theme = val; saveState(); applyThemeClass(); renderApp(); }
+function toggleSetting(key) { state.settings[key] = !state.settings[key]; playSound('tock'); saveState(); renderApp(); }
+var draftMood = 'fire', draftPreset = 'autumn_coffee', draftFilter = 'filter-earlybird';
+function openNewMemoryModal(dayOverride) {
+    playSound('tock');
+    var targetDay = dayOverride || 19;
+    var modal = document.getElementById('modalContainer');
+    modal.innerHTML = "\n        <div class=\"ios6-alert-backdrop\" style=\"padding: 0; align-items: stretch;\">\n          <div class=\"w-full h-full flex flex-col bg-[#2b2118]\">\n            <div class=\"ios6-navbar\">\n              <button class=\"ios6-nav-btn\" onclick=\"closeModal()\">\u041E\u0442\u043C\u0435\u043D\u0430</button>\n              <div class=\"ios6-nav-title text-[15px]\">\u0417\u0430\u043F\u0438\u0441\u044C \u2022 ".concat(targetDay, " \u043E\u043A\u0442</div>\n              <button class=\"ios6-nav-btn blue-action\" onclick=\"saveNewMemory(").concat(targetDay, ")\">\u0413\u043E\u0442\u043E\u0432\u043E</button>\n            </div>\n            <div class=\"flex-1 overflow-y-auto p-2.5 space-y-2.5\">\n              <div class=\"paper-card p-2\">\n                <div class=\"text-[10px] font-bold text-[#6e5c49] mb-1.5 uppercase\">\u041D\u0430\u0441\u0442\u0440\u043E\u0435\u043D\u0438\u0435:</div>\n                <div class=\"grid grid-cols-5 gap-1\">\n                  ").concat(MOODS.map(function (m) { return "<button type=\"button\" onclick=\"selectDraftMood('".concat(m.id, "')\" id=\"moodBtn_").concat(m.id, "\" class=\"p-1 rounded border text-center ").concat(m.id === draftMood ? 'bg-amber-200 border-amber-700 font-extrabold' : 'bg-white/70 border-gray-300', "\"><div class=\"text-sm\">").concat(m.emoji, "</div><div class=\"text-[8.5px]\">").concat(m.label, "</div></button>"); }).join(''), "\n                </div>\n              </div>\n              <div class=\"notes-yellow-pad\">\n                <input id=\"memTitleInput\" type=\"text\" placeholder=\"\u0417\u0430\u0433\u043E\u043B\u043E\u0432\u043E\u043A...\" class=\"w-full bg-transparent font-extrabold text-[15px] text-[#2b1d0e] focus:outline-none border-b border-[#d4aa7d]/50 mb-1\" />\n                <textarea id=\"memTextInput\" rows=\"3\" placeholder=\"\u0427\u0442\u043E \u043F\u0440\u043E\u0438\u0437\u043E\u0448\u043B\u043E...\" class=\"w-full bg-transparent text-[14px] text-[#362819] focus:outline-none resize-none leading-[24px]\"></textarea>\n              </div>\n              <div class=\"paper-card p-2.5\">\n                <div class=\"text-[10px] font-bold text-[#6e5c49] mb-1.5\"><i class=\"fa-solid fa-camera-retro text-[#c9381e]\"></i> \u0424\u0418\u041B\u042C\u0422\u0420 2012</div>\n                <div class=\"grid grid-cols-4 gap-1 mb-2\">\n                  ").concat(PHOTO_PRESETS.map(function (p) { return "<button type=\"button\" onclick=\"selectDraftPhoto('".concat(p.id, "', '").concat(p.filter, "')\" id=\"photoBtn_").concat(p.id, "\" class=\"p-1 rounded border text-center ").concat(p.id === draftPreset ? 'border-[#c9381e] bg-amber-100 font-bold' : 'bg-white', "\"><div class=\"w-full h-7 rounded text-white text-xs ").concat(p.filter, "\" style=\"background: ").concat(p.svgBg, ";\">").concat(p.icon, "</div><div class=\"text-[8px] mt-0.5\">").concat(p.label, "</div></button>"); }).join(''), "\n                </div>\n                <label class=\"flex items-center justify-between pt-1.5 border-t border-[#e0d5c1] text-[11px] font-bold text-[#3b2f23]\"><span>\uD83D\uDCFC \u0410\u0443\u0434\u0438\u043E-\u043A\u0430\u0441\u0441\u0435\u0442\u0430</span><input type=\"checkbox\" id=\"memCassetteCheck\" checked class=\"accent-[#c9381e] w-4 h-4\" /></label>\n              </div>\n            </div>\n          </div>\n        </div>\n      ");
+}
+function selectDraftMood(id) { playSound('tock'); draftMood = id; MOODS.forEach(function (m) { return document.getElementById("moodBtn_".concat(m.id)).className = "p-1 rounded border text-center ".concat(m.id === draftMood ? 'bg-amber-200 border-amber-700 font-extrabold' : 'bg-white/70 border-gray-300'); }); }
+function selectDraftPhoto(id, flt) { playSound('shutter'); draftPreset = id; draftFilter = flt; PHOTO_PRESETS.forEach(function (p) { return document.getElementById("photoBtn_".concat(p.id)).className = "p-1 rounded border text-center ".concat(p.id === draftPreset ? 'border-[#c9381e] bg-amber-100 font-bold' : 'bg-white'); }); }
+function saveNewMemory(dayNum) {
+    var _a, _b, _c;
+    var title = ((_a = document.getElementById('memTitleInput')) === null || _a === void 0 ? void 0 : _a.value.trim()) || 'Момент дня';
+    var text = ((_b = document.getElementById('memTextInput')) === null || _b === void 0 ? void 0 : _b.value.trim()) || 'Записано в капсулу времени.';
+    var hasCassette = ((_c = document.getElementById('memCassetteCheck')) === null || _c === void 0 ? void 0 : _c.checked) || false;
+    playSound('shutter');
+    state.memories.unshift({ id: 'mem_' + Date.now(), day: dayNum, month: 'ОКТЯБРЬ 2026', weekdayShort: 'ПН', dateFormatted: "".concat(dayNum, " \u043E\u043A\u0442\u044F\u0431\u0440\u044F 2026"), title: title, text: text, mood: draftMood, photoPreset: draftPreset, filter: draftFilter, hasCassette: hasCassette, cassetteTitle: 'Lo-Fi Кассета', weather: '+8°C' });
+    saveState();
+    closeModal();
+    switchTab('memories');
+}
+var draftMilestoneIcon = 'fa-trophy';
+function openNewMilestoneModal() {
+    playSound('tock');
+    var modal = document.getElementById('modalContainer');
+    modal.innerHTML = "\n        <div class=\"ios6-alert-backdrop\">\n          <div class=\"ios6-alert-box\">\n            <div class=\"font-extrabold text-[15px] mb-1\">\u041D\u043E\u0432\u0430\u044F \u0412\u0435\u0445\u0430 \u0416\u0438\u0437\u043D\u0438</div>\n            <p class=\"text-[11px] text-blue-100/80 mb-2.5\">\u0417\u0430\u043F\u0435\u0447\u0430\u0442\u043B\u0435\u0439\u0442\u0435 \u0432\u0430\u0436\u043D\u043E\u0435 \u0434\u043E\u0441\u0442\u0438\u0436\u0435\u043D\u0438\u0435 \u0441\u0443\u0440\u0433\u0443\u0447\u043D\u043E\u0439 \u043F\u0435\u0447\u0430\u0442\u044C\u044E:</p>\n            <div class=\"space-y-2 text-left\">\n              <input id=\"msTitleInput\" type=\"text\" placeholder=\"\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0432\u0435\u0445\u0438\" class=\"w-full px-2.5 py-1.5 rounded bg-white text-black text-xs font-bold focus:outline-none\" />\n              <input id=\"msCatInput\" type=\"text\" placeholder=\"\u041A\u0430\u0442\u0435\u0433\u043E\u0440\u0438\u044F\" class=\"w-full px-2.5 py-1.5 rounded bg-white text-black text-xs focus:outline-none\" />\n              <textarea id=\"msNoteInput\" rows=\"2\" placeholder=\"\u0417\u0430\u043C\u0435\u0442\u043A\u0430...\" class=\"w-full px-2.5 py-1.5 rounded bg-white text-black text-xs focus:outline-none resize-none\"></textarea>\n            </div>\n            <div class=\"grid grid-cols-2 gap-2 mt-3\">\n              <button onclick=\"closeModal()\" class=\"ios6-nav-btn justify-center py-1.5\">\u041E\u0442\u043C\u0435\u043D\u0430</button>\n              <button onclick=\"saveNewMilestone()\" class=\"ios6-nav-btn red-action justify-center py-1.5\"><i class=\"fa-solid fa-stamp\"></i> \u041F\u0435\u0447\u0430\u0442\u044C!</button>\n            </div>\n          </div>\n        </div>\n      ";
+}
+function saveNewMilestone() {
+    var _a, _b, _c;
+    var title = ((_a = document.getElementById('msTitleInput')) === null || _a === void 0 ? void 0 : _a.value.trim()) || 'Важное событие';
+    var category = ((_b = document.getElementById('msCatInput')) === null || _b === void 0 ? void 0 : _b.value.trim()) || 'Веха';
+    var note = ((_c = document.getElementById('msNoteInput')) === null || _c === void 0 ? void 0 : _c.value.trim()) || '';
+    playSound('stamp');
+    state.milestones.unshift({ id: 'ms_' + Date.now(), title: title, category: category, date: '19 ОКТ 2026', icon: 'fa-trophy', note: note });
+    saveState();
+    closeModal();
+    switchTab('milestones');
+}
+function openMemoryDetailModal(id) {
+    playSound('tock');
+    var m = state.memories.find(function (x) { return x.id === id; });
+    if (!m)
+        return;
+    var preset = PHOTO_PRESETS.find(function (p) { return p.id === m.photoPreset; }) || PHOTO_PRESETS[0];
+    var modal = document.getElementById('modalContainer');
+    modal.innerHTML = "\n        <div class=\"ios6-alert-backdrop\" onclick=\"closeModal()\">\n          <div class=\"paper-card p-3 w-[282px]\" onclick=\"event.stopPropagation()\">\n            <div class=\"flex items-center justify-between text-[10px] font-bold text-[#786552] mb-2\"><span>".concat(m.dateFormatted, "</span></div>\n            <div class=\"polaroid-frame mx-auto mb-2.5\">\n              <div class=\"w-full h-32 rounded flex flex-col items-center justify-center text-white font-black text-3xl ").concat(m.filter || '', "\" style=\"background: ").concat(preset.svgBg, ";\"><span>").concat(preset.icon, "</span></div>\n              <div class=\"text-center font-extrabold text-[12px] text-[#2b2118] mt-1.5\">\u00AB").concat(escapeHtml(m.title), "\u00BB</div>\n            </div>\n            <p class=\"text-[12px] text-[#3d3124] leading-snug mb-3 bg-[#f2ead8] p-2 rounded\">").concat(escapeHtml(m.text), "</p>\n            <div class=\"flex gap-2\">\n              <button onclick=\"deleteMemory('").concat(m.id, "')\" class=\"ios6-nav-btn red-action flex-1 justify-center\"><i class=\"fa-solid fa-trash-can\"></i> \u0423\u0434\u0430\u043B\u0438\u0442\u044C</button>\n              <button onclick=\"closeModal()\" class=\"ios6-nav-btn blue-action flex-1 justify-center\">\u0417\u0430\u043A\u0440\u044B\u0442\u044C</button>\n            </div>\n          </div>\n        </div>\n      ");
+}
+function openRandomCapsule() { playSound('stamp'); if (state.memories.length)
+    openMemoryDetailModal(state.memories[Math.floor(Math.random() * state.memories.length)].id); }
+function deleteMemory(id) { playSound('tock'); state.memories = state.memories.filter(function (m) { return m.id !== id; }); saveState(); closeModal(); renderApp(); }
+function closeModal() { var modal = document.getElementById('modalContainer'); if (modal)
+    modal.innerHTML = ''; }
+function escapeHtml(str) { return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+window.onload = initApp;
   </script>
 </body>
 </html>
