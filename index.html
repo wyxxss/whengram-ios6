@@ -16,46 +16,33 @@
     }
     * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; user-select: none; }
     input, textarea { user-select: text; }
+    body, html {
+      margin: 0; padding: 0; width: 100%; height: 100%; font-family: var(--ios-font); background: #14171a;
+      overflow: hidden;
+    }
     body {
-      margin: 0; padding: 0; font-family: var(--ios-font); background: #14171a;
       background-image: radial-gradient(circle at 50% 25%, rgba(65, 85, 110, 0.35) 0%, rgba(12, 15, 20, 0.95) 75%), repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 2px, transparent 2px, transparent 4px);
-      min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow-x: hidden; color: #222;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
     }
-    .desktop-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; min-height: 100vh; padding: 16px; }
+    .desktop-stage { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; height: 100%; }
     .iphone-4s-chassis {
-      position: relative; width: 364px; height: 706px; background: #0a0a0a; border-radius: 54px; padding: 113px 22px 113px 22px;
-      box-shadow: 0 0 0 2px #2c2d30, 0 0 0 6px #8c9094, 0 0 0 7px #404245, 0 30px 65px rgba(0, 0, 0, 0.85), inset 0 2px 6px rgba(255, 255, 255, 0.28), inset 0 -2px 6px rgba(255, 255, 255, 0.2);
+      position: relative; width: 320px; height: 480px; background: #000; border-radius: 0; padding: 0;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.8); overflow: hidden; display: flex; flex-direction: column;
     }
-    .iphone-4s-chassis::before, .iphone-4s-chassis::after { content: ""; position: absolute; left: -7px; right: -7px; height: 4px; background: #222; pointer-events: none; z-index: 0; }
-    .iphone-4s-chassis::before { top: 88px; }
-    .iphone-4s-chassis::after { bottom: 88px; }
-    .hw-btn-mute { position: absolute; left: -10px; top: 115px; width: 3px; height: 24px; background: linear-gradient(to bottom, #b4b8bc, #6e7276); border-radius: 2px 0 0 2px; }
-    .hw-btn-vol-up { position: absolute; left: -10px; top: 160px; width: 3px; height: 28px; background: linear-gradient(to bottom, #b4b8bc, #6e7276); border-radius: 2px 0 0 2px; }
-    .hw-btn-vol-down { position: absolute; left: -10px; top: 205px; width: 3px; height: 28px; background: linear-gradient(to bottom, #b4b8bc, #6e7276); border-radius: 2px 0 0 2px; }
-    .hw-btn-power { position: absolute; right: 48px; top: -10px; width: 48px; height: 3px; background: linear-gradient(to right, #b4b8bc, #6e7276); border-radius: 2px 2px 0 0; }
-    .chassis-glare { position: absolute; inset: 0; border-radius: 54px; background: linear-gradient(125deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.03) 32%, transparent 32.5%); pointer-events: none; z-index: 40; }
-    .earpiece-cluster { position: absolute; top: 46px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 10px; }
-    .proximity-sensor { width: 18px; height: 4px; background: #171717; border-radius: 4px; box-shadow: inset 0 1px 2px #000; }
-    .earpiece-row { display: flex; align-items: center; gap: 14px; }
-    .front-camera { width: 11px; height: 11px; border-radius: 50%; background: radial-gradient(circle at 40% 40%, #3b588c 0%, #101929 50%, #090909 100%); }
-    .earpiece-grill { width: 56px; height: 8px; border-radius: 6px; background: radial-gradient(#111 35%, transparent 40%) 0 0 / 3px 3px, #2a2a2a; border: 1px solid #050505; box-shadow: inset 0 2px 3px rgba(0,0,0,0.9); }
-    .home-button { position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%); width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(circle at 50% 85%, #242424 0%, #090909 70%, #020202 100%); border: 1px solid #2b2b2b; box-shadow: inset 0 -3px 6px rgba(255,255,255,0.12), inset 0 4px 8px rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 45; }
-    .home-squircle { width: 21px; height: 21px; border: 1.8px solid #6b6b6b; border-radius: 6px; }
-    .ios6-screen { position: relative; width: 320px; height: 480px; background: #000; overflow: hidden; display: flex; flex-direction: column; z-index: 10; }
     
-    body.fullscreen-mode .desktop-stage { padding: 0; }
-    body.fullscreen-mode .iphone-4s-chassis { width: 100vw; height: 100vh; max-width: 480px; border-radius: 0; padding: 0; box-shadow: none; background: transparent; }
-    body.fullscreen-mode .iphone-4s-chassis::before, body.fullscreen-mode .iphone-4s-chassis::after, body.fullscreen-mode .earpiece-cluster, body.fullscreen-mode .home-button, body.fullscreen-mode .chassis-glare, body.fullscreen-mode .hw-btn-mute, body.fullscreen-mode .hw-btn-vol-up, body.fullscreen-mode .hw-btn-vol-down, body.fullscreen-mode .hw-btn-power, body.fullscreen-mode .desktop-toolbar { display: none !important; }
-    body.fullscreen-mode .ios6-screen { width: 100%; height: 100vh; }
-
-    @media (max-width: 420px) {
-      .desktop-stage { padding: 0 !important; }
-      .iphone-4s-chassis { width: 100vw !important; height: 100vh !important; border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; }
-      .iphone-4s-chassis::before, .iphone-4s-chassis::after, .earpiece-cluster, .home-button, .chassis-glare, .hw-btn-mute, .hw-btn-vol-up, .hw-btn-vol-down, .hw-btn-power, .desktop-toolbar { display: none !important; }
-      .ios6-screen { width: 100vw !important; height: 100vh !important; }
+    /* Скрываем десктопные элементы рамки на мобилках / в сафари */
+    .iphone-4s-chassis::before, .iphone-4s-chassis::after, .hw-btn-mute, .hw-btn-vol-up, .hw-btn-vol-down, .hw-btn-power, .chassis-glare, .earpiece-cluster, .home-button, .desktop-toolbar {
+      display: none !important;
     }
 
-    .ios6-statusbar { height: 20px; width: 100%; background: linear-gradient(to bottom, #2c2c2c 0%, #141414 50%, #000 100%); border-bottom: 1px solid rgba(255,255,255,0.12); color: #e8e8e8; font-size: 11.5px; font-weight: 700; display: flex; align-items: center; justify-content: space-between; padding: 0 5px; z-index: 30; }
+    .ios6-screen { position: relative; width: 100%; height: 100%; background: #000; overflow: hidden; display: flex; flex-direction: column; z-index: 10; }
+
+    .ios6-statusbar {
+      height: 20px; min-height: 20px; width: 100%;
+      background: linear-gradient(to bottom, #2c2c2c 0%, #141414 50%, #000 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.12); color: #e8e8e8; font-size: 11.5px; font-weight: 700;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 5px; flex-shrink: 0; z-index: 30;
+    }
     .signal-bars { display: flex; align-items: flex-end; gap: 1.5px; height: 10px; margin-right: 4px; }
     .signal-bars span { width: 2.5px; background: #fff; border-radius: 0.5px; }
     .signal-bars span:nth-child(1) { height: 3px; } .signal-bars span:nth-child(2) { height: 5px; } .signal-bars span:nth-child(3) { height: 7px; } .signal-bars span:nth-child(4) { height: 9px; } .signal-bars span:nth-child(5) { height: 11px; }
@@ -63,7 +50,9 @@
     .battery-shell::after { content: ""; position: absolute; right: -3px; top: 2px; width: 2px; height: 4px; background: #b5b5b5; border-radius: 0 1px 1px 0; }
     .battery-fill { width: 96%; height: 100%; background: linear-gradient(to bottom, #94f768 0%, #4cd92b 50%, #30b514 51%, #57e838 100%); }
 
-    .ios6-navbar { height: 44px; width: 100%; position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; z-index: 25; }
+    .ios6-navbar {
+      height: 44px; min-height: 44px; width: 100%; position: relative; display: flex; align-items: center; justify-content: space-between; padding: 0 8px; flex-shrink: 0; z-index: 25;
+    }
     .theme-leather .ios6-navbar { background-color: #4f311c; background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 0), radial-gradient(rgba(0,0,0,0.18) 1px, transparent 0), linear-gradient(to bottom, #7a4e32 0%, #593720 49%, #472b18 51%, #382010 100%); background-size: 4px 4px, 4px 4px, 100% 100%; border-top: 1px solid #966647; border-bottom: 1px solid #1f1108; box-shadow: 0 2px 5px rgba(0,0,0,0.45); }
     .theme-steel .ios6-navbar { background: linear-gradient(to bottom, #b2c0d0 0%, #879bb3 49%, #7288a3 51%, #566e8b 100%); border-top: 1px solid #cdd7e2; border-bottom: 1px solid #2e3d4f; }
     .theme-obsidian .ios6-navbar { background: linear-gradient(to bottom, #42454a 0%, #27292d 49%, #181a1d 51%, #111214 100%); border-top: 1px solid #63676e; border-bottom: 1px solid #050505; }
@@ -73,7 +62,7 @@
     .ios6-nav-btn.blue-action { background: linear-gradient(to bottom, #6aa5e8 0%, #397cd0 49%, #2366be 51%, #1a54a6 100%); border-color: #0d3268; }
     .ios6-nav-btn.red-action { background: linear-gradient(to bottom, #f07b65 0%, #d9462b 49%, #c43016 51%, #a3220b 100%); border-color: #5c1003; }
 
-    .ios6-content { flex: 1; overflow-y: auto; overflow-x: hidden; position: relative; -webkit-overflow-scrolling: touch; }
+    .ios6-content { flex: 1; overflow-y: scroll; -webkit-overflow-scrolling: touch; position: relative; }
     .bg-pinstripe { background-color: #c5ccd4; background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.35) 0px, rgba(255,255,255,0.35) 5px, rgba(0,0,0,0.03) 5px, rgba(0,0,0,0.03) 7px); }
     .bg-dark-linen { background-color: #26282b; background-image: radial-gradient(circle at 50% 20%, #353940 0%, #1b1d20 100%); }
     .bg-journal-desk { background-color: #2f231b; background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 0), linear-gradient(to bottom, #3a2a1f 0%, #241912 100%); background-size: 5px 5px, 100% 100%; }
@@ -124,7 +113,11 @@
     @keyframes spinReel { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     .reel-spinning { animation: spinReel 2.4s linear infinite; }
 
-    .ios6-tabbar { height: 49px; width: 100%; background: linear-gradient(to bottom, #303030 0%, #171717 49%, #000000 100%); border-top: 1px solid #595959; display: grid; grid-template-columns: repeat(4, 1fr); padding: 2px 4px; z-index: 30; }
+    .ios6-tabbar {
+      height: 49px; min-height: 49px; width: 100%;
+      background: linear-gradient(to bottom, #303030 0%, #171717 49%, #000000 100%);
+      border-top: 1px solid #595959; display: grid; grid-template-columns: repeat(4, 1fr); padding: 2px 4px; flex-shrink: 0; z-index: 30;
+    }
     .ios6-tab-item { display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 5px; cursor: pointer; padding-top: 2px; }
     .ios6-tab-item.active { background: linear-gradient(to bottom, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.02) 50%, rgba(255,255,255,0.1) 100%); }
     .ios6-tab-icon { font-size: 18px; color: #8c8c8c; margin-bottom: 1px; }
@@ -138,29 +131,7 @@
 </head>
 <body class="theme-leather">
   <div class="desktop-stage">
-    <div class="desktop-toolbar mb-3 flex items-center gap-2 bg-black/60 border border-white/15 px-3 py-1.5 rounded-full text-xs text-gray-200 shadow-lg backdrop-blur">
-      <span class="font-bold text-amber-300 flex items-center gap-1.5"><i class="fa-brands fa-apple text-sm"></i> iPhone 4S (320×480)</span>
-      <span class="text-white/25">|</span>
-      <button onclick="toggleChassisMode()" id="chassisToggleBtn" class="hover:text-white underline cursor-pointer">Развернуть без рамки</button>
-      <span class="text-white/25">|</span>
-      <button onclick="cycleThemeQuick()" class="hover:text-amber-300 cursor-pointer flex items-center gap-1"><i class="fa-solid fa-palette"></i> Скин iOS 6</button>
-    </div>
-
     <div class="iphone-4s-chassis" id="iphoneChassis">
-      <div class="hw-btn-mute"></div>
-      <div class="hw-btn-vol-up"></div>
-      <div class="hw-btn-vol-down"></div>
-      <div class="hw-btn-power"></div>
-      <div class="chassis-glare"></div>
-
-      <div class="earpiece-cluster">
-        <div class="proximity-sensor"></div>
-        <div class="earpiece-row">
-          <div class="front-camera"></div>
-          <div class="earpiece-grill"></div>
-        </div>
-      </div>
-
       <div class="ios6-screen" id="iosScreen">
         <div class="ios6-statusbar">
           <div class="flex items-center">
@@ -199,8 +170,6 @@
 
         <div id="modalContainer"></div>
       </div>
-
-      <div class="home-button" onclick="pressHomeButton()"><div class="home-squircle"></div></div>
     </div>
   </div>
 
@@ -283,7 +252,7 @@
       selectedWeekDay: 19,
       searchQuery: '',
       playingCassetteId: null,
-      settings: { userName: 'Илья', theme: 'leather', soundEffects: true, chassisMode: true },
+      settings: { userName: 'Илья', theme: 'leather', soundEffects: true },
       memories: [
         { id: 'mem_oct19', day: 19, month: 'ОКТЯБРЬ 2026', weekdayShort: 'ПН', dateFormatted: '19 октября 2026', title: 'ой да в пизду((((((', text: 'блч такой уебскиц день сегодня выдался, но зато запилил кастомное приложение под iOS 6 для своего 4S.', mood: 'sad', photoPreset: 'ip4s_lock', filter: 'filter-bw', hasCassette: true, cassetteTitle: 'Lo-Fi Кассета №1', weather: '+7°C Пасмурно' }
       ],
@@ -302,7 +271,7 @@
     }
     function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {} }
 
-    function initApp() { applyThemeClass(); applyChassisMode(); updateClock(); setInterval(updateClock, 15000); renderApp(); }
+    function initApp() { applyThemeClass(); updateClock(); setInterval(updateClock, 15000); renderApp(); }
     function updateClock() {
       const el = document.getElementById('statusBarClock');
       if (!el) return;
@@ -312,18 +281,6 @@
     function applyThemeClass() {
       document.body.classList.remove('theme-leather', 'theme-steel', 'theme-obsidian');
       document.body.classList.add(`theme-${state.settings.theme}`);
-    }
-    function applyChassisMode() {
-      const btn = document.getElementById('chassisToggleBtn');
-      if (state.settings.chassisMode) { document.body.classList.remove('fullscreen-mode'); if(btn) btn.textContent = 'Развернуть без рамки'; }
-      else { document.body.classList.add('fullscreen-mode'); if(btn) btn.textContent = 'Вернуть корпус iPhone 4S'; }
-    }
-    function toggleChassisMode() { playSound('tock'); state.settings.chassisMode = !state.settings.chassisMode; saveState(); applyChassisMode(); }
-    function cycleThemeQuick() {
-      playSound('tock');
-      const order = ['leather', 'steel', 'obsidian'];
-      state.settings.theme = order[(order.indexOf(state.settings.theme) + 1) % order.length];
-      saveState(); applyThemeClass(); renderApp();
     }
     function pressHomeButton() { playSound('tock'); closeModal(); if (state.currentTab !== 'home') switchTab('home'); }
     function switchTab(tabId) { playSound('tock'); state.currentTab = tabId; saveState(); document.querySelectorAll('.ios6-tab-item').forEach(el => el.classList.remove('active')); document.getElementById(`tab-${tabId}`)?.classList.add('active'); renderApp(); }
@@ -571,12 +528,6 @@
           <div class="ios6-table-row">
             <div><div class="font-bold text-[13px]">Звуки iOS 6 (Tock)</div></div>
             <div class="ios6-switch ${state.settings.soundEffects ? 'checked' : ''}" onclick="toggleSetting('soundEffects')">
-              <div class="ios6-switch-track"><div class="switch-on-side">ON</div><div class="switch-off-side">OFF</div><div class="switch-thumb"></div></div>
-            </div>
-          </div>
-          <div class="ios6-table-row">
-            <div><div class="font-bold text-[13px]">Корпус iPhone 4S</div></div>
-            <div class="ios6-switch ${state.settings.chassisMode ? 'checked' : ''}" onclick="toggleChassisMode(); renderApp();">
               <div class="ios6-switch-track"><div class="switch-on-side">ON</div><div class="switch-off-side">OFF</div><div class="switch-thumb"></div></div>
             </div>
           </div>
