@@ -1,7 +1,6 @@
-/* =========================================================
-   WHENGRAM — iOS 6.1.3 SKEUOMORPHIC EDITION (iPhone 4s)
-   Оптимизировано под 320x480 (640x960 Retina) Mobile Safari
-   ========================================================= */
+/* ==========================================================================
+   WHENGRAM — TRUE iOS 6.1.3 SKEUOMORPHIC UI (iPhone 4s Retina 320x480)
+   ========================================================================== */
 
 * {
   -webkit-box-sizing: border-box;
@@ -21,45 +20,45 @@ html, body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* =========================================================
-   ТЕМА 1 (ПО УМОЛЧАНИЮ): КРЕМОВАЯ БУМАГА И КОЖА (THEME-CREAM)
-   ========================================================= */
-body.theme-cream {
-  background-color: #ece3d2;
-  background-image:
-    -webkit-radial-gradient(center, ellipse cover, rgba(255,252,245,0.65) 0%, rgba(218,204,182,0.45) 100%),
-    -webkit-repeating-linear-gradient(0deg, rgba(140,115,85,0.03) 0px, rgba(140,115,85,0.03) 1px, transparent 1px, transparent 3px);
-  color: #261f19;
-}
-
-/* =========================================================
-   ТЕМА 2: ТЁМНЫЙ ЛЁН И ГРАФИТ iOS 6 (THEME-DARK)
-   ========================================================= */
-body.theme-dark {
-  background-color: #161618;
-  background-image:
-    -webkit-repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 4px),
-    -webkit-repeating-linear-gradient(-45deg, rgba(0,0,0,0.35) 0px, rgba(0,0,0,0.35) 2px, transparent 2px, transparent 5px);
-  color: #f3ede2;
-}
-
-.hidden {
+.hidden,
+.hidden-input {
   display: none !important;
 }
 
 .accent-dot,
 .accent-text {
-  color: #d94e28;
+  color: #e8451e;
+}
+
+/* ==========================================================================
+   ФАКТУРЫ ФОНА: КРЕМОВАЯ БУМАГА (ПО УМОЛЧАНИЮ) И ТЁМНЫЙ ЛЁН iOS 6
+   ========================================================================== */
+body.theme-cream {
+  background-color: #dfd3be;
+  background-image:
+    -webkit-radial-gradient(50% 30%, ellipse cover, rgba(255, 250, 240, 0.55) 0%, rgba(186, 168, 140, 0.35) 100%),
+    -webkit-repeating-linear-gradient(0deg, rgba(90, 70, 45, 0.035) 0px, rgba(90, 70, 45, 0.035) 1px, transparent 1px, transparent 3px),
+    -webkit-repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.18) 0px, rgba(255, 255, 255, 0.18) 1px, transparent 1px, transparent 4px);
+  color: #241b14;
+}
+
+body.theme-dark {
+  background-color: #141517;
+  background-image:
+    -webkit-radial-gradient(50% 25%, ellipse cover, rgba(50, 52, 58, 0.35) 0%, rgba(10, 10, 12, 0.85) 100%),
+    -webkit-repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 1px, transparent 1px, transparent 4px),
+    -webkit-repeating-linear-gradient(-45deg, rgba(0, 0, 0, 0.45) 0px, rgba(0, 0, 0, 0.45) 1px, transparent 1px, transparent 4px);
+  color: #f2ece1;
 }
 
 body.theme-dark .accent-dot,
 body.theme-dark .accent-text {
-  color: #f0643b;
+  color: #ff5b33;
 }
 
-/* =========================================================
-   КАРКАС ПРИЛОЖЕНИЯ (ФИКСИРОВАННЫЙ ВЕРХ + НИЗ, ПЛАВНЫЙ СКРОЛЛ)
-   ========================================================= */
+/* ==========================================================================
+   КАРКАС ЭКРАНА iPHONE 4S
+   ========================================================================== */
 .app-shell {
   position: relative;
   width: 100%;
@@ -67,18 +66,19 @@ body.theme-dark .accent-text {
   max-width: 480px;
   margin: 0 auto;
   overflow: hidden;
+  -webkit-box-shadow: 0 0 30px rgba(0, 0, 0, 0.75);
 }
 
 .main-scroll {
   position: absolute;
-  top: 46px;
-  bottom: 52px;
+  top: 48px;
+  bottom: 54px;
   left: 0;
   right: 0;
   overflow-y: scroll;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
-  padding: 12px 12px 26px 12px;
+  padding: 12px 11px 28px 11px;
 }
 
 .tab-view {
@@ -89,519 +89,644 @@ body.theme-dark .accent-text {
   display: block;
 }
 
-/* =========================================================
-   ВЕРХНИЙ НАВИГАЦИОННЫЙ БАР iOS 6 (КОЖА / МЕТАЛЛ СО СТРОЧКОЙ)
-   ========================================================= */
+/* ==========================================================================
+   ВЕРХНИЙ КОЖАНЫЙ БАР iOS 6 С ДВОЙНОЙ ПРОСТРОЧКОЙ
+   ========================================================================== */
 .ios6-navbar {
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 46px;
-  z-index: 20;
-  padding: 0 8px;
-  background-color: #3b2d23;
-  background-image: -webkit-gradient(
-    linear, left top, left bottom,
-    from(#594537),
-    color-stop(0.49, #3f3025),
-    color-stop(0.51, #32251c),
-    to(#241a13)
-  );
-  border-bottom: 1px solid #140e0a;
+  height: 48px;
+  z-index: 30;
+  background-color: #36261b;
+  background-image:
+    -webkit-repeating-linear-gradient(45deg, rgba(0, 0, 0, 0.08) 0px, rgba(0, 0, 0, 0.08) 2px, transparent 2px, transparent 4px),
+    -webkit-gradient(
+      linear, left top, left bottom,
+      from(#5c4332),
+      color-stop(0.06, #4d3728),
+      color-stop(0.50, #38271c),
+      color-stop(0.52, #2b1d14),
+      to(#1f140d)
+    );
+  border-bottom: 1px solid #0d0805;
   -webkit-box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 2px 5px rgba(0, 0, 0, 0.45);
-  box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 2px 5px rgba(0, 0, 0, 0.45);
-}
-
-/* Декоративная кожаная строчка внизу бара */
-.ios6-navbar:after {
-  content: "";
-  position: absolute;
-  left: 4px;
-  right: 4px;
-  bottom: 3px;
-  height: 1px;
-  border-bottom: 1px dashed rgba(242, 206, 162, 0.35);
-  pointer-events: none;
+    inset 0 1px 0 rgba(255, 235, 210, 0.28),
+    0 3px 6px rgba(0, 0, 0, 0.55);
 }
 
 body.theme-dark .ios6-navbar {
-  background-color: #1f2024;
-  background-image: -webkit-gradient(
-    linear, left top, left bottom,
-    from(#3b3d42),
-    color-stop(0.5, #232428),
-    color-stop(0.51, #151619),
-    to(#0d0e10)
-  );
+  background-color: #1c1d21;
+  background-image:
+    -webkit-gradient(
+      linear, left top, left bottom,
+      from(#3d4047),
+      color-stop(0.50, #232529),
+      color-stop(0.51, #151619),
+      to(#0c0d0f)
+    );
+  border-bottom: 1px solid #000000;
+}
+
+.navbar-stitch-top,
+.navbar-stitch-bottom {
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  height: 1px;
+  border-bottom: 1px dashed rgba(235, 198, 150, 0.38);
+  -webkit-box-shadow: 0 1px 0 rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+
+.navbar-stitch-top {
+  top: 3px;
+}
+
+.navbar-stitch-bottom {
+  bottom: 3px;
+}
+
+body.theme-dark .navbar-stitch-top,
+body.theme-dark .navbar-stitch-bottom {
+  border-bottom-color: rgba(255, 255, 255, 0.16);
 }
 
 .navbar-left {
   position: absolute;
-  left: 10px;
-  top: 6px;
+  left: 9px;
+  top: 8px;
 }
 
 .navbar-right {
   position: absolute;
   right: 8px;
-  top: 7px;
+  top: 8px;
 }
 
 .navbar-center {
+  margin: 0 82px;
+  padding-top: 8px;
   text-align: center;
-  padding-top: 6px;
-  margin: 0 74px;
 }
 
 .navbar-title {
   margin: 0;
   font-size: 16px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  color: #fdf6eb;
-  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.85);
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  color: #fff8ed;
+  text-shadow: 0 -1px 1px #000000, 0 1px 2px rgba(0, 0, 0, 0.8);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .navbar-subtitle {
-  font-size: 8px;
-  font-weight: 700;
-  letter-spacing: 1.4px;
-  color: #ccb9a1;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
   margin-top: 1px;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: #d4be9e;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.85);
 }
 
-/* Круглый медальон-логотип слева вверху */
-.brand-badge {
+/* Медальон логотипа слева в баре */
+.brand-medallion {
   width: 32px;
   height: 32px;
+  padding: 2px;
   -webkit-border-radius: 16px;
   border-radius: 16px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffbf2), to(#dfd0b8));
-  border: 1px solid #1a120c;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#1a120b), to(#423022));
   -webkit-box-shadow:
-    inset 0 1px 0 #ffffff,
-    0 1px 3px rgba(0, 0, 0, 0.6);
-  text-align: center;
-  position: relative;
+    inset 0 2px 3px rgba(0, 0, 0, 0.85),
+    0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
-.brand-crown {
+.brand-medallion svg {
   display: block;
-  font-size: 8px;
-  line-height: 8px;
-  color: #d94e28;
-  margin-top: 3px;
 }
 
-.brand-w {
-  display: block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: bold;
-  font-size: 15px;
-  line-height: 16px;
-  color: #241b14;
-}
-
-/* Выпуклая кнопка в верхнем баре iOS 6 */
-.ios6-nav-btn {
-  height: 30px;
+/* Выпуклая кнопка навигационного бара iOS 6 */
+.ios6-bevel-btn {
+  height: 31px;
   padding: 0 10px;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 800;
   color: #fff9f0;
-  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
-  background-color: #4f3b2d;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.85);
+  background-color: #4a3425;
   background-image: -webkit-gradient(
     linear, left top, left bottom,
-    from(#785c48),
-    color-stop(0.5, #4f3b2d),
-    color-stop(0.51, #3d2c20),
-    to(#2e2017)
+    from(#7a5942),
+    color-stop(0.49, #543b2a),
+    color-stop(0.51, #3d2a1d),
+    to(#2b1c12)
   );
-  border: 1px solid #17100b;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  border: 1px solid #140c07;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
   -webkit-box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.3),
-    0 1px 0 rgba(255, 255, 255, 0.15);
+    inset 0 1px 0 rgba(255, 240, 220, 0.38),
+    0 1px 0 rgba(255, 255, 255, 0.18),
+    0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.ios6-nav-btn:active,
-.ios6-nav-btn.touched {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#261b13), to(#423023));
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.nav-btn-done {
+body.theme-dark .ios6-bevel-btn {
   background-image: -webkit-gradient(
     linear, left top, left bottom,
-    from(#f07854),
-    color-stop(0.5, #d94e28),
-    color-stop(0.51, #bf3d19),
-    to(#9e2f10)
+    from(#525661),
+    color-stop(0.49, #34373d),
+    color-stop(0.51, #222429),
+    to(#17181c)
   );
-  border-color: #591806;
+  border-color: #08090a;
 }
 
-/* =========================================================
-   ВКЛАДКА 1: ГЛАВНАЯ — ДАТА И КАРТОЧКИ
-   ========================================================= */
-.home-date-strip {
-  display: block;
+.ios6-bevel-btn .plus-glyph {
+  color: #ff6e47;
+  font-weight: 900;
+  margin-right: 1px;
+}
+
+.ios6-bevel-btn:active,
+.ios6-bevel-btn.touched {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#21150e), to(#422d20));
+  -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85);
+}
+
+.btn-orange-done {
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ff7e59),
+    color-stop(0.49, #e8481d),
+    color-stop(0.51, #c9350e),
+    to(#9e2405)
+  ) !important;
+  border-color: #471002 !important;
+}
+
+/* ==========================================================================
+   ВКЛАДКА 1: ГЛАВНАЯ — МЕТАЛЛИЧЕСКАЯ ПЛАШКА ДАТЫ И ОТРЫВНОЙ ЛИСТ
+   ========================================================================== */
+.date-metal-bar {
   overflow: hidden;
-  padding: 2px 4px 8px 4px;
-  border-bottom: 1px solid rgba(110, 90, 68, 0.25);
+  padding: 6px 10px;
   margin-bottom: 12px;
-}
-
-.home-date-text {
-  float: left;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  color: #6b5a48;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
-  line-height: 18px;
-}
-
-body.theme-dark .home-date-text {
-  color: #a39b8e;
-  text-shadow: 0 -1px 0 #000;
-}
-
-.home-day-badge {
-  float: right;
-  font-size: 10px;
-  font-weight: 800;
-  padding: 2px 7px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background-color: rgba(0, 0, 0, 0.08);
-  color: #544536;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.2), 0 1px 0 rgba(255,255,255,0.6);
-}
-
-body.theme-dark .home-day-badge {
-  background-color: #0e0f12;
-  color: #d6cec2;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.08);
-}
-
-/* Скевоморфная бумажная карточка приветствия */
-.skeuo-card {
-  position: relative;
-  padding: 16px 14px;
-  margin-bottom: 14px;
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
-  background-color: #fbf6ec;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf8), to(#f3ead8));
-  border: 1px solid #c4b399;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#f7efe0), to(#d8c8b0));
+  border: 1px solid #a89578;
   -webkit-box-shadow:
     inset 0 1px 0 #ffffff,
-    0 3px 7px rgba(55, 40, 22, 0.18),
-    0 1px 2px rgba(0, 0, 0, 0.12);
+    0 1px 3px rgba(45, 30, 15, 0.2);
 }
 
-/* Эффект двойного бумажного среза снизу карточки */
-.paper-card:after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  right: 6px;
-  bottom: -4px;
-  height: 3px;
-  background-color: #e6dac5;
-  border: 1px solid #bda98c;
-  border-top: none;
-  -webkit-border-bottom-left-radius: 6px;
-  -webkit-border-bottom-right-radius: 6px;
-  -webkit-box-shadow: 0 2px 3px rgba(0,0,0,0.12);
-}
-
-body.theme-dark .skeuo-card {
-  background-color: #222327;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#2c2e33), to(#1b1c20));
-  border: 1px solid #383a40;
+body.theme-dark .date-metal-bar {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2a2c32), to(#1a1b1f));
+  border-color: #0b0c0e;
   -webkit-box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
-    0 4px 10px rgba(0, 0, 0, 0.65);
+    0 2px 4px rgba(0, 0, 0, 0.65);
 }
 
-body.theme-dark .paper-card:after {
-  background-color: #18191c;
-  border-color: #2e3036;
-}
-
-/* Металлическая заклёпка/булавка вверху карточки */
-.card-pin {
-  position: absolute;
-  top: 8px;
-  right: 10px;
-  width: 10px;
-  height: 10px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#9e9485));
-  border: 1px solid #6e6456;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.35);
-}
-
-.greeting-line {
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.9px;
-  color: #7c6b58;
-  margin-bottom: 5px;
-}
-
-body.theme-dark .greeting-line {
-  color: #9e9689;
-}
-
-.hero-question {
-  margin: 0 0 6px 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 21px;
-  font-weight: bold;
-  line-height: 1.15;
-  color: #221b15;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-body.theme-dark .hero-question {
-  color: #faf4eb;
-  text-shadow: 0 -1px 1px #000;
-}
-
-.hero-subtext {
-  margin: 0 0 14px 0;
-  font-size: 12px;
-  line-height: 1.4;
-  color: #6b5c4c;
-}
-
-body.theme-dark .hero-subtext {
-  color: #a39c90;
-}
-
-/* Главная выпуклая кнопка действия (в стиле iOS 6 + Whengram) */
-.ios6-primary-btn {
-  display: block;
-  width: 100%;
-  padding: 12px 14px;
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.7px;
-  text-align: left;
-  color: #241b15;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
-  background-color: #f5ebd6;
-  background-image: -webkit-gradient(
-    linear, left top, left bottom,
-    from(#fffcf5),
-    color-stop(0.5, #f5ebd6),
-    color-stop(0.51, #eadbc0),
-    to(#dcc8a7)
-  );
-  border: 1px solid #ab9676;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow:
-    inset 0 1px 0 #ffffff,
-    0 2px 4px rgba(0, 0, 0, 0.18);
-  position: relative;
-}
-
-.ios6-primary-btn .btn-arrow {
-  float: right;
-  color: #d94e28;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 14px;
-}
-
-.ios6-primary-btn:active,
-.ios6-primary-btn.touched {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#d5c1a1), to(#efe3cc));
-  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
-}
-
-/* =========================================================
-   ПОЛАРОИДНАЯ КАРТОЧКА ЗАПИСИ И НАСТРОЕНИЯ
-   ========================================================= */
-.polaroid-card {
-  padding: 12px;
-}
-
-.polaroid-top-bar {
-  overflow: hidden;
-  margin-bottom: 8px;
-}
-
-.polaroid-tag {
+.date-bar-left {
   float: left;
   font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  color: #82715e;
-  line-height: 20px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  color: #4f3e2e;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+  line-height: 16px;
 }
 
-.mood-pill {
+body.theme-dark .date-bar-left {
+  color: #bab2a6;
+  text-shadow: 0 -1px 0 #000000;
+}
+
+.date-bar-right {
   float: right;
+  padding: 1px 7px;
   font-size: 9px;
-  font-weight: 800;
-  padding: 3px 8px;
+  font-weight: 900;
+  color: #fff8ed;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#453427), to(#261c14));
+  border: 1px solid #140e09;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* Отрывной блокнотный лист «Что сегодня произошло?» */
+.paper-sheet-card {
+  position: relative;
+  margin-bottom: 18px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  border: 1px solid rgba(0,0,0,0.2);
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 2px rgba(0,0,0,0.12);
+  background-color: #fffcf5;
+  background-image:
+    -webkit-repeating-linear-gradient(0deg, transparent 0px, transparent 25px, rgba(190, 165, 130, 0.22) 25px, rgba(190, 165, 130, 0.22) 26px),
+    -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f5ebd9));
+  border: 1px solid #b5a184;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 1px 0 #e6d8c0,
+    0 3px 0 #9e8b6f,
+    0 4px 0 #dbd0bc,
+    0 6px 0 #8c7a5f,
+    0 9px 14px rgba(40, 26, 12, 0.32);
 }
 
-.mood-positive {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#e2f5df), to(#bce3b6));
-  color: #22661b;
-  border-color: #8ac482;
+body.theme-dark .paper-sheet-card {
+  background-color: #212328;
+  background-image:
+    -webkit-repeating-linear-gradient(0deg, transparent 0px, transparent 25px, rgba(255, 255, 255, 0.04) 25px, rgba(255, 255, 255, 0.04) 26px),
+    -webkit-gradient(linear, left top, left bottom, from(#2b2d33), to(#191a1f));
+  border-color: #3a3d45;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 3px 0 #121316,
+    0 4px 0 #32353d,
+    0 7px 16px rgba(0, 0, 0, 0.75);
 }
 
-.mood-neutral {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff3d6), to(#f2d99d));
-  color: #7d580b;
-  border-color: #d4b163;
+/* Перфорация отрывного блокнота сверху */
+.sheet-top-holes {
+  height: 18px;
+  padding: 5px 14px 0 14px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.06)), to(transparent));
+  border-bottom: 1px dashed rgba(150, 125, 95, 0.4);
+  text-align: justify;
+  overflow: hidden;
 }
 
-.mood-negative {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffe3dc), to(#f5bdb0));
-  color: #8c230e;
-  border-color: #d98573;
-}
-
-.polaroid-photo-frame {
-  background-color: #1a1715;
-  padding: 5px;
-  border: 1px solid #cfc0a9;
+.sheet-top-holes span {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  margin-right: 11%;
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.6), 0 1px 2px rgba(0,0,0,0.15);
-  margin-bottom: 10px;
-  text-align: center;
+  background-color: #cbbba2;
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.55), 0 1px 0 #ffffff;
 }
 
-.polaroid-photo-frame img {
+body.theme-dark .sheet-top-holes span {
+  background-color: #111215;
+  -webkit-box-shadow: inset 0 1px 3px #000000, 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.sheet-inner {
+  padding: 14px 15px 16px 15px;
+}
+
+.greeting-kicker {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.9px;
+  color: #786550;
+  margin-bottom: 6px;
+}
+
+body.theme-dark .greeting-kicker {
+  color: #a39b8e;
+}
+
+.sheet-headline {
+  margin: 0 0 8px 0;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  font-weight: bold;
+  line-height: 1.15;
+  color: #1f1710;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+body.theme-dark .sheet-headline {
+  color: #fff9f0;
+  text-shadow: 0 -1px 1px #000000;
+}
+
+.sheet-lead {
+  margin: 0 0 15px 0;
+  font-size: 12px;
+  line-height: 1.42;
+  color: #635240;
+}
+
+body.theme-dark .sheet-lead {
+  color: #b0a89b;
+}
+
+/* Главная выпуклая кнопка «НАПИСАТЬ ВОСПОМИНАНИЕ ->» */
+.ios6-hero-btn {
   display: block;
   width: 100%;
-  max-height: 240px;
-  object-fit: cover;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
+  height: 44px;
+  padding: 0 12px 0 14px;
+  text-align: left;
+  background-color: #e8451e;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ff7c57),
+    color-stop(0.49, #eb4b23),
+    color-stop(0.51, #d13811),
+    to(#a62506)
+  );
+  border: 1px solid #611402;
+  -webkit-border-radius: 9px;
+  border-radius: 9px;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 2px 5px rgba(140, 35, 5, 0.45),
+    0 1px 2px rgba(0, 0, 0, 0.35);
 }
 
-.polaroid-caption {
+.hero-btn-label {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.65);
+  line-height: 42px;
+}
+
+.hero-btn-circle {
+  float: right;
+  width: 26px;
+  height: 26px;
+  margin-top: 8px;
+  line-height: 24px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  -webkit-border-radius: 13px;
+  border-radius: 13px;
+  background-color: rgba(0, 0, 0, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ios6-hero-btn:active,
+.ios6-hero-btn.touched {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#992205), to(#d93b14));
+  -webkit-box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* ==========================================================================
+   ПОЛАРОИДНАЯ КАРТОЧКА СО СКОТЧЕМ И СВЕТОДИОДНЫМ ПИНОМ (LED)
+   ========================================================================== */
+.polaroid-sheet-card {
+  position: relative;
+  padding: 14px 12px 12px 12px;
+  margin-bottom: 16px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #fcf8ef;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#efe4cf));
+  border: 1px solid #b5a184;
+  -webkit-box-shadow:
+    inset 0 1px 0 #ffffff,
+    0 5px 12px rgba(35, 22, 10, 0.28),
+    0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+body.theme-dark .polaroid-sheet-card {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2c2e34), to(#1c1d22));
+  border-color: #3b3e47;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 6px 14px rgba(0,0,0,0.75);
+}
+
+/* Полупрозрачный кусочек матового скотча сверху Полароида */
+.polaroid-tape {
+  position: absolute;
+  top: -7px;
+  left: 50%;
+  width: 76px;
+  height: 16px;
+  margin-left: -38px;
+  background-color: rgba(245, 232, 200, 0.72);
+  border-left: 1px dotted rgba(160, 140, 110, 0.45);
+  border-right: 1px dotted rgba(160, 140, 110, 0.45);
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+}
+
+.polaroid-header {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.polaroid-badge-label {
+  float: left;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  color: #7d6a54;
+  line-height: 22px;
+}
+
+/* Капсула со светящимся светодиодом настроения */
+.mood-led-pill {
+  float: right;
+  padding: 3px 9px 3px 7px;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  color: #f5efe6;
+  text-shadow: 0 -1px 0 #000000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3d352e), to(#1f1a16));
+  border: 1px solid #120e0b;
+  -webkit-border-radius: 11px;
+  border-radius: 11px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 1px 0 rgba(255,255,255,0.7);
+}
+
+.led-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  margin-right: 4px;
+  vertical-align: middle;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+.mood-positive .led-dot {
+  background-color: #4cd964;
+  -webkit-box-shadow: 0 0 6px #4cd964, inset 0 1px 1px #ffffff;
+}
+
+.mood-neutral .led-dot {
+  background-color: #ffcc00;
+  -webkit-box-shadow: 0 0 6px #ffcc00, inset 0 1px 1px #ffffff;
+}
+
+.mood-negative .led-dot {
+  background-color: #ff3b30;
+  -webkit-box-shadow: 0 0 6px #ff3b30, inset 0 1px 1px #ffffff;
+}
+
+/* Глубокая рамка фотографии с диагональным бликом стекла */
+.polaroid-well {
+  position: relative;
+  padding: 6px;
+  margin-bottom: 10px;
+  background-color: #171310;
+  border: 1px solid #ab977a;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.85),
+    0 1px 0 #ffffff;
+  overflow: hidden;
+}
+
+.polaroid-well img {
+  display: block;
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+}
+
+.photo-inner-gloss {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 45%;
+  background-image: -webkit-gradient(
+    linear, left top, right bottom,
+    from(rgba(255, 255, 255, 0.18)),
+    to(rgba(255, 255, 255, 0.0))
+  );
+  pointer-events: none;
+}
+
+.polaroid-story-text {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 14px;
-  line-height: 1.45;
-  color: #29211b;
+  line-height: 1.48;
+  color: #241b14;
   white-space: pre-wrap;
   word-wrap: break-word;
-  padding: 4px 2px 8px 2px;
+  padding: 4px 2px 10px 2px;
 }
 
-body.theme-dark .polaroid-caption {
-  color: #f2ece1;
+body.theme-dark .polaroid-story-text {
+  color: #f5efe4;
 }
 
-.polaroid-footer {
+.polaroid-bottom-row {
   overflow: hidden;
   padding-top: 8px;
-  border-top: 1px dashed rgba(130, 110, 85, 0.3);
+  border-top: 1px dashed rgba(140, 118, 90, 0.38);
 }
 
-.polaroid-time {
+.stamp-time {
   float: left;
-  font-size: 10px;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
   font-weight: bold;
-  color: #8a7865;
+  color: #7d6a54;
   line-height: 26px;
 }
 
-.ios6-small-btn {
+.ios6-chrome-btn {
   float: right;
-  padding: 5px 10px;
+  height: 26px;
+  padding: 0 10px;
   font-size: 10px;
   font-weight: 800;
-  color: #fff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#524438), to(#2b221b));
-  border: 1px solid #17120e;
+  color: #261d15;
+  text-shadow: 0 1px 0 #ffffff;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ffffff),
+    color-stop(0.5, #ebe0ce),
+    color-stop(0.51, #dcd0ba),
+    to(#c9b99e)
+  );
+  border: 1px solid #8f7c61;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25);
+  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
-/* =========================================================
-   БЛОКИ WHENWEEK И WHENLOG (МЕХАНИЧЕСКИЙ СЧЁТЧИК FLIP-CLOCK)
-   ========================================================= */
-.skeuo-section {
+/* ==========================================================================
+   БЛОКИ WHENWEEK И WHENLOG (НАСТОЯЩИЕ FLIP-CLOCK СЧЁТЧИКИ)
+   ========================================================================== */
+.skeuo-panel {
   margin-bottom: 14px;
-  padding: 12px;
+  padding: 11px 12px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  background-color: rgba(255, 251, 242, 0.72);
-  border: 1px solid #c9b99f;
+  background-color: #f4ead8;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#faf4e8), to(#e8dac2));
+  border: 1px solid #b5a184;
   -webkit-box-shadow:
     inset 0 1px 0 #ffffff,
-    0 2px 4px rgba(55, 40, 22, 0.12);
+    0 2px 5px rgba(45, 30, 12, 0.16);
 }
 
-body.theme-dark .skeuo-section {
-  background-color: rgba(28, 29, 34, 0.88);
-  border-color: #32343a;
-  -webkit-box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.06),
-    0 3px 6px rgba(0,0,0,0.5);
+body.theme-dark .skeuo-panel {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#25272c), to(#18191d));
+  border-color: #34373e;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.07), 0 3px 8px rgba(0,0,0,0.6);
 }
 
-.section-header-row {
+.panel-header {
   overflow: hidden;
+  padding-bottom: 7px;
   margin-bottom: 10px;
-  padding-bottom: 5px;
-  border-bottom: 1px solid rgba(130, 110, 85, 0.2);
+  border-bottom: 1px solid rgba(135, 112, 82, 0.25);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
-.section-label {
+body.theme-dark .panel-header {
+  border-bottom-color: rgba(0, 0, 0, 0.6);
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.panel-title {
   float: left;
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1px;
-  color: #5c4c3c;
+  font-weight: 900;
+  letter-spacing: 1.1px;
+  color: #4a3a2a;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-body.theme-dark .section-label {
-  color: #a9a195;
+body.theme-dark .panel-title {
+  color: #b8b0a4;
+  text-shadow: 0 -1px 0 #000;
 }
 
-.section-meta {
+.panel-badge {
   float: right;
   font-size: 9px;
-  font-weight: bold;
-  color: #8a7865;
+  font-weight: 800;
+  color: #7d6a54;
 }
 
-/* Полоска 7 дней недели (WHENWEEK) */
-.whenweek-strip {
-  width: 100%;
+/* Слот-лента 7 дней недели (WHENWEEK) */
+.whenweek-rack {
   overflow: hidden;
-  text-align: center;
+  padding: 4px 2px;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background-color: rgba(0, 0, 0, 0.06);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.22), 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+body.theme-dark .whenweek-rack {
+  background-color: #101114;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 .week-day-slot {
@@ -614,102 +739,132 @@ body.theme-dark .section-label {
 
 .week-day-name {
   display: block;
-  font-size: 9px;
-  font-weight: 700;
-  color: #8c7b67;
+  font-size: 8px;
+  font-weight: 900;
+  color: #7a6855;
   margin-bottom: 4px;
 }
 
 .week-day-num {
   display: inline-block;
-  width: 28px;
-  height: 28px;
-  line-height: 26px;
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
   font-size: 12px;
-  font-weight: 800;
+  font-weight: 900;
+  color: #2e2319;
+  text-shadow: 0 1px 0 #ffffff;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ffffff),
+    color-stop(0.5, #f2e8d8),
+    to(#dccbb2)
+  );
+  border: 1px solid #a69276;
   -webkit-border-radius: 6px;
   border-radius: 6px;
-  color: #3d3126;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#e6dac7));
-  border: 1px solid #bfb099;
-  -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,0.12);
+  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 body.theme-dark .week-day-num {
-  color: #d9d1c5;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#303238), to(#1e2024));
-  border-color: #41444c;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.6);
+  color: #ebe3d5;
+  text-shadow: 0 -1px 0 #000;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#363940), to(#1f2126));
+  border-color: #0d0e10;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 1px 2px rgba(0,0,0,0.7);
 }
 
-/* Сегодняшний день в полоске недели */
 .week-day-slot.is-today .week-day-num {
   color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2734e), to(#c93e18));
-  border-color: #8c2609;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ff7a54),
+    color-stop(0.5, #e8451e),
+    to(#b52b09)
+  );
+  border-color: #6e1803;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.45), 0 1px 3px rgba(0,0,0,0.4);
 }
 
-/* День, в который есть запись (точка снизу) */
 .week-day-dot {
   display: block;
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
   margin: 4px auto 0 auto;
   -webkit-border-radius: 3px;
   border-radius: 3px;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.35);
 }
 
 .week-day-slot.has-memory .week-day-dot {
-  background-color: #d94e28;
-  -webkit-box-shadow: 0 0 3px rgba(217, 78, 40, 0.7);
+  background-color: #e8451e;
+  -webkit-box-shadow: 0 0 5px #e8451e, inset 0 1px 1px #ffffff;
 }
 
-/* МЕХАНИЧЕСКОЕ ТАБЛО WHENLOG (FLIP-CLOCK) */
-.whenlog-board {
-  padding: 2px 0;
+/* ПРИБОРНАЯ ДОСКА МЕХАНИЧЕСКИХ СЧЁТЧИКОВ (WHENLOG) */
+.mechanical-board {
+  padding: 2px 4px;
 }
 
-.log-row {
+.mech-row {
   overflow: hidden;
-  padding: 6px 2px;
+  padding: 7px 0;
 }
 
-.log-divider {
-  height: 1px;
-  background-color: rgba(130, 110, 85, 0.2);
+.mech-groove-divider {
+  height: 2px;
+  background-color: rgba(120, 98, 72, 0.25);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.65);
   margin: 2px 0;
 }
 
-.log-title-wrap {
-  float: left;
-  padding-top: 4px;
+body.theme-dark .mech-groove-divider {
+  background-color: #0c0d0f;
+  border-bottom-color: rgba(255, 255, 255, 0.06);
 }
 
-.log-title {
+.mech-labels {
+  float: left;
+  padding-top: 5px;
+}
+
+.mech-main-label {
   display: block;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.5px;
-  color: #2b221a;
+  color: #261d15;
 }
 
-body.theme-dark .log-title {
-  color: #ece4d8;
+body.theme-dark .mech-main-label {
+  color: #f0e8dc;
 }
 
-.log-desc {
+.mech-sub-label {
   display: block;
   font-size: 9px;
-  color: #82715e;
-  margin-top: 1px;
+  color: #7d6a54;
+  margin-top: 2px;
 }
 
-/* Перекидные металлические таблички с цифрами */
-.flip-counter {
+/* Ниша для перекидных цифр Flip-Clock */
+.flip-rig {
   float: right;
-  white-space: nowrap;
+  padding: 3px 4px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  background-color: #14110e;
+  border: 1px solid #8c7a62;
+  -webkit-box-shadow:
+    inset 0 2px 4px #000000,
+    0 1px 0 #ffffff;
+}
+
+body.theme-dark .flip-rig {
+  border-color: #363942;
+  -webkit-box-shadow: inset 0 2px 4px #000, 0 1px 0 rgba(255,255,255,0.08);
 }
 
 .flip-digit {
@@ -718,31 +873,31 @@ body.theme-dark .log-title {
   width: 24px;
   height: 32px;
   line-height: 32px;
-  margin-left: 2px;
+  margin: 0 1px;
   text-align: center;
-  font-family: "Courier New", Courier, monospace;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 19px;
   font-weight: 900;
-  color: #f7f2e8;
+  color: #faf5eb;
   text-shadow: 0 -1px 1px #000000;
-  background-color: #24201d;
+  background-color: #26221e;
   background-image: -webkit-gradient(
     linear, left top, left bottom,
-    from(#453e38),
-    color-stop(0.48, #26221f),
-    color-stop(0.50, #0d0b0a),
-    color-stop(0.52, #2b2622),
-    to(#171412)
+    from(#4a433c),
+    color-stop(0.48, #292420),
+    color-stop(0.50, #080706),
+    color-stop(0.52, #2e2924),
+    to(#171411)
   );
-  border: 1px solid #0f0d0b;
+  border: 1px solid #0a0807;
   -webkit-border-radius: 4px;
   border-radius: 4px;
   -webkit-box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.25),
-    0 2px 3px rgba(0, 0, 0, 0.45);
+    inset 0 1px 0 rgba(255, 255, 255, 0.28),
+    0 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Линия механического разреза посередине цифры */
+/* Механическая прорезь и боковые металлические петли */
 .flip-digit:after {
   content: "";
   position: absolute;
@@ -750,93 +905,97 @@ body.theme-dark .log-title {
   right: 0;
   top: 15px;
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.75);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background-color: #050404;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
-/* Оранжевое табло для номера сегодняшнего дня (292) */
-.flip-accent .flip-digit {
+.flip-rig-orange .flip-digit {
   background-image: -webkit-gradient(
     linear, left top, left bottom,
-    from(#f26b44),
-    color-stop(0.48, #d94e28),
-    color-stop(0.50, #8a270c),
-    color-stop(0.52, #cf4520),
-    to(#9e3012)
+    from(#ff7a52),
+    color-stop(0.48, #e0421b),
+    color-stop(0.50, #6e1a05),
+    color-stop(0.52, #d43d17),
+    to(#992608)
   );
-  border-color: #691b05;
-  color: #fffdf9;
+  border-color: #450f01;
 }
 
-/* =========================================================
-   ВИДЖЕТ LAST.FM (ВИНИЛ / КАССЕТНЫЙ МИНИ-ПЛЕЕР iOS 6)
-   ========================================================= */
-.lastfm-cassette {
-  margin: 8px 0;
+/* ==========================================================================
+   ВИДЖЕТ ПЛЕЕРА LAST.FM (В СТИЛЕ МИНИ-ДЕКИ iPod / ВИНИЛА iOS 6)
+   ========================================================================== */
+.ipod-mini-widget {
+  position: relative;
+  overflow: hidden;
+  margin: 8px 0 10px 0;
   padding: 8px 10px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
-  background-color: #26201b;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#383029), to(#1c1714));
-  border: 1px solid #120e0c;
+  background-color: #241e19;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#3d332b),
+    color-stop(0.5, #29221c),
+    to(#171310)
+  );
+  border: 1px solid #0f0c0a;
   -webkit-box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.18),
-    0 2px 4px rgba(0,0,0,0.3);
-  color: #f7efe2;
-  overflow: hidden;
-  position: relative;
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 2px 5px rgba(0, 0, 0, 0.35);
+  color: #fff8ed;
 }
 
 .cassette-cover-wrap {
   float: left;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   margin-right: 10px;
-  position: relative;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  background-color: #111;
-  border: 1px solid rgba(255,255,255,0.25);
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.7);
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-color: #120f0d;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   overflow: hidden;
+  position: relative;
 }
 
 .cassette-cover-wrap img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
   display: block;
 }
 
 .cassette-vinyl-disc {
   width: 100%;
   height: 100%;
+  line-height: 40px;
   text-align: center;
-  line-height: 38px;
   font-size: 20px;
-  color: #f0643b;
-  background-image: -webkit-radial-gradient(center, circle cover, #3b322c 0%, #120f0d 75%);
+  color: #ff6940;
+  background-image: -webkit-radial-gradient(center, circle cover, #42372f 0%, #120e0c 75%);
 }
 
 .cassette-info {
   overflow: hidden;
-  padding-right: 36px;
+  padding-right: 38px;
 }
 
 .cassette-badge {
   display: block;
   font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.8px;
-  color: #f0643b;
-  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 0.9px;
+  color: #ff6e47;
   margin-bottom: 2px;
 }
 
 .cassette-song {
   display: block;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 800;
   color: #ffffff;
+  text-shadow: 0 -1px 0 #000000;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -845,7 +1004,7 @@ body.theme-dark .log-title {
 .cassette-artist {
   display: block;
   font-size: 10px;
-  color: #c7b8a3;
+  color: #cbbba6;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -853,153 +1012,192 @@ body.theme-dark .log-title {
 
 .cassette-play-btn {
   position: absolute;
-  right: 8px;
-  top: 11px;
-  width: 32px;
-  height: 32px;
-  -webkit-border-radius: 16px;
-  border-radius: 16px;
+  right: 9px;
+  top: 12px;
+  width: 34px;
+  height: 34px;
+  -webkit-border-radius: 17px;
+  border-radius: 17px;
   font-size: 12px;
-  line-height: 28px;
+  font-weight: bold;
+  line-height: 30px;
   text-align: center;
-  color: #fff;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#f2734e), to(#bd3713));
-  border: 1px solid #120d0a;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 3px rgba(0,0,0,0.6);
+  color: #ffffff;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ff7e59),
+    color-stop(0.5, #e6451c),
+    to(#a82808)
+  );
+  border: 1px solid #0d0907;
+  -webkit-box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.45),
+    0 2px 4px rgba(0, 0, 0, 0.75);
 }
 
-/* =========================================================
-   ВКЛАДКА 2: ПОИСК, ЛЕНТА И ДЕРЕВЯННАЯ ПОЛКА iBOOKS (WHENSHELF)
-   ========================================================= */
-.search-toolbar {
+/* ==========================================================================
+   ВКЛАДКА 2: ПОИСК, ХРОНИКА И 3D-ШКАФ iBOOKS (WHENSHELF)
+   ========================================================================== */
+.ios6-search-bar {
   overflow: hidden;
+  padding: 7px 8px;
   margin-bottom: 10px;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#e6d8c3), to(#cbb99d));
+  border: 1px solid #a18d71;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-.ios6-search-wrap {
+body.theme-dark .ios6-search-bar {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3036), to(#1d1e22));
+  border-color: #0c0d0f;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.search-field-well {
   float: left;
-  width: 72%;
+  width: 71%;
   position: relative;
 }
 
-.ios6-search-wrap.full-width {
+.search-field-well.full-well {
   width: 100%;
 }
 
-.search-icon {
+.search-svg {
   position: absolute;
   left: 9px;
-  top: 7px;
-  font-size: 12px;
-  color: #82725f;
+  top: 8px;
   pointer-events: none;
 }
 
-.ios6-search-input {
+.search-well-input {
   width: 100%;
-  height: 32px;
+  height: 30px;
   padding: 4px 10px 4px 28px;
   font-size: 12px;
-  color: #241c15;
-  background-color: #fffdf9;
-  border: 1px solid #b09e84;
-  -webkit-border-radius: 16px;
-  border-radius: 16px;
+  color: #241b14;
+  background-color: #ffffff;
+  border: 1px solid #8c795e;
+  -webkit-border-radius: 15px;
+  border-radius: 15px;
   -webkit-box-shadow:
-    inset 0 2px 3px rgba(0, 0, 0, 0.18),
+    inset 0 2px 4px rgba(0, 0, 0, 0.25),
     0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-body.theme-dark .ios6-search-input {
-  background-color: #121316;
-  color: #f0e9df;
-  border-color: #363840;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.75), 0 1px 0 rgba(255,255,255,0.07);
+body.theme-dark .search-well-input {
+  background-color: #111215;
+  color: #f2ece1;
+  border-color: #08090a;
+  -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85), 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
-.ios6-select-btn {
+.search-filter-wrap {
   float: right;
-  width: 26%;
-  height: 32px;
+  width: 27%;
+}
+
+.ios6-filter-select {
+  width: 100%;
+  height: 30px;
   font-size: 11px;
-  font-weight: bold;
-  color: #2b221a;
-  background-color: #f0e4cf;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffcf7), to(#dfd0b6));
-  border: 1px solid #a89578;
+  font-weight: 800;
+  color: #291f17;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#dfd0b8));
+  border: 1px solid #8c795e;
   -webkit-border-radius: 6px;
   border-radius: 6px;
 }
 
-body.theme-dark .ios6-select-btn {
-  color: #f0e9df;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#363840), to(#1e2024));
-  border-color: #454852;
-}
-
-/* Классический сдвоенный переключатель (Segmented Control iOS 6) */
-.ios6-segmented-control {
+/* Переключатель Segmented Control iOS 6 */
+.ios6-segmented {
   overflow: hidden;
   margin-bottom: 12px;
-  -webkit-border-radius: 7px;
-  border-radius: 7px;
-  border: 1px solid #8f7b61;
-  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.7);
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  border: 1px solid #857258;
+  -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
-.seg-btn {
+.seg-pill {
   float: left;
   width: 50%;
-  height: 30px;
+  height: 32px;
   font-size: 11px;
-  font-weight: 800;
-  color: #544535;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.75);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#dfd0b8));
+  font-weight: 900;
+  color: #4f3f30;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.85);
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ffffff),
+    color-stop(0.5, #f0e4d0),
+    to(#d9c7ad)
+  );
   border: none;
-  border-right: 1px solid #8f7b61;
+  border-right: 1px solid #857258;
 }
 
-.seg-btn:last-child {
+.seg-pill:last-child {
   border-right: none;
 }
 
-.seg-btn.active {
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3b2e23), to(#614b3a));
-  -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.65);
+.seg-pill.active {
+  color: #fff9f0;
+  text-shadow: 0 -1px 1px #000000;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#2b1f16),
+    color-stop(0.5, #3d2c20),
+    to(#4f392a)
+  );
+  -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.75);
 }
 
-/* Заголовок месяца в ленте воспоминаний */
+/* Плашка месяца и карточки ленты воспоминаний */
 .month-group-header {
   overflow: hidden;
-  padding: 6px 4px 4px 4px;
-  margin-top: 6px;
-  margin-bottom: 6px;
-  border-bottom: 1px solid rgba(130, 110, 85, 0.3);
+  padding: 5px 8px;
+  margin: 10px 0 7px 0;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#d6c5ab), to(#bfa98a));
+  border: 1px solid #9c8769;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+body.theme-dark .month-group-header {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#2e3138), to(#1f2126));
+  border-color: #0e0f12;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
 }
 
 .month-group-name {
   float: left;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.6px;
-  color: #4f4031;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+  color: #2e2318;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
 }
 
 body.theme-dark .month-group-name {
-  color: #e3dacb;
+  color: #e6dfd3;
+  text-shadow: 0 -1px 0 #000;
 }
 
 .month-group-count {
   float: right;
   font-size: 9px;
-  font-weight: bold;
-  color: #8c7b67;
+  font-weight: 800;
+  color: #544332;
 }
 
-/* Карточка одной записи в списке воспоминаний */
+body.theme-dark .month-group-count {
+  color: #9e9689;
+}
+
 .memory-row-card {
   position: relative;
   overflow: hidden;
@@ -1007,63 +1205,63 @@ body.theme-dark .month-group-name {
   margin-bottom: 8px;
   -webkit-border-radius: 8px;
   border-radius: 8px;
-  background-color: #fdfaf3;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f3ead8));
-  border: 1px solid #c7b69b;
+  background-color: #fffcf6;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#f2e7d3));
+  border: 1px solid #b8a487;
   -webkit-box-shadow:
     inset 0 1px 0 #ffffff,
-    0 2px 4px rgba(50, 35, 18, 0.12);
+    0 2px 4px rgba(40, 26, 12, 0.16);
   cursor: pointer;
 }
 
 body.theme-dark .memory-row-card {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#292b30), to(#1d1e22));
-  border-color: #383b42;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 2px 5px rgba(0,0,0,0.5);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#282a30), to(#1b1c20));
+  border-color: #363940;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 2px 5px rgba(0,0,0,0.6);
 }
 
 .memory-row-date {
   float: left;
-  width: 38px;
-  text-align: center;
-  padding-right: 8px;
-  border-right: 1px solid rgba(130, 110, 85, 0.25);
+  width: 42px;
+  padding: 3px 6px 3px 2px;
   margin-right: 10px;
+  text-align: center;
+  border-right: 1px dashed rgba(140, 118, 90, 0.4);
 }
 
 .memory-day-num {
   display: block;
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 900;
-  line-height: 18px;
-  color: #292018;
-  border-bottom: 2px solid #d94e28;
+  line-height: 20px;
+  color: #241b14;
+  border-bottom: 2px solid #e8451e;
   padding-bottom: 2px;
   margin-bottom: 2px;
 }
 
 body.theme-dark .memory-day-num {
-  color: #f7f1e6;
+  color: #fff8ed;
 }
 
 .memory-weekday-short {
   display: block;
-  font-size: 9px;
-  font-weight: 800;
-  color: #8a7865;
-  text-transform: uppercase;
+  font-size: 8px;
+  font-weight: 900;
+  color: #7d6a54;
 }
 
 .memory-row-thumb {
   float: right;
-  width: 46px;
-  height: 46px;
+  width: 48px;
+  height: 48px;
+  padding: 2px;
   margin-left: 8px;
+  background-color: #171310;
+  border: 1px solid #a89477;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  border: 1px solid #b5a388;
-  overflow: hidden;
-  background-color: #1c1815;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }
 
 .memory-row-thumb img {
@@ -1071,6 +1269,8 @@ body.theme-dark .memory-day-num {
   height: 100%;
   object-fit: cover;
   display: block;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
 
 .memory-row-body {
@@ -1079,166 +1279,170 @@ body.theme-dark .memory-day-num {
 
 .memory-row-text {
   margin: 0;
-  font-size: 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 13px;
   line-height: 1.35;
-  color: #2b221a;
-  max-height: 34px;
+  color: #261d15;
+  max-height: 36px;
   overflow: hidden;
 }
 
 body.theme-dark .memory-row-text {
-  color: #ede5d8;
+  color: #f0e9df;
 }
 
 .memory-row-song {
   display: inline-block;
-  margin-top: 4px;
+  margin-top: 5px;
+  padding: 2px 6px;
   font-size: 9px;
-  font-weight: bold;
-  color: #d94e28;
-}
-
-/* =========================================================
-   ДЕРЕВЯННАЯ КНИЖНАЯ ПОЛКА iBOOKS iOS 6 (ПО ГОДАМ И МЕСЯЦАМ)
-   ========================================================= */
-.shelf-header-card {
-  padding: 10px 12px;
-  margin-bottom: 10px;
-  -webkit-border-radius: 8px;
-  border-radius: 8px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3b2c20), to(#241911));
-  border: 1px solid #140d08;
-  color: #fdf6ec;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 5px rgba(0,0,0,0.35);
-}
-
-.shelf-header-top {
-  overflow: hidden;
-}
-
-.shelf-brand {
-  margin: 0;
-  font-size: 15px;
-  font-weight: 900;
-  letter-spacing: 0.7px;
-}
-
-.shelf-subtitle {
-  margin: 2px 0 0 0;
-  font-size: 8px;
-  font-weight: bold;
-  letter-spacing: 0.8px;
-  color: #cfbda6;
-}
-
-.shelf-mode-switch {
-  float: right;
-  margin-top: 2px;
-}
-
-.shelf-mode-btn {
-  padding: 5px 8px;
-  font-size: 10px;
   font-weight: 800;
-  color: #d9c7b0;
-  background-color: #211710;
-  border: 1px solid #594331;
+  color: #b83211;
+  background-color: rgba(232, 69, 30, 0.12);
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
-.shelf-mode-btn.active {
-  color: #ffffff;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#e86842), to(#bf3c17));
-  border-color: #ff9c7d;
-}
-
-/* Сама деревянная стойка iBooks */
-.ibooks-shelf {
-  -webkit-border-radius: 10px;
-  border-radius: 10px;
+/* ==========================================================================
+   ДЕРЕВЯННЫЙ КНИЖНЫЙ ШКАФ iBOOKS (WHENSHELF)
+   ========================================================================== */
+.cabinet-crown {
   overflow: hidden;
-  border: 2px solid #3d2310;
-  background-color: #543118;
-  -webkit-box-shadow:
-    inset 0 4px 12px rgba(0, 0, 0, 0.75),
-    0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 10px 12px;
+  -webkit-border-top-left-radius: 10px;
+  -webkit-border-top-right-radius: 10px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#5e3419), to(#381d0b));
+  border: 1px solid #211005;
+  border-bottom: none;
+  color: #fff6e8;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 220, 180, 0.3);
 }
 
-/* Один ярус деревянной полки */
+.crown-left {
+  float: left;
+}
+
+.crown-title {
+  display: block;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.7px;
+  text-shadow: 0 -1px 1px #000000;
+}
+
+.crown-sub {
+  display: block;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #deb892;
+  margin-top: 1px;
+}
+
+.crown-switch {
+  float: right;
+  margin-top: 2px;
+}
+
+.crown-btn {
+  height: 26px;
+  padding: 0 9px;
+  font-size: 10px;
+  font-weight: 900;
+  color: #d9be9c;
+  background-color: #261306;
+  border: 1px solid #6e4123;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
+
+.crown-btn.active {
+  color: #ffffff;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ff7a52), to(#c4350e));
+  border-color: #ffb199;
+}
+
+.wooden-bookcase {
+  border: 3px solid #361b09;
+  -webkit-border-bottom-left-radius: 10px;
+  -webkit-border-bottom-right-radius: 10px;
+  background-color: #42220d;
+  -webkit-box-shadow:
+    inset 0 6px 14px rgba(0, 0, 0, 0.85),
+    0 5px 12px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+}
+
 .ibooks-tier {
   position: relative;
-  min-height: 128px;
-  padding: 14px 10px 18px 10px;
-  background-color: #4a2a14;
+  min-height: 132px;
+  padding: 14px 8px 18px 8px;
+  background-color: #3d1f0c;
   background-image:
-    -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.55)), color-stop(0.25, rgba(0,0,0,0.1)), to(rgba(0,0,0,0.45))),
-    -webkit-repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 2px, transparent 2px, transparent 7px);
-  border-bottom: 14px solid #754422;
-  -webkit-box-shadow: inset 0 -4px 8px rgba(0,0,0,0.65);
+    -webkit-gradient(linear, left top, left bottom, from(rgba(0,0,0,0.7)), color-stop(0.25, rgba(0,0,0,0.15)), to(rgba(0,0,0,0.55))),
+    -webkit-repeating-linear-gradient(90deg, rgba(255, 200, 140, 0.03) 0px, rgba(255, 200, 140, 0.03) 2px, transparent 2px, transparent 6px);
+  border-bottom: 16px solid #78421e;
   overflow: hidden;
 }
 
-/* Передняя деревянная планка яруса полки */
 .ibooks-tier:after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  bottom: -14px;
-  height: 14px;
+  bottom: -16px;
+  height: 16px;
   background-image: -webkit-gradient(
     linear, left top, left bottom,
-    from(#9c5e32),
-    color-stop(0.25, #7d4823),
-    color-stop(0.85, #573015),
-    to(#2e1809)
+    from(#ab6636),
+    color-stop(0.2, #8c4e24),
+    color-stop(0.8, #592e12),
+    to(#2b1406)
   );
-  -webkit-box-shadow: 0 3px 6px rgba(0,0,0,0.7);
+  -webkit-box-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
 }
 
-/* Книга на полке iBooks (объёмный кожаный переплёт с золотым тиснением) */
+/* Объёмный кожаный том на полке iBooks */
 .ibooks-book {
   float: left;
   width: 30%;
-  height: 96px;
+  height: 98px;
   margin: 0 1.6%;
-  padding: 8px 6px 8px 12px;
+  padding: 9px 6px 8px 13px;
   position: relative;
   -webkit-border-radius: 3px 6px 6px 3px;
   border-radius: 3px 6px 6px 3px;
-  background-image: -webkit-gradient(linear, left top, right top, from(#1f1916), color-stop(0.12, #382e28), to(#241d19));
-  border: 1px solid #0d0a08;
+  border: 1px solid #0d0805;
   -webkit-box-shadow:
-    inset 2px 0 3px rgba(255,255,255,0.2),
-    3px 4px 7px rgba(0,0,0,0.75);
-  color: #f7e6c4;
+    inset 2px 0 3px rgba(255, 255, 255, 0.28),
+    2px 0 0 #f5ead6,
+    3px 0 0 #1f1710,
+    4px 5px 8px rgba(0, 0, 0, 0.85);
+  color: #ffdf9e;
   cursor: pointer;
 }
 
-/* Корешок книги слева с бороздкой */
 .ibooks-book:before {
   content: "";
   position: absolute;
-  left: 5px;
+  left: 6px;
   top: 0;
   bottom: 0;
   width: 2px;
-  background-color: rgba(0, 0, 0, 0.65);
-  border-right: 1px solid rgba(255, 255, 255, 0.14);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-right: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-/* Разные оттенки переплётов для книг */
 .ibooks-book.book-terracotta {
-  background-image: -webkit-gradient(linear, left top, right top, from(#6e220c), color-stop(0.14, #b83d1b), to(#87290f));
+  background-image: -webkit-gradient(linear, left top, right top, from(#691e09), color-stop(0.15, #b83b18), to(#80240b));
 }
 
 .ibooks-book.book-emerald {
-  background-image: -webkit-gradient(linear, left top, right top, from(#143b2d), color-stop(0.14, #225e49), to(#164233));
+  background-image: -webkit-gradient(linear, left top, right top, from(#0f3628), color-stop(0.15, #1e6149), to(#123d2e));
 }
 
 .ibooks-book.book-navy {
-  background-image: -webkit-gradient(linear, left top, right top, from(#182842), color-stop(0.14, #29436b), to(#1b2e4d));
+  background-image: -webkit-gradient(linear, left top, right top, from(#15243d), color-stop(0.15, #284573), to(#182b49));
 }
 
 .book-year-title {
@@ -1246,547 +1450,523 @@ body.theme-dark .memory-row-text {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 16px;
   font-weight: bold;
-  color: #ffdf9e;
-  text-shadow: 0 -1px 1px rgba(0,0,0,0.9);
-  margin-bottom: 3px;
+  color: #ffe2a6;
+  text-shadow: 0 -1px 1px #000000;
 }
 
 .book-month-title {
   display: block;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 900;
   color: #ffffff;
   text-transform: uppercase;
-  line-height: 1.2;
+  margin-top: 2px;
 }
 
 .book-count-badge {
   position: absolute;
-  bottom: 7px;
-  left: 12px;
+  left: 13px;
   right: 6px;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-  color: #e6cfa3;
-  border-top: 1px solid rgba(255, 223, 158, 0.3);
+  bottom: 7px;
   padding-top: 3px;
+  border-top: 1px solid rgba(255, 226, 166, 0.35);
+  font-size: 8px;
+  font-weight: 900;
+  color: #f0d8a8;
 }
 
-/* Баннер активного фильтра полки */
-.shelf-filter-banner {
+.active-book-banner {
   overflow: hidden;
-  padding: 7px 10px;
+  padding: 8px 10px;
   margin-bottom: 10px;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  background-color: #3b2d23;
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#453224), to(#291d14));
   color: #fff8ed;
   font-size: 11px;
-  font-weight: bold;
+  font-weight: 800;
+  line-height: 26px;
 }
 
-.ios6-mini-btn {
-  float: right;
-  padding: 3px 8px;
-  font-size: 10px;
-  font-weight: bold;
-  color: #241b15;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#dfd0b8));
-  border: 1px solid #140e0a;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
-
-/* Нижний тизер перехода к полке WhenShelf */
-.whenshelf-teaser {
+/* Нижний док-тизер полки WHENSHELF */
+.whenshelf-dock-card {
   overflow: hidden;
   margin-top: 14px;
-  padding: 12px;
+  padding: 12px 14px;
   -webkit-border-radius: 9px;
   border-radius: 9px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf8), to(#ebdec8));
-  border: 1px solid #bda98c;
-  -webkit-box-shadow: inset 0 1px 0 #fff, 0 2px 4px rgba(0,0,0,0.14);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#e6d7be));
+  border: 1px solid #ab9678;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 2px 5px rgba(0, 0, 0, 0.18);
   cursor: pointer;
 }
 
-body.theme-dark .whenshelf-teaser {
+body.theme-dark .whenshelf-dock-card {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#2b2d33), to(#1b1c20));
-  border-color: #3a3d45;
+  border-color: #383b42;
 }
 
-.teaser-left {
+.dock-card-text {
   float: left;
-  width: 82%;
+  width: 80%;
 }
 
-.teaser-title {
+.dock-card-brand {
   display: block;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 900;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.6px;
 }
 
-.teaser-sub {
+.dock-card-caption {
   display: block;
   font-size: 8px;
-  font-weight: 800;
-  color: #82715e;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+  color: #7d6a54;
   margin-top: 2px;
 }
 
-.teaser-books-icon {
+.dock-card-spines {
   float: right;
-  font-size: 24px;
-  line-height: 28px;
+  padding-top: 2px;
 }
 
-/* =========================================================
-   ВКЛАДКА 3: ВЕХИ (EVENTS) И ПУСТЫЕ СОСТОЯНИЯ
-   ========================================================= */
-.empty-state-box {
-  text-align: center;
-  padding: 26px 16px;
-}
-
-.empty-trophy-icon {
+.spine-bar {
   display: inline-block;
-  width: 52px;
-  height: 52px;
-  line-height: 50px;
-  font-size: 24px;
-  -webkit-border-radius: 12px;
-  border-radius: 12px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3b2e23), to(#211912));
-  color: #f2a950;
-  border: 1px solid #6e5641;
-  -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.35);
-  margin-bottom: 10px;
+  width: 7px;
+  height: 26px;
+  margin-left: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.45);
 }
 
-.event-category-tag {
-  display: inline-block;
-  font-size: 8px;
-  font-weight: 900;
-  letter-spacing: 0.7px;
-  color: #d94e28;
-  text-transform: uppercase;
-  margin-bottom: 2px;
-}
+.spine-bar.s1 { background-color: #e8451e; }
+.spine-bar.s2 { background-color: #3b2c20; height: 29px; }
+.spine-bar.s3 { background-color: #c99b52; height: 24px; -webkit-transform: rotate(8deg); }
 
-/* =========================================================
-   ВКЛАДКА 4: НАСТРОЙКИ И ТАБЛИЦЫ В СТИЛЕ iOS 6 SETTINGS
-   ========================================================= */
-.settings-hero {
+/* ==========================================================================
+   ВКЛАДКА 4: НАСТРОЙКИ И ВЫПУКЛЫЕ ГРУППЫ iOS 6
+   ========================================================================== */
+.settings-emblem-box {
   text-align: center;
-  padding: 8px 0 14px 0;
+  padding: 6px 0 12px 0;
 }
 
-.settings-logo-big {
-  width: 58px;
-  height: 58px;
-  margin: 0 auto 8px auto;
-  -webkit-border-radius: 29px;
-  border-radius: 29px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf8), to(#dfd0b8));
-  border: 2px solid #c94c26;
-  -webkit-box-shadow: 0 3px 8px rgba(0,0,0,0.35);
+.emblem-pedestal {
+  display: inline-block;
+  padding: 4px;
+  -webkit-border-radius: 32px;
+  border-radius: 32px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d4c3a7));
+  border: 1px solid #9e8a6d;
+  -webkit-box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
-.settings-crown {
-  display: block;
-  font-size: 13px;
-  line-height: 13px;
-  color: #d94e28;
-  padding-top: 6px;
-}
-
-.settings-w {
-  display: block;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 26px;
-  font-weight: bold;
-  color: #241b15;
-  line-height: 28px;
-}
-
-.settings-app-name {
-  margin: 0;
+.emblem-title {
+  margin: 7px 0 2px 0;
   font-size: 18px;
   font-weight: 900;
   letter-spacing: 1px;
 }
 
-.settings-app-tag {
-  margin: 3px 0 0 0;
-  font-size: 9px;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: #82715e;
+.emblem-sub {
+  margin: 0;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: #7d6a54;
 }
 
-.ios6-group-title {
+.ios6-section-label {
+  margin: 12px 4px 5px 8px;
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.8px;
-  color: #6b5a47;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
-  margin: 12px 4px 5px 6px;
+  color: #5c4b39;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.75);
 }
 
-body.theme-dark .ios6-group-title {
-  color: #9e9588;
-  text-shadow: 0 -1px 0 #000;
+body.theme-dark .ios6-section-label {
+  color: #9e9689;
+  text-shadow: 0 -1px 0 #000000;
 }
 
-.ios6-grouped-table {
+.ios6-inset-group {
+  margin-bottom: 12px;
   -webkit-border-radius: 9px;
   border-radius: 9px;
-  background-color: #fdfaf3;
-  border: 1px solid #bfa98a;
+  background-color: #fcf8f0;
+  border: 1px solid #ab9678;
   -webkit-box-shadow:
     inset 0 1px 0 #ffffff,
-    0 2px 4px rgba(0, 0, 0, 0.1);
+    0 2px 4px rgba(0, 0, 0, 0.12);
   overflow: hidden;
-  margin-bottom: 12px;
 }
 
-body.theme-dark .ios6-grouped-table {
-  background-color: #202126;
-  border-color: #363840;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 5px rgba(0,0,0,0.55);
+body.theme-dark .ios6-inset-group {
+  background-color: #1f2025;
+  border-color: #363940;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 2px 6px rgba(0,0,0,0.6);
 }
 
-.ios6-cell {
+.ios6-row {
   overflow: hidden;
   padding: 10px 12px;
-  border-bottom: 1px solid rgba(145, 122, 92, 0.25);
+  border-bottom: 1px solid rgba(150, 128, 98, 0.28);
 }
 
-.ios6-cell:last-child {
+.ios6-row:last-child {
   border-bottom: none;
 }
 
-.cell-left {
+.row-info {
   float: left;
   width: 58%;
 }
 
-.cell-right {
+.row-control {
   float: right;
   width: 40%;
   text-align: right;
 }
 
-.cell-title {
+.row-name {
   display: block;
   font-size: 12px;
-  font-weight: bold;
-  color: #261e17;
+  font-weight: 800;
+  color: #241b14;
 }
 
-body.theme-dark .cell-title {
+body.theme-dark .row-name {
   color: #f2ece1;
 }
 
-.cell-sub {
+.row-hint {
   display: block;
   font-size: 9px;
-  color: #82715e;
+  color: #7d6a54;
   margin-top: 2px;
-  line-height: 1.25;
 }
 
-.ios6-inline-input {
+.ios6-field-right {
   width: 100%;
   height: 28px;
-  padding: 3px 7px;
+  padding: 3px 8px;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 800;
   text-align: right;
-  color: #d94e28;
-  background-color: rgba(0, 0, 0, 0.04);
-  border: 1px solid #c7b599;
+  color: #d93f18;
+  background-color: #f2eadb;
+  border: 1px solid #b5a184;
   -webkit-border-radius: 5px;
   border-radius: 5px;
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.15);
+  -webkit-box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 1px 0 #ffffff;
 }
 
-body.theme-dark .ios6-inline-input {
-  background-color: #141518;
-  border-color: #383b42;
-  color: #f0643b;
+body.theme-dark .ios6-field-right {
+  background-color: #121316;
+  border-color: #08090a;
+  color: #ff6942;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
 }
 
-/* Классический овальный тумблер ON / OFF из iOS 6 */
-.ios6-switch {
+/* Тумблер ON / OFF из iOS 6 */
+.ios6-toggle-switch {
   display: inline-block;
-  width: 72px;
-  height: 27px;
+  width: 74px;
+  height: 28px;
   padding: 0;
-  border: 1px solid #6e5d49;
+  background: none;
+  border: 1px solid #63513d;
   -webkit-border-radius: 14px;
   border-radius: 14px;
   overflow: hidden;
-  background: none;
-  position: relative;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.7);
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.55), 0 1px 0 #ffffff;
 }
 
-.switch-track {
+.toggle-inner {
   display: block;
   width: 100%;
   height: 100%;
   position: relative;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#7d7d7d), to(#b8b8b8));
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#757575), to(#b5b5b5));
 }
 
-.ios6-switch.active .switch-track {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#bd3915), to(#f06b46));
+.ios6-toggle-switch.active .toggle-inner {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#b8320e), to(#ff6e47));
 }
 
-.switch-on,
-.switch-off {
+.t-on, .t-off {
   position: absolute;
   top: 0;
-  line-height: 25px;
+  line-height: 26px;
   font-size: 10px;
   font-weight: 900;
+  font-style: normal;
 }
 
-.switch-on {
-  left: 9px;
+.t-on {
+  left: 10px;
   color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.65);
   display: none;
 }
 
-.switch-off {
-  right: 8px;
-  color: #454545;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.7);
+.t-off {
+  right: 9px;
+  color: #3d3d3d;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
 }
 
-.ios6-switch.active .switch-on {
-  display: block;
-}
+.ios6-toggle-switch.active .t-on { display: block; }
+.ios6-toggle-switch.active .t-off { display: none; }
 
-.ios6-switch.active .switch-off {
-  display: none;
-}
-
-.switch-knob {
+.t-thumb {
   position: absolute;
   top: 1px;
   left: 1px;
-  width: 24px;
-  height: 23px;
+  width: 25px;
+  height: 24px;
   -webkit-border-radius: 12px;
   border-radius: 12px;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#d4d4d4));
-  border: 1px solid #4f4f4f;
-  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#cfcfcf));
+  border: 1px solid #454545;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.65);
 }
 
-.ios6-switch.active .switch-knob {
+.ios6-toggle-switch.active .t-thumb {
   left: auto;
   right: 1px;
 }
 
-/* Выпуклая металлическая кнопка iOS 6 */
-.ios6-metal-btn {
+/* Глянцевые кнопки для настроек и бэкапа */
+.ios6-action-bar-btn,
+.ios6-silver-gloss-btn,
+.ios6-orange-gloss-btn,
+.ios6-red-gloss-btn {
   display: inline-block;
+  width: 100%;
   padding: 9px 10px;
   font-size: 11px;
-  font-weight: 800;
+  font-weight: 900;
   text-align: center;
-  color: #292018;
-  text-shadow: 0 1px 0 rgba(255,255,255,0.85);
-  background-image: -webkit-gradient(
-    linear, left top, left bottom,
-    from(#fffdf9),
-    color-stop(0.5, #ede0cb),
-    color-stop(0.51, #decbb0),
-    to(#cfb899)
-  );
-  border: 1px solid #968163;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 3px rgba(0,0,0,0.18);
+  -webkit-border-radius: 7px;
+  border-radius: 7px;
   cursor: pointer;
 }
 
-.ios6-metal-btn.full-width {
-  display: block;
-  width: 100%;
+.ios6-action-bar-btn,
+.ios6-silver-gloss-btn {
+  color: #291f16;
+  text-shadow: 0 1px 0 #ffffff;
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ffffff),
+    color-stop(0.5, #ede1ce),
+    color-stop(0.51, #decbb0),
+    to(#c9b495)
+  );
+  border: 1px solid #8f7b5e;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
-.backup-explain {
-  margin: 0 0 10px 0;
-  font-size: 11px;
-  line-height: 1.35;
-  color: #5c4d3d;
+.ios6-orange-gloss-btn {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#ff7e59),
+    color-stop(0.5, #e8451e),
+    color-stop(0.51, #c9330e),
+    to(#9e2406)
+  );
+  border: 1px solid #591302;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-body.theme-dark .backup-explain {
-  color: #b8afa2;
-}
-
-.backup-btn-grid {
-  overflow: hidden;
+.ios6-red-gloss-btn {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.75);
+  background-image: -webkit-gradient(
+    linear, left top, left bottom,
+    from(#f5675d),
+    color-stop(0.5, #d92b20),
+    color-stop(0.51, #b8180d),
+    to(#8c0e06)
+  );
+  border: 1px solid #4d0601;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.38), 0 1px 3px rgba(0, 0, 0, 0.35);
   margin-top: 6px;
 }
 
-.backup-btn-grid .backup-btn,
-.backup-btn-grid .ios6-metal-btn {
-  float: left;
-  width: 48.5%;
-  text-align: center;
-  padding: 9px 6px;
-  font-size: 10px;
+.two-btn-row {
+  overflow: hidden;
+  margin-top: 8px;
 }
 
-.backup-btn-grid .backup-btn:last-child,
-.backup-btn-grid .ios6-metal-btn:last-child,
-.backup-btn-grid .file-label-btn {
+.two-btn-row > * {
+  float: left;
+  width: 48.5%;
+}
+
+.two-btn-row > *:last-child,
+.two-btn-row > label {
   float: right;
 }
 
-.hidden-file-input {
-  position: absolute;
-  left: -9999px;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+.backup-note {
+  margin: 0;
+  font-size: 11px;
+  line-height: 1.35;
+  color: #594938;
 }
 
-/* Бумажный чек «ЧТО МЫ СОБИРАЕМ» внизу настроек */
-.skeuo-receipt {
+body.theme-dark .backup-note {
+  color: #b5ada0;
+}
+
+/* Бумажный кассовый чек «ЧТО МЫ СОБИРАЕМ» с зубчатым краем */
+.paper-receipt-ticket {
   margin-top: 14px;
-  padding: 12px 14px;
   background-color: #f7f0e1;
-  border: 1px dashed #b09c80;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  color: #2b221a;
+  border-left: 1px solid #b8a487;
+  border-right: 1px solid #b8a487;
+  -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.18);
+  color: #241b14;
 }
 
-body.theme-dark .skeuo-receipt {
-  background-color: #191a1f;
-  border-color: #3a3d45;
-  color: #e3dacb;
+body.theme-dark .paper-receipt-ticket {
+  background-color: #1b1c21;
+  border-color: #363940;
+  color: #ebe3d5;
 }
 
-.receipt-title {
-  font-size: 12px;
+.ticket-zag-top,
+.ticket-zag-bottom {
+  height: 6px;
+  background-image: -webkit-repeating-linear-gradient(45deg, #ab9678 0px, #ab9678 2px, transparent 2px, transparent 6px);
+}
+
+.ticket-body {
+  padding: 12px 14px;
+}
+
+.ticket-heading {
+  font-size: 13px;
   font-weight: 900;
   margin-bottom: 8px;
 }
 
-.receipt-row,
-.receipt-total {
+.ticket-line,
+.ticket-total-line {
   overflow: hidden;
+  padding: 4px 0;
   font-size: 10px;
-  padding: 3px 0;
-  border-bottom: 1px dotted rgba(130,110,85,0.3);
+  border-bottom: 1px dotted rgba(135, 112, 82, 0.35);
 }
 
-.receipt-total {
+.ticket-total-line {
   border-bottom: none;
-  padding-top: 6px;
-  font-size: 11px;
+  padding-top: 7px;
+  font-size: 12px;
   font-weight: 900;
 }
 
-.receipt-row span,
-.receipt-total span {
-  float: left;
-}
+.ticket-line span, .ticket-total-line span { float: left; }
+.ticket-line b, .ticket-total-line b { float: right; }
 
-.receipt-row b,
-.receipt-total b {
-  float: right;
-}
-
-/* =========================================================
-   НИЖНИЙ ГЛЯНЦЕВЫЙ TAB BAR iOS 6
-   ========================================================= */
+/* ==========================================================================
+   НИЖНИЙ ГЛЯНЦЕВЫЙ TAB BAR iOS 6 С SVG-ИКОНКАМИ
+   ========================================================================== */
 .ios6-tabbar {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 52px;
-  z-index: 20;
-  background-color: #1a1613;
+  height: 54px;
+  z-index: 30;
+  background-color: #14110e;
   background-image: -webkit-gradient(
     linear, left top, left bottom,
-    from(#453a32),
-    color-stop(0.49, #29221d),
-    color-stop(0.50, #171310),
-    to(#0d0a08)
+    from(#423830),
+    color-stop(0.49, #26201b),
+    color-stop(0.50, #14100d),
+    to(#080605)
   );
   border-top: 1px solid #000000;
   -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 
-.tab-item {
+.tabbar-glass-shine {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 26px;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(255,255,255,0.14)), to(rgba(255,255,255,0.02)));
+  pointer-events: none;
+}
+
+.tab-btn {
   float: left;
   width: 25%;
-  height: 51px;
-  padding: 5px 2px 2px 2px;
+  height: 53px;
+  padding: 5px 2px 3px 2px;
   background: none;
   border: none;
-  color: #9e9183;
+  color: #8f8273;
   text-align: center;
   position: relative;
 }
 
-.tab-item.active {
+.tab-btn.active {
   color: #ffffff;
   background-image: -webkit-radial-gradient(
-    center, ellipse cover,
-    rgba(240, 100, 59, 0.32) 0%,
-    rgba(0, 0, 0, 0.25) 75%
+    50% 60%, ellipse cover,
+    rgba(235, 75, 35, 0.36) 0%,
+    rgba(0, 0, 0, 0.35) 75%
   );
-  -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow:
+    inset 0 2px 6px rgba(0, 0, 0, 0.85),
+    inset 0 0 1px rgba(255, 255, 255, 0.25);
 }
 
-.tab-icon {
+.tab-svg-wrap {
   display: block;
-  font-size: 19px;
-  line-height: 22px;
+  height: 24px;
+  line-height: 24px;
+}
+
+.tab-btn.active .tab-svg-wrap {
+  color: #ff6e45;
+  -webkit-filter: drop-shadow(0 0 5px rgba(255, 100, 55, 0.75));
+}
+
+.tab-caption {
+  display: block;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  margin-top: 2px;
   text-shadow: 0 -1px 1px #000000;
 }
 
-.tab-item.active .tab-icon {
-  color: #ff7a52;
-  text-shadow: 0 0 8px rgba(255, 110, 64, 0.65);
-}
-
-.tab-label {
-  display: block;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.4px;
-  margin-top: 2px;
-}
-
-/* =========================================================
-   МОДАЛЬНЫЕ ОКНА СОЗДАНИЯ И ПРОСМОТРА ЗАПИСИ
-   ========================================================= */
+/* ==========================================================================
+   МОДАЛЬНЫЕ ОКНА И РАЗЛИНОВАННЫЙ БЛОКНОТ ЗАПИСИ
+   ========================================================================== */
 .ios6-modal {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 50;
-  background-color: rgba(0, 0, 0, 0.65);
+  z-index: 60;
+  background-color: rgba(0, 0, 0, 0.72);
 }
 
-.ios6-modal-sheet {
+.modal-window {
   position: absolute;
   top: 0;
   left: 0;
@@ -1794,251 +1974,221 @@ body.theme-dark .skeuo-receipt {
   bottom: 0;
   max-width: 480px;
   margin: 0 auto;
-  background-color: #ece3d2;
+  background-color: #dfd3be;
   overflow: hidden;
 }
 
-body.theme-dark .ios6-modal-sheet {
-  background-color: #18191c;
+body.theme-dark .modal-window {
+  background-color: #16171a;
 }
 
-.modal-navbar .navbar-center {
-  margin: 0 78px;
-  padding-top: 12px;
-}
-
-.modal-navbar #btn-close-memory-modal,
-.modal-navbar #btn-close-event-modal,
-.modal-navbar #btn-close-reader {
+.modal-left-btn {
   position: absolute;
   left: 8px;
-  top: 7px;
+  top: 8px;
 }
 
-.modal-navbar #btn-save-memory,
-.modal-navbar #btn-save-event,
-.modal-navbar #btn-reader-edit {
+.modal-right-btn {
   position: absolute;
   right: 8px;
-  top: 7px;
+  top: 8px;
 }
 
-.modal-body {
+.modal-scroll-area {
   position: absolute;
-  top: 46px;
+  top: 48px;
   bottom: 0;
   left: 0;
   right: 0;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
-  padding: 12px 12px 28px 12px;
+  padding: 12px 11px 30px 11px;
 }
 
-.form-block {
+.modal-field-group {
   margin-bottom: 12px;
 }
 
-.label-row {
+.kicker-with-btn {
   overflow: hidden;
   margin-bottom: 5px;
 }
 
-.form-label {
+.field-kicker {
   display: block;
   float: left;
   font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.8px;
-  color: #6b5a47;
+  color: #5c4b39;
   margin-bottom: 5px;
 }
 
-body.theme-dark .form-label {
+body.theme-dark .field-kicker {
   color: #a89f92;
 }
 
-.ios6-input,
-.ios6-textarea {
+.ios6-carved-input,
+.ios6-carved-textarea {
   width: 100%;
   padding: 8px 10px;
   font-size: 13px;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  color: #241c15;
+  color: #241b14;
   background-color: #fffdf9;
-  border: 1px solid #b5a287;
+  border: 1px solid #9e8a6d;
   -webkit-border-radius: 7px;
   border-radius: 7px;
-  -webkit-box-shadow: inset 0 2px 3px rgba(0,0,0,0.14), 0 1px 0 rgba(255,255,255,0.75);
+  -webkit-box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0.18),
+    0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
-body.theme-dark .ios6-input,
-body.theme-dark .ios6-textarea {
-  background-color: #121316;
+body.theme-dark .ios6-carved-input,
+body.theme-dark .ios6-carved-textarea {
+  background-color: #111215;
   color: #f2ece1;
-  border-color: #383b42;
-  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.75);
+  border-color: #363940;
+  -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.85);
 }
 
-.compact-textarea {
-  margin: 6px 0;
-  font-size: 11px;
+/* Блокнот в линейку с красной вертикальной чертой слева (как в iOS 6 Notes) */
+.lined-notepad-wrap {
+  position: relative;
+  -webkit-border-radius: 8px;
+  border-radius: 8px;
+  background-color: #fffcf2;
+  border: 1px solid #9e8a6d;
+  -webkit-box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 0 #ffffff;
+  overflow: hidden;
 }
 
-/* Три кнопки выбора настроения */
-.mood-selector {
+.lined-notepad-wrap:before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-left: 1px solid rgba(220, 75, 55, 0.45);
+  border-right: 1px solid rgba(220, 75, 55, 0.45);
+  pointer-events: none;
+}
+
+.ios6-lined-notepad {
+  width: 100%;
+  padding: 7px 10px 7px 34px;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 14px;
+  line-height: 24px;
+  color: #241b14;
+  background-color: transparent;
+  background-image: -webkit-repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 23px,
+    rgba(165, 140, 105, 0.32) 23px,
+    rgba(165, 140, 105, 0.32) 24px
+  );
+  border: none;
+}
+
+/* Три кнопки выбора настроения со светодиодом */
+.mood-trio-grid {
   overflow: hidden;
   clear: both;
 }
 
-.mood-choice {
+.mood-pad {
   float: left;
   width: 32%;
   margin-right: 2%;
-  padding: 8px 4px;
+  padding: 10px 4px;
   text-align: center;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fffdf9), to(#e6dac7));
-  border: 1px solid #b8a58a;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e3d4bc));
+  border: 1px solid #9e8a6d;
   -webkit-border-radius: 8px;
   border-radius: 8px;
-  color: #4f4133;
+  -webkit-box-shadow: inset 0 1px 0 #ffffff, 0 1px 2px rgba(0, 0, 0, 0.15);
 }
 
-.mood-choice:last-child {
+.mood-pad:last-child {
   margin-right: 0;
 }
 
-.mood-choice.active {
-  border: 2px solid #d94e28;
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff6f2), to(#f7d7cc));
-  color: #9e2a0b;
+.mood-pad.active {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#38291e), to(#211710));
+  border-color: #120c08;
+  -webkit-box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.8);
 }
 
-.mood-emoji {
-  display: block;
-  font-size: 18px;
-  line-height: 20px;
+.mood-pad-led {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 4px;
 }
 
-.mood-name {
+.led-green { background-color: #4cd964; -webkit-box-shadow: 0 0 6px #4cd964; }
+.led-amber { background-color: #ffcc00; -webkit-box-shadow: 0 0 6px #ffcc00; }
+.led-red   { background-color: #ff3b30; -webkit-box-shadow: 0 0 6px #ff3b30; }
+
+.mood-pad-title {
   display: block;
   font-size: 9px;
   font-weight: 900;
-  margin-top: 3px;
+  color: #3b2d20;
 }
 
-.lastfm-form-box {
+.mood-pad.active .mood-pad-title {
+  color: #fff8ed;
+}
+
+.lastfm-slot-well {
   clear: both;
   padding: 8px 10px;
   margin-bottom: 6px;
   font-size: 11px;
   -webkit-border-radius: 6px;
   border-radius: 6px;
-  background-color: rgba(0,0,0,0.05);
-  border: 1px dashed #b5a287;
+  background-color: rgba(0, 0, 0, 0.06);
+  border: 1px dashed #9e8a6d;
 }
 
-.lastfm-manual-inputs {
+.two-col-inputs {
   overflow: hidden;
 }
 
-.half-input {
+.col-half {
   float: left;
   width: 49%;
 }
 
-.half-input:last-child {
+.col-half:last-child {
   float: right;
 }
 
-.modal-photo-preview {
-  margin-top: 8px;
-  padding: 5px;
-  background-color: #1c1815;
-  -webkit-border-radius: 6px;
-  border-radius: 6px;
-  text-align: center;
-}
-
-.modal-photo-preview img {
-  max-width: 100%;
-  max-height: 190px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-}
-
-/* Глянцевая красная кнопка удаления iOS 6 */
-.ios6-glossy-red-btn,
-.ios6-danger-btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 12px;
-  font-weight: 800;
-  color: #ffffff;
-  text-shadow: 0 -1px 0 rgba(0,0,0,0.7);
-  background-image: -webkit-gradient(
-    linear, left top, left bottom,
-    from(#f06259),
-    color-stop(0.5, #d42b20),
-    color-stop(0.51, #b5180e),
-    to(#8f1008)
-  );
-  border: 1px solid #570803;
-  -webkit-border-radius: 7px;
-  border-radius: 7px;
-  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 3px rgba(0,0,0,0.3);
-  margin-top: 6px;
-}
-
-/* Читалка «Пережить заново» */
-.reader-date-block {
-  border-bottom: 1px solid rgba(130,110,85,0.25);
-  padding-bottom: 8px;
-  margin-bottom: 10px;
-}
-
-.reader-weekday {
-  font-size: 9px;
-  font-weight: 800;
-  color: #82715e;
-  letter-spacing: 0.7px;
-}
-
-.reader-full-date {
-  margin: 3px 0 6px 0;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 20px;
-}
-
-.reader-meta-row {
-  overflow: hidden;
-}
-
-.reader-day-num {
-  float: left;
-  font-size: 10px;
-  font-weight: bold;
-  color: #82715e;
-  line-height: 20px;
-}
-
-/* Всплывающий полупрозрачный тост iOS 6 (HUD) */
+/* ==========================================================================
+   СТЕКЛЯННЫЙ HUD-ТОСТ iOS 6
+   ========================================================================== */
 .ios6-hud {
   position: fixed;
   left: 50%;
   top: 42%;
-  width: 180px;
-  margin-left: -90px;
-  padding: 14px 12px;
-  z-index: 100;
+  width: 190px;
+  margin-left: -95px;
+  padding: 15px 12px;
+  z-index: 120;
   text-align: center;
-  background-color: rgba(15, 12, 10, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  background-color: rgba(18, 14, 11, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   -webkit-border-radius: 12px;
   border-radius: 12px;
-  -webkit-box-shadow: 0 4px 15px rgba(0, 0, 0, 0.65);
+  -webkit-box-shadow: 0 6px 18px rgba(0, 0, 0, 0.75);
   color: #ffffff;
   font-size: 12px;
-  font-weight: bold;
+  font-weight: 800;
   pointer-events: none;
 }
