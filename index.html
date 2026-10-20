@@ -9,476 +9,246 @@
   <meta name="apple-mobile-web-app-title" content="Whengram">
   <meta name="format-detection" content="telephone=no">
 
-  <!-- Иконка для рабочего стола iOS 6 (генерируется ниже точь-в-точь по оригиналу 208.png) -->
-  <link id="apple-icon-link" rel="apple-touch-icon-precomposed" sizes="114x114" href="">
-  <link rel="stylesheet" href="style.css">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="icon.png">
+  <link rel="stylesheet" href="style.css?v=10">
 
-  <script type="text/javascript">
-    /* Генератор Retina-иконки 114x114 на основе оригинального логотипа (W + красная полоса + 3 луча) */
-    (function() {
-      try {
-        var c = document.createElement('canvas');
-        c.width = 114;
-        c.height = 114;
-        var ctx = c.getContext('2d');
-
-        // 1. Тёмный графитово-кожаный корпус иконки
-        var bg = ctx.createLinearGradient(0, 0, 0, 114);
-        bg.addColorStop(0, '#2c2825');
-        bg.addColorStop(0.5, '#1a1715');
-        bg.addColorStop(1, '#0a0908');
-        ctx.fillStyle = bg;
-        ctx.fillRect(0, 0, 114, 114);
-
-        // 2. Тонкая внутренняя рамка iOS 6
-        ctx.strokeStyle = 'rgba(255, 240, 220, 0.16)';
-        ctx.lineWidth = 2;
-        ctx.strokeRect(3, 3, 108, 108);
-
-        // 3. Тень под центральным кремовым кругом
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(57, 59, 43, 0, Math.PI * 2, false);
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
-        ctx.fill();
-        ctx.restore();
-
-        // 4. Объёмный кремовый круг (точно как на оригинальном лого)
-        ctx.beginPath();
-        ctx.arc(57, 57, 42, 0, Math.PI * 2, false);
-        var circleGrad = ctx.createLinearGradient(0, 15, 0, 99);
-        circleGrad.addColorStop(0, '#fffdf7');
-        circleGrad.addColorStop(0.7, '#f5ebd8');
-        circleGrad.addColorStop(1, '#e0d0b6');
-        ctx.fillStyle = circleGrad;
-        ctx.fill();
-        ctx.lineWidth = 1.5;
-        ctx.strokeStyle = '#ffffff';
-        ctx.stroke();
-
-        // 5. Три луча сверху (капсулы с круглыми краями)
-        ctx.strokeStyle = '#141210';
-        ctx.lineCap = 'round';
-        ctx.lineWidth = 4.5;
-
-        // Центральный луч
-        ctx.beginPath();
-        ctx.moveTo(57, 25);
-        ctx.lineTo(57, 36);
-        ctx.stroke();
-
-        // Левый луч под углом
-        ctx.beginPath();
-        ctx.moveTo(43, 29);
-        ctx.lineTo(48, 37);
-        ctx.stroke();
-
-        // Правый луч под углом
-        ctx.beginPath();
-        ctx.moveTo(71, 29);
-        ctx.lineTo(66, 37);
-        ctx.stroke();
-
-        // 6. Ярко-красная горизонтальная линия
-        ctx.strokeStyle = '#f03e18';
-        ctx.lineWidth = 4.2;
-        ctx.beginPath();
-        ctx.moveTo(34, 44);
-        ctx.lineTo(80, 44);
-        ctx.stroke();
-
-        // 7. Жирная геометрическая буква W
-        ctx.fillStyle = '#12100e';
-        ctx.beginPath();
-        ctx.moveTo(34, 49);
-        ctx.lineTo(44, 49);
-        ctx.lineTo(49, 69);
-        ctx.lineTo(53.5, 55);
-        ctx.lineTo(60.5, 55);
-        ctx.lineTo(65, 69);
-        ctx.lineTo(70, 49);
-        ctx.lineTo(80, 49);
-        ctx.lineTo(71, 82);
-        ctx.lineTo(61, 82);
-        ctx.lineTo(57, 68);
-        ctx.lineTo(53, 82);
-        ctx.lineTo(43, 82);
-        ctx.closePath();
-        ctx.fill();
-
-        // 8. Верхний стеклянный блик Apple iOS 6
-        var gloss = ctx.createLinearGradient(0, 0, 0, 56);
-        gloss.addColorStop(0, 'rgba(255, 255, 255, 0.38)');
-        gloss.addColorStop(0.6, 'rgba(255, 255, 255, 0.10)');
-        gloss.addColorStop(1, 'rgba(255, 255, 255, 0.0)');
-        ctx.fillStyle = gloss;
-        ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(114, 0);
-        ctx.lineTo(114, 46);
-        ctx.quadraticCurveTo(57, 62, 0, 46);
-        ctx.closePath();
-        ctx.fill();
-
-        var link = document.getElementById('apple-icon-link');
-        if (link) link.href = c.toDataURL('image/png');
-      } catch (e) {}
-    })();
-  </script>
 </head>
-<body class="theme-cream">
+<!-- Весь фон приложения теперь будет тёмной прошитой кожей -->
+<body class="leather-theme">
 
   <div id="app-shell" class="app-shell">
 
     <!-- ==========================================
-         ВЕРХНИЙ КОЖАНЫЙ НАВИГАЦИОННЫЙ БАР iOS 6
+         ВЕРХНИЙ БАР ИЗ СВЕТЛОЙ КОЖИ (как на скрине 163.jpg)
          ========================================== -->
-    <header id="top-navbar" class="ios6-navbar">
-      <div class="navbar-stitch-top"></div>
-
+    <header id="top-navbar" class="ios6-leather-navbar">
       <div class="navbar-left">
-        <!-- Точный SVG-логотип Whengram в скевоморфной оправе -->
-        <div class="brand-medallion" id="nav-logo-btn">
-          <svg viewBox="0 0 100 100" width="28" height="28">
-            <circle cx="50" cy="50" r="46" fill="#f5ecda" stroke="#c9bba3" stroke-width="3"/>
-            <line x1="50" y1="16" x2="50" y2="29" stroke="#141210" stroke-width="5.5" stroke-linecap="round"/>
-            <line x1="33" y1="21" x2="39" y2="30" stroke="#141210" stroke-width="5.5" stroke-linecap="round"/>
-            <line x1="67" y1="21" x2="61" y2="30" stroke="#141210" stroke-width="5.5" stroke-linecap="round"/>
-            <line x1="23" y1="38" x2="77" y2="38" stroke="#f03e18" stroke-width="5.5" stroke-linecap="round"/>
-            <path d="M 23 44 L 35 44 L 41 68 L 46 51 L 54 51 L 59 68 L 65 44 L 77 44 L 66 82 L 55 82 L 50 65 L 45 82 L 34 82 Z" fill="#141210"/>
-          </svg>
-        </div>
-      </div>
-
-      <div class="navbar-center">
-        <h1 id="navbar-title" class="navbar-title">WHENGRAM<span class="accent-dot">.</span></h1>
-        <div id="navbar-subtitle" class="navbar-subtitle">PERSONAL TIME CAPSULE</div>
-      </div>
-
-      <div class="navbar-right">
-        <button type="button" id="navbar-action-btn" class="ios6-bevel-btn">
-          <span class="plus-glyph">+</span> Новое
+        <button type="button" id="navbar-btn-capsule" class="ios6-glossy-dark-btn">
+          <span class="btn-icon">&#128230;</span> Капсула
         </button>
       </div>
 
-      <div class="navbar-stitch-bottom"></div>
+      <div class="navbar-center">
+        <h1 id="navbar-title" class="navbar-title">WHENGRAM</h1>
+      </div>
+
+      <div class="navbar-right">
+        <button type="button" id="navbar-btn-new" class="ios6-glossy-orange-btn">
+          <span class="btn-icon">&#9998;</span> Запись
+        </button>
+      </div>
     </header>
 
-    <!-- ==========================================
-         ОСНОВНАЯ ОБЛАСТЬ КОНТЕНТА
-         ========================================== -->
+    <!-- ОСНОВНАЯ ОБЛАСТЬ С КОНТЕНТОМ -->
     <main id="main-scroll" class="main-scroll">
 
-      <!-- ВКЛАДКА 1: ГЛАВНАЯ -->
+      <!-- ==========================================
+           ВКЛАДКА 1: ГЛАВНАЯ
+           ========================================== -->
       <section id="tab-home" class="tab-view active">
 
-        <!-- Металлическая плашка текущей даты и дня года -->
-        <div class="date-metal-bar">
-          <span id="home-current-date" class="date-bar-left">ПОНЕДЕЛЬНИК, 19 ОКТЯБРЯ 2026 Г.</span>
-          <span id="home-day-number" class="date-bar-right">№ 292</span>
+        <!-- НОВАЯ ФУНКЦИЯ: Конверт "В этот день" (появляется, если есть запись из прошлого) -->
+        <div id="on-this-day-widget" class="vintage-envelope hidden">
+          <div class="envelope-wax-seal"></div>
+          <div class="envelope-text">
+            <span class="env-title">В ЭТОТ ДЕНЬ</span>
+            <span id="env-date-subtitle" class="env-sub">Год назад вы что-то записали...</span>
+          </div>
+          <div class="env-arrow">&rarr;</div>
         </div>
 
-        <!-- Карточка-приглашение (если за сегодня записи ещё нет) -->
-        <div id="home-prompt-card" class="paper-sheet-card">
-          <div class="sheet-top-holes">
-            <span></span><span></span><span></span><span></span><span></span><span></span>
+        <!-- ГЛАВНАЯ КАРТОЧКА (Белая бумага на фоне кожи) -->
+        <div id="home-prompt-card" class="ios6-paper-card">
+          <!-- Дата и номер дня -->
+          <div class="card-meta-row">
+            <span id="home-current-date" class="meta-date">ПОНЕДЕЛЬНИК, 19 ОКТЯБРЯ 2026 Г.</span>
+            <span id="home-day-number" class="meta-badge">№ 292</span>
           </div>
-          <div class="sheet-inner">
-            <div class="greeting-kicker">
-              <span id="home-greeting-time">ДОБРОЕ УТРО,</span>
-              <span id="home-greeting-name" class="accent-text">ИЛЮША</span>
-            </div>
-            <h2 class="sheet-headline">Что сегодня произошло?</h2>
-            <p class="sheet-lead">То единственное, что стоит запомнить сегодня, пока оно не ускользнуло.</p>
+          
+          <div class="card-greeting">
+            <span id="home-greeting-time">ДОБРОЕ УТРО,</span>
+            <span id="home-greeting-name" class="accent-orange">ИЛЮША</span>
+          </div>
 
-            <button type="button" id="btn-write-today" class="ios6-hero-btn">
-              <span class="hero-btn-label">НАПИСАТЬ ВОСПОМИНАНИЕ</span>
-              <span class="hero-btn-circle">&rarr;</span>
-            </button>
-          </div>
+          <h2 class="card-headline">Что сегодня произошло?</h2>
+          <p class="card-subtext">То единственное, что стоит запомнить сегодня, пока оно не ускользнуло в прошлое.</p>
+
+          <!-- Большая сочная оранжевая кнопка -->
+          <button type="button" id="btn-write-today" class="ios6-big-orange-btn">
+            НАПИСАТЬ ВОСПОМИНАНИЕ <span class="arrow-right">&rarr;</span>
+          </button>
         </div>
 
-        <!-- Полароидная карточка (если запись за сегодня уже создана) -->
-        <div id="home-today-card" class="polaroid-sheet-card hidden">
-          <div class="polaroid-tape"></div>
-          <div class="polaroid-header">
-            <span class="polaroid-badge-label">ЗАПИСЬ ЗА СЕГОДНЯ</span>
-            <span id="today-card-mood" class="mood-led-pill mood-positive">
-              <i class="led-dot"></i> ХОРОШО
-            </span>
+        <!-- КАРТОЧКА СЕГОДНЯШНЕГО ВОСПОМИНАНИЯ (Если уже написали) -->
+        <div id="home-today-card" class="ios6-paper-card hidden">
+          <div class="card-meta-row" style="border-bottom: 1px dotted #ccc; padding-bottom: 6px; margin-bottom: 8px;">
+            <span class="meta-date">ЗАПИСЬ ЗА СЕГОДНЯ</span>
+            <span id="today-card-mood" class="meta-badge mood-badge">ХОРОШО</span>
           </div>
 
-          <div id="today-card-photo-wrap" class="polaroid-well hidden">
+          <div id="today-card-photo-wrap" class="photo-frame hidden">
             <img id="today-card-photo" src="" alt="Фото дня">
-            <div class="photo-inner-gloss"></div>
+            <div class="glass-glare"></div>
           </div>
 
-          <div id="today-card-text" class="polaroid-story-text"></div>
+          <div id="today-card-text" class="story-text"></div>
 
-          <!-- Виджет кассетного/винилового плеера Last.fm -->
-          <div id="today-lastfm-box" class="ipod-mini-widget hidden"></div>
+          <!-- Обновленный виджет плеера Last.fm (Сразу с предзагруженным аудио) -->
+          <div id="today-lastfm-box" class="lastfm-widget hidden"></div>
 
-          <div class="polaroid-bottom-row">
-            <span id="today-card-time" class="stamp-time">21:00</span>
-            <button type="button" id="btn-edit-today" class="ios6-chrome-btn">Изменить</button>
+          <div class="card-footer">
+            <span id="today-card-time" class="footer-time">21:00</span>
+            <button type="button" id="btn-edit-today" class="ios6-small-dark-btn">Изменить</button>
           </div>
         </div>
 
-        <!-- Блок WHENWEEK (Календарная лента недели с индикаторами) -->
-        <div class="skeuo-panel">
+        <!-- ВДАВЛЕННАЯ ПАНЕЛЬ WHENWEEK (Календарь из квадратных кнопок) -->
+        <div class="ios6-inset-panel">
           <div class="panel-header">
-            <span class="panel-title">WHENWEEK</span>
-            <span id="whenweek-count" class="panel-badge">ЗАПИСАНО: 0</span>
+            <span id="whenweek-month-label" class="panel-title">WHENWEEK • ОКТЯБРЬ</span>
+            <span id="whenweek-count" class="panel-counter">ЗАПИСАНО: 0</span>
           </div>
-          <div id="whenweek-strip" class="whenweek-rack"></div>
+
+          <div id="whenweek-strip" class="calendar-squares-row">
+            <!-- Квадратные кнопки генерируются через JS -->
+          </div>
+
+          <div class="panel-footer">
+            <span id="whenweek-footer-text" class="footer-note">На сегодня записей пока нет</span>
+            <button type="button" id="whenweek-quick-add" class="footer-action-link">+ Записать</button>
+          </div>
         </div>
 
-        <!-- Блок WHENLOG (Настоящие механические перекидные счётчики Flip-Clock) -->
-        <div class="skeuo-panel">
+        <!-- ВДАВЛЕННАЯ ПАНЕЛЬ WHENLOG (Механические счётчики) -->
+        <div class="ios6-inset-panel">
           <div class="panel-header">
-            <span class="panel-title">WHENLOG</span>
-            <span id="whenlog-since" class="panel-badge">С ОКТ. 2026</span>
+            <span class="panel-title">WHENLOG С ОКТ. 2026</span>
           </div>
 
-          <div class="mechanical-board">
-            <div class="mech-row">
-              <div class="mech-labels">
-                <span class="mech-main-label">ВОСПОМИНАНИЯ</span>
-                <span class="mech-sub-label">Всего записей в капсуле</span>
-              </div>
-              <div id="flip-memories" class="flip-rig"></div>
+          <div class="flip-clock-row">
+            <div class="flip-label">
+              <b>ВОСПОМИНАНИЯ</b><br><span>Всего записей в капсуле</span>
             </div>
+            <div id="flip-memories" class="flip-digits"></div>
+          </div>
 
-            <div class="mech- groove-divider"></div>
+          <div class="flip-divider"></div>
 
-            <div class="mech-row">
-              <div class="mech-labels">
-                <span class="mech-main-label">ВЕХИ</span>
-                <span class="mech-sub-label">Достижения и события</span>
-              </div>
-              <div id="flip-events" class="flip-rig"></div>
+          <div class="flip-clock-row">
+            <div class="flip-label">
+              <b>ВЕХИ</b><br><span>Достижения и события</span>
             </div>
+            <div id="flip-events" class="flip-digits"></div>
+          </div>
 
-            <div class="mech-groove-divider"></div>
+          <div class="flip-divider"></div>
 
-            <div class="mech-row">
-              <div class="mech-labels">
-                <span id="log-year-label" class="mech-main-label">2026 НА СЕГОДНЯ</span>
-                <span class="mech-sub-label">Текущий день года</span>
-              </div>
-              <div id="flip-day-of-year" class="flip-rig flip-rig-orange"></div>
+          <div class="flip-clock-row">
+            <div class="flip-label">
+              <b id="log-year-label">2026 НА СЕГОДНЯ</b><br><span>Текущий день года</span>
             </div>
+            <div id="flip-day-of-year" class="flip-digits digits-orange"></div>
           </div>
         </div>
 
       </section>
 
-      <!-- ВКЛАДКА 2: ВОСПОМИНАНИЯ И ПОЛКА iBOOKS -->
+      <!-- ==========================================
+           ВКЛАДКА 2: ВОСПОМИНАНИЯ
+           ========================================== -->
       <section id="tab-memories" class="tab-view">
-
-        <!-- Вдавленная строка поиска iOS 6 + фильтр -->
-        <div class="ios6-search-bar">
-          <div class="search-field-well">
-            <svg class="search-svg" viewBox="0 0 20 20" width="14" height="14">
-              <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#7d6e5d" stroke-width="2.2"/>
-              <line x1="12.8" y1="12.8" x2="17.5" y2="17.5" stroke="#7d6e5d" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
-            <input type="text" id="memories-search-input" class="search-well-input" placeholder="Поиск воспоминаний...">
-          </div>
-          <div class="search-filter-wrap">
-            <select id="memories-mood-filter" class="ios6-filter-select">
-              <option value="all">Все</option>
-              <option value="positive">Хорошо</option>
-              <option value="neutral">Ровно</option>
-              <option value="negative">Тяжело</option>
-              <option value="photo">С фото</option>
-            </select>
+        
+        <!-- НОВАЯ ФУНКЦИЯ: Машина времени -->
+        <div class="time-machine-banner" id="btn-time-machine">
+          <div class="tm-icon">&#8986;</div>
+          <div class="tm-text">
+            <b>МАШИНА ВРЕМЕНИ</b>
+            <span>Случайное воспоминание из прошлого</span>
           </div>
         </div>
 
-        <!-- Объёмный переключатель: Лента / Книжная полка iBooks -->
-        <div class="ios6-segmented">
-          <button type="button" id="view-btn-list" class="seg-pill active">Хроника по дням</button>
-          <button type="button" id="view-btn-shelf" class="seg-pill">Книжная полка iBooks</button>
+        <div class="search-bar-leather">
+          <input type="text" id="memories-search-input" class="ios6-search-input" placeholder="Поиск воспоминаний...">
+          <select id="memories-mood-filter" class="ios6-select">
+            <option value="all">Все</option>
+            <option value="positive">Хорошо</option>
+            <option value="neutral">Ровно</option>
+            <option value="negative">Тяжело</option>
+            <option value="photo">С фото</option>
+          </select>
         </div>
 
-        <!-- Плашка активного фильтра, если открыли книгу с полки -->
-        <div id="shelf-active-filter-bar" class="active-book-banner hidden">
-          <span id="shelf-filter-title">Открыт том: 2026</span>
-          <button type="button" id="btn-reset-shelf-filter" class="ios6-chrome-btn">Закрыть книгу</button>
+        <div class="ios6-segmented-control">
+          <button type="button" id="view-btn-list" class="seg-btn active">Хроника</button>
+          <button type="button" id="view-btn-shelf" class="seg-btn">iBooks Полка</button>
         </div>
 
-        <!-- СПИСОК ВОСПОМИНАНИЙ -->
+        <div id="shelf-active-filter-bar" class="active-filter-toast hidden">
+          <span id="shelf-filter-title">Том: 2026</span>
+          <button type="button" id="btn-reset-shelf-filter" class="ios6-small-dark-btn">Сбросить</button>
+        </div>
+
         <div id="memories-list-container" class="memories-feed"></div>
 
-        <!-- ДЕРЕВЯННАЯ ПОЛКА iBOOKS (ПО ГОДАМ И ПО МЕСЯЦАМ) -->
-        <div id="whenshelf-container" class="ibooks-cabinet hidden">
-          <div class="cabinet-crown">
-            <div class="crown-left">
-              <span class="crown-title">WHENSHELF<span class="accent-dot">.</span></span>
-              <span id="shelf-total-summary" class="crown-sub">У КАЖДОГО ВРЕМЕНИ СВОЯ КНИГА</span>
-            </div>
-            <div class="crown-switch">
-              <button type="button" id="shelf-by-year" class="crown-btn active">Годы</button>
-              <button type="button" id="shelf-by-month" class="crown-btn">Месяцы</button>
+        <div id="whenshelf-container" class="ibooks-wooden-case hidden">
+          <div class="wood-header">
+            <div class="wood-title">WHENSHELF.</div>
+            <div class="wood-switch">
+              <button type="button" id="shelf-by-year" class="wood-btn active">Годы</button>
+              <button type="button" id="shelf-by-month" class="wood-btn">Месяцы</button>
             </div>
           </div>
-
-          <div id="ibooks-wooden-shelf" class="wooden-bookcase"></div>
-        </div>
-
-        <!-- Нижняя плашка быстрого перехода к полке WHENSHELF -->
-        <div id="bottom-whenshelf-teaser" class="whenshelf-dock-card">
-          <div class="dock-card-text">
-            <span class="dock-card-brand">WHENSHELF<span class="accent-dot">.</span></span>
-            <span class="dock-card-caption">ВСЕ ВОСПОМИНАНИЯ НА КНИЖНОЙ ПОЛКЕ</span>
-          </div>
-          <div class="dock-card-spines">
-            <i class="spine-bar s1"></i>
-            <i class="spine-bar s2"></i>
-            <i class="spine-bar s3"></i>
-          </div>
+          <div id="ibooks-wooden-shelf" class="wood-shelves-area"></div>
         </div>
 
       </section>
 
-      <!-- ВКЛАДКА 3: ВЕХИ (MILESTONES) -->
+      <!-- ==========================================
+           ВКЛАДКА 3: ВЕХИ
+           ========================================== -->
       <section id="tab-events" class="tab-view">
-        <div class="ios6-search-bar single-search">
-          <div class="search-field-well full-well">
-            <svg class="search-svg" viewBox="0 0 20 20" width="14" height="14">
-              <circle cx="8.5" cy="8.5" r="5.5" fill="none" stroke="#7d6e5d" stroke-width="2.2"/>
-              <line x1="12.8" y1="12.8" x2="17.5" y2="17.5" stroke="#7d6e5d" stroke-width="2.4" stroke-linecap="round"/>
-            </svg>
-            <input type="text" id="events-search-input" class="search-well-input" placeholder="Поиск вех и достижений...">
-          </div>
+        <div class="search-bar-leather">
+          <input type="text" id="events-search-input" class="ios6-search-input" style="width:100%" placeholder="Поиск вех...">
         </div>
-
         <div id="events-list-container" class="events-feed"></div>
       </section>
 
-      <!-- ВКЛАДКА 4: НАСТРОЙКИ -->
+      <!-- ==========================================
+           ВКЛАДКА 4: НАСТРОЙКИ
+           ========================================== -->
       <section id="tab-settings" class="tab-view">
-
-        <div class="settings-emblem-box">
-          <div class="emblem-pedestal">
-            <svg viewBox="0 0 100 100" width="54" height="54">
-              <circle cx="50" cy="50" r="46" fill="#f5ecda" stroke="#d94e28" stroke-width="3.5"/>
-              <line x1="50" y1="16" x2="50" y2="29" stroke="#141210" stroke-width="5.5" stroke-linecap="round"/>
-              <line x1="33" y1="21" x2="39" y2="30" stroke="#141210" stroke-width="5.5" stroke-linecap="round"/>
-              <line x1="67" y1="21" x2="61" y2="30" stroke="#141210" stroke-width="5.5" stroke-linecap="round"/>
-              <line x1="23" y1="38" x2="77" y2="38" stroke="#f03e18" stroke-width="5.5" stroke-linecap="round"/>
-              <path d="M 23 44 L 35 44 L 41 68 L 46 51 L 54 51 L 59 68 L 65 44 L 77 44 L 66 82 L 55 82 L 50 65 L 45 82 L 34 82 Z" fill="#141210"/>
-            </svg>
-          </div>
-          <h2 class="emblem-title">WHENGRAM<span class="accent-dot">.</span></h2>
-          <p class="emblem-sub">PERSONAL TIME CAPSULE • iOS 6.1.3</p>
+        
+        <div class="settings-header">
+          <div class="settings-logo-leather">W</div>
+          <h2>WHENGRAM</h2>
+          <p>iOS 6 LEATHER EDITION</p>
         </div>
 
-        <div class="ios6-section-label">ПРОФИЛЬ</div>
-        <div class="ios6-inset-group">
-          <div class="ios6-row">
-            <div class="row-info">
-              <span class="row-name">Имя владельца</span>
-              <span class="row-hint">Приветствие на главном экране</span>
-            </div>
-            <div class="row-control">
-              <input type="text" id="setting-profile-name" class="ios6-field-right" value="Илюша">
-            </div>
+        <div class="settings-group-title">ПРОФИЛЬ И LAST.FM</div>
+        <div class="settings-group-box">
+          <div class="settings-row">
+            <div class="row-labels"><b>Имя</b><span>Для приветствия</span></div>
+            <input type="text" id="setting-profile-name" class="row-input" value="Илюша">
           </div>
-          <div class="ios6-row">
-            <div class="row-info">
-              <span class="row-name">Напоминание</span>
-              <span class="row-hint">Отметка времени в дневнике</span>
-            </div>
-            <div class="row-control">
-              <input type="text" id="setting-reminder-time" class="ios6-field-right" value="21:00">
-            </div>
+          <div class="settings-row">
+            <div class="row-labels"><b>Ник Last.fm</b><span>Для трека дня</span></div>
+            <input type="text" id="setting-lastfm-user" class="row-input" placeholder="Никнейм">
+          </div>
+          <div class="settings-row">
+            <button type="button" id="btn-save-settings" class="ios6-glossy-dark-btn" style="width:100%">Сохранить настройки</button>
           </div>
         </div>
 
-        <div class="ios6-section-label">ОФОРМЛЕНИЕ</div>
-        <div class="ios6-inset-group">
-          <div class="ios6-row">
-            <div class="row-info">
-              <span class="row-name">Тёплая кремовая бумага</span>
-              <span class="row-hint">Выкл = Тёмный графитовый лён iOS 6</span>
-            </div>
-            <div class="row-control">
-              <button type="button" id="toggle-cream-theme" class="ios6-toggle-switch active">
-                <span class="toggle-inner">
-                  <b class="t-on">ON</b>
-                  <b class="t-off">OFF</b>
-                  <i class="t-thumb"></i>
-                </span>
-              </button>
+        <div class="settings-group-title">РЕЗЕРВНАЯ КОПИЯ</div>
+        <div class="settings-group-box">
+          <div class="settings-row" style="padding: 10px;">
+            <p style="font-size:11px; color:#555; margin:0 0 10px 0;">Полная совместимость с Whengram 2.0 (manifest.json + фото).</p>
+            <div style="display:flex; justify-content:space-between;">
+              <button type="button" id="btn-export-zip" class="ios6-glossy-orange-btn" style="width:48%">Скачать .ZIP</button>
+              <label for="input-import-zip" class="ios6-glossy-dark-btn" style="width:48%; text-align:center; line-height:28px;">Загрузить .ZIP</label>
+              <input type="file" id="input-import-zip" style="display:none" accept=".zip,.json">
             </div>
           </div>
-        </div>
-
-        <div class="ios6-section-label">СИНХРОНИЗАЦИЯ С LAST.FM</div>
-        <div class="ios6-inset-group">
-          <div class="ios6-row">
-            <div class="row-info">
-              <span class="row-name">Никнейм Last.fm</span>
-              <span class="row-hint">Автоматический трек дня в заметку</span>
-            </div>
-            <div class="row-control">
-              <input type="text" id="setting-lastfm-user" class="ios6-field-right" placeholder="username">
-            </div>
-          </div>
-          <div class="ios6-row">
-            <div class="row-info">
-              <span class="row-name">API-ключ</span>
-              <span class="row-hint">Оставь пустым для встроенного</span>
-            </div>
-            <div class="row-control">
-              <input type="text" id="setting-lastfm-key" class="ios6-field-right" placeholder="Встроен">
-            </div>
-          </div>
-          <div class="ios6-row row-button-wrap">
-            <button type="button" id="btn-save-settings" class="ios6-action-bar-btn">
-              Сохранить настройки профиля и Last.fm
-            </button>
-          </div>
-        </div>
-
-        <div class="ios6-section-label">РЕЗЕРВНАЯ КОПИЯ WHENGRAM (.ZIP / JSON)</div>
-        <div class="ios6-inset-group">
-          <div class="ios6-row row-block">
-            <p class="backup-note">
-              Архив полностью совместим с оригинальным приложением <b>Whengram 2.0</b> (содержит <code>manifest.json</code> и папку <code>photos/</code>).
-            </p>
-            <div class="two-btn-row">
-              <button type="button" id="btn-export-zip" class="ios6-orange-gloss-btn">Скачать .ZIP</button>
-              <label for="input-import-zip" class="ios6-silver-gloss-btn">Загрузить .ZIP</label>
-              <input type="file" id="input-import-zip" class="hidden-input" accept=".zip,.json,application/zip,application/json">
-            </div>
-          </div>
-
-          <div class="ios6-row row-block">
-            <span class="row-name">Прямой буфер обмена для iOS 6.1.3</span>
-            <span class="row-hint">Если нужно быстро вставить или скопировать manifest.json текстом:</span>
-            <textarea id="backup-json-textarea" class="ios6-carved-textarea" rows="3" placeholder="Код manifest.json..."></textarea>
-            <div class="two-btn-row">
-              <button type="button" id="btn-copy-manifest" class="ios6-silver-gloss-btn">Скопировать</button>
-              <button type="button" id="btn-import-manifest-text" class="ios6-silver-gloss-btn">Импортировать</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Перфорированный бумажный чек в стиле промо Whengram -->
-        <div class="paper-receipt-ticket">
-          <div class="ticket-zag-top"></div>
-          <div class="ticket-body">
-            <div class="ticket-heading">ЧТО МЫ СОБИРАЕМ<span class="accent-dot">.</span></div>
-            <div class="ticket-line"><span>АККАУНТЫ</span><b>НЕТ</b></div>
-            <div class="ticket-line"><span>ЭЛЕКТРОННАЯ ПОЧТА</span><b>0</b></div>
-            <div class="ticket-line"><span>ТРЕКЕРЫ И РЕКЛАМА</span><b>0</b></div>
-            <div class="ticket-line"><span>ВАШИ ДАННЫЕ В ОБЛАКЕ</span><b>НЕТ</b></div>
-            <div class="ticket-total-line"><span>ИТОГО</span><b>НИЧЕГО<span class="accent-dot">.</span></b></div>
-          </div>
-          <div class="ticket-zag-bottom"></div>
         </div>
 
       </section>
@@ -486,245 +256,83 @@
     </main>
 
     <!-- ==========================================
-         НИЖНИЙ ГЛЯНЦЕВЫЙ ДОК-БАР iOS 6 (С SVG-ИКОНКАМИ)
+         НИЖНИЙ ГЛЯНЦЕВЫЙ ТАБ-БАР
          ========================================== -->
-    <nav id="bottom-tabbar" class="ios6-tabbar">
-      <div class="tabbar-glass-shine"></div>
-
+    <nav id="bottom-tabbar" class="ios6-glossy-tabbar">
       <button type="button" class="tab-btn active" data-tab="home">
-        <span class="tab-svg-wrap">
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <path d="M12 3 L2 12 L5 12 L5 20 L10 20 L10 14 L14 14 L14 20 L19 20 L19 12 L22 12 Z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="tab-caption">ГЛАВНАЯ</span>
+        <span class="tab-icon">&#8962;</span> Главная
       </button>
-
       <button type="button" class="tab-btn" data-tab="memories">
-        <span class="tab-svg-wrap">
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <path d="M4 4 C4 2.9 4.9 2 6 2 L19 2 L19 18 L6 18 C4.9 18 4 18.9 4 20 L4 4 Z M6 16 L17 16 L17 4 L6 4 L6 16 Z M6 20 L19 20 L19 22 L6 22 C4.3 22 3 20.7 3 19 L3 5 C3 3.9 3.9 3 5 3 L5 18 C5 19.1 5.4 20 6 20 Z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="tab-caption">ВОСПОМИНАНИЯ</span>
+        <span class="tab-icon">&#128214;</span> Воспоминания
       </button>
-
       <button type="button" class="tab-btn" data-tab="events">
-        <span class="tab-svg-wrap">
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <path d="M18 2 L6 2 L6 4 L2 4 L2 9 C2 11.2 3.8 13 6 13 L6.8 13 C7.6 15.4 9.5 17.2 11 17.7 L11 20 L7 20 L7 22 L17 22 L17 20 L13 20 L13 17.7 C14.5 17.2 16.4 15.4 17.2 13 L18 13 C20.2 13 22 11.2 22 9 L22 4 L18 4 L18 2 Z M4 9 L4 6 L6 6 L6 11 C4.9 11 4 10.1 4 9 Z M20 9 C20 10.1 19.1 11 18 11 L18 6 L20 6 L20 9 Z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="tab-caption">ВЕХИ</span>
+        <span class="tab-icon">&#127942;</span> Вехи
       </button>
-
       <button type="button" class="tab-btn" data-tab="settings">
-        <span class="tab-svg-wrap">
-          <svg viewBox="0 0 24 24" width="22" height="22">
-            <path d="M19.4 13 C19.5 12.7 19.5 12.3 19.5 12 C19.5 11.7 19.5 11.3 19.4 11 L21.5 9.3 C21.7 9.1 21.7 8.8 21.6 8.6 L19.6 5.1 C19.5 4.9 19.2 4.8 19 4.9 L16.5 5.9 C16 5.5 15.4 5.1 14.8 4.9 L14.4 2.2 C14.3 2 14.1 1.8 13.9 1.8 L9.9 1.8 C9.6 1.8 9.4 2 9.4 2.2 L9 4.9 C8.4 5.1 7.8 5.5 7.3 5.9 L4.8 4.9 C4.6 4.8 4.3 4.9 4.2 5.1 L2.2 8.6 C2.1 8.8 2.1 9.1 2.3 9.3 L4.4 11 C4.3 11.3 4.3 11.7 4.3 12 C4.3 12.3 4.3 12.7 4.4 13 L2.3 14.7 C2.1 14.9 2.1 15.2 2.2 15.4 L4.2 18.9 C4.3 19.1 4.6 19.2 4.8 19.1 L7.3 18.1 C7.8 18.5 8.4 18.9 9 19.1 L9.4 21.8 C9.4 22 9.6 22.2 9.9 22.2 L13.9 22.2 C14.1 22.2 14.3 22 14.4 21.8 L14.8 19.1 C15.4 18.9 16 18.5 16.5 18.1 L19 19.1 C19.2 19.2 19.5 19.1 19.6 18.9 L21.6 15.4 C21.7 15.2 21.7 14.9 21.5 14.7 L19.4 13 Z M11.9 15.5 C10 15.5 8.4 13.9 8.4 12 C8.4 10.1 10 8.5 11.9 8.5 C13.8 8.5 15.4 10.1 15.4 12 C15.4 13.9 13.8 15.5 11.9 15.5 Z" fill="currentColor"/>
-          </svg>
-        </span>
-        <span class="tab-caption">НАСТРОЙКИ</span>
+        <span class="tab-icon">&#9881;</span> Настройки
       </button>
     </nav>
 
   </div>
 
-  <!-- ==========================================
-       МОДАЛКА 1: НАПИСАТЬ / ИЗМЕНИТЬ ВОСПОМИНАНИЕ
-       ========================================== -->
+  <!-- МОДАЛЬНЫЕ ОКНА (Скрыты по умолчанию) -->
   <div id="modal-memory" class="ios6-modal hidden">
-    <div class="modal-window">
-      <div class="ios6-navbar modal-top-bar">
-        <div class="navbar-stitch-top"></div>
-        <button type="button" id="btn-close-memory-modal" class="ios6-bevel-btn modal-left-btn">Отмена</button>
-        <div class="navbar-center">
-          <h2 class="navbar-title">ОТМЕТЬТЕ <span class="accent-text">ЭТОТ ДЕНЬ.</span></h2>
-        </div>
-        <button type="button" id="btn-save-memory" class="ios6-bevel-btn btn-orange-done modal-right-btn">Готово</button>
-        <div class="navbar-stitch-bottom"></div>
-      </div>
-
+    <div class="modal-content-leather">
+      <header class="ios6-leather-navbar">
+        <button type="button" id="btn-close-memory-modal" class="ios6-glossy-dark-btn left-pos">Отмена</button>
+        <h2 class="navbar-title">ЗАПИСЬ</h2>
+        <button type="button" id="btn-save-memory" class="ios6-glossy-orange-btn right-pos">Готово</button>
+      </header>
       <div class="modal-scroll-area">
         <input type="hidden" id="memory-edit-id" value="">
-
-        <div class="modal-field-group">
-          <label class="field-kicker" for="memory-date-input">ДАТА ЗАПИСИ</label>
-          <input type="date" id="memory-date-input" class="ios6-carved-input">
-        </div>
-
-        <div class="modal-field-group">
-          <label class="field-kicker">КАК ПРОШЁЛ ВАШ ДЕНЬ?</label>
-          <div class="mood-trio-grid">
-            <button type="button" class="mood-pad active" data-mood="positive">
-              <span class="mood-pad-led led-green"></span>
-              <span class="mood-pad-title">ХОРОШО</span>
-            </button>
-            <button type="button" class="mood-pad" data-mood="neutral">
-              <span class="mood-pad-led led-amber"></span>
-              <span class="mood-pad-title">РОВНО</span>
-            </button>
-            <button type="button" class="mood-pad" data-mood="negative">
-              <span class="mood-pad-led led-red"></span>
-              <span class="mood-pad-title">ТЯЖЕЛО</span>
-            </button>
+        
+        <label class="leather-label">ДАТА И НАСТРОЕНИЕ</label>
+        <div class="leather-input-group">
+          <input type="date" id="memory-date-input" class="leather-input-field" style="border-bottom:1px solid #ccc">
+          <div class="mood-selector-row">
+            <button type="button" class="mood-btn active" data-mood="positive">ХОРОШО</button>
+            <button type="button" class="mood-btn" data-mood="neutral">РОВНО</button>
+            <button type="button" class="mood-btn" data-mood="negative">ТЯЖЕЛО</button>
           </div>
         </div>
 
-        <div class="modal-field-group">
-          <label class="field-kicker" for="memory-text-input">ЧТО ПРОИЗОШЛО?</label>
-          <div class="lined-notepad-wrap">
-            <textarea id="memory-text-input" class="ios6-lined-notepad" rows="5" placeholder="То, что стоит запомнить..."></textarea>
-          </div>
+        <label class="leather-label">ЧТО ПРОИЗОШЛО?</label>
+        <textarea id="memory-text-input" class="ios6-notepad-textarea" rows="6" placeholder="То, что стоит запомнить..."></textarea>
+
+        <label class="leather-label">САУНДТРЕК ДНЯ (LAST.FM)</label>
+        <div class="leather-input-group" style="padding:10px;">
+          <button type="button" id="btn-fetch-lastfm" class="ios6-glossy-dark-btn" style="width:100%; margin-bottom:10px;">&#9835; Подтянуть трек за этот день</button>
+          <div id="memory-lastfm-preview" class="lastfm-preview-box">Трек не выбран</div>
+          <input type="text" id="memory-song-title" class="leather-input-field" placeholder="Название песни" style="border-bottom:1px solid #ccc; background:transparent; padding:5px 0;">
+          <input type="text" id="memory-song-artist" class="leather-input-field" placeholder="Исполнитель" style="background:transparent; padding:5px 0;">
+          <input type="hidden" id="memory-song-plays"><input type="hidden" id="memory-song-cover">
         </div>
 
-        <!-- Блок Last.fm в окне записи -->
-        <div class="modal-field-group">
-          <div class="kicker-with-btn">
-            <label class="field-kicker">САУНДТРЕК ДНЯ (LAST.FM)</label>
-            <button type="button" id="btn-fetch-lastfm" class="ios6-chrome-btn">&#9835; Подтянуть за день</button>
-          </div>
-          <div id="memory-lastfm-preview" class="lastfm-slot-well">
-            <span class="slot-placeholder">Нажми «Подтянуть за день» или впиши трек ниже</span>
-          </div>
-          <div class="two-col-inputs">
-            <input type="text" id="memory-song-title" class="ios6-carved-input col-half" placeholder="Название песни">
-            <input type="text" id="memory-song-artist" class="ios6-carved-input col-half" placeholder="Исполнитель">
-            <input type="hidden" id="memory-song-plays" value="">
-            <input type="hidden" id="memory-song-cover" value="">
-          </div>
+        <label class="leather-label">ФОТОГРАФИЯ</label>
+        <div class="leather-input-group" style="padding:10px; text-align:center;">
+          <label for="memory-photo-input" class="ios6-glossy-dark-btn" style="display:block; margin-bottom:10px;">Выбрать фото</label>
+          <input type="file" id="memory-photo-input" style="display:none" accept="image/*">
+          <img id="memory-photo-preview" src="" class="hidden" style="width:100%; border-radius:5px; margin-bottom:10px;">
+          <button type="button" id="btn-remove-photo" class="ios6-glossy-red-btn hidden" style="width:100%;">Удалить фото</button>
         </div>
 
-        <div class="modal-field-group">
-          <label class="field-kicker">ФОТОГРАФИЯ (ПО ЖЕЛАНИЮ)</label>
-          <div class="photo-buttons-bar">
-            <label for="memory-photo-input" class="ios6-silver-gloss-btn full-btn">
-              Выбрать фото из Медиатеки / Камеры
-            </label>
-            <input type="file" id="memory-photo-input" class="hidden-input" accept="image/*">
-            <button type="button" id="btn-remove-photo" class="ios6-red-gloss-btn hidden">Убрать фотографию</button>
-          </div>
-          <div id="memory-photo-preview-wrap" class="polaroid-well preview-well hidden">
-            <img id="memory-photo-preview" src="" alt="Предпросмотр">
-          </div>
-        </div>
-
-        <div id="memory-delete-wrap" class="modal-field-group hidden">
-          <button type="button" id="btn-delete-memory" class="ios6-red-gloss-btn">Удалить воспоминание</button>
+        <div id="memory-delete-wrap" class="hidden" style="margin-top:20px;">
+          <button type="button" id="btn-delete-memory" class="ios6-glossy-red-btn" style="width:100%;">Удалить запись</button>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- ==========================================
-       МОДАЛКА 2: СОЗДАТЬ / ИЗМЕНИТЬ ВЕХУ
-       ========================================== -->
-  <div id="modal-event" class="ios6-modal hidden">
-    <div class="modal-window">
-      <div class="ios6-navbar modal-top-bar">
-        <div class="navbar-stitch-top"></div>
-        <button type="button" id="btn-close-event-modal" class="ios6-bevel-btn modal-left-btn">Отмена</button>
-        <div class="navbar-center">
-          <h2 class="navbar-title">ОТМЕТИТЬ <span class="accent-text">ВЕХУ.</span></h2>
-        </div>
-        <button type="button" id="btn-save-event" class="ios6-bevel-btn btn-orange-done modal-right-btn">Готово</button>
-        <div class="navbar-stitch-bottom"></div>
-      </div>
+  <!-- Модалки для Вех и Читалки сжаты для экономии (аналогичны структуре) -->
+  <div id="modal-event" class="ios6-modal hidden"><div class="modal-content-leather"><header class="ios6-leather-navbar"><button type="button" id="btn-close-event-modal" class="ios6-glossy-dark-btn left-pos">Отмена</button><h2 class="navbar-title">ВЕХА</h2><button type="button" id="btn-save-event" class="ios6-glossy-orange-btn right-pos">Готово</button></header><div class="modal-scroll-area"><input type="hidden" id="event-edit-id" value=""><label class="leather-label">СОБЫТИЕ</label><div class="leather-input-group"><input type="text" id="event-title-input" class="leather-input-field" placeholder="Название" style="border-bottom:1px solid #ccc"><select id="event-category-select" class="leather-input-field" style="border-bottom:1px solid #ccc"><option value="ЖИЗНЬ">ЖИЗНЬ</option><option value="ПОКУПКА">ПОКУПКА</option><option value="ПОЕЗДКИ">ПОЕЗДКИ</option></select><input type="date" id="event-date-input" class="leather-input-field"></div><label class="leather-label">ФОТО</label><div class="leather-input-group" style="padding:10px;"><label for="event-photo-input" class="ios6-glossy-dark-btn" style="display:block;">Выбрать фото</label><input type="file" id="event-photo-input" style="display:none" accept="image/*"><img id="event-photo-preview" src="" class="hidden" style="width:100%; margin-top:10px; border-radius:4px;"></div><div id="event-delete-wrap" class="hidden" style="margin-top:20px;"><button type="button" id="btn-delete-event" class="ios6-glossy-red-btn" style="width:100%;">Удалить</button></div></div></div></div>
 
-      <div class="modal-scroll-area">
-        <input type="hidden" id="event-edit-id" value="">
+  <div id="modal-reader" class="ios6-modal hidden"><div class="modal-content-leather"><header class="ios6-leather-navbar"><button type="button" id="btn-close-reader" class="ios6-glossy-dark-btn left-pos">Назад</button><h2 class="navbar-title">ВОСПОМИНАНИЕ</h2><button type="button" id="btn-reader-edit" class="ios6-glossy-dark-btn right-pos">Изменить</button></header><div class="modal-scroll-area"><div class="ios6-paper-card"><div class="card-meta-row" style="border-bottom: 1px dotted #ccc; padding-bottom: 6px; margin-bottom: 8px;"><span id="reader-full-date" class="meta-date"></span><span id="reader-mood-badge" class="meta-badge"></span></div><div id="reader-photo-wrap" class="photo-frame hidden"><img id="reader-photo-img" src=""><div class="glass-glare"></div></div><div id="reader-text-body" class="story-text"></div><div id="reader-lastfm-box" class="lastfm-widget hidden"></div></div></div></div></div>
 
-        <div class="modal-field-group">
-          <label class="field-kicker" for="event-title-input">ДОСТИЖЕНИЕ ИЛИ СОБЫТИЕ</label>
-          <input type="text" id="event-title-input" class="ios6-carved-input" placeholder="Например: Первая поездка, покупка...">
-        </div>
+  <div id="ios6-hud" class="ios6-hud hidden"><div id="ios6-hud-text">Готово</div></div>
 
-        <div class="modal-field-group">
-          <label class="field-kicker" for="event-category-select">КАТЕГОРИЯ ВЕХИ</label>
-          <select id="event-category-select" class="ios6-carved-input">
-            <option value="ЖИЗНЬ">ЖИЗНЬ</option>
-            <option value="РАБОТА / УЧЁБА">РАБОТА / УЧЁБА</option>
-            <option value="ПОКУПКА">ПОКУПКА</option>
-            <option value="ПОЕЗДКИ">ПОЕЗДКИ</option>
-            <option value="ЗДОРОВЬЕ">ЗДОРОВЬЕ</option>
-          </select>
-        </div>
+  <!-- Аудио-элемент для предзагрузки музыки -->
+  <audio id="lastfm-audio-preview" preload="auto"></audio>
 
-        <div class="modal-field-group">
-          <label class="field-kicker" for="event-date-input">ДАТА</label>
-          <input type="date" id="event-date-input" class="ios6-carved-input">
-        </div>
-
-        <div class="modal-field-group">
-          <label class="field-kicker" for="event-notes-input">ЗАМЕТКА К ВЕХЕ</label>
-          <textarea id="event-notes-input" class="ios6-carved-textarea" rows="3" placeholder="Детали этого дня..."></textarea>
-        </div>
-
-        <div class="modal-field-group">
-          <label class="field-kicker">ФОТО ВЕХИ</label>
-          <label for="event-photo-input" class="ios6-silver-gloss-btn full-btn">Прикрепить фото</label>
-          <input type="file" id="event-photo-input" class="hidden-input" accept="image/*">
-          <div id="event-photo-preview-wrap" class="polaroid-well preview-well hidden">
-            <img id="event-photo-preview" src="" alt="Фото вехи">
-          </div>
-        </div>
-
-        <div id="event-delete-wrap" class="modal-field-group hidden">
-          <button type="button" id="btn-delete-event" class="ios6-red-gloss-btn">Удалить веху</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ==========================================
-       МОДАЛКА 3: ПРОСМОТР КАРТОЧКИ («ПЕРЕЖИТЬ ЗАНОВО»)
-       ========================================== -->
-  <div id="modal-reader" class="ios6-modal hidden">
-    <div class="modal-window">
-      <div class="ios6-navbar modal-top-bar">
-        <div class="navbar-stitch-top"></div>
-        <button type="button" id="btn-close-reader" class="ios6-bevel-btn modal-left-btn">&larr; Назад</button>
-        <div class="navbar-center">
-          <h2 id="reader-header-day" class="navbar-title">КАПСУЛА ДНЯ</h2>
-        </div>
-        <button type="button" id="btn-reader-edit" class="ios6-bevel-btn modal-right-btn">Изменить</button>
-        <div class="navbar-stitch-bottom"></div>
-      </div>
-
-      <div class="modal-scroll-area">
-        <div class="polaroid-sheet-card reader-full-card">
-          <div class="polaroid-tape"></div>
-          <div class="reader-top-meta">
-            <div id="reader-weekday" class="reader-kicker">ВОСКРЕСЕНЬЕ • 21:10</div>
-            <h3 id="reader-full-date" class="reader-big-date">18 октября 2026 г.</h3>
-            <div class="reader-badges-line">
-              <span id="reader-day-of-year" class="reader-day-counter">291 / 365</span>
-              <span id="reader-mood-badge" class="mood-led-pill mood-negative">
-                <i class="led-dot"></i> ТЯЖЕЛО
-              </span>
-            </div>
-          </div>
-
-          <div id="reader-photo-wrap" class="polaroid-well hidden">
-            <img id="reader-photo-img" src="" alt="Фото дня">
-            <div class="photo-inner-gloss"></div>
-          </div>
-
-          <div id="reader-text-body" class="polaroid-story-text reader-story-large"></div>
-
-          <div id="reader-lastfm-box" class="ipod-mini-widget hidden"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Стеклянный HUD-индикатор iOS 6 -->
-  <div id="ios6-hud" class="ios6-hud hidden">
-    <div id="ios6-hud-text" class="ios6-hud-text">Готово</div>
-  </div>
-
-  <audio id="lastfm-audio-preview" preload="none"></audio>
-
-  <script type="text/javascript" src="app.js"></script>
+  <script type="text/javascript" src="app.js?v=10"></script>
 </body>
 </html>
