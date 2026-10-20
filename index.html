@@ -8,10 +8,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="Whengram">
   <meta name="format-detection" content="telephone=no">
-  <link id="apple-icon-link" rel="apple-touch-icon-precomposed" sizes="114x114" href="">
+  <!-- Используем apple-touch-icon (без precomposed), чтобы iOS 6 сама наложила родную маску и глянец без обрезанных рамок -->
+  <link id="apple-icon-link" rel="apple-touch-icon" sizes="114x114" href="">
 
   <script type="text/javascript">
-    /* Генерация Retina-иконки 114x114 в стиле iOS 6 по оригинальному логотипу Whengram */
+    /* Чистая иконка 114x114 на весь квадрат без рамок по краям (под маску iOS 6) */
     (function() {
       try {
         var c = document.createElement('canvas');
@@ -19,50 +20,40 @@
         var ctx = c.getContext('2d');
 
         var bg = ctx.createLinearGradient(0, 0, 0, 114);
-        bg.addColorStop(0, '#593b25');
-        bg.addColorStop(0.5, '#332013');
-        bg.addColorStop(1, '#170e08');
+        bg.addColorStop(0, '#fffdf9');
+        bg.addColorStop(0.65, '#f2e5d0');
+        bg.addColorStop(1, '#d9c5a7');
         ctx.fillStyle = bg;
         ctx.fillRect(0, 0, 114, 114);
 
-        ctx.strokeStyle = 'rgba(255, 220, 175, 0.35)';
-        ctx.lineWidth = 2;
-        ctx.strokeRect(4, 4, 106, 106);
-
-        ctx.beginPath();
-        ctx.arc(57, 57, 41, 0, Math.PI * 2, false);
-        var cg = ctx.createLinearGradient(0, 16, 0, 98);
-        cg.addColorStop(0, '#fffdf9');
-        cg.addColorStop(1, '#e3d3bc');
-        ctx.fillStyle = cg;
-        ctx.fill();
-
-        ctx.strokeStyle = '#141210';
+        ctx.strokeStyle = '#1a1410';
         ctx.lineCap = 'round';
-        ctx.lineWidth = 4.5;
-        ctx.beginPath(); ctx.moveTo(57, 25); ctx.lineTo(57, 35); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(43, 29); ctx.lineTo(48, 36); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(71, 29); ctx.lineTo(66, 36); ctx.stroke();
+        ctx.lineWidth = 6.5;
+        ctx.beginPath(); ctx.moveTo(57, 17); ctx.lineTo(57, 31); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(37, 22); ctx.lineTo(44, 33); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(77, 22); ctx.lineTo(70, 33); ctx.stroke();
 
-        ctx.strokeStyle = '#e84118';
-        ctx.lineWidth = 4.2;
-        ctx.beginPath(); ctx.moveTo(35, 43); ctx.lineTo(79, 43); ctx.stroke();
+        ctx.strokeStyle = '#e63b14';
+        ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.moveTo(24, 43); ctx.lineTo(90, 43); ctx.stroke();
 
-        ctx.fillStyle = '#141210';
+        ctx.fillStyle = '#1a1410';
         ctx.beginPath();
-        ctx.moveTo(35, 48); ctx.lineTo(44, 48); ctx.lineTo(49, 68);
-        ctx.lineTo(53.5, 54); ctx.lineTo(60.5, 54); ctx.lineTo(65, 68);
-        ctx.lineTo(70, 48); ctx.lineTo(79, 48); ctx.lineTo(70, 81);
-        ctx.lineTo(61, 81); ctx.lineTo(57, 67); ctx.lineTo(53, 81);
-        ctx.lineTo(44, 81); ctx.closePath(); ctx.fill();
-
-        var gl = ctx.createLinearGradient(0, 0, 0, 54);
-        gl.addColorStop(0, 'rgba(255,255,255,0.42)');
-        gl.addColorStop(1, 'rgba(255,255,255,0.0)');
-        ctx.fillStyle = gl;
-        ctx.beginPath();
-        ctx.moveTo(0, 0); ctx.lineTo(114, 0); ctx.lineTo(114, 45);
-        ctx.quadraticCurveTo(57, 62, 0, 45); ctx.closePath(); ctx.fill();
+        ctx.moveTo(23, 51);
+        ctx.lineTo(36, 51);
+        ctx.lineTo(44, 80);
+        ctx.lineTo(52, 58);
+        ctx.lineTo(62, 58);
+        ctx.lineTo(70, 80);
+        ctx.lineTo(78, 51);
+        ctx.lineTo(91, 51);
+        ctx.lineTo(77, 96);
+        ctx.lineTo(64, 96);
+        ctx.lineTo(57, 74);
+        ctx.lineTo(50, 96);
+        ctx.lineTo(37, 96);
+        ctx.closePath();
+        ctx.fill();
 
         var link = document.getElementById('apple-icon-link');
         if (link) link.href = c.toDataURL('image/png');
@@ -72,13 +63,12 @@
 
   <style type="text/css">
     /* ==========================================================================
-       БАЗОВАЯ СКЕВОМОРФНАЯ СИСТЕМА iOS 6 (КОЖА, БУМАГА, МЕТАЛЛ, БАРОМЕТР, ВЕХИ)
+       БАЗОВАЯ СКЕВОМОРФНАЯ СИСТЕМА iOS 6 (БЕЗ БАГОВ КЛАВИАТУРЫ И ОБРЕЗКИ ТЕКСТА)
        ========================================================================== */
     * {
       -webkit-box-sizing: border-box;
       box-sizing: border-box;
       -webkit-tap-highlight-color: rgba(0,0,0,0);
-      -webkit-touch-callout: none;
     }
 
     html, body {
@@ -92,6 +82,12 @@
       -webkit-font-smoothing: antialiased;
       background-color: #1c120c;
       color: #fff9f0;
+    }
+
+    /* Разрешаем системное меню сохранения фото при долгом нажатии на картинки */
+    img, .saveable-img {
+      -webkit-touch-callout: default !important;
+      -webkit-user-select: auto !important;
     }
 
     .hidden { display: none !important; }
@@ -141,9 +137,9 @@
        ВЕРХНИЙ БАР ИЗ ПРОШИТОЙ КОЖИ
        ========================================================================== */
     .ios6-navbar {
-      position: absolute;
-      top: 0; left: 0; right: 0;
+      position: relative;
       height: 48px;
+      width: 100%;
       z-index: 30;
       background-color: #825634;
       background-image:
@@ -184,29 +180,40 @@
 
     .nav-left { position: absolute; left: 8px; top: 8px; }
     .nav-right { position: absolute; right: 8px; top: 8px; }
-    .nav-center { margin: 0 92px; padding-top: 11px; text-align: center; }
+    .nav-center { margin: 0 88px; padding-top: 12px; text-align: center; }
 
     .nav-brand {
       margin: 0;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 900;
-      letter-spacing: 0.8px;
+      letter-spacing: 0.7px;
       color: #ffffff;
       text-shadow: 0 -1px 1px #1a0d05, 0 2px 3px rgba(0, 0, 0, 0.8);
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .nav-brand .dot { color: #ff5526; }
 
+    /* ИСПРАВЛЕННЫЕ КНОПКИ: текст никогда не переносится на вторую строку и не обрезается */
     .nav-btn {
-      height: 30px;
-      padding: 0 10px;
-      font-size: 12px;
+      display: inline-block;
+      min-height: 30px;
+      line-height: 28px;
+      padding: 0 9px;
+      font-size: 11px;
       font-weight: 800;
       color: #fff8ee;
+      text-align: center;
+      text-decoration: none;
       text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.85);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       -webkit-border-radius: 6px;
       border-radius: 6px;
       cursor: pointer;
+      vertical-align: middle;
     }
 
     .nav-btn-leather {
@@ -244,6 +251,15 @@
     .nav-btn:active, .cta-orange-btn:active, .day-3d-btn:active {
       -webkit-box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.85) !important;
       opacity: 0.92;
+    }
+
+    .btn-svg-ico {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      vertical-align: -2px;
+      margin-right: 3px;
+      fill: currentColor;
     }
 
     .main-scroll {
@@ -392,10 +408,7 @@
       text-transform: uppercase;
       margin-bottom: 5px;
     }
-
-    .paper-greeting .user-name {
-      color: #d9411a;
-    }
+    .paper-greeting .user-name { color: #d9411a; }
 
     .paper-headline {
       margin: 0 0 14px 0;
@@ -415,7 +428,7 @@
       text-align: left;
       font-size: 12px;
       font-weight: 900;
-      letter-spacing: 0.6px;
+      letter-spacing: 0.5px;
       color: #ffffff;
       text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.7);
       background-color: #e03c14;
@@ -437,9 +450,9 @@
     }
 
     .cta-orange-btn .cta-text { line-height: 42px; }
-    .cta-orange-btn .cta-arrow { float: right; font-size: 17px; line-height: 40px; }
+    .cta-orange-btn .cta-arrow { float: right; font-size: 16px; line-height: 40px; }
 
-    /* Барометр погоды и жетоны тегов внутри карточки */
+    /* Металлический шильдик погоды и 3D-смайл настроения */
     .atmo-tags-row {
       overflow: hidden;
       margin-bottom: 8px;
@@ -447,7 +460,7 @@
 
     .weather-brass-pill {
       display: inline-block;
-      padding: 3px 8px;
+      padding: 3px 9px;
       margin-right: 4px;
       margin-bottom: 4px;
       font-size: 10px;
@@ -460,19 +473,27 @@
       -webkit-box-shadow: inset 0 1px 0 #fff, 0 1px 2px rgba(0,0,0,0.15);
     }
 
-    .tag-mini-pill {
+    .mood-face-badge {
       display: inline-block;
-      padding: 3px 7px;
-      margin-right: 4px;
-      margin-bottom: 4px;
+      padding: 2px 8px 2px 5px;
       font-size: 10px;
-      font-weight: 800;
-      color: #b82c09;
-      background-color: rgba(224, 60, 20, 0.12);
-      border: 1px solid rgba(224, 60, 20, 0.3);
-      -webkit-border-radius: 10px;
-      border-radius: 10px;
+      font-weight: 900;
+      color: #fff;
+      -webkit-border-radius: 11px;
+      border-radius: 11px;
+      vertical-align: middle;
+      text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+      -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.3);
     }
+    .mood-face-badge svg {
+      width: 14px;
+      height: 14px;
+      vertical-align: -3px;
+      margin-right: 3px;
+    }
+    .mf-pos { background-image: -webkit-gradient(linear, left top, left bottom, from(#4cd964), to(#248a3d)); border: 1px solid #165926; }
+    .mf-neu { background-image: -webkit-gradient(linear, left top, left bottom, from(#ffcc00), to(#b88600)); border: 1px solid #785600; }
+    .mf-neg { background-image: -webkit-gradient(linear, left top, left bottom, from(#ff5247), to(#b31d14)); border: 1px solid #690c06; }
 
     /* ==========================================================================
        ВДАВЛЕННАЯ КОЖАНАЯ ПАНЕЛЬ WHENWEEK И РАДАР МЕСЯЦА
@@ -572,9 +593,9 @@
 
     .day-3d-dot {
       display: block;
-      width: 5px;
-      height: 5px;
-      margin: 5px auto 0 auto;
+      width: 6px;
+      height: 6px;
+      margin: 4px auto 0 auto;
       -webkit-border-radius: 3px;
       border-radius: 3px;
       background-color: #17181b;
@@ -597,10 +618,9 @@
     }
     .day-3d-btn.is-selected .day-3d-letter { color: #ffe3d6; }
 
-    .day-3d-btn.has-record .day-3d-dot {
-      background-color: #ffcc33;
-      -webkit-box-shadow: 0 0 5px #ffcc33;
-    }
+    .day-3d-btn.has-pos .day-3d-dot { background-color: #4cd964; -webkit-box-shadow: 0 0 5px #4cd964; }
+    .day-3d-btn.has-neu .day-3d-dot { background-color: #ffcc00; -webkit-box-shadow: 0 0 5px #ffcc00; }
+    .day-3d-btn.has-neg .day-3d-dot { background-color: #ff3b30; -webkit-box-shadow: 0 0 5px #ff3b30; }
 
     .well-footer {
       overflow: hidden;
@@ -633,7 +653,7 @@
     }
 
     /* ==========================================================================
-       ТАБЛО WHENLOG + СВЕТОДИОДНЫЙ РАДАР МЕСЯЦА
+       ТАБЛО WHENLOG + СВЕТОДИОДНЫЙ РАДАР МЕСЯЦА СО СМАЙЛАМИ НАСТРОЕНИЯ
        ========================================================================== */
     .flip-row {
       overflow: hidden;
@@ -755,25 +775,34 @@
     .ratio-neg { background-color: #ff3b30; }
 
     /* ==========================================================================
-       ФОТОГРАФИЯ, ПОЛАРОИД И ВРАЩАЮЩИЙСЯ ВИНИЛ LAST.FM
+       ФОТОГРАФИЯ (БЕЗ ОБРЕЗКИ И С СОХРАНЕНИЕМ), ПОЛАРОИД И ВИНИЛ LAST.FM
        ========================================================================== */
     .photo-well {
       position: relative;
-      padding: 5px;
+      padding: 6px;
       margin-bottom: 10px;
       background-color: #1c1510;
       border: 1px solid #a8967d;
       -webkit-border-radius: 5px;
       border-radius: 5px;
       -webkit-box-shadow: inset 0 2px 5px rgba(0,0,0,0.8);
+      text-align: center;
     }
     .photo-well img {
-      display: block;
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
+      display: inline-block;
+      max-width: 100%;
+      max-height: 300px;
+      width: auto;
+      height: auto;
       -webkit-border-radius: 3px;
       border-radius: 3px;
+      vertical-align: middle;
+    }
+    .photo-save-hint {
+      display: block;
+      font-size: 9px;
+      color: #a8967d;
+      margin-top: 4px;
     }
 
     .memory-story {
@@ -830,16 +859,16 @@
 
     .deck-cover {
       float: left;
-      width: 40px;
-      height: 40px;
+      width: 42px;
+      height: 42px;
       margin-right: 9px;
-      -webkit-border-radius: 20px;
-      border-radius: 20px;
+      -webkit-border-radius: 21px;
+      border-radius: 21px;
       background-color: #120d09;
       border: 2px solid rgba(255,255,255,0.3);
       overflow: hidden;
       text-align: center;
-      line-height: 36px;
+      line-height: 38px;
       font-size: 16px;
       color: #ff6233;
       -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
@@ -882,7 +911,7 @@
     .deck-play-btn {
       position: absolute;
       right: 8px;
-      top: 10px;
+      top: 11px;
       width: 34px;
       height: 34px;
       -webkit-border-radius: 17px;
@@ -899,7 +928,7 @@
     }
 
     /* ==========================================================================
-       ВКЛАДКА 2: ХРОНИКА, ПОЛКА iBOOKS И КАССЕТНЫЙ ПЛЕЙЛИСТ
+       ВКЛАДКА 2: ХРОНИКА, ПОЛКА iBOOKS, ЯЩИК С ВИНИЛОМ И КАССЕТА МЕСЯЦА
        ========================================================================== */
     .toolbar-box { overflow: hidden; margin-bottom: 10px; }
     .search-input-ios6 {
@@ -939,9 +968,9 @@
     }
     .seg-item {
       float: left;
-      width: 33.33%;
+      width: 25%;
       height: 31px;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 900;
       color: #d6c3ab;
       text-shadow: 0 -1px 0 #000;
@@ -949,6 +978,9 @@
       border: none;
       border-right: 1px solid #170d06;
       cursor: pointer;
+      padding: 0 2px;
+      white-space: nowrap;
+      overflow: hidden;
     }
     .seg-item:last-child { border-right: none; }
     .seg-item.active {
@@ -1082,153 +1114,245 @@
     .book-mo { display: block; font-size: 9px; font-weight: 900; color: #fff; margin-top: 2px; text-transform: uppercase; }
     .book-cnt { position: absolute; left: 12px; right: 6px; bottom: 6px; font-size: 8px; font-weight: 900; color: #f0d8a8; border-top: 1px solid rgba(255,255,255,0.25); padding-top: 2px; }
 
-    /* ==========================================================================
-       ВКЛАДКА 3: НОВОЕ ОФОРМЛЕНИЕ «ВЕХИ» (ВИТРИНА ДОСТИЖЕНИЙ + ЛИНИЯ ЖИЗНИ)
-       ========================================================================== */
-    .trophy-rack-grid {
-      overflow: hidden;
-      margin-bottom: 8px;
+    /* Ящик с виниловыми пластинками (Vinyl Crate) */
+    .vinyl-crate-scroll {
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+      padding: 14px 8px 18px 8px;
+      background-color: #24160c;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#1a0f07), to(#331f11));
+      border: 2px solid #120904;
+      -webkit-border-radius: 9px;
+      border-radius: 9px;
+      -webkit-box-shadow: inset 0 4px 10px rgba(0,0,0,0.85);
+      margin-bottom: 12px;
+    }
+
+    .vinyl-sleeve-card {
+      display: inline-block;
+      width: 132px;
+      margin-right: 12px;
+      padding: 8px;
+      vertical-align: top;
+      white-space: normal;
+      background-color: #f5ede0;
+      border: 1px solid #170d06;
+      -webkit-border-radius: 6px;
+      border-radius: 6px;
+      -webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.75);
+      color: #261c14;
+      cursor: pointer;
       text-align: center;
     }
 
-    .trophy-badge-slot {
-      float: left;
-      width: 18.8%;
-      margin-right: 1.5%;
-      padding: 7px 2px 6px 2px;
-      -webkit-border-radius: 7px;
-      border-radius: 7px;
-      background-image: -webkit-gradient(linear, left top, left bottom, from(#4a3525), to(#261a11));
-      border: 1px solid #120b06;
-      -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 2px 4px rgba(0,0,0,0.6);
-      cursor: pointer;
-    }
-    .trophy-badge-slot:last-child { margin-right: 0; }
-
-    .trophy-badge-slot.active-cat {
-      background-image: -webkit-gradient(linear, left top, left bottom, from(#ff7a52), to(#b82806));
-      border-color: #3d0900;
-    }
-
-    .trophy-emoji {
-      display: block;
-      font-size: 16px;
-      line-height: 18px;
-      margin-bottom: 2px;
-    }
-    .trophy-cat-name {
-      display: block;
-      font-size: 7px;
-      font-weight: 900;
-      color: #dfd0bc;
-      letter-spacing: 0.2px;
-      white-space: nowrap;
+    .vinyl-disc-art {
+      width: 106px;
+      height: 106px;
+      margin: 0 auto 7px auto;
+      -webkit-border-radius: 53px;
+      border-radius: 53px;
+      background-color: #14110f;
+      border: 4px solid #26201c;
       overflow: hidden;
+      position: relative;
+      -webkit-box-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
-    .trophy-cat-cnt {
-      display: inline-block;
-      margin-top: 3px;
-      padding: 1px 5px;
-      font-size: 9px;
-      font-weight: 900;
-      color: #ffcc33;
-      background-color: rgba(0,0,0,0.45);
+    .vinyl-disc-art img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .vinyl-hole {
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 18px; height: 18px;
+      margin: -9px 0 0 -9px;
+      -webkit-border-radius: 9px;
+      border-radius: 9px;
+      background-color: #f5ede0;
+      border: 2px solid #14110f;
+    }
+
+    /* Кассета месяца (Ретро аудиокассета С-90 со сводкой месяца) */
+    .cassette-shell {
+      position: relative;
+      padding: 12px;
+      margin-bottom: 14px;
+      background-color: #262422;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#3d3935), to(#1a1816));
+      border: 2px solid #0d0b0a;
+      -webkit-border-radius: 11px;
+      border-radius: 11px;
+      -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), 0 6px 14px rgba(0,0,0,0.75);
+    }
+
+    .cassette-label {
+      padding: 12px;
+      background-color: #f7eedc;
+      background-image:
+        -webkit-gradient(linear, left top, left bottom, from(#f7eedc), color-stop(0.72, #efe2c8), color-stop(0.72, #d93c14), color-stop(0.86, #d93c14), to(#e8991c));
+      border: 1px solid #140f0a;
       -webkit-border-radius: 6px;
       border-radius: 6px;
+      color: #241b14;
     }
 
-    /* Вертикальная линия жизни для Вех */
-    .milestone-timeline {
-      position: relative;
-      padding-left: 18px;
-    }
-    .milestone-timeline:before {
-      content: "";
-      position: absolute;
-      left: 6px;
-      top: 8px;
-      bottom: 8px;
-      width: 3px;
-      background-image: -webkit-gradient(linear, left top, left bottom, from(#ff6e42), to(#6e482b));
-      -webkit-border-radius: 2px;
-      border-radius: 2px;
-      -webkit-box-shadow: 0 0 4px rgba(0,0,0,0.6);
+    .cassette-window {
+      width: 78%;
+      height: 44px;
+      margin: 10px auto 8px auto;
+      padding: 6px 16px;
+      background-color: #1a1613;
+      border: 2px solid #453c34;
+      -webkit-border-radius: 22px;
+      border-radius: 22px;
+      -webkit-box-shadow: inset 0 2px 6px rgba(0,0,0,0.9);
+      overflow: hidden;
     }
 
-    .milestone-card {
+    .cassette-spool {
+      width: 28px;
+      height: 28px;
+      -webkit-border-radius: 14px;
+      border-radius: 14px;
+      background-color: #e6dac6;
+      border: 3px dashed #332920;
+    }
+
+    /* ==========================================================================
+       ВКЛАДКА 3: «ВЕХИ» КАК ВИТРИНА ДОСТИЖЕНИЙ (APPLE GAME CENTER FELT & MEDALS)
+       ========================================================================== */
+    .gc-felt-board {
+      padding: 12px 10px;
+      margin-bottom: 14px;
+      -webkit-border-radius: 10px;
+      border-radius: 10px;
+      background-color: #164027;
+      background-image:
+        -webkit-radial-gradient(50% 35%, ellipse cover, rgba(50, 145, 85, 0.35) 0%, rgba(10, 32, 18, 0.85) 100%),
+        -webkit-repeating-linear-gradient(45deg, rgba(0,0,0,0.06) 0px, rgba(0,0,0,0.06) 2px, transparent 2px, transparent 4px);
+      border: 2px solid #2b180a;
+      -webkit-box-shadow:
+        inset 0 2px 8px rgba(0,0,0,0.85),
+        0 2px 0 rgba(255,220,175,0.2);
+    }
+
+    .gc-Header-bar {
+      overflow: hidden;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+      border-bottom: 1px dashed rgba(255, 235, 190, 0.25);
+    }
+
+    .gc-medal-grid {
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .gc-medal-cell {
+      float: left;
+      width: 31.3%;
+      height: 112px;
+      margin: 0 1% 10px 1%;
+      padding: 8px 4px 6px 4px;
+      -webkit-border-radius: 8px;
+      border-radius: 8px;
+      background-color: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      -webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.6);
+      cursor: pointer;
       position: relative;
-      margin-bottom: 11px;
-      padding: 11px 11px;
+    }
+
+    .medal-coin {
+      width: 50px;
+      height: 50px;
+      margin: 0 auto 6px auto;
+      line-height: 46px;
+      text-align: center;
+      -webkit-border-radius: 25px;
+      border-radius: 25px;
+      background-image: -webkit-gradient(
+        linear, left top, left bottom,
+        from(#fff3b8),
+        color-stop(0.45, #f5b82e),
+        color-stop(0.55, #c98408),
+        to(#8c5600)
+      );
+      border: 2px solid #fff2b2;
+      -webkit-box-shadow:
+        inset 0 2px 3px rgba(255,255,255,0.7),
+        0 3px 6px rgba(0,0,0,0.8);
+      color: #4a2a00;
+      font-size: 18px;
+      font-weight: 900;
+    }
+    .medal-coin svg {
+      width: 24px;
+      height: 24px;
+      vertical-align: middle;
+      fill: #4f2b00;
+    }
+
+    .gc-medal-cell.locked .medal-coin {
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#52565c), to(#25282c));
+      border-color: #6c7178;
+      color: #9da3ab;
+      opacity: 0.65;
+    }
+    .gc-medal-cell.locked .medal-coin svg { fill: #9da3ab; }
+
+    .medal-title {
+      display: block;
+      font-size: 9px;
+      font-weight: 900;
+      color: #fff6e0;
+      line-height: 1.15;
+      max-height: 22px;
+      overflow: hidden;
+    }
+
+    .medal-sub {
+      display: block;
+      font-size: 8px;
+      color: #a8d4b6;
+      margin-top: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Крупные медали пользовательских Вех на деревянной полке */
+    .user-trophy-card {
+      position: relative;
+      overflow: hidden;
+      padding: 10px;
+      margin-bottom: 9px;
       -webkit-border-radius: 9px;
       border-radius: 9px;
       background-color: #f7f3eb;
       background-image: -webkit-gradient(linear, left top, left bottom, from(#ffffff), to(#e8dcc8));
-      border: 1px solid #24150b;
-      -webkit-box-shadow: inset 0 1px 0 #fff, 0 3px 7px rgba(0,0,0,0.55);
+      border: 1px solid #1f1208;
+      -webkit-box-shadow: inset 0 1px 0 #fff, 0 3px 7px rgba(0,0,0,0.6);
       color: #292018;
       cursor: pointer;
-      overflow: hidden;
     }
 
-    /* Металлическая заклёпка на линии времени */
-    .milestone-pin {
-      position: absolute;
-      left: -17px;
-      top: 16px;
-      width: 11px;
-      height: 11px;
-      -webkit-border-radius: 6px;
-      border-radius: 6px;
-      background-image: -webkit-radial-gradient(center, circle cover, #ffcc33 0%, #c93812 85%);
-      border: 2px solid #24150b;
-      -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    }
-
-    .ms-top-bar {
-      overflow: hidden;
-      margin-bottom: 4px;
-    }
-    .ms-cat-pill {
+    .user-trophy-medal {
       float: left;
-      padding: 2px 7px;
-      font-size: 8px;
-      font-weight: 900;
-      letter-spacing: 0.7px;
-      color: #ffffff;
-      background-color: #d93c14;
-      -webkit-border-radius: 4px;
-      border-radius: 4px;
-      text-transform: uppercase;
+      width: 48px;
+      height: 48px;
+      margin-right: 10px;
+      line-height: 44px;
+      text-align: center;
+      -webkit-border-radius: 24px;
+      border-radius: 24px;
+      background-image: -webkit-gradient(linear, left top, left bottom, from(#ffe89e), color-stop(0.5, #e69d17), to(#995c00));
+      border: 2px solid #784700;
+      -webkit-box-shadow: inset 0 1px 2px #fff, 0 2px 4px rgba(0,0,0,0.45);
     }
-    .ms-days-badge {
-      float: right;
-      font-size: 9px;
-      font-weight: 900;
-      color: #6e5a47;
-      line-height: 16px;
-    }
-    .ms-title {
-      margin: 2px 0 4px 0;
-      font-family: Georgia, serif;
-      font-size: 16px;
-      font-weight: bold;
-      color: #211811;
-    }
-    .ms-notes {
-      margin: 0 0 4px 0;
-      font-size: 12px;
-      color: #5c4c3d;
-      line-height: 1.35;
-    }
-    .ms-date-foot {
-      font-size: 9px;
-      font-weight: 800;
-      color: #8c7a67;
-      text-transform: uppercase;
-    }
+    .user-trophy-medal svg { width: 22px; height: 22px; vertical-align: middle; fill: #3d2000; }
 
     /* ==========================================================================
-       КАРМАННЫЙ СКЕТЧПАД (РИСОВАЛКА ПАЛЬЦЕМ ВНУТРИ ЗАПИСИ)
+       КАРМАННЫЙ СКЕТЧПАД И ОПЦИИ ПОГОДЫ (БЕЗ EMOJI-КВАДРАТИКОВ)
        ========================================================================== */
     .sketchpad-frame {
       background-color: #fffdf7;
@@ -1263,17 +1387,10 @@
       -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
       cursor: pointer;
     }
-    .ink-dot-btn.active-ink {
-      border-color: #ffcc33;
-      -webkit-transform: scale(1.12);
-    }
+    .ink-dot-btn.active-ink { border-color: #ffcc33; }
 
-    /* Кнопки выбора погоды и тегов в модалке */
-    .weather-pick-row, .tag-pick-row {
-      overflow: hidden;
-      margin-top: 6px;
-    }
-    .weather-chip, .tag-chip {
+    .weather-pick-row { overflow: hidden; margin-top: 6px; }
+    .weather-chip {
       float: left;
       padding: 5px 8px;
       margin: 0 5px 5px 0;
@@ -1286,10 +1403,9 @@
       border-radius: 6px;
       cursor: pointer;
     }
-    .weather-chip.active-chip, .tag-chip.active-chip {
+    .weather-chip:active {
       color: #ffffff;
       background-image: -webkit-gradient(linear, left top, left bottom, from(#ff744a), to(#c42f09));
-      border-color: #591200;
     }
 
     .receipt-ticket {
@@ -1381,17 +1497,21 @@
     }
 
     /* ==========================================================================
-       МОДАЛЬНЫЕ ОКНА
+       МОДАЛЬНЫЕ СТРАНИЦЫ: ИДЕАЛЬНАЯ ИЗОЛЯЦИЯ ПРИ ВВОДЕ С КЛАВИАТУРЫ НА iOS 6
        ========================================================================== */
     .ios6-modal {
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      z-index: 80;
-      background-color: rgba(0, 0, 0, 0.78);
-    }
-    .modal-sheet {
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 90;
+      background-color: #362418;
+      overflow: hidden;
+    }
+    .modal-sheet {
+      position: relative;
+      width: 100%;
+      height: 100%;
       max-width: 480px;
       margin: 0 auto;
       background-color: #362418;
@@ -1402,8 +1522,9 @@
       position: absolute;
       top: 48px; bottom: 0; left: 0; right: 0;
       overflow-y: scroll;
+      overflow-x: hidden;
       -webkit-overflow-scrolling: touch;
-      padding: 12px;
+      padding: 12px 12px 60px 12px;
     }
 
     .field-title {
@@ -1440,26 +1561,28 @@
     }
     .form-input:last-child { border-bottom: none; }
 
+    /* Блокнот без съезжающих полосок при вводе текста */
     .notepad-area {
       width: 100%;
       padding: 10px 12px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: 14px;
-      line-height: 24px;
+      font-size: 15px;
+      line-height: 22px;
       color: #241b14;
       background-color: #fffcf5;
-      background-image: -webkit-repeating-linear-gradient(0deg, transparent 0px, transparent 23px, rgba(160,135,100,0.28) 23px, rgba(160,135,100,0.28) 24px);
       border: 1px solid #1a0f08;
+      border-left: 4px solid #d93c14;
       -webkit-border-radius: 8px;
       border-radius: 8px;
       margin-bottom: 12px;
+      -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,0.12);
     }
 
     .mood-grid { overflow: hidden; }
     .mood-opt {
       float: left;
       width: 33.33%;
-      padding: 11px 0;
+      padding: 10px 0;
       font-size: 10px;
       font-weight: 900;
       color: #786959;
@@ -1469,6 +1592,7 @@
       cursor: pointer;
     }
     .mood-opt:last-child { border-right: none; }
+    .mood-opt svg { width: 14px; height: 14px; vertical-align: -3px; margin-right: 3px; }
     .mood-opt.active {
       color: #ffffff;
       text-shadow: 0 -1px 0 rgba(0,0,0,0.6);
@@ -1479,11 +1603,11 @@
       position: fixed;
       left: 50%;
       top: 42%;
-      width: 220px;
-      margin-left: -110px;
+      width: 230px;
+      margin-left: -115px;
       padding: 14px 12px;
       z-index: 200;
-      background-color: rgba(15, 10, 6, 0.93);
+      background-color: rgba(15, 10, 6, 0.94);
       border: 1px solid rgba(255, 225, 185, 0.35);
       -webkit-border-radius: 11px;
       border-radius: 11px;
@@ -1498,18 +1622,23 @@
 </head>
 <body>
 
-  <div class="app-shell">
+  <!-- ОСНОВНОЙ ЭКРАН ПРИЛОЖЕНИЯ (при открытии модалки скрывается, чтобы клавиатура iOS 6 не двоила шапку) -->
+  <div id="app-shell" class="app-shell">
 
     <!-- ВЕРХНИЙ КОЖАНЫЙ БАР -->
     <header class="ios6-navbar">
       <div class="nav-left">
-        <button type="button" id="btn-open-capsule" class="nav-btn nav-btn-leather">&#128230; Капсула</button>
+        <button type="button" id="btn-open-capsule" class="nav-btn nav-btn-leather">
+          <svg class="btn-svg-ico" viewBox="0 0 24 24"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5zm0 2.3L18.5 8 12 11.7 5.5 8 12 4.3zM5 9.8l6 3.4v6.5l-6-3.3V9.8zm8 9.9v-6.5l6-3.4v6.6l-6 3.3z"/></svg>Капсула
+        </button>
       </div>
       <div class="nav-center">
         <h1 id="top-title" class="nav-brand">WHENGRAM<span class="dot">.</span></h1>
       </div>
       <div class="nav-right">
-        <button type="button" id="btn-top-action" class="nav-btn nav-btn-orange">&#9998; Запись</button>
+        <button type="button" id="btn-top-action" class="nav-btn nav-btn-orange">
+          <svg class="btn-svg-ico" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>Запись
+        </button>
       </div>
     </header>
 
@@ -1528,7 +1657,7 @@
           <span id="otd-title" class="wax-env-title">Посмотреть запись из прошлого &rarr;</span>
         </div>
 
-        <!-- Главная отрывная карточка (БЕЗ лишнего подтекста и БЕЗ плашки идеи) -->
+        <!-- Главная отрывная карточка -->
         <div class="paper-card">
           <div class="paper-holes"></div>
           <div class="paper-body">
@@ -1552,19 +1681,19 @@
 
             <!-- Состояние 2: Запись за сегодня уже создана -->
             <div id="home-filled-state" class="hidden">
-              <div class="paper-greeting" style="margin-bottom:8px;">
-                <span id="today-status-label">ЗАПИСЬ ЗА СЕГОДНЯ</span>
-                <span id="today-mood-tag" class="user-name" style="float:right;">● ХОРОШО</span>
+              <div style="overflow:hidden;margin-bottom:8px;">
+                <span class="paper-greeting" style="float:left;line-height:22px;margin:0;">ЗАПИСЬ ЗА СЕГОДНЯ</span>
+                <span id="today-mood-badge" style="float:right;"></span>
               </div>
               <div id="today-atmo-row" class="atmo-tags-row hidden"></div>
               <div id="today-photo-box" class="photo-well hidden">
-                <img id="today-photo-img" src="" alt="">
+                <img id="today-photo-img" class="saveable-img" src="" alt="Фото дня">
               </div>
               <div id="today-story-text" class="memory-story"></div>
               <div id="today-lastfm-slot" class="lastfm-deck hidden"></div>
               <button type="button" id="btn-edit-today" class="cta-orange-btn">
                 <span class="cta-text">ОТКРЫТЬ / ИЗМЕНИТЬ ЗАПИСЬ</span>
-                <span class="cta-arrow">&#9998;</span>
+                <span class="cta-arrow">&rarr;</span>
               </button>
             </div>
           </div>
@@ -1602,8 +1731,8 @@
 
           <div class="flip-row">
             <div class="flip-info">
-              <b>ВЕХИ ЖИЗНИ</b>
-              <span>Ключевые события и достижения</span>
+              <b>ДОСТИЖЕНИЯ И ВЕХИ</b>
+              <span>Открыто медалей на полке</span>
             </div>
             <div id="flip-ev-count" class="flip-box"></div>
           </div>
@@ -1619,8 +1748,8 @@
           <!-- Интерактивная светодиодная сетка дней текущего месяца -->
           <div class="led-matrix-box">
             <div class="led-matrix-title">
-              <span id="led-month-label" style="float:left;">РАДАР МЕСЯЦА (ТАПНИ НА ДЕНЬ)</span>
-              <span id="led-mood-summary" style="float:right;color:#ffcc33;">БАЛАНС</span>
+              <span id="led-month-label" style="float:left;">РАДАР МЕСЯЦА</span>
+              <span id="led-mood-summary" style="float:right;color:#ffcc33;">НАСТРОЕНИЕ</span>
             </div>
             <div id="led-month-grid" class="led-grid"></div>
             <div class="mood-ratio-bar">
@@ -1634,76 +1763,81 @@
       </section>
 
       <!-- ==========================================
-           ВКЛАДКА 2: ВОСПОМИНАНИЯ, ПОЛКА iBOOKS И САУНДТРЕКИ
+           ВКЛАДКА 2: ВОСПОМИНАНИЯ, ПОЛКА iBOOKS, ВИНИЛ И КАССЕТА МЕСЯЦА
            ========================================== -->
       <section id="tab-memories" class="tab-pane">
         <div class="toolbar-box">
-          <input type="text" id="mem-search" class="search-input-ios6" placeholder="Поиск по тексту, #тегу или дате...">
+          <input type="text" id="mem-search" class="search-input-ios6" placeholder="Поиск по тексту или дате...">
           <select id="mem-filter" class="filter-select-ios6">
             <option value="all">Все</option>
             <option value="positive">Хорошо</option>
             <option value="neutral">Ровно</option>
             <option value="negative">Тяжело</option>
-            <option value="photo">С фото/скетчем</option>
+            <option value="photo">С фото</option>
             <option value="music">С песней</option>
-            <option value="sealed">Капсулы</option>
           </select>
         </div>
 
         <div class="segmented-ios6">
           <button type="button" id="seg-list-btn" class="seg-item active">Хроника</button>
-          <button type="button" id="seg-shelf-btn" class="seg-item">Полка iBooks</button>
-          <button type="button" id="seg-music-btn" class="seg-item">&#9835; Плейлист</button>
+          <button type="button" id="seg-shelf-btn" class="seg-item">iBooks</button>
+          <button type="button" id="seg-music-btn" class="seg-item">Винил</button>
+          <button type="button" id="seg-tape-btn" class="seg-item">Кассета</button>
         </div>
 
         <div id="active-book-bar" class="month-banner hidden" style="margin-bottom:10px;">
           <span id="active-book-label" style="line-height:24px;">Открыт том: 2026</span>
-          <button type="button" id="btn-close-book" class="nav-btn nav-btn-leather" style="float:right;height:24px;font-size:10px;">Все книги</button>
+          <button type="button" id="btn-close-book" class="nav-btn nav-btn-leather" style="float:right;min-height:24px;line-height:22px;font-size:10px;">Все книги</button>
         </div>
 
+        <!-- Режим 1: Хроника -->
         <div id="memories-feed-box"></div>
 
-        <!-- Деревянная полка iBooks -->
+        <!-- Режим 2: Деревянная полка iBooks -->
         <div id="ibooks-shelf-box" class="ibooks-wood-frame hidden">
           <div class="ibooks-top-plank">
             <span style="float:left;font-size:13px;font-weight:900;color:#ffe2a6;line-height:28px;">WHENSHELF.</span>
             <div style="float:right;">
-              <button type="button" id="shelf-mode-year" class="nav-btn nav-btn-orange" style="height:26px;font-size:10px;">По годам</button>
-              <button type="button" id="shelf-mode-month" class="nav-btn nav-btn-leather" style="height:26px;font-size:10px;">По месяцам</button>
+              <button type="button" id="shelf-mode-year" class="nav-btn nav-btn-orange" style="min-height:26px;line-height:24px;font-size:10px;">По годам</button>
+              <button type="button" id="shelf-mode-month" class="nav-btn nav-btn-leather" style="min-height:26px;line-height:24px;font-size:10px;">По месяцам</button>
             </div>
           </div>
           <div id="ibooks-tiers-container"></div>
         </div>
 
-        <!-- Музыкальная кассетная полка -->
+        <!-- Режим 3: Интерактивный ящик с виниловыми пластинками + Плейлист -->
         <div id="music-playlist-box" class="hidden"></div>
+
+        <!-- Режим 4: Кассета месяца (Музыкально-фотографические итоги) -->
+        <div id="monthly-tape-box" class="hidden"></div>
       </section>
 
       <!-- ==========================================
-           ВКЛАДКА 3: ПЕРЕОФОРМЛЕННЫЕ «ВЕХИ» (ВИТРИНА НАГРАД + ЛИНИЯ ЖИЗНИ)
+           ВКЛАДКА 3: ДОСТИЖЕНИЯ И ВЕХИ (GAME CENTER STYLE)
            ========================================== -->
       <section id="tab-events" class="tab-pane">
 
-        <!-- Паспорт достижений по рубрикам (нажми на рубрику для фильтрации) -->
+        <!-- Сукно Game Center с автоматическими достижениями дневника -->
+        <div class="gc-felt-board">
+          <div class="gc-Header-bar">
+            <span class="well-title" style="color:#fff6d6;">ЗАЛ ТРОФЕЕВ • ДОСТИЖЕНИЯ</span>
+            <span class="well-counter" style="color:#a8e0b8;">ОТКРЫТО: <b id="gc-unlocked-count">0 / 6</b></span>
+          </div>
+          <div id="gc-auto-medals" class="gc-medal-grid"></div>
+        </div>
+
+        <!-- Личные медали и вехи пользователя -->
         <div class="leather-well-panel">
           <div class="well-header">
-            <span class="well-title">ПАСПОРТ ВЕХ • СФЕРЫ ЖИЗНИ</span>
-            <span class="well-counter">ВСЕГО: <b id="ev-total-badge">0</b></span>
+            <span class="well-title">ЛИЧНЫЕ НАГРАДЫ И ВЕХИ</span>
+            <button type="button" id="btn-add-ev-inline" class="nav-btn nav-btn-orange" style="float:right;min-height:24px;line-height:22px;font-size:10px;">+ Выдать медаль</button>
           </div>
-          <div id="ev-trophy-rack" class="trophy-rack-grid"></div>
+          <div id="events-feed-box"></div>
         </div>
-
-        <div class="toolbar-box">
-          <input type="text" id="ev-search" class="search-input-ios6" style="width:66%;" placeholder="Поиск вех и целей...">
-          <button type="button" id="btn-add-ev-inline" class="nav-btn nav-btn-orange" style="float:right;width:31%;height:32px;">+ Веха</button>
-        </div>
-
-        <!-- Живая вертикальная линия времени Вех -->
-        <div id="events-feed-box"></div>
       </section>
 
       <!-- ==========================================
-           ВКЛАДКА 4: НАСТРОЙКИ И БЭКАПЫ (.ZIP WHENGRAM 2.0)
+           ВКЛАДКА 4: НАСТРОЙКИ И ОБЛАЧНАЯ СИНХРОНИЗАЦИЯ С WHENGRAM
            ========================================== -->
       <section id="tab-settings" class="tab-pane">
         <span class="field-title">ПРОФИЛЬ И ОФОРМЛЕНИЕ</span>
@@ -1715,7 +1849,7 @@
           </div>
         </div>
 
-        <span class="field-title">ИНТЕГРАЦИЯ С LAST.FM</span>
+        <span class="field-title">ИНТЕГРАЦИЯ С LAST.FM (+ БАЗА DEEZER)</span>
         <div class="form-box" style="padding:10px;">
           <input type="text" id="set-lastfm-user" class="form-input" style="padding:6px 0;margin-bottom:8px;" placeholder="Твой никнейм на Last.fm">
           <div style="overflow:hidden;">
@@ -1725,20 +1859,33 @@
           <div id="lastfm-test-result" style="font-size:11px;color:#5c4b3b;margin-top:8px;"></div>
         </div>
 
-        <span class="field-title">СИНХРОНИЗАЦИЯ С ОРИГИНАЛЬНЫМ WHENGRAM (.ZIP)</span>
+        <!-- РЕШЕНИЕ ДЛЯ IPHONE 4S: СИНХРОНИЗАЦИЯ БЕЗ ФАЙЛОВОЙ СИСТЕМЫ -->
+        <span class="field-title">СИНХРОНИЗАЦИЯ С ОФИЦИАЛЬНЫМ WHENGRAM</span>
         <div class="form-box" style="padding:10px;">
-          <p style="margin:0 0 8px 0;font-size:11px;color:#5c4b3b;">
-            Полная поддержка архивов <b>Whengram v2.0</b> (распаковка сжатых <code>DEFLATE</code> и обычных <code>.zip</code> с папкой <code>photos/</code> и <code>manifest.json</code>):
+          <p style="margin:0 0 8px 0;font-size:11px;color:#5c4b3b;line-height:1.35;">
+            Так как Safari на iPhone 4s не умеет сохранять <code>.zip</code> в память телефона, открой этот же сайт на основном телефоне или ПК: скопируй код ниже (или перенеси через Облако), вставь его на основном телефоне и нажми <b>«Скачать готовый .ZIP»</b> для официального Whengram!
           </p>
+
+          <!-- Облачная переброска между 4s и основным телефоном -->
+          <div style="padding:8px;margin-bottom:10px;background:#ebe0ce;border:1px solid #bda98e;border-radius:6px;">
+            <div style="font-size:10px;font-weight:900;color:#4a3520;margin-bottom:6px;">☁️ БЫСТРЫЙ ОБЛАЧНЫЙ МОСТ (4S &harr; ТЕЛЕФОН/ПК):</div>
+            <div style="overflow:hidden;margin-bottom:6px;">
+              <button type="button" id="btn-cloud-push" class="nav-btn nav-btn-orange" style="width:48%;float:left;">Отправить в облако</button>
+              <button type="button" id="btn-cloud-pull" class="nav-btn nav-btn-leather" style="width:48%;float:right;">Принять по ID</button>
+            </div>
+            <input type="text" id="cloud-sync-id" class="form-input" style="background:#fff;border:1px solid #bda98e;border-radius:4px;padding:6px 8px;font-size:12px;" placeholder="ID облачного пакета (появится после отправки)">
+          </div>
+
           <div style="overflow:hidden;margin-bottom:10px;">
-            <button type="button" id="btn-download-zip" class="nav-btn nav-btn-orange" style="width:48%;float:left;">Скачать .ZIP</button>
-            <label for="file-import-zip" class="nav-btn nav-btn-leather" style="width:48%;float:right;text-align:center;line-height:28px;">Импорт .ZIP / JSON</label>
+            <button type="button" id="btn-download-zip" class="nav-btn nav-btn-orange" style="width:48%;float:left;">Скачать готовый .ZIP</button>
+            <label for="file-import-zip" class="nav-btn nav-btn-leather" style="width:48%;float:right;text-align:center;">Открыть .ZIP / JSON</label>
             <input type="file" id="file-import-zip" class="hidden" accept=".zip,.json,application/zip,application/json">
           </div>
-          <textarea id="backup-code-box" class="notepad-area" rows="3" style="margin-bottom:8px;font-size:11px;line-height:16px;" placeholder="Для быстрого переноса без файлов: нажми «Получить код» или вставь сюда JSON..."></textarea>
+
+          <textarea id="backup-code-box" class="notepad-area" rows="3" style="margin-bottom:8px;font-size:11px;line-height:16px;" placeholder="Код полного бэкапа (совместим с manifest.json + фото)..."></textarea>
           <div style="overflow:hidden;margin-bottom:8px;">
-            <button type="button" id="btn-make-code" class="nav-btn nav-btn-leather" style="width:48%;float:left;">Получить код</button>
-            <button type="button" id="btn-load-code" class="nav-btn nav-btn-orange" style="width:48%;float:right;">Загрузить из кода</button>
+            <button type="button" id="btn-make-code" class="nav-btn nav-btn-leather" style="width:48%;float:left;">Создать код бэкапа</button>
+            <button type="button" id="btn-load-code" class="nav-btn nav-btn-orange" style="width:48%;float:right;">Восстановить из кода</button>
           </div>
           <button type="button" id="btn-wipe-all" class="nav-btn nav-btn-leather" style="width:100%;background:#6e1809;">Очистить все записи на устройстве</button>
         </div>
@@ -1785,7 +1932,7 @@
   </div>
 
   <!-- ==========================================
-       МОДАЛЬНОЕ ОКНО 1: СОЗДАТЬ / ИЗМЕНИТЬ ЗАПИСЬ
+       МОДАЛЬНОЕ ОКНО 1: СОЗДАТЬ / ИЗМЕНИТЬ ЗАПИСЬ (БЕЗ БАГА КЛАВИАТУРЫ И БЕЗ ХЭШТЕГОВ)
        ========================================== -->
   <div id="modal-memory" class="ios6-modal hidden">
     <div class="modal-sheet">
@@ -1797,54 +1944,49 @@
       <div class="modal-body">
         <input type="hidden" id="mem-edit-id">
 
-        <span class="field-title">ДАТА И НАСТРОЕНИЕ</span>
+        <span class="field-title">ДАТА И НАСТРОЕНИЕ (СМАЙЛ ДНЯ)</span>
         <div class="form-box">
           <input type="date" id="mem-date-input" class="form-input">
           <div class="mood-grid">
-            <button type="button" class="mood-opt active" data-mood="positive">● ХОРОШО</button>
-            <button type="button" class="mood-opt" data-mood="neutral">● РОВНО</button>
-            <button type="button" class="mood-opt" data-mood="negative">● ТЯЖЕЛО</button>
+            <button type="button" class="mood-opt active" data-mood="positive">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6c.83 0 1.5.67 1.5 1.5S16.33 11 15.5 11 14 10.33 14 9.5 14.67 8 15.5 8zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm3.5 9.5c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg>ХОРОШО
+            </button>
+            <button type="button" class="mood-opt" data-mood="neutral">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6c.83 0 1.5.67 1.5 1.5S16.33 11 15.5 11 14 10.33 14 9.5 14.67 8 15.5 8zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm-1.5 6.5h10v2H7v-2z"/></svg>РОВНО
+            </button>
+            <button type="button" class="mood-opt" data-mood="negative">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6c.83 0 1.5.67 1.5 1.5S16.33 11 15.5 11 14 10.33 14 9.5 14.67 8 15.5 8zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm3.5 5.5c2.33 0 4.31 1.46 5.11 3.5H6.89c.8-2.04 2.78-3.5 5.11-3.5z"/></svg>ТЯЖЕЛО
+            </button>
           </div>
         </div>
 
         <span class="field-title">ЧТО ПРОИЗОШЛО?</span>
-        <textarea id="mem-text-input" class="notepad-area" rows="4" placeholder="Запиши главное за этот день..."></textarea>
+        <textarea id="mem-text-input" class="notepad-area" rows="5" placeholder="Запиши главное за этот день..."></textarea>
 
-        <!-- НОВАЯ ФУНКЦИЯ: БАРОМЕТР ПОГОДЫ И ЖЕТОНЫ ТЕГОВ -->
-        <span class="field-title">ПОГОДНЫЙ БАРОМЕТР И ТЕГИ ДНЯ</span>
+        <!-- ПОГОДНЫЙ БАРОМЕТР ПО ГОРОДУ (ВСЕ ЗНАЧКИ СОВМЕСТИМЫ С iOS 6) -->
+        <span class="field-title">ПОГОДНЫЙ БАРОМЕТР (ПО НАЗВАНИЮ ГОРОДА)</span>
         <div class="form-box" style="padding:10px;">
           <div style="overflow:hidden;margin-bottom:6px;">
-            <input type="text" id="mem-weather-input" class="form-input" style="width:56%;float:left;border:1px solid #c7b8a3;border-radius:5px;padding:6px 8px;" placeholder="Погода (напр. ☀️ +14°C)">
-            <button type="button" id="btn-auto-weather" class="nav-btn nav-btn-leather" style="width:41%;float:right;">&#127780; Авто-погода</button>
+            <input type="text" id="mem-weather-input" class="form-input" style="width:55%;float:left;border:1px solid #c7b8a3;border-radius:5px;padding:6px 8px;" placeholder="Город (напр. Сенно)">
+            <button type="button" id="btn-auto-weather" class="nav-btn nav-btn-leather" style="width:42%;float:right;">&#9728; Авто-погода</button>
           </div>
           <div class="weather-pick-row">
-            <span class="weather-chip" data-w="☀️ Ясно">☀️ Ясно</span>
-            <span class="weather-chip" data-w="🌧️ Дождь">🌧️ Дождь</span>
-            <span class="weather-chip" data-w="❄️ Снег">❄️ Снег</span>
-            <span class="weather-chip" data-w="🌙 Ночь">🌙 Ночь</span>
+            <span class="weather-chip" data-w="☀ Ясно">☀ Ясно</span>
+            <span class="weather-chip" data-w="☂ Дождь">☂ Дождь</span>
+            <span class="weather-chip" data-w="❄ Снег">❄ Снег</span>
+            <span class="weather-chip" data-w="☾ Ночь">☾ Ночь</span>
             <span class="weather-chip" data-w="⚡ Гроза">⚡ Гроза</span>
-          </div>
-          <div style="border-top:1px dotted #d4c5b0;margin:6px 0;padding-top:6px;">
-            <input type="text" id="mem-tags-input" class="form-input" style="border:1px solid #c7b8a3;border-radius:5px;padding:6px 8px;margin-bottom:6px;" placeholder="Теги через пробел (#друзья #ночь)">
-            <div class="tag-pick-row">
-              <span class="tag-chip" data-tag="#друзья">#друзья</span>
-              <span class="tag-chip" data-tag="#музыка">#музыка</span>
-              <span class="tag-chip" data-tag="#ночь">#ночь</span>
-              <span class="tag-chip" data-tag="#учёба">#учёба</span>
-              <span class="tag-chip" data-tag="#поездка">#поездка</span>
-              <span class="tag-chip" data-tag="#дом">#дом</span>
-            </div>
           </div>
         </div>
 
-        <!-- САУНДТРЕК ДНЯ LAST.FM -->
-        <span class="field-title">САУНДТРЕК ДНЯ (LAST.FM + ITUNES АУДИО)</span>
+        <!-- САУНДТРЕК ДНЯ LAST.FM (+ DEEZER И ITUNES) -->
+        <span class="field-title">САУНДТРЕК ДНЯ (LAST.FM + ОБЛОЖКИ DEEZER)</span>
         <div class="form-box" style="padding:10px;">
           <div style="overflow:hidden;margin-bottom:8px;">
             <input type="text" id="mem-lf-user" class="form-input" style="width:52%;float:left;border:1px solid #c7b8a3;border-radius:5px;padding:6px 8px;" placeholder="Ник Last.fm">
             <button type="button" id="btn-fetch-lastfm" class="nav-btn nav-btn-orange" style="width:45%;float:right;">&#9835; Найти трек</button>
           </div>
-          <div id="mem-lf-status" style="font-size:11px;color:#6e5b49;margin-bottom:6px;">Подтяни топ-песню дня из Last.fm или впиши ниже:</div>
+          <div id="mem-lf-status" style="font-size:11px;color:#6e5b49;margin-bottom:6px;">Подтяни песню из Last.fm или впиши название и нажми «Найти трек»:</div>
           <input type="text" id="mem-song-title" class="form-input" style="padding:7px 2px;" placeholder="Название песни">
           <input type="text" id="mem-song-artist" class="form-input" style="padding:7px 2px;" placeholder="Исполнитель">
           <input type="hidden" id="mem-song-plays">
@@ -1852,31 +1994,33 @@
           <input type="hidden" id="mem-song-preview">
         </div>
 
-        <!-- НОВАЯ ФУНКЦИЯ: ФОТО ИЛИ РИСУНОК ПАЛЬЦЕМ (СКЕТЧПАД НА ПОЛАРОИД) -->
+        <!-- ФОТОГРАФИЯ С КНОПКОЙ ПОВОРОТА НА 90° И СКЕТЧПАДОМ -->
         <span class="field-title">ФОТОГРАФИЯ ИЛИ СКЕТЧ НА ПОЛАРОИД</span>
         <div class="form-box" style="padding:10px;">
           <div style="overflow:hidden;">
-            <label for="mem-photo-file" class="nav-btn nav-btn-leather" style="width:48%;float:left;text-align:center;line-height:28px;">&#128247; Выбрать фото</label>
+            <label for="mem-photo-file" class="nav-btn nav-btn-leather" style="width:48%;float:left;">&#9673; Выбрать фото</label>
             <input type="file" id="mem-photo-file" class="hidden" accept="image/*">
-            <button type="button" id="btn-toggle-sketch" class="nav-btn nav-btn-orange" style="width:48%;float:right;">&#9999; Нарисовать скетч</button>
+            <button type="button" id="btn-toggle-sketch" class="nav-btn nav-btn-orange" style="width:48%;float:right;">&#9998; Скетч ручкой</button>
           </div>
 
-          <!-- Встроенный холст для рисования пальцем на iPhone 4s -->
           <div id="sketchpad-box" class="sketchpad-frame hidden">
             <canvas id="sketch-canvas" class="sketch-canvas" width="280" height="170"></canvas>
             <div class="sketch-toolbar">
-              <span class="ink-dot-btn active-ink" data-color="#1c1612" style="background:#1c1612;" title="Чёрная тушь"></span>
-              <span class="ink-dot-btn" data-color="#1a478c" style="background:#1a478c;" title="Синяя ручка"></span>
-              <span class="ink-dot-btn" data-color="#c92a0e" style="background:#c92a0e;" title="Красный маркер"></span>
-              <button type="button" id="btn-clear-sketch" class="nav-btn nav-btn-leather" style="float:right;height:24px;font-size:10px;margin-left:5px;">Очистить</button>
-              <button type="button" id="btn-apply-sketch" class="nav-btn nav-btn-orange" style="float:right;height:24px;font-size:10px;">Прикрепить</button>
+              <span class="ink-dot-btn active-ink" data-color="#1c1612" style="background:#1c1612;"></span>
+              <span class="ink-dot-btn" data-color="#1a478c" style="background:#1a478c;"></span>
+              <span class="ink-dot-btn" data-color="#c92a0e" style="background:#c92a0e;"></span>
+              <button type="button" id="btn-clear-sketch" class="nav-btn nav-btn-leather" style="float:right;min-height:24px;line-height:22px;font-size:10px;margin-left:5px;">Стереть</button>
+              <button type="button" id="btn-apply-sketch" class="nav-btn nav-btn-orange" style="float:right;min-height:24px;line-height:22px;font-size:10px;">Готово</button>
             </div>
           </div>
 
           <div id="mem-photo-preview-box" class="photo-well hidden" style="margin-top:10px;">
-            <img id="mem-photo-preview-img" src="" alt="">
+            <img id="mem-photo-preview-img" class="saveable-img" src="" alt="">
           </div>
-          <button type="button" id="btn-remove-mem-photo" class="nav-btn nav-btn-leather hidden" style="width:100%;margin-top:6px;">Убрать картинку</button>
+          <div id="mem-photo-actions" class="hidden" style="overflow:hidden;margin-top:6px;">
+            <button type="button" id="btn-rotate-mem-photo" class="nav-btn nav-btn-orange" style="width:48%;float:left;">&#8635; Повернуть 90°</button>
+            <button type="button" id="btn-remove-mem-photo" class="nav-btn nav-btn-leather" style="width:48%;float:right;">Убрать фото</button>
+          </div>
         </div>
 
         <!-- ЗАПЕЧАТАТЬ ПИСЬМО В БУДУЩЕЕ -->
@@ -1888,63 +2032,66 @@
           <input type="date" id="mem-unlock-date" class="form-input" style="border:1px solid #c7b8a3;border-radius:5px;padding:6px 8px;">
         </div>
 
-        <button type="button" id="btn-delete-mem" class="nav-btn nav-btn-orange hidden" style="width:100%;height:38px;margin-top:8px;">Удалить это воспоминание</button>
+        <button type="button" id="btn-delete-mem" class="nav-btn nav-btn-orange hidden" style="width:100%;min-height:38px;line-height:36px;margin-top:8px;">Удалить это воспоминание</button>
       </div>
     </div>
   </div>
 
   <!-- ==========================================
-       МОДАЛЬНОЕ ОКНО 2: СОЗДАТЬ / ИЗМЕНИТЬ ВЕХУ (С ФОТО)
+       МОДАЛЬНОЕ ОКНО 2: СОЗДАТЬ / ИЗМЕНИТЬ ДОСТИЖЕНИЕ (ВЕХУ)
        ========================================== -->
   <div id="modal-event" class="ios6-modal hidden">
     <div class="modal-sheet">
       <header class="ios6-navbar">
         <div class="nav-left"><button type="button" id="btn-cancel-ev" class="nav-btn nav-btn-leather">Отмена</button></div>
-        <div class="nav-center"><h2 class="nav-brand">ВЕХА ЖИЗНИ</h2></div>
+        <div class="nav-center"><h2 class="nav-brand">ТРОФЕЙ / ВЕХА</h2></div>
         <div class="nav-right"><button type="button" id="btn-save-ev" class="nav-btn nav-btn-orange">Готово</button></div>
       </header>
       <div class="modal-body">
         <input type="hidden" id="ev-edit-id">
-        <span class="field-title">ДОСТИЖЕНИЕ, СОБЫТИЕ ИЛИ ЦЕЛЬ</span>
+        <span class="field-title">НАЗВАНИЕ ДОСТИЖЕНИЯ И РУБРИКА</span>
         <div class="form-box">
-          <input type="text" id="ev-title-input" class="form-input" placeholder="Например: Первое приложение, Поездка...">
+          <input type="text" id="ev-title-input" class="form-input" placeholder="Например: Сделал дневник, Поездка...">
           <select id="ev-cat-input" class="form-input">
-            <option value="РАБОТА">💼 РАБОТА / УЧЁБА</option>
-            <option value="ПОКУПКА">🏠 ПОКУПКА</option>
-            <option value="ПОЕЗДКИ">✈️ ПОЕЗДКИ</option>
-            <option value="ЗДОРОВЬЕ">⚡ ЗДОРОВЬЕ / СПОРТ</option>
-            <option value="ЖИЗНЬ">⭐ ЖИЗНЬ</option>
+            <option value="ЖИЗНЬ">★ ЗОЛОТАЯ МЕДАЛЬ • ЖИЗНЬ</option>
+            <option value="РАБОТА">⚙ ТРОФЕЙ • УЧЁБА / ДЕЛО</option>
+            <option value="ПОКУПКА">♦ ПРИОБРЕТЕНИЕ / ПОКУПКА</option>
+            <option value="ПОЕЗДКИ">➤ ПУТЕШЕСТВИЕ / ПОЕЗДКА</option>
+            <option value="ЗДОРОВЬЕ">⚡ РЕКОРД / СПОРТ</option>
           </select>
           <input type="date" id="ev-date-input" class="form-input">
         </div>
 
-        <span class="field-title">ПОДРОБНОСТИ ВЕХИ</span>
-        <textarea id="ev-notes-input" class="notepad-area" rows="3" placeholder="Почему этот день всё изменил..."></textarea>
+        <span class="field-title">ОПИСАНИЕ НАГРАДЫ</span>
+        <textarea id="ev-notes-input" class="notepad-area" rows="3" placeholder="За что получена эта медаль..."></textarea>
 
-        <span class="field-title">ФОТОГРАФИЯ ВЕХИ (ПО ЖЕЛАНИЮ)</span>
+        <span class="field-title">ФОТОГРАФИЯ К ТРОФЕЮ (ПО ЖЕЛАНИЮ)</span>
         <div class="form-box" style="padding:10px;text-align:center;">
-          <label for="ev-photo-file" class="nav-btn nav-btn-leather" style="display:block;line-height:28px;">&#128247; Прикрепить фото к вехе</label>
+          <label for="ev-photo-file" class="nav-btn nav-btn-leather" style="display:block;">&#9673; Прикрепить фото</label>
           <input type="file" id="ev-photo-file" class="hidden" accept="image/*">
           <div id="ev-photo-preview-box" class="photo-well hidden" style="margin-top:10px;">
-            <img id="ev-photo-preview-img" src="" alt="">
+            <img id="ev-photo-preview-img" class="saveable-img" src="" alt="">
           </div>
-          <button type="button" id="btn-remove-ev-photo" class="nav-btn nav-btn-leather hidden" style="width:100%;margin-top:6px;">Убрать фото вехи</button>
+          <div id="ev-photo-actions" class="hidden" style="overflow:hidden;margin-top:6px;">
+            <button type="button" id="btn-rotate-ev-photo" class="nav-btn nav-btn-orange" style="width:48%;float:left;">&#8635; Повернуть 90°</button>
+            <button type="button" id="btn-remove-ev-photo" class="nav-btn nav-btn-leather" style="width:48%;float:right;">Убрать фото</button>
+          </div>
         </div>
 
-        <button type="button" id="btn-delete-ev" class="nav-btn nav-btn-orange hidden" style="width:100%;height:38px;margin-top:8px;">Удалить веху</button>
+        <button type="button" id="btn-delete-ev" class="nav-btn nav-btn-orange hidden" style="width:100%;min-height:38px;line-height:36px;margin-top:8px;">Удалить награду</button>
       </div>
     </div>
   </div>
 
   <!-- ==========================================
-       МОДАЛЬНОЕ ОКНО 3: ЧИТАЛКА С ОБОРОТОМ ПОЛАРОИДА
+       МОДАЛЬНОЕ ОКНО 3: ЧИТАЛКА С СОХРАНЕНИЕМ ФОТО И ОБОРОТОМ ПОЛАРОИДА
        ========================================== -->
   <div id="modal-reader" class="ios6-modal hidden">
     <div class="modal-sheet">
       <header class="ios6-navbar">
         <div class="nav-left"><button type="button" id="btn-close-reader" class="nav-btn nav-btn-leather">&larr; Назад</button></div>
         <div class="nav-center"><h2 id="reader-top-title" class="nav-brand">КАПСУЛА</h2></div>
-        <div class="nav-right"><button type="button" id="btn-reader-edit" class="nav-btn nav-btn-orange">&#9998; Изменить</button></div>
+        <div class="nav-right"><button type="button" id="btn-reader-edit" class="nav-btn nav-btn-orange">Изменить</button></div>
       </header>
       <div class="modal-body">
         <div class="paper-card">
@@ -1952,14 +2099,15 @@
           <div class="paper-body">
             <div class="paper-meta-row">
               <span id="reader-date-label" class="paper-date-str"></span>
-              <span id="reader-mood-label" class="paper-num-badge"></span>
+              <span id="reader-mood-label" style="float:right;"></span>
             </div>
 
             <!-- Лицевая сторона Полароида -->
             <div id="reader-front-side">
               <div id="reader-atmo-row" class="atmo-tags-row hidden"></div>
               <div id="reader-photo-box" class="photo-well hidden">
-                <img id="reader-photo-img" src="" alt="">
+                <img id="reader-photo-img" class="saveable-img" src="" alt="Зажми пальцем, чтобы сохранить">
+                <span class="photo-save-hint">Удерживай палец на фото &rarr; «Сохранить изображение»</span>
               </div>
               <div id="reader-story-text" class="memory-story"></div>
               <div id="reader-lastfm-slot" class="lastfm-deck hidden"></div>
@@ -1974,10 +2122,10 @@
 
             <div style="overflow:hidden;padding-top:10px;border-top:1px dotted #c7b8a3;margin-top:8px;">
               <button type="button" id="btn-flip-polaroid" class="nav-btn nav-btn-leather" style="width:48%;float:left;">
-                &#8635; Оборот карточки
+                &#8635; Оборот
               </button>
               <button type="button" id="btn-random-capsule" class="nav-btn nav-btn-orange" style="width:48%;float:right;">
-                &#127922; Случайный день
+                Случайный день
               </button>
             </div>
           </div>
@@ -1988,10 +2136,10 @@
 
   <div id="hud-popup" class="hud-popup hidden">Готово</div>
   <audio id="global-audio" preload="auto"></audio>
-
   <script type="text/javascript">
     /* ==========================================================================
-       ЯДРО ПРИЛОЖЕНИЯ (ES5, DEFLATE/STORED ZIP SYNC С WHENGRAM 2.0, СКЕТЧПАД, БАРОМЕТР)
+       ЯДРО ПРИЛОЖЕНИЯ (СОХРАНЕНИЕ СТАРЫХ ДАННЫХ, DEEZER + ITUNES, ПОВОРОТ ФОТО,
+       ПОГОДА ПО ГОРОДУ, ДОСТИЖЕНИЯ GAME CENTER, ЯЩИК С ВИНИЛОМ, КАССЕТА МЕСЯЦА)
        ========================================================================== */
     (function() {
       var STORAGE_KEY = "whengram_ios6_master_v6";
@@ -2005,13 +2153,29 @@
         settings: { theme: "leather", lastfm_user: "" }
       };
 
-      var EVENT_CATEGORIES = [
-        { key: "ALL", label: "ВСЕ", icon: "🏆" },
-        { key: "РАБОТА", label: "РАБОТА", icon: "💼" },
-        { key: "ПОКУПКА", label: "ПОКУПКА", icon: "🏠" },
-        { key: "ПОЕЗДКИ", label: "ПОЕЗДКИ", icon: "✈️" },
-        { key: "ЗДОРОВЬЕ", label: "ЗДОРОВЬЕ", icon: "⚡" }
-      ];
+      // Справочник координат городов для мгновенной работы погоды на iOS 6 (даже если геокодер недоступен)
+      var CITY_PRESETS = {
+        "сенно": { name: "Сенно", lat: 54.8128, lon: 29.7086 },
+        "витебск": { name: "Витебск", lat: 55.1904, lon: 30.2049 },
+        "минск": { name: "Минск", lat: 53.9006, lon: 27.5590 },
+        "орша": { name: "Орша", lat: 54.5081, lon: 30.4172 },
+        "полоцк": { name: "Полоцк", lat: 55.4879, lon: 28.7856 },
+        "новополоцк": { name: "Новополоцк", lat: 55.5318, lon: 28.6435 },
+        "лепель": { name: "Лепель", lat: 54.8814, lon: 28.6990 },
+        "толочин": { name: "Толочин", lat: 54.4087, lon: 29.6956 },
+        "чашники": { name: "Чашники", lat: 54.8583, lon: 29.1608 },
+        "бешенковичи": { name: "Бешенковичи", lat: 55.0428, lon: 29.4561 },
+        "могилев": { name: "Могилёв", lat: 53.9168, lon: 30.3449 },
+        "могилёв": { name: "Могилёв", lat: 53.9168, lon: 30.3449 },
+        "гомель": { name: "Гомель", lat: 52.4345, lon: 30.9754 },
+        "брест": { name: "Брест", lat: 52.0976, lon: 23.7341 },
+        "гродно": { name: "Гродно", lat: 53.6694, lon: 23.8131 },
+        "москва": { name: "Москва", lat: 55.7558, lon: 37.6173 },
+        "санкт-петербург": { name: "Санкт-Петербург", lat: 59.9343, lon: 30.3351 },
+        "питер": { name: "Санкт-Петербург", lat: 59.9343, lon: 30.3351 },
+        "спб": { name: "Санкт-Петербург", lat: 59.9343, lon: 30.3351 },
+        "смоленск": { name: "Смоленск", lat: 54.7818, lon: 32.0401 }
+      };
 
       var LASTFM_KEYS = [
         "4a9f5581a9cdf20a699f540ac52a95c9",
@@ -2033,7 +2197,6 @@
       var selectedWeekDate = "";
       var shelfMode = "year";
       var activeBookFilter = "";
-      var activeEvCategory = "ALL";
 
       var modalMood = "positive";
       var modalPhotoData = "";
@@ -2054,6 +2217,9 @@
         });
       };
 
+      /* ==========================================================================
+         БАЗА ДАННЫХ ФОТОГРАФИЙ И БЕЗОПАСНАЯ МИГРАЦИЯ ВСЕХ СТАРЫХ ДАННЫХ
+         ========================================================================== */
       function initPhotoDB(done) {
         try {
           if (window.openDatabase) {
@@ -2094,19 +2260,67 @@
         try { return localStorage.getItem("wg_p_" + clean) || ""; } catch (e) { return ""; }
       }
 
+      // Собираем и сохраняем все записи из любых прошлых ключей, чтобы ни одна запись не пропала
       function loadState() {
-        try {
-          var raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem("whengram_ios6_master_v5");
-          state = raw ? JSON.parse(raw) : defaultState;
-        } catch (e) {
-          state = defaultState;
-        }
-        if (!state.memories) state.memories = [];
-        if (!state.events) state.events = [];
-        if (!state.profile) state.profile = { name: "", reminder_time: "21:00", setup_complete: true };
-        if (!state.settings) state.settings = { theme: "leather", lastfm_user: "" };
+        var keysToCheck = [
+          STORAGE_KEY,
+          "whengram_ios6_master_v5",
+          "whengram_ios6_leather_v2",
+          "whengram_ios6_leather_v1",
+          "wg_ios6"
+        ];
+        var mergedMems = [];
+        var mergedEvents = [];
+        var seenIds = {};
+        var loadedSettings = null;
+        var loadedProfile = null;
 
-        if (state.settings.theme === "dark") {
+        for (var k = 0; k < keysToCheck.length; k++) {
+          try {
+            var raw = localStorage.getItem(keysToCheck[k]);
+            if (!raw) continue;
+            var parsed = JSON.parse(raw);
+            if (!parsed) continue;
+
+            if (!loadedSettings && parsed.settings) loadedSettings = parsed.settings;
+            if (!loadedProfile && parsed.profile) loadedProfile = parsed.profile;
+
+            var mList = parsed.memories || parsed.mem || [];
+            for (var i = 0; i < mList.length; i++) {
+              var m = mList[i];
+              if (!m) continue;
+              var mKey = m.id || (m.date + "_" + (m.text || "").substring(0, 12));
+              if (!seenIds[mKey]) {
+                seenIds[mKey] = true;
+                if (!m.imageUri && m.img) m.imageUri = m.img;
+                mergedMems.push(m);
+              }
+            }
+
+            var eList = parsed.events || [];
+            for (var j = 0; j < eList.length; j++) {
+              var ev = eList[j];
+              if (!ev) continue;
+              var eKey = ev.id || (ev.date + "_" + (ev.title || ""));
+              if (!seenIds[eKey]) {
+                seenIds[eKey] = true;
+                mergedEvents.push(ev);
+              }
+            }
+          } catch (e) {}
+        }
+
+        state = {
+          version: "2.0",
+          memories: mergedMems,
+          events: mergedEvents,
+          profile: loadedProfile || defaultState.profile,
+          settings: loadedSettings || defaultState.settings
+        };
+
+        saveState();
+
+        if (state.settings && state.settings.theme === "dark") {
           document.body.className = "dark-linen";
         }
       }
@@ -2120,7 +2334,59 @@
       }
 
       /* ==========================================================================
-         КАРМАННЫЙ СКЕТЧПАД (РИСОВАНИЕ ПАЛЬЦЕМ НА ПОЛАРОИД)
+         3D SVG СМАЙЛЫ НАСТРОЕНИЯ (ОТОБРАЖАЮТСЯ В КАРТОЧКАХ И РАДАРЕ)
+         ========================================================================== */
+      function getMoodBadgeHTML(mood) {
+        if (mood === "negative") {
+          return '<span class="mood-face-badge mf-neg">' +
+            '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6c.83 0 1.5.67 1.5 1.5S16.33 11 15.5 11 14 10.33 14 9.5 14.67 8 15.5 8zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm3.5 5.5c2.33 0 4.31 1.46 5.11 3.5H6.89c.8-2.04 2.78-3.5 5.11-3.5z"/></svg>' +
+            'ТЯЖЕЛО</span>';
+        }
+        if (mood === "neutral") {
+          return '<span class="mood-face-badge mf-neu">' +
+            '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6c.83 0 1.5.67 1.5 1.5S16.33 11 15.5 11 14 10.33 14 9.5 14.67 8 15.5 8zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm-1.5 6.5h10v2H7v-2z"/></svg>' +
+            'РОВНО</span>';
+        }
+        return '<span class="mood-face-badge mf-pos">' +
+          '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm3.5 6c.83 0 1.5.67 1.5 1.5S16.33 11 15.5 11 14 10.33 14 9.5 14.67 8 15.5 8zm-7 0c.83 0 1.5.67 1.5 1.5S9.33 11 8.5 11 7 10.33 7 9.5 7.67 8 8.5 8zm3.5 9.5c-2.33 0-4.31-1.46-5.11-3.5h10.22c-.8 2.04-2.78 3.5-5.11 3.5z"/></svg>' +
+          'ХОРОШО</span>';
+      }
+
+      /* ==========================================================================
+         УПРАВЛЕНИЕ МОДАЛКАМИ БЕЗ СЪЕЗЖАНИЯ ШАПКИ ОТ КЛАВИАТУРЫ iOS 6
+         ========================================================================== */
+      function showModalPage(modalId) {
+        hideEl("app-shell");
+        showEl(modalId);
+        window.scrollTo(0, 0);
+      }
+
+      function closeModalPage(modalId) {
+        hideEl(modalId);
+        showEl("app-shell");
+      }
+
+      /* ==========================================================================
+         ПОВОРОТ ФОТОГРАФИЙ НА 90° (ДЛЯ ИСПРАВЛЕНИЯ БОКОВЫХ ФОТО НА iOS 6)
+         ========================================================================== */
+      function rotateBase64Image(b64, callback) {
+        if (!b64) return;
+        var img = new Image();
+        img.onload = function() {
+          var c = document.createElement("canvas");
+          c.width = img.height;
+          c.height = img.width;
+          var ctx = c.getContext("2d");
+          ctx.translate(c.width / 2, c.height / 2);
+          ctx.rotate(Math.PI / 2);
+          ctx.drawImage(img, -img.width / 2, -img.height / 2);
+          callback(c.toDataURL("image/jpeg", 0.86));
+        };
+        img.src = b64;
+      }
+
+      /* ==========================================================================
+         КАРМАННЫЙ СКЕТЧПАД
          ========================================================================== */
       function initSketchpad() {
         var canvas = document.getElementById("sketch-canvas");
@@ -2171,9 +2437,7 @@
           ctx.stroke();
         }
 
-        function endDraw() {
-          isDrawingSketch = false;
-        }
+        function endDraw() { isDrawingSketch = false; }
 
         canvas.addEventListener("touchstart", startDraw, false);
         canvas.addEventListener("touchmove", moveDraw, false);
@@ -2182,9 +2446,7 @@
         canvas.onmousemove = moveDraw;
         canvas.onmouseup = endDraw;
 
-        document.getElementById("btn-clear-sketch").onclick = function() {
-          resetCanvasPaper();
-        };
+        document.getElementById("btn-clear-sketch").onclick = resetCanvasPaper;
 
         document.getElementById("btn-apply-sketch").onclick = function() {
           var b64 = canvas.toDataURL("image/jpeg", 0.88);
@@ -2192,9 +2454,9 @@
           modalPhotoName = "whengram_" + (new Date().getTime()) + "_sketch.jpg";
           document.getElementById("mem-photo-preview-img").src = b64;
           showEl("mem-photo-preview-box");
-          showEl("btn-remove-mem-photo");
+          showEl("mem-photo-actions");
           hideEl("sketchpad-box");
-          showHud("Скетч прикреплён к карточке!");
+          showHud("Скетч прикреплён!");
         };
 
         var inkBtns = document.querySelectorAll(".ink-dot-btn");
@@ -2208,7 +2470,7 @@
       }
 
       /* ==========================================================================
-         ПРИВЯЗКА ВСЕХ КНОПОК И ИНТЕРАКТИВНЫХ ФИШЕК
+         ПРИВЯЗКА ВСЕХ КНОПОК
          ========================================================================== */
       function bindAllEvents() {
         var tabBtns = document.querySelectorAll(".tab-slot");
@@ -2226,11 +2488,11 @@
           if (back.className.indexOf("hidden") !== -1) {
             hideEl("reader-front-side");
             showEl("reader-back-side");
-            this.innerHTML = "&#8635; Лицевая сторона";
+            this.innerHTML = "&#8635; Лицевая";
           } else {
             showEl("reader-front-side");
             hideEl("reader-back-side");
-            this.innerHTML = "&#8635; Оборот карточки";
+            this.innerHTML = "&#8635; Оборот";
           }
         };
 
@@ -2250,8 +2512,11 @@
           openMemoryModal(null, getTodayISO());
         };
 
-        document.getElementById("btn-cancel-mem").onclick = function() { hideEl("modal-memory"); };
+        document.getElementById("btn-cancel-mem").onclick = function() {
+          closeModalPage("modal-memory");
+        };
         document.getElementById("btn-save-mem").onclick = saveMemoryFromModal;
+
         document.getElementById("btn-delete-mem").onclick = function() {
           var id = document.getElementById("mem-edit-id").value;
           if (id && confirm("Удалить это воспоминание?")) {
@@ -2261,7 +2526,7 @@
             }
             state.memories = next;
             saveState();
-            hideEl("modal-memory");
+            closeModalPage("modal-memory");
             renderEverything();
             showHud("Запись удалена");
           }
@@ -2276,37 +2541,29 @@
           };
         }
 
-        // Быстрый выбор погоды и Авто-погода (Open-Meteo)
+        // Быстрый выбор погоды и Авто-погода по названию города
         var wChips = document.querySelectorAll(".weather-chip");
         for (var wc = 0; wc < wChips.length; wc++) {
           wChips[wc].onclick = function() {
-            document.getElementById("mem-weather-input").value = this.getAttribute("data-w");
-          };
-        }
-
-        document.getElementById("btn-auto-weather").onclick = function() {
-          fetchAutoWeather();
-        };
-
-        // Быстрый выбор тегов
-        var tChips = document.querySelectorAll(".tag-chip");
-        for (var tc = 0; tc < tChips.length; tc++) {
-          tChips[tc].onclick = function() {
-            var tag = this.getAttribute("data-tag");
-            var inp = document.getElementById("mem-tags-input");
-            if (inp.value.indexOf(tag) === -1) {
-              inp.value = (inp.value ? inp.value + " " : "") + tag;
+            var cur = document.getElementById("mem-weather-input").value.trim();
+            var wTag = this.getAttribute("data-w");
+            if (cur && cur.indexOf("☀") === -1 && cur.indexOf("☂") === -1 && cur.indexOf("❄") === -1 && cur.indexOf("☾") === -1 && cur.indexOf("⚡") === -1) {
+              document.getElementById("mem-weather-input").value = cur + " • " + wTag;
+            } else {
+              document.getElementById("mem-weather-input").value = wTag;
             }
           };
         }
 
-        // Переключатель Скетчпада
+        document.getElementById("btn-auto-weather").onclick = fetchWeatherByCityInput;
+
         document.getElementById("btn-toggle-sketch").onclick = function() {
           var sb = document.getElementById("sketchpad-box");
           if (sb.className.indexOf("hidden") !== -1) showEl("sketchpad-box");
           else hideEl("sketchpad-box");
         };
 
+        // Загрузка и поворот фото в записи
         document.getElementById("mem-photo-file").onchange = function(e) {
           var f = e.target.files && e.target.files[0];
           if (!f) return;
@@ -2315,7 +2572,16 @@
             modalPhotoName = "whengram_" + (new Date().getTime()) + "_" + Math.floor(Math.random() * 9 + 1) + ".jpg";
             document.getElementById("mem-photo-preview-img").src = b64;
             showEl("mem-photo-preview-box");
-            showEl("btn-remove-mem-photo");
+            showEl("mem-photo-actions");
+          });
+        };
+
+        document.getElementById("btn-rotate-mem-photo").onclick = function() {
+          if (!modalPhotoData) return;
+          showHud("Поворачиваем фото...");
+          rotateBase64Image(modalPhotoData, function(rotatedB64) {
+            modalPhotoData = rotatedB64;
+            document.getElementById("mem-photo-preview-img").src = rotatedB64;
           });
         };
 
@@ -2323,37 +2589,41 @@
           modalPhotoData = "";
           modalPhotoName = "";
           hideEl("mem-photo-preview-box");
-          hideEl("btn-remove-mem-photo");
+          hideEl("mem-photo-actions");
         };
 
         document.getElementById("btn-fetch-lastfm").onclick = fetchLastFmSongForModal;
 
-        // Вкладка Воспоминания: 3 режима
-        document.getElementById("seg-list-btn").onclick = function() {
-          this.className = "seg-item active";
-          document.getElementById("seg-shelf-btn").className = "seg-item";
-          document.getElementById("seg-music-btn").className = "seg-item";
-          showEl("memories-feed-box");
+        // 4 режима во вкладке Воспоминания: Хроника / Полка iBooks / Ящик с винилом / Кассета месяца
+        function activateMemSeg(activeId) {
+          var ids = ["seg-list-btn", "seg-shelf-btn", "seg-music-btn", "seg-tape-btn"];
+          for (var i = 0; i < ids.length; i++) {
+            document.getElementById(ids[i]).className = (ids[i] === activeId) ? "seg-item active" : "seg-item";
+          }
+          hideEl("memories-feed-box");
           hideEl("ibooks-shelf-box");
           hideEl("music-playlist-box");
+          hideEl("monthly-tape-box");
+        }
+
+        document.getElementById("seg-list-btn").onclick = function() {
+          activateMemSeg("seg-list-btn");
+          showEl("memories-feed-box");
         };
         document.getElementById("seg-shelf-btn").onclick = function() {
-          this.className = "seg-item active";
-          document.getElementById("seg-list-btn").className = "seg-item";
-          document.getElementById("seg-music-btn").className = "seg-item";
-          hideEl("memories-feed-box");
+          activateMemSeg("seg-shelf-btn");
           showEl("ibooks-shelf-box");
-          hideEl("music-playlist-box");
           renderIBooksShelf();
         };
         document.getElementById("seg-music-btn").onclick = function() {
-          this.className = "seg-item active";
-          document.getElementById("seg-list-btn").className = "seg-item";
-          document.getElementById("seg-shelf-btn").className = "seg-item";
-          hideEl("memories-feed-box");
-          hideEl("ibooks-shelf-box");
+          activateMemSeg("seg-music-btn");
           showEl("music-playlist-box");
           renderMusicPlaylist();
+        };
+        document.getElementById("seg-tape-btn").onclick = function() {
+          activateMemSeg("seg-tape-btn");
+          showEl("monthly-tape-box");
+          renderMonthlyCassette();
         };
 
         document.getElementById("shelf-mode-year").onclick = function() {
@@ -2376,11 +2646,11 @@
 
         document.getElementById("mem-search").oninput = renderMemoriesList;
         document.getElementById("mem-filter").onchange = renderMemoriesList;
-        document.getElementById("ev-search").oninput = renderEventsList;
 
-        // Модалка Вехи (с поддержкой фото)
-        document.getElementById("btn-cancel-ev").onclick = function() { hideEl("modal-event"); };
+        // Модалка Трофея/Вехи
+        document.getElementById("btn-cancel-ev").onclick = function() { closeModalPage("modal-event"); };
         document.getElementById("btn-save-ev").onclick = saveEventFromModal;
+
         document.getElementById("ev-photo-file").onchange = function(e) {
           var f = e.target.files && e.target.files[0];
           if (!f) return;
@@ -2389,32 +2659,42 @@
             evModalPhotoName = "whengram_" + (new Date().getTime()) + "_ev.jpg";
             document.getElementById("ev-photo-preview-img").src = b64;
             showEl("ev-photo-preview-box");
-            showEl("btn-remove-ev-photo");
+            showEl("ev-photo-actions");
           });
         };
+
+        document.getElementById("btn-rotate-ev-photo").onclick = function() {
+          if (!evModalPhotoData) return;
+          rotateBase64Image(evModalPhotoData, function(rotB64) {
+            evModalPhotoData = rotB64;
+            document.getElementById("ev-photo-preview-img").src = rotB64;
+          });
+        };
+
         document.getElementById("btn-remove-ev-photo").onclick = function() {
           evModalPhotoData = "";
           evModalPhotoName = "";
           hideEl("ev-photo-preview-box");
-          hideEl("btn-remove-ev-photo");
+          hideEl("ev-photo-actions");
         };
+
         document.getElementById("btn-delete-ev").onclick = function() {
           var id = document.getElementById("ev-edit-id").value;
-          if (id && confirm("Удалить эту веху?")) {
+          if (id && confirm("Удалить эту награду?")) {
             var next = [];
             for (var i = 0; i < state.events.length; i++) {
               if (state.events[i].id !== id) next.push(state.events[i]);
             }
             state.events = next;
             saveState();
-            hideEl("modal-event");
+            closeModalPage("modal-event");
             renderEverything();
           }
         };
 
         document.getElementById("btn-close-reader").onclick = function() {
           stopAudioPlayer();
-          hideEl("modal-reader");
+          closeModalPage("modal-reader");
         };
 
         document.getElementById("btn-toggle-theme").onclick = function() {
@@ -2442,17 +2722,20 @@
           state.settings.lastfm_user = u;
           saveState();
           var out = document.getElementById("lastfm-test-result");
-          out.innerText = "Запрос к Last.fm...";
+          out.innerText = "Запрос к Last.fm + Deezer...";
           queryLastFmTracks(u, null, function(err, song) {
             if (err || !song) {
               out.innerText = "Ошибка: " + (err || "скробблы не найдены");
             } else {
               out.innerText = "Подключено! Трек: " + song.artist + " — " + song.title;
-              showHud("Last.fm работает!");
+              showHud("Last.fm + Deezer ОК!");
             }
           });
         };
 
+        // Облачный мост и экспорт/импорт
+        document.getElementById("btn-cloud-push").onclick = pushCloudBackup;
+        document.getElementById("btn-cloud-pull").onclick = pullCloudBackup;
         document.getElementById("btn-download-zip").onclick = exportZipBackup;
         document.getElementById("file-import-zip").onchange = function(e) {
           var f = e.target.files && e.target.files[0];
@@ -2460,10 +2743,10 @@
         };
         document.getElementById("btn-make-code").onclick = function() {
           var box = document.getElementById("backup-code-box");
-          box.value = JSON.stringify(buildExportManifest());
+          box.value = JSON.stringify(buildFullPortablePackage());
           box.focus();
           box.select();
-          showHud("Код бэкапа готов!");
+          showHud("Код бэкапа с фото готов!");
         };
         document.getElementById("btn-load-code").onclick = function() {
           var raw = document.getElementById("backup-code-box").value.trim();
@@ -2487,48 +2770,73 @@
         };
       }
 
-      function fetchAutoWeather() {
-        showHud("Определяем погоду...");
-        function requestOpenMeteo(lat, lon) {
-          var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current_weather=true";
-          var xhr = new XMLHttpRequest();
-          xhr.open("GET", url, true);
-          xhr.onreadystatechange = function() {
-            if (xhr.readyState !== 4) return;
-            if (xhr.status === 200) {
-              try {
-                var d = JSON.parse(xhr.responseText);
-                var cw = d.current_weather;
-                if (cw) {
-                  var t = Math.round(cw.temperature);
-                  var sign = t > 0 ? "+" : "";
-                  var code = cw.weathercode;
-                  var icon = "☀️ Ясно";
-                  if (code >= 51 && code <= 67) icon = "🌧️ Дождь";
-                  else if (code >= 71 && code <= 86) icon = "❄️ Снег";
-                  else if (code >= 95) icon = "⚡ Гроза";
-                  else if (code >= 1 && code <= 3) icon = "⛅ Облачно";
-                  var str = icon + ", " + sign + t + "°C";
-                  document.getElementById("mem-weather-input").value = str;
-                  showHud("Погода: " + str);
-                  return;
-                }
-              } catch (e) {}
-            }
-            showHud("Выбери значок погоды ниже");
-          };
-          xhr.send();
+      /* ==========================================================================
+         АВТО-ПОГОДА ПО ВВЕДЁННОМУ ГОРОДУ (СЕННО И ЛЮБОЙ ДРУГОЙ ГОРОД)
+         ========================================================================== */
+      function fetchWeatherByCityInput() {
+        var inp = document.getElementById("mem-weather-input");
+        var rawCity = (inp.value || "").replace(/[☀☂❄☾⚡•,0-9+\-°C]/g, "").trim();
+        if (!rawCity) rawCity = "Сенно";
+
+        showHud("Погода для: " + rawCity + "...");
+        var lower = rawCity.toLowerCase();
+
+        if (CITY_PRESETS[lower]) {
+          requestWeatherByCoords(CITY_PRESETS[lower].name, CITY_PRESETS[lower].lat, CITY_PRESETS[lower].lon);
+          return;
         }
 
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function(pos) {
-            requestOpenMeteo(pos.coords.latitude, pos.coords.longitude);
-          }, function() {
-            requestOpenMeteo(54.81, 29.70);
-          }, { timeout: 4000 });
-        } else {
-          requestOpenMeteo(54.81, 29.70);
-        }
+        // Если города нет в быстром словаре, пробиваем через геокодер Open-Meteo
+        var geoUrl = "https://geocoding-api.open-meteo.com/v1/search?name=" + encodeURIComponent(rawCity) + "&count=1&language=ru&format=json";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", geoUrl, true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status === 200) {
+            try {
+              var g = JSON.parse(xhr.responseText);
+              if (g && g.results && g.results.length > 0) {
+                var r = g.results[0];
+                requestWeatherByCoords(r.name || rawCity, r.latitude, r.longitude);
+                return;
+              }
+            } catch (e) {}
+          }
+          requestWeatherByCoords(rawCity, 54.8128, 29.7086);
+        };
+        xhr.send();
+      }
+
+      function requestWeatherByCoords(cityName, lat, lon) {
+        var url = "https://api.open-meteo.com/v1/forecast?latitude=" + lat + "&longitude=" + lon + "&current_weather=true";
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", url, true);
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status === 200) {
+            try {
+              var d = JSON.parse(xhr.responseText);
+              var cw = d.current_weather;
+              if (cw) {
+                var t = Math.round(cw.temperature);
+                var sign = t > 0 ? "+" : "";
+                var code = cw.weathercode;
+                // Используем только классические символы Unicode, которые есть в шрифтах iOS 6.1.3 (без квадратиков!)
+                var cond = "☀ Ясно";
+                if (code >= 51 && code <= 67) cond = "☂ Дождь";
+                else if (code >= 71 && code <= 86) cond = "❄ Снег";
+                else if (code >= 95) cond = "⚡ Гроза";
+                else if (code >= 1 && code <= 48) cond = "☁ Облачно";
+                var finalStr = cityName + " • " + cond + " " + sign + t + "°C";
+                document.getElementById("mem-weather-input").value = finalStr;
+                showHud(finalStr);
+                return;
+              }
+            } catch (e) {}
+          }
+          showHud("Не удалось связаться с метеосервером");
+        };
+        xhr.send();
       }
 
       function switchTab(tab) {
@@ -2544,7 +2852,7 @@
         }
 
         var topBtn = document.getElementById("btn-top-action");
-        topBtn.innerHTML = tab === "events" ? "&#9998; Веха" : "&#9998; Запись";
+        topBtn.innerHTML = tab === "events" ? "+ Трофей" : "&#9998; Запись";
         document.getElementById("main-scroll").scrollTop = 0;
       }
 
@@ -2582,14 +2890,14 @@
         if (todayMem) {
           hideEl("home-empty-state");
           showEl("home-filled-state");
-          document.getElementById("today-mood-tag").innerText = "● " + getMoodLabel(todayMem.mood);
+          document.getElementById("today-mood-badge").innerHTML = getMoodBadgeHTML(todayMem.mood);
 
           if (isMemoryLocked(todayMem, todayIso)) {
             hideEl("today-photo-box");
             hideEl("today-lastfm-slot");
             hideEl("today-atmo-row");
             document.getElementById("today-story-text").innerText =
-              "🔒 Это письмо запечатано сургучной печатью до " + formatRussianDate(todayMem.unlock_date) + ".";
+              "Запечатано сургучной печатью до " + formatRussianDate(todayMem.unlock_date) + ".";
           } else {
             var pImg = getPhoto(todayMem.imageUri);
             if (pImg) {
@@ -2600,7 +2908,7 @@
             }
             var parsed = parseMemoryMetadata(todayMem.text, todayMem);
             document.getElementById("today-story-text").innerText = parsed.cleanText;
-            renderAtmoAndTags(parsed.weather, parsed.tags, "today-atmo-row");
+            renderWeatherPill(parsed.weather, "today-atmo-row");
             renderAudioDeck(parsed.song, "today-lastfm-slot", todayMem);
           }
 
@@ -2617,28 +2925,19 @@
         renderMemoriesList();
         renderIBooksShelf();
         renderMusicPlaylist();
-        renderEventsList();
+        renderMonthlyCassette();
+        renderGameCenterTrophies();
       }
 
-      function renderAtmoAndTags(weather, tags, containerId) {
+      function renderWeatherPill(weather, containerId) {
         var box = document.getElementById(containerId);
         if (!box) return;
-        if (!weather && !tags) {
+        if (!weather) {
           hideEl(containerId);
           return;
         }
         showEl(containerId);
-        var html = "";
-        if (weather) {
-          html += '<span class="weather-brass-pill">' + escapeHtml(weather) + '</span>';
-        }
-        if (tags) {
-          var parts = tags.split(/\s+/);
-          for (var i = 0; i < parts.length; i++) {
-            if (parts[i]) html += '<span class="tag-mini-pill">' + escapeHtml(parts[i]) + '</span>';
-          }
-        }
-        box.innerHTML = html;
+        box.innerHTML = '<span class="weather-brass-pill">' + escapeHtml(weather) + '</span>';
       }
 
       function isMemoryLocked(mem, todayIso) {
@@ -2693,7 +2992,11 @@
           var btn = document.createElement("div");
           var cls = "day-3d-btn";
           if (iso === selectedWeekDate) cls += " is-selected";
-          if (mem) cls += " has-record";
+          if (mem) {
+            if (mem.mood === "negative") cls += " has-neg";
+            else if (mem.mood === "neutral") cls += " has-neu";
+            else cls += " has-pos";
+          }
           btn.className = cls;
 
           btn.innerHTML =
@@ -2720,12 +3023,8 @@
         var actionEl = document.getElementById("whenweek-day-action");
 
         if (selMem) {
-          if (isMemoryLocked(selMem, todayIso)) {
-            statusEl.innerText = dayGenStr + ": 🔒 Запечатано до " + selMem.unlock_date;
-          } else {
-            var parsed = parseMemoryMetadata(selMem.text, selMem);
-            statusEl.innerText = dayGenStr + ": " + (parsed.cleanText || "Запись сохранена");
-          }
+          var parsed = parseMemoryMetadata(selMem.text, selMem);
+          statusEl.innerText = dayGenStr + " (" + getMoodLabel(selMem.mood) + "): " + (parsed.cleanText || "Запись сохранена");
           actionEl.innerText = "Открыть →";
           actionEl.onclick = function() { openReaderModal(selMem); };
         } else {
@@ -2735,14 +3034,9 @@
         }
       }
 
-      function renderFlipCountersAndRadar(todayIso, doy, yr) {
-        document.getElementById("flip-year-title").innerText = yr + " НА СЕГОДНЯ";
-        fillFlipBox("flip-mem-count", state.memories.length);
-        fillFlipBox("flip-ev-count", state.events.length);
-        fillFlipBox("flip-doy-count", doy);
-
+      function calculateCurrentStreak(todayIso) {
         var streak = 0;
-        var curDate = parseIsoDateLocal(todayIso, false);
+        var curDate = parseIsoDateLocal(todayIso || getTodayISO(), false);
         for (var s = 0; s < 365; s++) {
           var checkDate = new Date(curDate.getFullYear(), curDate.getMonth(), curDate.getDate() - s);
           var isoCheck = dateToISO(checkDate);
@@ -2753,6 +3047,17 @@
             break;
           }
         }
+        return streak;
+      }
+
+      function renderFlipCountersAndRadar(todayIso, doy, yr) {
+        var unlockedAuto = countUnlockedAutoAchievements();
+        document.getElementById("flip-year-title").innerText = yr + " НА СЕГОДНЯ";
+        fillFlipBox("flip-mem-count", state.memories.length);
+        fillFlipBox("flip-ev-count", state.events.length + unlockedAuto);
+        fillFlipBox("flip-doy-count", doy);
+
+        var streak = calculateCurrentStreak(todayIso);
         document.getElementById("streak-counter-num").innerText = streak + " ДН.";
 
         var grid = document.getElementById("led-month-grid");
@@ -2788,6 +3093,7 @@
           grid.appendChild(cell);
         }
 
+        // Честная сводка настроения в радаре (без фальшивого 0%)
         var pos = 0, neu = 0, neg = 0;
         for (var i = 0; i < state.memories.length; i++) {
           var md = state.memories[i].mood;
@@ -2803,9 +3109,10 @@
           document.getElementById("ratio-pos-bar").style.width = pPos + "%";
           document.getElementById("ratio-neu-bar").style.width = pNeu + "%";
           document.getElementById("ratio-neg-bar").style.width = pNeg + "%";
-          document.getElementById("led-mood-summary").innerText = "☺ " + pPos + "%";
+          document.getElementById("led-mood-summary").innerText =
+            "ХОРОШО:" + pos + " • РОВНО:" + neu + " • ТЯЖЕЛО:" + neg;
         } else {
-          document.getElementById("led-mood-summary").innerText = "0 ЗАП.";
+          document.getElementById("led-mood-summary").innerText = "НЕТ ЗАПИСЕЙ";
         }
       }
 
@@ -2822,7 +3129,7 @@
       }
 
       /* ==========================================================================
-         ХРОНИКА, ПОЛКА iBOOKS, ПЛЕЙЛИСТ И ОБНОВЛЁННЫЕ «ВЕХИ»
+         ХРОНИКА, ПОЛКА iBOOKS, ЯЩИК С ВИНИЛОМ И КАССЕТА МЕСЯЦА
          ========================================================================== */
       function renderMemoriesList() {
         var container = document.getElementById("memories-feed-box");
@@ -2843,7 +3150,6 @@
             flt === "all" ||
             (flt === "photo" && m.imageUri && getPhoto(m.imageUri)) ||
             (flt === "music" && parsed.song) ||
-            (flt === "sealed" && locked) ||
             m.mood === flt;
 
           if (matchQ && matchBook && matchFlt) filtered.push(m);
@@ -2894,14 +3200,14 @@
                   '<span class="feed-day-wk">' + getWeekdayShort(mem.date) + '</span>' +
                 '</div>' +
                 '<div class="feed-body">' +
-                  '<p class="feed-text" style="color:#a82909;font-weight:bold;">🔒 Запечатанная капсула времени</p>' +
+                  '<p class="feed-text" style="color:#a82909;font-weight:bold;">Запечатанная капсула времени</p>' +
                   '<span class="feed-song-tag">Откроется: ' + formatRussianDate(mem.unlock_date) + '</span>' +
                 '</div>';
             } else {
               var imgSrc = getPhoto(mem.imageUri);
               var parsedItem = parseMemoryMetadata(mem.text, mem);
               var thumbHtml = imgSrc ? '<div class="feed-thumb"><img src="' + imgSrc + '" alt=""></div>' : '';
-              var badgesHtml = "";
+              var badgesHtml = getMoodBadgeHTML(mem.mood) + " ";
               if (parsedItem.weather) {
                 badgesHtml += '<span class="feed-song-tag" style="background:rgba(166,140,96,0.2);color:#4a3520;">' + escapeHtml(parsedItem.weather) + '</span>';
               }
@@ -2916,8 +3222,8 @@
                 '</div>' +
                 thumbHtml +
                 '<div class="feed-body">' +
-                  '<p class="feed-text">' + escapeHtml(parsedItem.cleanText || "Фотокарточка / Скетч дня") + '</p>' +
-                  badgesHtml +
+                  '<p class="feed-text">' + escapeHtml(parsedItem.cleanText || "Фотокарточка дня") + '</p>' +
+                  '<div style="margin-top:5px;">' + badgesHtml + '</div>' +
                 '</div>';
             }
 
@@ -2931,11 +3237,12 @@
         }
       }
 
+      /* Ящик с виниловыми пластинками (Vinyl Crate) + список плеер-дек */
       function renderMusicPlaylist() {
         var box = document.getElementById("music-playlist-box");
         box.innerHTML = "";
         var todayIso = getTodayISO();
-        var count = 0;
+        var songsList = [];
 
         var sorted = state.memories.slice().sort(function(a, b) {
           return a.date < b.date ? 1 : -1;
@@ -2945,25 +3252,139 @@
           var m = sorted[i];
           if (isMemoryLocked(m, todayIso)) continue;
           var parsed = parseMemoryMetadata(m.text, m);
-          if (!parsed.song) continue;
-
-          count++;
-          var slotId = "playlist_deck_" + i;
-          var wrap = document.createElement("div");
-          wrap.innerHTML =
-            '<div style="font-size:9px;font-weight:900;color:#dec9b0;margin:8px 0 2px 4px;">' +
-              formatRussianDate(m.date) +
-            '</div>' +
-            '<div id="' + slotId + '" class="lastfm-deck"></div>';
-          box.appendChild(wrap);
-          renderAudioDeck(parsed.song, slotId, m);
+          if (parsed.song) {
+            songsList.push({ mem: m, song: parsed.song });
+          }
         }
 
-        if (count === 0) {
+        if (songsList.length === 0) {
           box.innerHTML =
             '<div class="leather-well-panel" style="text-align:center;padding:22px;">' +
               'В записях пока нет прикреплённых песен из Last.fm' +
             '</div>';
+          return;
+        }
+
+        // 1. Горизонтальный ящик с винилом (листается пальцем)
+        var crate = document.createElement("div");
+        crate.className = "vinyl-crate-scroll";
+
+        for (var v = 0; v < songsList.length; v++) {
+          var entry = songsList[v];
+          var sleeve = document.createElement("div");
+          sleeve.className = "vinyl-sleeve-card";
+          var covImg = entry.song.cover
+            ? '<img src="' + entry.song.cover + '" alt="">'
+            : '<div style="line-height:98px;color:#ff6e42;font-size:28px;">&#9835;</div>';
+
+          sleeve.innerHTML =
+            '<div class="vinyl-disc-art">' + covImg + '<div class="vinyl-hole"></div></div>' +
+            '<div style="font-size:11px;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(entry.song.title) + '</div>' +
+            '<div style="font-size:9px;color:#6e5b49;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">' + escapeHtml(entry.song.artist) + '</div>' +
+            '<div style="font-size:8px;font-weight:800;color:#c93812;margin-top:3px;">' + entry.mem.date + '</div>';
+
+          (function(mRef) {
+            sleeve.onclick = function() { openReaderModal(mRef); };
+          })(entry.mem);
+
+          crate.appendChild(sleeve);
+        }
+        box.appendChild(crate);
+
+        // 2. Полный список дек с кнопкой Play
+        for (var k = 0; k < songsList.length; k++) {
+          var item = songsList[k];
+          var slotId = "playlist_deck_" + k;
+          var wrap = document.createElement("div");
+          wrap.innerHTML =
+            '<div style="font-size:9px;font-weight:900;color:#dec9b0;margin:8px 0 2px 4px;">' +
+              formatRussianDate(item.mem.date) +
+            '</div>' +
+            '<div id="' + slotId + '" class="lastfm-deck"></div>';
+          box.appendChild(wrap);
+          renderAudioDeck(item.song, slotId, item.mem);
+        }
+      }
+
+      /* Кассета месяца (Музыкально-фотографические итоги каждого месяца) */
+      function renderMonthlyCassette() {
+        var box = document.getElementById("monthly-tape-box");
+        box.innerHTML = "";
+
+        if (state.memories.length === 0) {
+          box.innerHTML = '<div class="leather-well-panel" style="text-align:center;padding:22px;">Сделай хотя бы одну запись, чтобы собрать Кассету месяца!</div>';
+          return;
+        }
+
+        var monthsMap = {}, mOrder = [];
+        for (var i = 0; i < state.memories.length; i++) {
+          var m = state.memories[i];
+          if (!m.date) continue;
+          var ym = m.date.substring(0, 7);
+          if (!monthsMap[ym]) {
+            monthsMap[ym] = [];
+            mOrder.push(ym);
+          }
+          monthsMap[ym].push(m);
+        }
+        mOrder.sort().reverse();
+
+        for (var idx = 0; idx < mOrder.length; idx++) {
+          var ymKey = mOrder[idx];
+          var list = monthsMap[ymKey];
+          var p = ymKey.split("-");
+          var moTitle = (MONTHS_UPPER[parseInt(p[1], 10) - 1] || p[1]) + " " + p[0];
+
+          var artistCounts = {}, topArtist = "Не выбран", maxA = 0;
+          var topSongStr = "Без треков", photosCount = 0;
+          var pos = 0, neu = 0, neg = 0;
+
+          for (var j = 0; j < list.length; j++) {
+            var rec = list[j];
+            if (rec.mood === "negative") neg++;
+            else if (rec.mood === "neutral") neu++;
+            else pos++;
+
+            if (rec.imageUri && getPhoto(rec.imageUri)) photosCount++;
+
+            var parsed = parseMemoryMetadata(rec.text, rec);
+            if (parsed.song && parsed.song.artist) {
+              var aName = parsed.song.artist;
+              artistCounts[aName] = (artistCounts[aName] || 0) + 1;
+              if (artistCounts[aName] > maxA) {
+                maxA = artistCounts[aName];
+                topArtist = aName;
+                topSongStr = parsed.song.artist + " — " + parsed.song.title;
+              }
+            }
+          }
+
+          var dominantMood = "ХОРОШЕЕ";
+          if (neu >= pos && neu >= neg) dominantMood = "СПОКОЙНОЕ (РОВНО)";
+          if (neg > pos && neg > neu) dominantMood = "ТЯЖЁЛОЕ";
+
+          var shell = document.createElement("div");
+          shell.className = "cassette-shell";
+          shell.innerHTML =
+            '<div class="cassette-label">' +
+              '<div style="overflow:hidden;border-bottom:2px solid #241b14;padding-bottom:4px;margin-bottom:6px;">' +
+                '<span style="float:left;font-size:13px;font-weight:900;letter-spacing:0.6px;">КАССЕТА МЕСЯЦА • ' + moTitle + '</span>' +
+                '<span style="float:right;font-size:10px;font-weight:900;color:#d93c14;">C-90 MIX</span>' +
+              '</div>' +
+              '<div style="font-size:11px;line-height:1.5;">' +
+                '<div><b>Дней записано:</b> ' + list.length + ' (фотокарточек: ' + photosCount + ')</div>' +
+                '<div><b>Главный артист:</b> ' + escapeHtml(topArtist) + '</div>' +
+                '<div><b>Гимн месяца:</b> ' + escapeHtml(topSongStr) + '</div>' +
+                '<div><b>Преобладающее настроение:</b> ' + dominantMood + '</div>' +
+              '</div>' +
+              '<div class="cassette-window">' +
+                '<div class="cassette-spool" style="float:left;"></div>' +
+                '<div class="cassette-spool" style="float:right;"></div>' +
+                '<div style="text-align:center;line-height:28px;font-size:9px;font-weight:900;color:#ffcc33;">WHENGRAM HI-FI</div>' +
+              '</div>' +
+            '</div>';
+
+          box.appendChild(shell);
         }
       }
 
@@ -3036,109 +3457,151 @@
         }
       }
 
-      /* Переоформленный раздел «Вехи»: Витрина Достижений + Вертикальная Линия Жизни */
-      function renderEventsList() {
-        var rack = document.getElementById("ev-trophy-rack");
-        var box = document.getElementById("events-feed-box");
-        rack.innerHTML = "";
-        box.innerHTML = "";
+      /* ==========================================================================
+         ВКЛАДКА 3: ДОСТИЖЕНИЯ И ТРОФЕИ В СТИЛЕ APPLE GAME CENTER
+         ========================================================================== */
+      function getAutoAchievementsList() {
+        var totalMems = state.memories.length;
+        var streak = calculateCurrentStreak(getTodayISO());
+        var songsCnt = 0, photosCnt = 0, longTexts = 0, sealedCnt = 0;
 
-        document.getElementById("ev-total-badge").innerText = state.events.length;
-
-        // Считаем количество вех по категориям
-        var catCounts = { "ALL": state.events.length };
-        for (var i = 0; i < state.events.length; i++) {
-          var cKey = (state.events[i].category || "ЖИЗНЬ").split(" ")[0].toUpperCase();
-          catCounts[cKey] = (catCounts[cKey] || 0) + 1;
+        for (var i = 0; i < state.memories.length; i++) {
+          var m = state.memories[i];
+          var parsed = parseMemoryMetadata(m.text, m);
+          if (parsed.song) songsCnt++;
+          if (m.imageUri && getPhoto(m.imageUri)) photosCnt++;
+          if (parsed.cleanText && parsed.cleanText.length >= 180) longTexts++;
+          if (m.unlock_date) sealedCnt++;
         }
 
-        for (var c = 0; c < EVENT_CATEGORIES.length; c++) {
-          var catInfo = EVENT_CATEGORIES[c];
-          var slot = document.createElement("div");
-          slot.className = "trophy-badge-slot" + (activeEvCategory === catInfo.key ? " active-cat" : "");
-          slot.innerHTML =
-            '<span class="trophy-emoji">' + catInfo.icon + '</span>' +
-            '<span class="trophy-cat-name">' + catInfo.label + '</span>' +
-            '<span class="trophy-cat-cnt">' + (catCounts[catInfo.key] || 0) + '</span>';
+        return [
+          {
+            title: "Первый шаг",
+            sub: "1-я запись (" + Math.min(totalMems, 1) + "/1)",
+            unlocked: totalMems >= 1,
+            svg: '<svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>'
+          },
+          {
+            title: "Меломан",
+            sub: "Треки дня (" + songsCnt + "/5)",
+            unlocked: songsCnt >= 5,
+            svg: '<svg viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>'
+          },
+          {
+            title: "Полароид",
+            sub: "Снимки (" + photosCnt + "/5)",
+            unlocked: photosCnt >= 5,
+            svg: '<svg viewBox="0 0 24 24"><path d="M9 2L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-3.17L15 2H9zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>'
+          },
+          {
+            title: "Стрик 7 дней",
+            sub: "Серия (" + streak + "/7 дн.)",
+            unlocked: streak >= 7,
+            svg: '<svg viewBox="0 0 24 24"><path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67z"/></svg>'
+          },
+          {
+            title: "Летописец",
+            sub: "Большие тексты (" + longTexts + "/3)",
+            unlocked: longTexts >= 3,
+            svg: '<svg viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>'
+          },
+          {
+            title: "Хранитель",
+            sub: "Письмо в будущее (" + sealedCnt + "/1)",
+            unlocked: sealedCnt >= 1,
+            svg: '<svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>'
+          }
+        ];
+      }
 
-          (function(k) {
-            slot.onclick = function() {
-              activeEvCategory = (activeEvCategory === k) ? "ALL" : k;
-              renderEventsList();
+      function countUnlockedAutoAchievements() {
+        var list = getAutoAchievementsList();
+        var c = 0;
+        for (var i = 0; i < list.length; i++) if (list[i].unlocked) c++;
+        return c;
+      }
+
+      function renderGameCenterTrophies() {
+        var grid = document.getElementById("gc-auto-medals");
+        var userBox = document.getElementById("events-feed-box");
+        grid.innerHTML = "";
+        userBox.innerHTML = "";
+
+        var achList = getAutoAchievementsList();
+        var unlockedCnt = 0;
+
+        for (var i = 0; i < achList.length; i++) {
+          var a = achList[i];
+          if (a.unlocked) unlockedCnt++;
+          var cell = document.createElement("div");
+          cell.className = "gc-medal-cell" + (a.unlocked ? "" : " locked");
+          cell.innerHTML =
+            '<div class="medal-coin">' + a.svg + '</div>' +
+            '<span class="medal-title">' + a.title + '</span>' +
+            '<span class="medal-sub">' + (a.unlocked ? "★ ОТКРЫТО" : a.sub) + '</span>';
+
+          (function(info) {
+            cell.onclick = function() {
+              showHud(info.title + " — " + (info.unlocked ? "Достижение получено!" : info.sub));
             };
-          })(catInfo.key);
+          })(a);
 
-          rack.appendChild(slot);
+          grid.appendChild(cell);
         }
 
-        var q = (document.getElementById("ev-search").value || "").toLowerCase();
-        var list = [];
-        for (var j = 0; j < state.events.length; j++) {
-          var ev = state.events[j];
-          var titleStr = (ev.title || ev.text || "").toLowerCase();
-          var catStr = (ev.category || "ЖИЗНЬ").toUpperCase();
-          var matchQ = !q || titleStr.indexOf(q) !== -1 || (ev.notes && ev.notes.toLowerCase().indexOf(q) !== -1);
-          var matchCat = activeEvCategory === "ALL" || catStr.indexOf(activeEvCategory) !== -1;
-          if (matchQ && matchCat) list.push(ev);
-        }
+        document.getElementById("gc-unlocked-count").innerText = unlockedCnt + " / " + achList.length;
 
-        list.sort(function(a, b) {
+        var list = state.events.slice().sort(function(a, b) {
           return a.date < b.date ? 1 : -1;
         });
 
         if (list.length === 0) {
-          box.innerHTML =
-            '<div class="paper-card"><div class="paper-holes"></div><div class="paper-body" style="text-align:center;">' +
-              '<h3 class="paper-headline" style="font-size:18px;margin-bottom:6px;">Вех пока нет</h3>' +
-              '<p style="font-size:12px;color:#6e5e4d;margin:0 0 12px 0;">Отмечай важные события, покупки, поездки или цели на будущее — они выстроятся здесь на линии жизни.</p>' +
-              '<button type="button" id="btn-empty-ev" class="cta-orange-btn"><span class="cta-text">ОТМЕТИТЬ ВЕХУ ЖИЗНИ</span><span class="cta-arrow">+</span></button>' +
-            '</div></div>';
-          document.getElementById("btn-empty-ev").onclick = function() { openEventModal(null); };
+          userBox.innerHTML =
+            '<div style="text-align:center;padding:14px 8px;color:#c7b59f;font-size:11px;">' +
+              'Нажми <b>«+ Выдать медаль»</b>, чтобы увековечить личное достижение, покупку или важное событие.' +
+            '</div>';
           return;
         }
 
-        var timeline = document.createElement("div");
-        timeline.className = "milestone-timeline";
-
-        for (var m = 0; m < list.length; m++) {
-          var item = list[m];
+        for (var j = 0; j < list.length; j++) {
+          var item = list[j];
           var card = document.createElement("div");
-          card.className = "milestone-card";
+          card.className = "user-trophy-card";
 
           var diffDays = Math.floor((parseIsoDateLocal(getTodayISO(), false) - parseIsoDateLocal(item.date, false)) / 86400000);
           var badgeTime = "Сегодня!";
-          if (diffDays > 0) badgeTime = "⏳ " + diffDays + " дн. назад";
-          else if (diffDays < 0) badgeTime = "🎯 Через " + Math.abs(diffDays) + " дн.";
+          if (diffDays > 0) badgeTime = diffDays + " дн. назад";
+          else if (diffDays < 0) badgeTime = "Через " + Math.abs(diffDays) + " дн.";
 
           var evImg = getPhoto(item.imageUri);
-          var thumbHtml = evImg ? '<div class="feed-thumb" style="width:54px;height:54px;"><img src="' + evImg + '" alt=""></div>' : '';
-          var notesHtml = item.notes ? '<p class="ms-notes">' + escapeHtml(item.notes) + '</p>' : '';
+          var thumbHtml = evImg ? '<div class="feed-thumb" style="width:52px;height:52px;"><img src="' + evImg + '" alt=""></div>' : '';
 
           card.innerHTML =
-            '<div class="milestone-pin"></div>' +
+            '<div class="user-trophy-medal">' +
+              '<svg viewBox="0 0 24 24"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/></svg>' +
+            '</div>' +
             thumbHtml +
             '<div style="overflow:hidden;">' +
-              '<div class="ms-top-bar">' +
-                '<span class="ms-cat-pill">' + escapeHtml(item.category || "ЖИЗНЬ") + '</span>' +
-                '<span class="ms-days-badge">' + badgeTime + '</span>' +
+              '<div style="font-size:9px;font-weight:900;color:#d93c14;text-transform:uppercase;">' +
+                escapeHtml(item.category || "ТРОФЕЙ") + ' • ' + badgeTime +
               '</div>' +
-              '<h4 class="ms-title">' + escapeHtml(item.title || item.text) + '</h4>' +
-              notesHtml +
-              '<div class="ms-date-foot">' + formatRussianDate(item.date || getTodayISO()) + '</div>' +
+              '<div style="font-family:Georgia,serif;font-size:15px;font-weight:bold;color:#211811;margin:2px 0;">' +
+                escapeHtml(item.title || item.text) +
+              '</div>' +
+              (item.notes ? '<div style="font-size:11px;color:#5c4c3d;margin-bottom:3px;">' + escapeHtml(item.notes) + '</div>' : '') +
+              '<div style="font-size:9px;font-weight:800;color:#8c7a67;">' + formatRussianDate(item.date || getTodayISO()) + '</div>' +
             '</div>';
 
           (function(evTarget) {
             card.onclick = function() { openEventModal(evTarget); };
           })(item);
 
-          timeline.appendChild(card);
+          userBox.appendChild(card);
         }
-
-        box.appendChild(timeline);
       }
 
       /* ==========================================================================
-         РАБОЧИЙ ДВИЖОК LAST.FM + ITUNES
+         ДВИЖОК LAST.FM + ДВОЙНОЙ ПОИСК ОБЛОЖЕК И ПРЕВЬЮ (DEEZER JSONP + ITUNES)
          ========================================================================== */
       function queryLastFmTracks(username, dateIso, callback) {
         var keyIdx = 0;
@@ -3217,9 +3680,10 @@
               return;
             }
 
-            fetchItunesMetadata(best.artist, best.title, function(itCover, itPreview) {
-              if (!best.cover && itCover) best.cover = itCover;
-              if (itPreview) best.preview = itPreview;
+            // Ищем обложку и превью сразу в Deezer (лучшая база русских треков) + резервно в iTunes
+            fetchTrackCoverAndAudio(best.artist, best.title, function(foundCover, foundPreview) {
+              if (foundCover) best.cover = foundCover;
+              if (foundPreview) best.preview = foundPreview;
               callback(null, best);
             });
           };
@@ -3241,7 +3705,69 @@
         tryFetch(true);
       }
 
-      function fetchItunesMetadata(artist, title, callback) {
+      // Умный поиск обложки и .mp3/.m4a превью: сначала Deezer JSONP (отлично знает Славу КПСС и ру-сцену), затем iTunes
+      function fetchTrackCoverAndAudio(artist, title, callback) {
+        var cleanArtist = (artist || "").trim();
+        var cleanTitle = (title || "").replace(/\(feat.*?\)/gi, "").trim();
+
+        fetchFromDeezerJSONP(cleanArtist, cleanTitle, function(dzCover, dzPrev) {
+          if (dzCover && dzPrev) {
+            callback(dzCover, dzPrev);
+            return;
+          }
+          fetchFromItunesJSONP(cleanArtist, cleanTitle, function(itCover, itPrev) {
+            callback(dzCover || itCover || "", dzPrev || itPrev || "");
+          });
+        });
+      }
+
+      function fetchFromDeezerJSONP(artist, title, callback) {
+        var cbName = "wg_dz_cb_" + (new Date().getTime()) + "_" + Math.floor(Math.random() * 1000);
+        var finished = false;
+
+        var timer = setTimeout(function() {
+          if (finished) return;
+          finished = true;
+          callback("", "");
+        }, 4000);
+
+        window[cbName] = function(res) {
+          if (finished) return;
+          finished = true;
+          clearTimeout(timer);
+          try { delete window[cbName]; } catch (e) {}
+
+          if (res && res.data && res.data.length > 0) {
+            var bestItem = res.data[0];
+            var aLow = artist.toLowerCase();
+            for (var i = 0; i < res.data.length; i++) {
+              var cand = res.data[i];
+              if (cand.artist && cand.artist.name && cand.artist.name.toLowerCase().indexOf(aLow) !== -1) {
+                bestItem = cand;
+                break;
+              }
+            }
+            var cov = (bestItem.album && (bestItem.album.cover_medium || bestItem.album.cover)) || "";
+            var prev = bestItem.preview || "";
+            callback(cov, prev);
+          } else {
+            callback("", "");
+          }
+        };
+
+        var q = encodeURIComponent((artist ? artist + " " : "") + title);
+        var s = document.createElement("script");
+        s.src = "https://api.deezer.com/search/track?q=" + q + "&limit=5&output=jsonp&callback=" + cbName;
+        s.onerror = function() {
+          if (finished) return;
+          finished = true;
+          clearTimeout(timer);
+          callback("", "");
+        };
+        document.body.appendChild(s);
+      }
+
+      function fetchFromItunesJSONP(artist, title, callback) {
         var cbName = "wg_it_cb_" + (new Date().getTime()) + "_" + Math.floor(Math.random() * 1000);
         var finished = false;
 
@@ -3249,7 +3775,7 @@
           if (finished) return;
           finished = true;
           callback("", "");
-        }, 4500);
+        }, 4000);
 
         window[cbName] = function(res) {
           if (finished) return;
@@ -3265,10 +3791,9 @@
           }
         };
 
-        var proto = window.location.protocol === "http:" ? "http:" : "https:";
-        var q = encodeURIComponent((artist || "") + " " + (title || ""));
+        var q = encodeURIComponent((artist ? artist + " " : "") + title);
         var s = document.createElement("script");
-        s.src = proto + "//itunes.apple.com/search?term=" + q + "&media=music&entity=song&limit=1&callback=" + cbName;
+        s.src = "https://itunes.apple.com/search?term=" + q + "&country=RU&media=music&entity=song&limit=3&callback=" + cbName;
         s.onerror = function() {
           if (finished) return;
           finished = true;
@@ -3280,6 +3805,24 @@
 
       function fetchLastFmSongForModal() {
         var u = document.getElementById("mem-lf-user").value.trim() || state.settings.lastfm_user;
+        var manualTitle = document.getElementById("mem-song-title").value.trim();
+        var manualArtist = document.getElementById("mem-song-artist").value.trim();
+        var stEl = document.getElementById("mem-lf-status");
+
+        // Если ник Last.fm не введён, но вписана песня вручную — ищем обложку и превью напрямую в Deezer/iTunes
+        if (!u && (manualTitle || manualArtist)) {
+          stEl.innerText = "Ищем обложку и аудио в базе Deezer...";
+          fetchTrackCoverAndAudio(manualArtist, manualTitle, function(cov, prev) {
+            document.getElementById("mem-song-cover").value = cov || "";
+            document.getElementById("mem-song-preview").value = prev || "";
+            stEl.innerHTML = "<b style='color:#d93c14;'>Найдено в Deezer:</b> " +
+                             escapeHtml(manualArtist + " — " + manualTitle) +
+                             (cov ? " • Обложка ✓" : "") + (prev ? " • Аудио ✓" : "");
+            showHud("Обложка и превью подтянуты!");
+          });
+          return;
+        }
+
         if (!u) {
           showHud("Впиши свой ник Last.fm!");
           document.getElementById("mem-lf-user").focus();
@@ -3290,8 +3833,7 @@
         saveState();
 
         var dt = document.getElementById("mem-date-input").value || getTodayISO();
-        var stEl = document.getElementById("mem-lf-status");
-        stEl.innerText = "Ищем самый прослушиваемый трек за день...";
+        stEl.innerText = "Ищем топ-песню дня на Last.fm + обложку в Deezer...";
         showHud("Поиск на Last.fm...");
 
         queryLastFmTracks(u, dt, function(err, song) {
@@ -3308,8 +3850,9 @@
 
           stEl.innerHTML = "<b style='color:#d93c14;'>Топ-трек (↻ " + song.plays + " раз):</b> " +
                            escapeHtml(song.artist + " — " + song.title) +
-                           (song.preview ? " • <b>Аудио готово ✓</b>" : "");
-          showHud("Трек дня подтянут!");
+                           (song.cover ? " • Обложка ✓" : "") +
+                           (song.preview ? " • Аудио ✓" : "");
+          showHud("Трек и обложка найдены!");
         });
       }
 
@@ -3337,15 +3880,22 @@
         var playBtn = document.getElementById(slotId + "_btn");
         var discEl = document.getElementById(slotId + "_disc");
 
-        if (!song.preview) {
-          fetchItunesMetadata(song.artist, song.title, function(cov, prev) {
-            if (prev) {
+        // Если у старой записи нет обложки или аудио-превью, автоматически подтягиваем их из Deezer/iTunes и обновляем кружок!
+        if (!song.preview || !song.cover) {
+          fetchTrackCoverAndAudio(song.artist, song.title, function(cov, prev) {
+            var updated = false;
+            if (cov && !song.cover) {
+              song.cover = cov;
+              if (discEl) discEl.innerHTML = '<img src="' + cov + '" alt="">';
+              updated = true;
+            }
+            if (prev && !song.preview) {
               song.preview = prev;
-              if (cov && !song.cover) song.cover = cov;
-              if (memRef) {
-                memRef.lastfm = song;
-                saveState();
-              }
+              updated = true;
+            }
+            if (updated && memRef) {
+              memRef.lastfm = song;
+              saveState();
             }
           });
         }
@@ -3364,7 +3914,10 @@
           if (song.preview) {
             var streamUrl = song.preview;
             if (isIOS6) {
-              streamUrl = streamUrl.replace("https://audio-ssl.itunes.apple.com", "http://audio.itunes.apple.com");
+              streamUrl = streamUrl
+                .replace("https://audio-ssl.itunes.apple.com", "http://audio.itunes.apple.com")
+                .replace("https://cdns-preview-", "http://cdns-preview-")
+                .replace("https://cdnt-preview.", "http://cdnt-preview.");
             }
             player.src = streamUrl;
             player.setAttribute("data-playing", song.artist + song.title);
@@ -3377,16 +3930,20 @@
               if (discEl) discEl.className = "deck-cover";
             };
           } else {
-            playBtn.innerHTML = "&#8987;";
-            fetchItunesMetadata(song.artist, song.title, function(cov, prev) {
+            playBtn.innerHTML = "...";
+            fetchTrackCoverAndAudio(song.artist, song.title, function(cov, prev) {
+              if (cov && !song.cover && discEl) {
+                song.cover = cov;
+                discEl.innerHTML = '<img src="' + cov + '" alt="">';
+              }
               if (!prev) {
                 playBtn.innerHTML = "&#9654;";
-                showHud("Превью не найдено в iTunes");
+                showHud("Превью не найдено");
                 return;
               }
               song.preview = prev;
               playBtn.innerHTML = "&#9654;";
-              showHud("Аудио готово — нажми ▶ ещё раз!");
+              showHud("Аудио найдено — нажми ▶!");
             });
           }
         };
@@ -3398,10 +3955,10 @@
       }
 
       /* ==========================================================================
-         МОДАЛКИ ЗАПИСИ, ВЕХ И КАПСУЛЫ
+         МОДАЛКИ ЗАПИСИ, ТРОФЕЕВ И КАПСУЛЫ
          ========================================================================== */
       function openMemoryModal(memObj, presetDate) {
-        showEl("modal-memory");
+        showModalPage("modal-memory");
         hideEl("sketchpad-box");
         document.getElementById("mem-lf-user").value = state.settings.lastfm_user || "";
 
@@ -3409,7 +3966,6 @@
         var dtF = document.getElementById("mem-date-input");
         var txtF = document.getElementById("mem-text-input");
         var wF = document.getElementById("mem-weather-input");
-        var tagF = document.getElementById("mem-tags-input");
         var stF = document.getElementById("mem-song-title");
         var saF = document.getElementById("mem-song-artist");
         var spF = document.getElementById("mem-song-plays");
@@ -3426,7 +3982,6 @@
           var parsed = parseMemoryMetadata(memObj.text, memObj);
           txtF.value = parsed.cleanText;
           wF.value = parsed.weather || "";
-          tagF.value = parsed.tags || "";
 
           if (parsed.song) {
             stF.value = parsed.song.title || "";
@@ -3443,10 +3998,10 @@
           if (modalPhotoData) {
             document.getElementById("mem-photo-preview-img").src = modalPhotoData;
             showEl("mem-photo-preview-box");
-            showEl("btn-remove-mem-photo");
+            showEl("mem-photo-actions");
           } else {
             hideEl("mem-photo-preview-box");
-            hideEl("btn-remove-mem-photo");
+            hideEl("mem-photo-actions");
           }
           showEl("btn-delete-mem");
         } else {
@@ -3454,14 +4009,13 @@
           dtF.value = presetDate || getTodayISO();
           txtF.value = "";
           wF.value = "";
-          tagF.value = "";
           unlF.value = "";
           modalMood = "positive";
           stF.value = ""; saF.value = ""; spF.value = ""; scF.value = ""; sprF.value = "";
           modalPhotoData = "";
           modalPhotoName = "";
           hideEl("mem-photo-preview-box");
-          hideEl("btn-remove-mem-photo");
+          hideEl("mem-photo-actions");
           hideEl("btn-delete-mem");
         }
 
@@ -3476,7 +4030,6 @@
         var dt = document.getElementById("mem-date-input").value || getTodayISO();
         var cleanTxt = document.getElementById("mem-text-input").value.trim();
         var weatherVal = document.getElementById("mem-weather-input").value.trim();
-        var tagsVal = document.getElementById("mem-tags-input").value.trim();
         var unlockDt = document.getElementById("mem-unlock-date").value;
 
         var sTitle = document.getElementById("mem-song-title").value.trim();
@@ -3486,14 +4039,12 @@
         var sPrev = document.getElementById("mem-song-preview").value.trim();
 
         if (!cleanTxt && !modalPhotoData && !sTitle) {
-          showHud("Напиши текст или добавь фото/скетч/трек!");
+          showHud("Напиши текст или добавь фото/трек!");
           return;
         }
 
-        // Формируем текст с аккуратными мета-строками внизу для полной совместимости с оригинальным Whengram
         var extraLines = [];
         if (weatherVal) extraLines.push("🌡️ Атмосфера: " + weatherVal);
-        if (tagsVal) extraLines.push("🏷️ Теги: " + tagsVal);
 
         var songMeta = null;
         if (sTitle || sArtist) {
@@ -3526,7 +4077,6 @@
               state.memories[i].imageUri = uri;
               state.memories[i].lastfm = songMeta;
               state.memories[i].weather = weatherVal || undefined;
-              state.memories[i].tags = tagsVal || undefined;
               state.memories[i].unlock_date = unlockDt || undefined;
               state.memories[i].updated_at = nowIso;
               break;
@@ -3541,7 +4091,6 @@
             imageUri: uri,
             lastfm: songMeta,
             weather: weatherVal || undefined,
-            tags: tagsVal || undefined,
             unlock_date: unlockDt || undefined,
             created_at: nowIso,
             updated_at: nowIso
@@ -3550,13 +4099,13 @@
 
         selectedWeekDate = dt;
         saveState();
-        hideEl("modal-memory");
+        closeModalPage("modal-memory");
         renderEverything();
-        showHud(unlockDt && unlockDt > getTodayISO() ? "Капсула запечатана!" : "Сохранено!");
+        showHud("Сохранено!");
       }
 
       function openEventModal(evObj) {
-        showEl("modal-event");
+        showModalPage("modal-event");
         var idF = document.getElementById("ev-edit-id");
         var tF = document.getElementById("ev-title-input");
         var cF = document.getElementById("ev-cat-input");
@@ -3566,7 +4115,7 @@
         if (evObj) {
           idF.value = evObj.id;
           tF.value = evObj.title || evObj.text || "";
-          cF.value = evObj.category || "РАБОТА";
+          cF.value = evObj.category || "ЖИЗНЬ";
           dF.value = evObj.date || getTodayISO();
           nF.value = evObj.notes || "";
           evModalPhotoName = evObj.imageUri || "";
@@ -3574,22 +4123,22 @@
           if (evModalPhotoData) {
             document.getElementById("ev-photo-preview-img").src = evModalPhotoData;
             showEl("ev-photo-preview-box");
-            showEl("btn-remove-ev-photo");
+            showEl("ev-photo-actions");
           } else {
             hideEl("ev-photo-preview-box");
-            hideEl("btn-remove-ev-photo");
+            hideEl("ev-photo-actions");
           }
           showEl("btn-delete-ev");
         } else {
           idF.value = "";
           tF.value = "";
-          cF.value = "РАБОТА";
+          cF.value = "ЖИЗНЬ";
           dF.value = getTodayISO();
           nF.value = "";
           evModalPhotoData = "";
           evModalPhotoName = "";
           hideEl("ev-photo-preview-box");
-          hideEl("btn-remove-ev-photo");
+          hideEl("ev-photo-actions");
           hideEl("btn-delete-ev");
         }
       }
@@ -3601,7 +4150,7 @@
         var dt = document.getElementById("ev-date-input").value || getTodayISO();
         var notes = document.getElementById("ev-notes-input").value.trim();
 
-        if (!title) { showHud("Введи название вехи!"); return; }
+        if (!title) { showHud("Введи название трофея!"); return; }
 
         var uri = "";
         if (evModalPhotoData) {
@@ -3637,9 +4186,9 @@
           });
         }
         saveState();
-        hideEl("modal-event");
+        closeModalPage("modal-event");
         renderEverything();
-        showHud("Веха сохранена!");
+        showHud("Медаль добавлена на полку!");
       }
 
       function openReaderModal(memObj) {
@@ -3647,17 +4196,17 @@
         var todayIso = getTodayISO();
         if (isMemoryLocked(memObj, todayIso)) {
           var daysLeft = Math.ceil((parseIsoDateLocal(memObj.unlock_date, false) - parseIsoDateLocal(todayIso, false)) / 86400000);
-          showHud("🔒 Запечатано! Откроется через " + daysLeft + " дн.");
+          showHud("Запечатано! Откроется через " + daysLeft + " дн.");
           return;
         }
 
-        showEl("modal-reader");
+        showModalPage("modal-reader");
         showEl("reader-front-side");
         hideEl("reader-back-side");
-        document.getElementById("btn-flip-polaroid").innerHTML = "&#8635; Оборот карточки";
+        document.getElementById("btn-flip-polaroid").innerHTML = "&#8635; Оборот";
 
         document.getElementById("reader-date-label").innerText = getWeekdayFull(memObj.date) + ", " + formatRussianDate(memObj.date);
-        document.getElementById("reader-mood-label").innerText = getMoodLabel(memObj.mood);
+        document.getElementById("reader-mood-label").innerHTML = getMoodBadgeHTML(memObj.mood);
 
         var pImg = getPhoto(memObj.imageUri);
         if (pImg) {
@@ -3669,7 +4218,7 @@
 
         var parsed = parseMemoryMetadata(memObj.text, memObj);
         document.getElementById("reader-story-text").innerText = parsed.cleanText;
-        renderAtmoAndTags(parsed.weather, parsed.tags, "reader-atmo-row");
+        renderWeatherPill(parsed.weather, "reader-atmo-row");
         renderAudioDeck(parsed.song, "reader-lastfm-slot", memObj);
 
         document.getElementById("reader-stamp-box").innerText =
@@ -3684,7 +4233,7 @@
 
         document.getElementById("btn-reader-edit").onclick = function() {
           stopAudioPlayer();
-          hideEl("modal-reader");
+          closeModalPage("modal-reader");
           openMemoryModal(memObj);
         };
       }
@@ -3701,18 +4250,16 @@
         }
         var idx = Math.floor(Math.random() * unlocked.length);
         openReaderModal(unlocked[idx]);
-        showHud("Случайный день из капсулы!");
       }
 
       /* ==========================================================================
-         ПАРСЕР МЕТАДАННЫХ + ПОЛНОСТЬЮ СОВМЕСТИМЫЙ .ZIP С WHENGRAM 2.0 (STORED + DEFLATE)
+         ОБЛАЧНЫЙ МОСТ И СИНХРОНИЗАЦИЯ С ОФИЦИАЛЬНЫМ WHENGRAM 2.0 (.ZIP + ФОТО)
          ========================================================================== */
       function parseMemoryMetadata(rawText, memObj) {
         var lines = (rawText || "").split("\n");
         var cleanLines = [];
         var song = (memObj && memObj.lastfm) ? memObj.lastfm : null;
         var weather = (memObj && memObj.weather) ? memObj.weather : "";
-        var tags = (memObj && memObj.tags) ? memObj.tags : "";
 
         for (var i = 0; i < lines.length; i++) {
           var l = lines[i];
@@ -3733,7 +4280,7 @@
           } else if (l.indexOf("🌡️ Атмосфера:") === 0) {
             weather = l.replace("🌡️ Атмосфера:", "").trim();
           } else if (l.indexOf("🏷️ Теги:") === 0) {
-            tags = l.replace("🏷️ Теги:", "").trim();
+            // Игнорируем старые теги
           } else {
             cleanLines.push(l);
           }
@@ -3742,12 +4289,10 @@
         return {
           cleanText: cleanLines.join("\n").trim(),
           song: song,
-          weather: weather,
-          tags: tags
+          weather: weather
         };
       }
 
-      // Строгая схема manifest.json v2.0 оригинального Whengram
       function buildExportManifest() {
         var cleanMems = [];
         var nowIso = new Date().toISOString();
@@ -3791,14 +4336,86 @@
           events: cleanEvents,
           profile: {
             name: (state.profile && state.profile.name) ? state.profile.name : " ",
-            reminder_time: (state.profile && state.profile.reminder_time) ? state.profile.reminder_time : "21:00",
-            created_at: (state.profile && state.profile.created_at) ? state.profile.created_at : "2026-10-18T15:35:23.827Z",
+            reminder_time: "21:00",
+            created_at: "2026-10-18T15:35:23.827Z",
             setup_complete: true
           },
-          settings: {
-            theme: "system"
-          }
+          settings: { theme: "system" }
         };
+      }
+
+      // Полный пакет со встроенными фотографиями для переноса через код или Облачный мост
+      function buildFullPortablePackage() {
+        var pkg = buildExportManifest();
+        var embeddedPhotos = {};
+        for (var i = 0; i < state.memories.length; i++) {
+          var u = state.memories[i].imageUri;
+          if (u) {
+            var cl = u.replace(/^photos\//, "");
+            var b64 = getPhoto(u);
+            if (b64) embeddedPhotos[cl] = b64;
+          }
+        }
+        for (var j = 0; j < state.events.length; j++) {
+          var eu = state.events[j].imageUri;
+          if (eu) {
+            var ecl = eu.replace(/^photos\//, "");
+            var eb64 = getPhoto(eu);
+            if (eb64) embeddedPhotos[ecl] = eb64;
+          }
+        }
+        pkg._embedded_photos = embeddedPhotos;
+        return pkg;
+      }
+
+      function pushCloudBackup() {
+        showHud("Отправка в облако...");
+        var payload = JSON.stringify(buildFullPortablePackage());
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://jsonblob.com/api/jsonBlob", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status === 201 || xhr.status === 200) {
+            var loc = xhr.getResponseHeader("Location") || xhr.getResponseHeader("location") || "";
+            var parts = loc.split("/");
+            var id = parts[parts.length - 1] || "";
+            if (id) {
+              document.getElementById("cloud-sync-id").value = id;
+              showHud("Отправлено! Скопируй ID");
+              return;
+            }
+          }
+          document.getElementById("backup-code-box").value = payload;
+          showHud("Скопируй код из поля ниже");
+        };
+        xhr.send(payload);
+      }
+
+      function pullCloudBackup() {
+        var id = document.getElementById("cloud-sync-id").value.trim();
+        if (!id) {
+          showHud("Введи ID облачного пакета!");
+          return;
+        }
+        showHud("Загрузка из облака...");
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://jsonblob.com/api/jsonBlob/" + encodeURIComponent(id), true);
+        xhr.setRequestHeader("Accept", "application/json");
+        xhr.onreadystatechange = function() {
+          if (xhr.readyState !== 4) return;
+          if (xhr.status === 200) {
+            try {
+              var data = JSON.parse(xhr.responseText);
+              applyImportedData(data);
+              showHud("Облачный бэкап загружен!");
+              return;
+            } catch (e) {}
+          }
+          showHud("Пакет не найден по этому ID");
+        };
+        xhr.send();
       }
 
       function exportZipBackup() {
@@ -3807,10 +4424,8 @@
           var files = [];
           var addedPhotos = {};
 
-          // 1. Обязательная запись папки photos/ как в оригинальном архиве Whengram
           files.push({ name: "photos/", data: new Uint8Array(0), isDir: true });
 
-          // 2. Все фотографии воспоминаний
           for (var i = 0; i < state.memories.length; i++) {
             var uri = state.memories[i].imageUri;
             if (uri) {
@@ -3825,7 +4440,6 @@
             }
           }
 
-          // 3. Все фотографии вех
           for (var j = 0; j < state.events.length; j++) {
             var evUri = state.events[j].imageUri;
             if (evUri) {
@@ -3840,7 +4454,6 @@
             }
           }
 
-          // 4. Сам manifest.json
           files.push({ name: "manifest.json", data: strToUtf8Bytes(JSON.stringify(manifestObj)) });
 
           var zipBytes = buildCompatibleZip(files);
@@ -3853,10 +4466,10 @@
           document.body.appendChild(a);
           a.click();
           document.body.removeChild(a);
-          showHud("Совместимый .ZIP скачан!");
+          showHud("Готовый .ZIP скачан!");
         } catch (e) {
-          document.getElementById("backup-code-box").value = JSON.stringify(buildExportManifest());
-          showHud("Код бэкапа выведен в поле ниже");
+          document.getElementById("backup-code-box").value = JSON.stringify(buildFullPortablePackage());
+          showHud("На iOS 6 скопируй код ниже на основной телефон!");
         }
       }
 
@@ -3889,14 +4502,13 @@
                   savePhoto(shortName, "data:image/jpeg;base64," + uint8ToBase64(en.data));
                 }
               } else if (en.name.indexOf("manifest.json") !== -1 && en.data && en.data.length > 0) {
-                var jsonStr = utf8BytesToStr(en.data);
-                manifest = JSON.parse(jsonStr);
+                manifest = JSON.parse(utf8BytesToStr(en.data));
               }
             }
 
             if (manifest) {
               applyImportedData(manifest);
-              showHud("ZIP Whengram успешно синхронизирован!");
+              showHud("ZIP Whengram синхронизирован!");
             } else {
               showHud("manifest.json не найден в архиве");
             }
@@ -3909,6 +4521,13 @@
 
       function applyImportedData(parsed) {
         if (!parsed || !parsed.memories) return;
+        if (parsed._embedded_photos) {
+          for (var k in parsed._embedded_photos) {
+            if (parsed._embedded_photos.hasOwnProperty(k)) {
+              savePhoto(k, parsed._embedded_photos[k]);
+            }
+          }
+        }
         state.memories = parsed.memories;
         state.events = parsed.events || [];
         if (parsed.profile && parsed.profile.name && parsed.profile.name.trim()) {
@@ -3918,9 +4537,7 @@
         renderEverything();
       }
 
-      /* ==========================================================================
-         УПАКОВЩИК И РАСПАКОВЩИК .ZIP (ПОДДЕРЖКА STORED = 0 И DEFLATE = 8 НА ES5)
-         ========================================================================== */
+      /* Упаковщик и распаковщик .ZIP (STORED = 0 и DEFLATE = 8) */
       var crcTab = null;
       function crc32(bytes) {
         if (!crcTab) {
@@ -3938,8 +4555,7 @@
 
       function buildCompatibleZip(entries) {
         var localArr = [], centralArr = [], offset = 0;
-        var dosTime = 0x9D20; // Корректное MS-DOS время
-        var dosDate = 0x5D53; // Корректная MS-DOS дата (чтобы Java/Android ZipInputStream не выдавал ошибку)
+        var dosTime = 0x9D20, dosDate = 0x5D53;
 
         for (var i = 0; i < entries.length; i++) {
           var nb = strToUtf8Bytes(entries[i].name);
@@ -3948,39 +4564,17 @@
           var len = db.length;
 
           var lh = new Uint8Array(30 + nb.length);
-          w32(lh, 0, 0x04034b50);
-          w16(lh, 4, 20);
-          w16(lh, 6, 0x0800);
-          w16(lh, 8, 0);
-          w16(lh, 10, dosTime);
-          w16(lh, 12, dosDate);
-          w32(lh, 14, crc);
-          w32(lh, 18, len);
-          w32(lh, 22, len);
-          w16(lh, 26, nb.length);
-          w16(lh, 28, 0);
+          w32(lh, 0, 0x04034b50); w16(lh, 4, 20); w16(lh, 6, 0x0800); w16(lh, 8, 0);
+          w16(lh, 10, dosTime); w16(lh, 12, dosDate);
+          w32(lh, 14, crc); w32(lh, 18, len); w32(lh, 22, len); w16(lh, 26, nb.length); w16(lh, 28, 0);
           lh.set(nb, 30);
-          localArr.push(lh);
-          localArr.push(db);
+          localArr.push(lh); localArr.push(db);
 
           var ch = new Uint8Array(46 + nb.length);
-          w32(ch, 0, 0x02014b50);
-          w16(ch, 4, 20);
-          w16(ch, 6, 20);
-          w16(ch, 8, 0x0800);
-          w16(ch, 10, 0);
-          w16(ch, 12, dosTime);
-          w16(ch, 14, dosDate);
-          w32(ch, 16, crc);
-          w32(ch, 20, len);
-          w32(ch, 24, len);
-          w16(ch, 28, nb.length);
-          w16(ch, 30, 0);
-          w16(ch, 32, 0);
-          w16(ch, 34, 0);
-          w16(ch, 36, 0);
-          w32(ch, 38, entries[i].isDir ? 0x10 : 0);
-          w32(ch, 42, offset);
+          w32(ch, 0, 0x02014b50); w16(ch, 4, 20); w16(ch, 6, 20); w16(ch, 8, 0x0800); w16(ch, 10, 0);
+          w16(ch, 12, dosTime); w16(ch, 14, dosDate);
+          w32(ch, 16, crc); w32(ch, 20, len); w32(ch, 24, len); w16(ch, 28, nb.length);
+          w32(ch, 38, entries[i].isDir ? 0x10 : 0); w32(ch, 42, offset);
           ch.set(nb, 46);
           centralArr.push(ch);
 
@@ -3990,11 +4584,8 @@
         var cLen = 0;
         for (var c = 0; c < centralArr.length; c++) cLen += centralArr[c].length;
         var eocd = new Uint8Array(22);
-        w32(eocd, 0, 0x06054b50);
-        w16(eocd, 8, entries.length);
-        w16(eocd, 10, entries.length);
-        w32(eocd, 12, cLen);
-        w32(eocd, 16, offset);
+        w32(eocd, 0, 0x06054b50); w16(eocd, 8, entries.length); w16(eocd, 10, entries.length);
+        w32(eocd, 12, cLen); w32(eocd, 16, offset);
 
         var out = new Uint8Array(offset + cLen + 22), pos = 0;
         for (var l = 0; l < localArr.length; l++) { out.set(localArr[l], pos); pos += localArr[l].length; }
@@ -4003,46 +4594,20 @@
         return out;
       }
 
-      // Декомпрессор RFC 1951 Raw DEFLATE на чистом ES5 (для распаковки сжатых ZIP из Android/iOS Whengram)
       function inflateRaw(src) {
-        var pos = 0, bitBuf = 0, bitCnt = 0;
-        var out = [];
-
+        var pos = 0, bitBuf = 0, bitCnt = 0, out = [];
         function bits(n) {
-          while (bitCnt < n) {
-            bitBuf |= (src[pos++] || 0) << bitCnt;
-            bitCnt += 8;
-          }
-          var val = bitBuf & ((1 << n) - 1);
-          bitBuf >>>= n;
-          bitCnt -= n;
-          return val;
+          while (bitCnt < n) { bitBuf |= (src[pos++] || 0) << bitCnt; bitCnt += 8; }
+          var val = bitBuf & ((1 << n) - 1); bitBuf >>>= n; bitCnt -= n; return val;
         }
-
         function buildTree(lengths) {
-          var counts = [], nextCode = [], tree = {};
-          var maxBits = 0, i;
-          for (i = 0; i < lengths.length; i++) {
-            var l = lengths[i];
-            if (l > maxBits) maxBits = l;
-            if (l) counts[l] = (counts[l] || 0) + 1;
-          }
-          var code = 0;
-          counts[0] = 0;
-          for (var bitsIdx = 1; bitsIdx <= maxBits; bitsIdx++) {
-            code = (code + (counts[bitsIdx - 1] || 0)) << 1;
-            nextCode[bitsIdx] = code;
-          }
-          for (i = 0; i < lengths.length; i++) {
-            var len = lengths[i];
-            if (len) {
-              tree[(len << 16) | nextCode[len]] = i;
-              nextCode[len]++;
-            }
-          }
+          var counts = [], nextCode = [], tree = {}, maxBits = 0, i;
+          for (i = 0; i < lengths.length; i++) { var l = lengths[i]; if (l > maxBits) maxBits = l; if (l) counts[l] = (counts[l] || 0) + 1; }
+          var code = 0; counts[0] = 0;
+          for (var bIdx = 1; bIdx <= maxBits; bIdx++) { code = (code + (counts[bIdx - 1] || 0)) << 1; nextCode[bIdx] = code; }
+          for (i = 0; i < lengths.length; i++) { var len = lengths[i]; if (len) { tree[(len << 16) | nextCode[len]] = i; nextCode[len]++; } }
           return { tree: tree, maxBits: maxBits };
         }
-
         function decodeSymbol(huff) {
           var code = 0;
           for (var len = 1; len <= huff.maxBits; len++) {
@@ -4052,7 +4617,6 @@
           }
           return 0;
         }
-
         var fixedLit = null, fixedDist = null;
         function getFixedTrees() {
           if (!fixedLit) {
@@ -4062,11 +4626,9 @@
             for (; i <= 279; i++) ll[i] = 7;
             for (; i <= 287; i++) ll[i] = 8;
             for (i = 0; i < 32; i++) dl[i] = 5;
-            fixedLit = buildTree(ll);
-            fixedDist = buildTree(dl);
+            fixedLit = buildTree(ll); fixedDist = buildTree(dl);
           }
         }
-
         var lenBase = [3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258];
         var lenExtra = [0,0,0,0,0,0,0,0,1,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5,0];
         var distBase = [1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577];
@@ -4075,97 +4637,59 @@
 
         var bfinal = 0;
         while (!bfinal && pos <= src.length) {
-          bfinal = bits(1);
-          var btype = bits(2);
+          bfinal = bits(1); var btype = bits(2);
           if (btype === 0) {
             bitBuf = 0; bitCnt = 0;
-            var blockLen = src[pos] | (src[pos + 1] << 8);
-            pos += 4;
+            var blockLen = src[pos] | (src[pos + 1] << 8); pos += 4;
             for (var k = 0; k < blockLen; k++) out.push(src[pos++]);
           } else if (btype === 1 || btype === 2) {
             var litTree, distTree;
-            if (btype === 1) {
-              getFixedTrees();
-              litTree = fixedLit;
-              distTree = fixedDist;
-            } else {
-              var hlit = bits(5) + 257;
-              var hdist = bits(5) + 1;
-              var hclen = bits(4) + 4;
+            if (btype === 1) { getFixedTrees(); litTree = fixedLit; distTree = fixedDist; }
+            else {
+              var hlit = bits(5) + 257, hdist = bits(5) + 1, hclen = bits(4) + 4;
               var clLengths = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
               for (var c = 0; c < hclen; c++) clLengths[clOrder[c]] = bits(3);
-              var clTree = buildTree(clLengths);
-              var allLengths = [];
+              var clTree = buildTree(clLengths), allLengths = [];
               while (allLengths.length < hlit + hdist) {
                 var sym = decodeSymbol(clTree);
-                if (sym < 16) {
-                  allLengths.push(sym);
-                } else if (sym === 16) {
-                  var prev = allLengths[allLengths.length - 1] || 0;
-                  var rep = bits(2) + 3;
-                  while (rep--) allLengths.push(prev);
-                } else if (sym === 17) {
-                  var zRep = bits(3) + 3;
-                  while (zRep--) allLengths.push(0);
-                } else if (sym === 18) {
-                  var lRep = bits(7) + 11;
-                  while (lRep--) allLengths.push(0);
-                }
+                if (sym < 16) allLengths.push(sym);
+                else if (sym === 16) { var prev = allLengths[allLengths.length - 1] || 0, rep = bits(2) + 3; while (rep--) allLengths.push(prev); }
+                else if (sym === 17) { var zRep = bits(3) + 3; while (zRep--) allLengths.push(0); }
+                else if (sym === 18) { var lRep = bits(7) + 11; while (lRep--) allLengths.push(0); }
               }
               litTree = buildTree(allLengths.slice(0, hlit));
               distTree = buildTree(allLengths.slice(hlit, hlit + hdist));
             }
-
             while (true) {
               var s = decodeSymbol(litTree);
               if (s === 256) break;
-              if (s < 256) {
-                out.push(s);
-              } else {
-                var lIdx = s - 257;
-                var length = lenBase[lIdx] + bits(lenExtra[lIdx]);
-                var dSym = decodeSymbol(distTree);
-                var dist = distBase[dSym] + bits(distExtra[dSym]);
+              if (s < 256) out.push(s);
+              else {
+                var lIdx = s - 257, length = lenBase[lIdx] + bits(lenExtra[lIdx]);
+                var dSym = decodeSymbol(distTree), dist = distBase[dSym] + bits(distExtra[dSym]);
                 var startIdx = out.length - dist;
-                for (var m = 0; m < length; m++) {
-                  out.push(out[startIdx + m]);
-                }
+                for (var m = 0; m < length; m++) out.push(out[startIdx + m]);
               }
             }
-          } else {
-            break;
-          }
+          } else break;
         }
         return new Uint8Array(out);
       }
 
       function unpackAnyZip(b) {
         var res = [], ep = -1;
-        for (var i = b.length - 22; i >= 0; i--) {
-          if (r32(b, i) === 0x06054b50) { ep = i; break; }
-        }
+        for (var i = b.length - 22; i >= 0; i--) { if (r32(b, i) === 0x06054b50) { ep = i; break; } }
         if (ep === -1) return res;
-
         var cnt = r16(b, ep + 10), ptr = r32(b, ep + 16);
         for (var e = 0; e < cnt; e++) {
           if (r32(b, ptr) !== 0x02014b50) break;
-          var meth = r16(b, ptr + 10);
-          var compSz = r32(b, ptr + 20);
-          var nl = r16(b, ptr + 28);
-          var xl = r16(b, ptr + 30);
-          var cl = r16(b, ptr + 32);
-          var lOff = r32(b, ptr + 42);
-
+          var meth = r16(b, ptr + 10), compSz = r32(b, ptr + 20), nl = r16(b, ptr + 28), xl = r16(b, ptr + 30), cl = r16(b, ptr + 32), lOff = r32(b, ptr + 42);
           var fname = utf8BytesToStr(b.subarray(ptr + 46, ptr + 46 + nl));
           var dStart = lOff + 30 + r16(b, lOff + 26) + r16(b, lOff + 28);
           var rawSlice = b.subarray(dStart, dStart + compSz);
-
           if (compSz > 0) {
-            if (meth === 0) {
-              res.push({ name: fname, data: rawSlice });
-            } else if (meth === 8) {
-              res.push({ name: fname, data: inflateRaw(rawSlice) });
-            }
+            if (meth === 0) res.push({ name: fname, data: rawSlice });
+            else if (meth === 8) res.push({ name: fname, data: inflateRaw(rawSlice) });
           }
           ptr += 46 + nl + xl + cl;
         }
@@ -4183,7 +4707,7 @@
             else if (h >= w && h > max) { w = Math.round(w * (max / h)); h = max; }
             c.width = w; c.height = h;
             c.getContext("2d").drawImage(img, 0, 0, w, h);
-            cb(c.toDataURL("image/jpeg", 0.82));
+            cb(c.toDataURL("image/jpeg", 0.84));
           };
           img.src = e.target.result;
         };
